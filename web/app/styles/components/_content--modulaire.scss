@@ -1,0 +1,13 @@
+.content--modulaire {
+  section {
+    margin-bottom: var(--spacing-7xl);
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .hero {
+    max-width: 37.5rem;
+    margin: 0 auto;
+    margin-bottom: var(--spacing-7xl);
+  }
+}

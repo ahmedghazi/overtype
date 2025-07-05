@@ -1,0 +1,78 @@
+@use "../mixins";
+.card {
+  &:hover {
+    color: var(--color-muted);
+  }
+  &__rounded {
+    border-radius: var(--radius);
+    // overflow: hidden;
+  }
+  &--product {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+
+    position: relative;
+    padding: 116px 0 109px;
+    // @include mixins.debugFiletY(50%);
+    &.is-square {
+      h3 {
+        font-size: var(--text-3xl);
+      }
+    }
+    .ui-btn--pill {
+      position: absolute;
+      left: var(--spacing-xl);
+      top: var(--spacing-xl);
+    }
+    .t-preview {
+      h3 {
+        line-height: 1;
+      }
+    }
+  }
+  &--font-in-use {
+    // width: calc(100% / 2);
+    flex-shrink: 0;
+    .image img {
+      width: 500px !important;
+      height: 500px !important;
+      object-fit: cover;
+    }
+    .header {
+      padding: var(--spacing-sm) 0;
+      display: flex;
+      justify-content: space-between;
+      h3 {
+        font-size: var(--text-md);
+      }
+    }
+  }
+
+  &--story {
+    width: 100%;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 72.62%,
+        rgba(0, 0, 0, 0.6) 95.1%
+      );
+    }
+    img {
+      height: var(--main-h) !important;
+      object-fit: cover;
+    }
+    .header {
+      position: absolute;
+      width: 100%;
+      padding: 52px var(--spacing-md);
+      bottom: 0;
+      left: 0;
+      color: white;
+
+      font-size: var(--text-xl);
+    }
+  }
+}

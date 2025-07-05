@@ -1,0 +1,32 @@
+@use "../variables";
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: var(--spacing-md);
+  z-index: 50;
+  transition: transform 0.2s var(--cubic), opacity 0.2s var(--cubic);
+  font-size: var(--text-sm);
+  &.is-down {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  .logo {
+    svg {
+      width: 120px;
+    }
+  }
+
+  nav {
+    li:not(.flex) {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  @media all and (max-width: variables.$md) {
+    padding: var(--spacing-sm);
+  }
+}

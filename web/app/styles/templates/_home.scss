@@ -1,0 +1,12 @@
+@use "../variables";
+
+.template--home {
+  .module--text-ui {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+@media all and (max-width: variables.$sm) {
+  .page-home {
+  }
+}

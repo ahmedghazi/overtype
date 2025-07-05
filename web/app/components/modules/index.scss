@@ -1,0 +1,15 @@
+@use "../../styles/variables";
+@use "../../styles/mixins";
+
+.modules {
+  section {
+    width: 100%;
+    margin-bottom: var(--spacing-7xl);
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media all and (min-width: variables.$md) {
+    }
+  }
+}

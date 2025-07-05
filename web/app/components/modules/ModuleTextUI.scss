@@ -1,0 +1,17 @@
+.module--text-ui {
+  &:not(.full-width) {
+    h2 {
+      text-align: center;
+    }
+    .text {
+      max-width: 37.5rem;
+      margin: 0 auto;
+    }
+  }
+  &.w-full {
+    .text {
+      max-width: 72rem;
+      margin: 0;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+footer {
+  padding: var(--spacing-md);
+  background-color: var(--color-btn);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  // background: rgba(231, 231, 231, 0.5);
+  .credits {
+    margin-top: var(--spacing-9xl);
+    display: flex;
+    justify-content: space-between;
+  }
+}

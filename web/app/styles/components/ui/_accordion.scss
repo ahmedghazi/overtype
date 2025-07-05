@@ -1,0 +1,19 @@
+.accordion {
+  padding: var(--spacing-4xl) 0;
+  .accordion--item {
+    border-top: var(--border);
+    .header {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--spacing-xl) 0;
+      font-size: var(--text-lg);
+    }
+    .detail {
+      height: 0;
+      overflow: clip;
+      figure {
+        margin: var(--spacing-2xl) 0;
+      }
+    }
+  }
+}

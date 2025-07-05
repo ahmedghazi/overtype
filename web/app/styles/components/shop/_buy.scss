@@ -1,0 +1,32 @@
+.buy {
+  width: 100%;
+  max-width: 55.375rem;
+  padding: var(--spacing-8xl) var(--spacing-6xl);
+
+  .header {
+    text-align: center;
+    margin-bottom: var(--spacing-5xl);
+  }
+  section {
+    .header {
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+      margin-bottom: 0;
+    }
+    h2 {
+    }
+    margin-bottom: var(--spacing-2xl);
+  }
+  h3 {
+    margin-bottom: var(--spacing-xl);
+  }
+  h4 {
+  }
+  .box {
+    padding: var(--spacing-2xs);
+  }
+}
