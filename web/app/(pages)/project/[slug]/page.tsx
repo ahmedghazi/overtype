@@ -1,12 +1,11 @@
 import React from "react";
 import website from "@/app/config/website";
 import { getClient } from "@/app/sanity-api/sanity-client";
-import { getProject, projectQuery } from "@/app/sanity-api/sanity-queries";
+import { getProject, PROJECT_QUERY } from "@/app/sanity-api/sanity-queries";
 import { Project } from "@/app/types/schema";
 import { Metadata, NextPage } from "next";
 import { draftMode } from "next/headers";
-import ContentProject from "@/app/components/ProjectContent";
-import Projects from "@/app/components/ProjectsGrid";
+import ContentProject from "@/app/components/ContentProject";
 
 type Params = Promise<{ slug: string }>;
 
@@ -20,7 +19,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const data = await getProject(slug);
   return {
-    title: `${data?.seo?.metaTitle || data?.title?.fr || ""}`,
+    title: `${data?.seo?.metaTitle || data?.title?.en || ""}`,
     description: data?.seo?.metaDescription,
     openGraph: {
       images: data?.seo?.metaImage?.asset.url || website.image,
@@ -38,7 +37,7 @@ const ProjectPage: NextPage<PageProps> = async ({ params }) => {
   let data: Project;
   if (isEnabled) {
     data = await getClient({ token: process.env.SANITY_API_READ_TOKEN }).fetch(
-      projectQuery,
+      PROJECT_QUERY,
       params
     );
   } else {
@@ -49,11 +48,6 @@ const ProjectPage: NextPage<PageProps> = async ({ params }) => {
   return (
     <div className='template template--project' data-template='project'>
       <ContentProject input={data} />
-      {data.relatedProjects && (
-        <div className='mt-xxl'>
-          <Projects items={data.relatedProjects} />
-        </div>
-      )}
     </div>
   );
 };

@@ -7,11 +7,7 @@ type Props = {
 };
 
 const ContentHome = ({ input }: Props) => {
-  return (
-    <div className='content--home px-md '>
-      <AddToCart />
-    </div>
-  );
+  return <div className='content--home px-md '></div>;
 };
 
 export default ContentHome;

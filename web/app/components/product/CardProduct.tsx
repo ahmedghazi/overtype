@@ -4,7 +4,6 @@ import { Product } from "../../types/schema";
 import Link from "next/link";
 import { _linkResolver, _localizeField } from "../../sanity-api/utils";
 import useTypeFace from "../typeface/TypeFaceContext";
-import { _ProductExtend } from "../../types/extra-types";
 import clsx from "clsx";
 import BtnPill from "../ui/buttons/BtnPill";
 

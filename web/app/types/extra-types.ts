@@ -22,10 +22,6 @@ export interface _ModulesList {
   >;
 }
 
-export interface _ProductExtend extends Product {
-  defaultTypeface: ProductSingle;
-}
-
 export interface ProductBundleExtend extends SanityKeyed<ProductBundle> {
   finalPrice: number;
 }
