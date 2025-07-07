@@ -115,17 +115,22 @@ type LicenseForData = {
 
 const Cart = (props: Props) => {
   // alert("here");
-  const { products, setProducts } = useShop();
+  const {
+    products,
+    setProducts,
+    setLicenseFor,
+    licenseForData,
+    setLicenseForData,
+  } = useShop();
 
   // console.log(products);
   const [open, setOpen] = useState<boolean>(false);
-  const [licenseFor, setLicenseFor] = useState<string>("");
-  const [licenseForData, setLicenseForData] = useState<LicenseForData>({
-    companyName: "",
-    email: "",
-    inUseFor: "",
-  });
-  const router = useRouter();
+  // const [licenseFor, setLicenseFor] = useState<"me" | "client">("me");
+  // const [licenseForData, setLicenseForData] = useState<LicenseForData>({
+  //   companyName: "",
+  //   email: "",
+  //   inUseFor: "",
+  // });
   const searchParams = useSearchParams();
   const success = searchParams.get("success");
   const canceled = searchParams.get("canceled");
@@ -138,16 +143,13 @@ const Cart = (props: Props) => {
     return () => {
       unsubscribe(tokenOpen);
     };
-  });
+  }, []);
 
   const _delete = (sku: string) => {
     setProducts({ type: "DELETE", payload: sku });
   };
-  // console.log(router.back());
-  const isPostCheckout = success || canceled;
-  // const isPostCheckout = false;
-  // console.log(success, canceled);
-  const LicenseForData = [
+
+  const LicenseForValues = [
     {
       label: "Me",
       value: "me",
@@ -185,13 +187,13 @@ const Cart = (props: Props) => {
       </div>
 
       <section className='licenseFor'>
-        <pre>{JSON.stringify(licenseForData, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(licenseForData, null, 2)}</pre> */}
         <div className='box'>
           <div className='form-field'>
             <RadioGroup
               name='licenseFor'
               label='Who is the license owner?'
-              values={LicenseForData}
+              values={LicenseForValues}
               onChange={(value) => setLicenseFor(value)}
             />
           </div>

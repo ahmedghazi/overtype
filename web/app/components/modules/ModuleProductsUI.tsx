@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import clsx from "clsx";
-import CardProduct from "../CardProduct";
+import CardProduct from "../product/CardProduct";
 import { TypeFaceContextProvider } from "../typeface/TypeFaceContext";
 import LinkWithIcon from "../ui/buttons/LinkWithIcon";
 import "./ModuleProductsUI.scss";

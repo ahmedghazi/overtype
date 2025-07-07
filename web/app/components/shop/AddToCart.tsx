@@ -1,13 +1,12 @@
 "use client";
-import React, { useContext, useEffect, useMemo } from "react";
-import { PaddleContext } from "./Paddle/PaddleProvider";
-import { ProductBundle, ProductSingle, SanityKeyed } from "@/app/types/schema";
+import React, { useMemo } from "react";
 import useShop, { ProductData } from "./ShopContext";
-import {
-  ProductBundleExtend,
-  ProductSingleExtend,
-} from "@/app/types/extra-types";
 import { _getPriceWithDiscount } from "./utils";
+import CardToast from "./CardToast";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/ReactToastify.css";
+import { NotifyButton } from "../ui/Notify";
+import { publish } from "pubsub-js";
 
 type Props = {
   items: ProductData[];
@@ -28,9 +27,24 @@ const AddToCart = ({ items }: Props) => {
     });
 
     // console.log(uniqueBundlesOrSingles);
-    items.forEach((element) => {
-      setProducts({ type: "ADD", payload: element });
+    items.forEach((item) => {
+      setProducts({ type: "ADD", payload: item });
       // TOASTER
+      // publish("DIALOG.CLOSE");
+      notify(item);
+    });
+  };
+
+  const notify = (item: ProductData) => {
+    toast(CardToast, {
+      closeButton: false,
+      // progress: 0.7,
+      data: {
+        title: item.typefaceName,
+        background: item.background,
+        foreground: item.foreground,
+      },
+      className: "rounded has-blur bg-btn",
     });
   };
 
@@ -53,6 +67,7 @@ const AddToCart = ({ items }: Props) => {
         Add To Cart
         {dialogProducts.length > 0 && <span className='ml-2'>{total}€</span>}
       </button>
+
       <pre>{JSON.stringify(products, null, 2)}</pre>
     </div>
   );

@@ -38,11 +38,7 @@ const BuyBundle = ({ input, typefaceName, background, foreground }: Props) => {
     foreground: foreground || "",
     license: _localizeField(licenseType?.label) || "",
     licenseInfos: _localizeField(licenseType?.infos) || "",
-    isLogo: false,
-
-    // url: input.url,
-    // customFields: input.customFields,
-    // metadata: input.metadata,
+    isLogo: isLogo || false,
   };
 
   const onChange = (checked: boolean) => {

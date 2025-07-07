@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Product } from "../types/schema";
+import { Product } from "../../types/schema";
 import Link from "next/link";
-import { _linkResolver, _localizeField } from "../sanity-api/utils";
-import useTypeFace from "./typeface/TypeFaceContext";
-import { _ProductExtend } from "../types/extra-types";
+import { _linkResolver, _localizeField } from "../../sanity-api/utils";
+import useTypeFace from "../typeface/TypeFaceContext";
+import { _ProductExtend } from "../../types/extra-types";
 import clsx from "clsx";
-import BtnPill from "./ui/buttons/BtnPill";
+import BtnPill from "../ui/buttons/BtnPill";
 
 type Props = {
   input: Product;

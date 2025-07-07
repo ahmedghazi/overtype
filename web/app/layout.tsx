@@ -12,6 +12,8 @@ import { ThemeProvider } from "./context/ThemeProvider";
 import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
 import { ShopWrapper } from "./components/shop/ShopContext";
+import { NotifyButton } from "./components/ui/Notify";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   metadataBase: new URL(website.url),
@@ -38,8 +40,25 @@ export default async function RootLayout({
                 <ShopWrapper licenses={settings.licenses}>
                   <PaddleProvider>
                     <Header settings={settings} />
-                    <main>{children}</main>
+                    <main>
+                      {" "}
+                      <NotifyButton />
+                      {children}
+                    </main>
+
                     <Footer settings={settings} />
+                    <ToastContainer
+                      // autoClose={false}
+                      position='top-right'
+                      // hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick={false}
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                      // theme='colored'
+                    />
                     <div className='grid-sample px-md'>
                       <div className='grid grid--2 md:grid-cols-2 gap-md'>
                         <div className='item'></div>

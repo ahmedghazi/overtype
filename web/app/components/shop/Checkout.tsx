@@ -8,7 +8,7 @@ type Props = {};
 const BtnCheckout = (props: Props) => {
   // const [paddle, setPaddle] = useState<Paddle>();
   const paddle = useContext(PaddleContext);
-  const { products } = useShop();
+  const { products, licenseFor, licenseForData } = useShop();
   useEffect(() => {}, []);
 
   // define customer details
@@ -25,7 +25,6 @@ const BtnCheckout = (props: Props) => {
 
     console.log("BtnCheckout clicked");
 
-    console.log(products);
     const items = products.map((product) => ({
       quantity: 1,
       price: {
@@ -49,10 +48,13 @@ const BtnCheckout = (props: Props) => {
           isLogo: product.isLogo,
           license: product.license,
           sku: product.sku,
-          licenseFor: "the client",
+          licenseFor: licenseFor,
+          licenseForData: licenseForData,
         },
       },
     }));
+    console.log(items);
+
     const response = await fetch("/api/pay", {
       method: "POST",
       headers: {
@@ -67,7 +69,7 @@ const BtnCheckout = (props: Props) => {
     paddle?.Checkout.open({
       allowQuantity: false,
       transactionId: data.tsx,
-      customer: customerInfo,
+      // customer: customerInfo,
       settings: {
         displayMode: "overlay",
         theme: "dark",

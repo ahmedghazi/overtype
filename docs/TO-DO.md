@@ -1,10 +1,13 @@
 - modules (projectsUI)
   #- menu
-- sous menu
-- footer nav
+  #- sous menu
+  #- footer nav
   #- dark mode
   #- Draggable aside
   #- related products
   #- text avec accordion
-- toast
-- footer cta
+  #- toast
+  #- footer cta
+  #- form checkout > customFields
+- deploy vercel
+- api route order-completed

@@ -8,7 +8,6 @@ type Props = {};
 
 const BtnCart = (props: Props) => {
   const [open, setOpen] = useState<boolean>(false);
-  console.log(open);
   return (
     <>
       <div className='btn-cart'>

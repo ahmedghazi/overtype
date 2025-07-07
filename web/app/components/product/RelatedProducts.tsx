@@ -1,7 +1,7 @@
 import { Product } from "@/app/types/schema";
 import React from "react";
 import { TypeFaceContextProvider } from "../typeface/TypeFaceContext";
-import CardProduct from "../CardProduct";
+import CardProduct from "./CardProduct";
 import LinkWithIcon from "../ui/buttons/LinkWithIcon";
 import { usePageContext } from "@/app/context/PageContext";
 import { _linkResolver } from "@/app/sanity-api/utils";

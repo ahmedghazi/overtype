@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
+import { subscribe, unsubscribe } from "pubsub-js";
 
 interface DialogProps {
   isOpen: boolean;
@@ -15,6 +16,15 @@ export const Dialog: React.FC<DialogProps> = ({
   children,
   className = "",
 }) => {
+  useEffect(() => {
+    const token = subscribe("DIALOG.CLOSE", () => {
+      onClose();
+    });
+    return () => {
+      unsubscribe(token);
+    };
+  }, []);
+
   if (!isOpen) return null;
 
   return (

@@ -514,7 +514,8 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  z-index: 50;
+  z-index: 10;
+  overflow: hidden;
   overflow-y: auto;
   height: calc(var(--vh) * 100);
   .dialog-inner {
@@ -545,6 +546,25 @@
     padding: 15px var(--spacing-md);
     &::placeholder {
       color: var(--color-secondary);
+    }
+  }
+}
+
+.Toastify {
+  // position: fixed;
+  // right: 0;
+  // top: var(--header-height);
+  --toastify-toast-top: var(--header-height);
+  --toastify-toast-bd-radius: var(--radius);
+  // padding-top: var(--header-height);
+  .Toastify__toast-theme--light {
+    background-color: var(--color-btn);
+    padding: 0;
+  }
+  .card-toast {
+    border-radius: var(--radius);
+    .product-image {
+      height: 58px;
     }
   }
 }

@@ -7,7 +7,7 @@
     text-align: center;
     margin-bottom: var(--spacing-5xl);
   }
-  section {
+  section:not(.Toastify) {
     .header {
       text-align: left;
       display: flex;

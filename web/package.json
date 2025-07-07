@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@gsap/react": "^2.1.2",
+    "@mui/material": "^7.2.0",
     "@paddle/paddle-js": "^1.4.1",
     "@paddle/paddle-node-sdk": "^2.7.1",
     "@portabletext/react": "^3.2.1",
@@ -25,6 +28,7 @@
     "react-dom": "^19.0.0",
     "react-draggable": "^4.5.0",
     "react-insta-stories": "^2.8.0",
+    "react-toastify": "^11.0.5",
     "sanity-codegen": "^0.9.8",
     "sass": "^1.88.0",
     "styled-components": "^6.1.19",

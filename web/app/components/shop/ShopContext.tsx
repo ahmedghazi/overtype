@@ -9,15 +9,10 @@ import React, {
 import {
   LicenseType,
   Product,
-  ProductBundle,
   ProductSingle,
   SanityKeyed,
 } from "@/app/types/schema";
 import { usePathname } from "next/navigation";
-import {
-  ProductBundleExtend,
-  ProductSingleExtend,
-} from "@/app/types/extra-types";
 
 interface ShopContextProps {
   // location?: object;
@@ -104,6 +99,7 @@ export interface ProductData {
   license: string;
   licenseInfos: string;
   isLogo: boolean;
+
   // customFields: any[];
   // metadata: string;
 }
@@ -111,21 +107,23 @@ export interface ProductData {
 type ContextProps = {
   cartObject: any;
   products: ProductData[];
-  // products: (
-  //   | SanityKeyed<ProductBundleExtend>
-  //   | SanityKeyed<ProductSingleExtend>
-  // )[];
+
   setProducts: Function;
   dialogProducts: ProductData[];
-  // dialogProducts: (
-  //   | SanityKeyed<ProductBundleExtend>
-  //   | SanityKeyed<ProductSingleExtend>
-  // )[];
+
   setDialogProducts: Function;
   licenseType: LicenseType | null;
   setLicenseType: Function;
   isLogo: boolean;
   setIsLogo: Function;
+  licenseFor: "me" | "client";
+  setLicenseFor: Function;
+  licenseForData: {
+    companyName?: string;
+    email?: string;
+    inUseFor?: string;
+  };
+  setLicenseForData: Function;
 };
 
 const ShopContext = createContext<ContextProps>({} as ContextProps);
@@ -138,6 +136,16 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [dialogProducts, setDialogProducts] = useReducer(productsReducer, []);
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
   const [licenseType, setLicenseType] = useState<LicenseType | null>(null);
+  const [licenseFor, setLicenseFor] = useState<"me" | "client">("me");
+  const [licenseForData, setLicenseForData] = useState<{
+    companyName?: string;
+    email?: string;
+    inUseFor?: string;
+  }>({
+    companyName: "",
+    email: "",
+    inUseFor: "",
+  });
   const [isLogo, setIsLogo] = useState<boolean>(false);
   const [cartObject, setCartObject] = useState(null);
   const pathname = usePathname();
@@ -155,6 +163,10 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
         cartObject,
         isLogo,
         setIsLogo,
+        licenseFor,
+        setLicenseFor,
+        licenseForData,
+        setLicenseForData,
       }}>
       {children}
     </ShopContext.Provider>

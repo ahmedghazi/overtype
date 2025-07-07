@@ -29,11 +29,10 @@ const Buy = ({ input }: Props) => {
   } = useShop();
 
   const _updateLicense = (license: LicenseType) => {
-    setLicenseType(license);
+    //reset
     setDialogProducts({ type: "REMOVE_ALL" });
-    // setProducts({ type: "REMOVE_ALL" });
+    setLicenseType(license);
   };
-  // console.log(licenseType);
   return (
     <div className='buy'>
       <div className='header'>
@@ -74,7 +73,7 @@ const Buy = ({ input }: Props) => {
                 </div>
               </div>
             </div>
-            {/* <div className='header'>
+            <div className='header'>
               <h4 className='md:text-lg'>
                 Would you use the font in a logo/wordmark?
               </h4>
@@ -95,7 +94,7 @@ const Buy = ({ input }: Props) => {
                   onChange={() => setIsLogo(false)}
                 />
               </div>
-            </div> */}
+            </div>
           </div>
         </section>
         {licenseType && (
@@ -113,6 +112,7 @@ const Buy = ({ input }: Props) => {
                       <BuyBundle
                         key={i}
                         input={item}
+                        // typefaceName={`${input.title} ${input.title}` || ""}
                         typefaceName={input.title || ""}
                         background={input.background?.hex || ""}
                         foreground={input.foreground?.hex || ""}
@@ -136,6 +136,7 @@ const Buy = ({ input }: Props) => {
                           key={i}
                           input={item}
                           typefaceName={input.title || ""}
+                          // typefaceName={`${input.title} ${input.title}` || ""}
                           background={input.background?.hex || ""}
                           foreground={input.foreground?.hex || ""}
                         />

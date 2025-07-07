@@ -13,5 +13,6 @@
     "dm:p": "func() { git add . && git commit -m \"$1\" && git push origin preprod; }; func"
   },
   "repository": "git@github.com:ahmedghazi/lopez-sieurin.git",
-  "author": "ahmedghazi <atmet.ghazi@gmail.com>"
+  "author": "ahmedghazi <atmet.ghazi@gmail.com>",
+  "dependencies": {}
 }

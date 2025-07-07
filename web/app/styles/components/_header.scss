@@ -5,7 +5,7 @@ header {
   width: 100%;
   top: 0;
   padding: var(--spacing-md);
-  z-index: 50;
+  z-index: 9;
   transition: transform 0.2s var(--cubic), opacity 0.2s var(--cubic);
   font-size: var(--text-sm);
   &.is-down {
