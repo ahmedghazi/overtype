@@ -166,7 +166,7 @@ const Cart = (props: Props) => {
       </div>
       <div className='body'>
         {products && products.length === 0 && (
-          <div className='cart-empty'>
+          <div className='cart-empty py-xl'>
             <div className='inner'>Your cart is empty</div>
           </div>
         )}
@@ -186,7 +186,7 @@ const Cart = (props: Props) => {
         </div>
       </div>
 
-      <section className='licenseFor'>
+      <section className='licenseFor  md:mb-4xl mb-lg'>
         {/* <pre>{JSON.stringify(licenseForData, null, 2)}</pre> */}
         <div className='box'>
           <div className='form-field'>

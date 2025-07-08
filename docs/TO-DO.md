@@ -9,5 +9,12 @@
   #- toast
   #- footer cta
   #- form checkout > customFields
-- deploy vercel
+  #- deploy vercel
 - api route order-completed
+
+# order-completed
+
+- body > order, user
+- record order, user (JSON)
+- send email to user
+- send email to admin

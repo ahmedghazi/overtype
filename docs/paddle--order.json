@@ -1,0 +1,142 @@
+{
+  "name": "checkout.completed",
+  "data": {
+    "id": "che_01gzdp52e7nkkve2qarvgj1fgx",
+    "transaction_id": "txn_01gzdp527wednsgfgde6sq9r23",
+    "status": "completed",
+    "custom_data": null,
+    "currency_code": "GBP",
+    "customer": {
+      "id": "ctm_01gvcz30f4d77tfnn60snnyxfd",
+      "email": "sam@example.com",
+      "address": {
+        "id": "add_01gzdw4bht4ha049ba0c11xz12",
+        "country_code": "GB",
+        "postal_code": "EC1V 8BT",
+        "city": "Islington",
+        "region": "London",
+        "first_line": "18-29 Mora Street"
+      },
+      "business": {
+        "id": "biz_01gzdwag2mk2mnsg5prj6ttjb2",
+        "name": "Paddle.com",
+        "tax_identifier": "GB150848114"
+      }
+    },
+    "items": [
+      {
+        "price_id": "pri_01gsz8x8sawmvhz1pv30nge1ke",
+        "product": {
+          "id": "pro_01gsz4t5hdjse780zja8vvr7jg",
+          "name": "ChatApp Pro",
+          "description": "Everything in basic, plus access to a suite of powerful tools and features designed to take your team's productivity to the next level. Enjoy advanced integrations, improved admin controls, and cross-company chat.",
+          "image_url": "https://twemoji.maxcdn.com/v/latest/72x72/2708.png"
+        },
+        "billing_cycle": {
+          "interval": "month",
+          "frequency": 1
+        },
+        "trial_period": null,
+        "quantity": 1,
+        "totals": {
+          "subtotal": 300,
+          "tax": 0.2,
+          "total": 324,
+          "discount": 30,
+          "balance": 324,
+          "credit": 0
+        },
+        "recurring_totals": {
+          "subtotal": 300,
+          "tax": 54,
+          "discount": 30,
+          "total": 324
+        }
+      },
+      {
+        "price_id": "pri_01gsz95g2zrkagg294kpstx54r",
+        "product": {
+          "id": "pro_01gsz92krfzy3hcx5h5rtgnfwz",
+          "name": "VIP support",
+          "description": "Get exclusive access to our expert team of product specialists, available to help you make the most of your ChatApp subscription. We're also on hand to help with technical questions or billing issues.",
+          "image_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/72x72/1f481-1f3fe.png"
+        },
+        "billing_cycle": {
+          "interval": "month",
+          "frequency": 1
+        },
+        "trial_period": null,
+        "quantity": 1,
+        "totals": {
+          "subtotal": 250,
+          "tax": 0.2,
+          "total": 270,
+          "discount": 25,
+          "balance": 270,
+          "credit": 0
+        },
+        "recurring_totals": {
+          "subtotal": 250,
+          "tax": 45,
+          "discount": 25,
+          "total": 270
+        }
+      },
+      {
+        "price_id": "pri_01gsz98e27ak2tyhexptwc58yk",
+        "product": {
+          "id": "pro_01gsz97mq9pa4fkyy0wqenepkz",
+          "name": "Custom domains",
+          "description": "Make ChatApp truly your own with custom domains! Custom domains reinforce your brand identity and make it easy for your team to access ChatApp.",
+          "image_url": "https://twemoji.maxcdn.com/v/latest/72x72/1f30e.png"
+        },
+        "billing_cycle": null,
+        "trial_period": null,
+        "quantity": 1,
+        "totals": {
+          "subtotal": 199,
+          "tax": 0.2,
+          "total": 214.92,
+          "discount": 19.9,
+          "balance": 214.92,
+          "credit": 0
+        }
+      }
+    ],
+    "totals": {
+      "subtotal": 749,
+      "tax": 134.82,
+      "total": 0,
+      "discount": 74.9,
+      "credit": 0,
+      "balance": 0
+    },
+    "payment": {
+      "method_details": {
+        "type": "card",
+        "card": {
+          "type": "visa",
+          "last4": "4242",
+          "expiry_month": 1,
+          "expiry_year": 2025
+        }
+      }
+    },
+    "settings": {
+      "display_mode": "wide-overlay",
+      "theme": "light"
+    },
+    "discount": {
+      "id": "dsc_01gy7qp5pqhnyd22yspwane77h",
+      "code": "qpN8UOJVtebpMxN"
+    },
+    "recurring_totals": {
+      "subtotal": 550,
+      "tax": 99,
+      "discount": 55,
+      "total": 594,
+      "balance": 594,
+      "credit": 0
+    }
+  }
+}
