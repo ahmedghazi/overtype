@@ -24,6 +24,7 @@
     "next": "15.3.2",
     "next-sanity": "^9.11.0",
     "next-themes": "^0.4.6",
+    "nodemailer": "^7.0.5",
     "pubsub-js": "^1.9.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -33,13 +34,15 @@
     "sanity-codegen": "^0.9.8",
     "sass": "^1.88.0",
     "styled-components": "^6.1.19",
-    "throttle-debounce": "^5.0.2"
+    "throttle-debounce": "^5.0.2",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.6",
     "@types/jsonp": "^0.2.3",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.17",
     "@types/pubsub-js": "^1.8.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",

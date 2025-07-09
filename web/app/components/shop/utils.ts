@@ -1,5 +1,6 @@
+import { ProductData } from "@/app/types/extra-types";
 import { ProductBundle, ProductSingle, SanityKeyed } from "@/app/types/schema";
-import { ProductData } from "./ShopContext";
+// import { ProductData } from "./ShopContext";
 
 export const _getPriceWithDiscount = (price: number, discount: number) => {
   return price - (price * discount) / 100;

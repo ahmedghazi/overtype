@@ -19,6 +19,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'status',
+      title: 'status',
+      type: 'string',
+    }),
+    defineField({
       name: 'invoiceNumber',
       title: 'Invoice Number',
       type: 'string',
@@ -29,9 +34,25 @@ export default defineType({
       type: 'date',
     }),
     defineField({
-      name: 'email',
-      title: 'email',
-      type: 'string',
+      name: 'totalAmount',
+      title: 'totalAmount',
+      type: 'number',
+    }),
+    defineField({
+      name: 'user',
+      title: 'User',
+      type: 'reference',
+      to: {type: 'user'},
+    }),
+    defineField({
+      name: 'items',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'orderItem'}],
+        },
+      ],
     }),
     defineField({
       name: 'attachments',

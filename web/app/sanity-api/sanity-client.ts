@@ -1,5 +1,5 @@
 import { SanityClient, createClient } from "next-sanity";
-import { apiVersion, dataset, projectId, useCdn } from "./sanity.api";
+import { apiVersion, dataset, projectId, useCdn, token } from "./sanity.api";
 
 export const sanityConfig = {
   projectId: projectId,
@@ -11,6 +11,7 @@ export const client = createClient({
   dataset,
   apiVersion: apiVersion,
   useCdn,
+  token,
 });
 
 export function getClient(preview?: { token?: string }): SanityClient {

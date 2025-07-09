@@ -21,9 +21,9 @@ type Props = {
 };
 
 const ContentProduct = ({ input }: Props) => {
+  // console.log(input);
   const { title, singles, hero, text, images, related } = input;
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  // console.log(input);
   const _scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({ behavior: "smooth" });

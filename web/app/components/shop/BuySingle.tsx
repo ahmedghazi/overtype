@@ -1,22 +1,23 @@
-import { ProductSingle } from "@/app/types/schema";
+import { Product, ProductSingle, SanityKeyed } from "@/app/types/schema";
 import React, { useEffect, useMemo, useState } from "react";
 import Checkbox from "../ui/inputs/Checkbox";
-import useShop, { ProductData } from "./ShopContext";
+import useShop from "./ShopContext";
 import Price from "./Price";
 import clsx from "clsx";
 import { _getPriceWithDiscount } from "./utils";
 import useTypeFace from "../typeface/TypeFaceContext";
 import { _localizeField } from "@/app/sanity-api/utils";
 import { Console } from "console";
+import { ProductData } from "@/app/types/extra-types";
 
 type Props = {
-  typefaceName: string;
+  product: Product;
   background: string;
   foreground: string;
-  input: ProductSingle;
+  input: SanityKeyed<ProductSingle>;
 };
 
-const BuySingle = ({ input, typefaceName, background, foreground }: Props) => {
+const BuySingle = ({ input, product, background, foreground }: Props) => {
   const { dialogProducts, setDialogProducts, licenseType, isLogo } = useShop();
   const [checked, setChecked] = useState(false);
   // console.log(input);
@@ -43,23 +44,21 @@ const BuySingle = ({ input, typefaceName, background, foreground }: Props) => {
       : price;
 
   const _productData: ProductData = {
-    type: "ProductSingle",
+    productType: "ProductSingle",
+    productTypeRef: input._key,
+    productId: product._id,
+    productTitle: product.title || "",
+    fullTitle: product.title + " " + input.title,
+    description: input.description || "",
     sku: input.sku?.current || "",
     price: price,
     discount: priceDiscount,
     finalPrice: finalPrice,
-    title: input.title || "",
-    description: input.description || "",
-    typefaceName: typefaceName || "",
     background: background || "",
     foreground: foreground || "",
     license: _localizeField(licenseType?.label) || "",
     licenseInfos: _localizeField(licenseType?.infos) || "",
     isLogo: isLogo || false,
-
-    // url: input.url,
-    // customFields: input.customFields,
-    // metadata: input.metadata,
   };
 
   const { type, dispatchType } = useTypeFace();

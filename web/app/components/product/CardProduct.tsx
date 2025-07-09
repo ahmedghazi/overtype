@@ -46,7 +46,7 @@ const CardProduct = ({ input, layout }: Props) => {
           style={{
             fontFamily: type?.slug?.current,
           }}>
-          <h3 className='text-10xl'>AaXxHhGg {input.title}</h3>
+          <h3 className='text-10xl'>{input.title}</h3>
         </div>
       </Link>
       {input.tag && (

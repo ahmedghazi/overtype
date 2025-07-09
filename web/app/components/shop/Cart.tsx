@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import useShop, { ProductData } from "./ShopContext";
+import useShop from "./ShopContext";
 import { subscribe, unsubscribe } from "pubsub-js";
 import clsx from "clsx";
 import Figure from "../ui/Figure";
@@ -14,6 +14,7 @@ import RadioGroup from "../ui/inputs/RadioGroup";
 import Btn from "../ui/buttons/Btn";
 import BtnCheckout from "./Checkout";
 import { cartTotalPrice } from "./utils";
+import { ProductData } from "@/app/types/extra-types";
 // import useLocalStorage from "@/app/hooks/useLocalStorage";
 
 // type CartSuccessProps = {};
@@ -77,14 +78,14 @@ const CartItem = ({ input, _delete }: CartItemProps) => (
   <div className='cart-item gap-md'>
     <div className='media'>
       <ProductImage
-        title={input.typefaceName}
+        title={input.fullTitle}
         background={input.background}
         foreground={input.foreground}
       />
     </div>
     <div className='col-infos'>
       <div className='cart-item-row'>
-        <div className='title '>{input.title}</div>
+        <div className='title '>{input.fullTitle}</div>
         {_delete && (
           <button onClick={() => _delete(input.sku)}>
             {/* <BtnIcon icon='delete' /> */}

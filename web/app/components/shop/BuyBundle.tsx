@@ -1,21 +1,22 @@
-import { ProductBundle } from "@/app/types/schema";
+import { Product, ProductBundle, SanityKeyed } from "@/app/types/schema";
 import React, { useEffect, useState } from "react";
 import Radio from "../ui/inputs/Radio";
 import Checkbox from "../ui/inputs/Checkbox";
-import useShop, { ProductData } from "./ShopContext";
+import useShop from "./ShopContext";
 import Price from "./Price";
 import clsx from "clsx";
 import { _getPriceWithDiscount } from "./utils";
 import { _localizeField } from "@/app/sanity-api/utils";
+import { ProductData } from "@/app/types/extra-types";
 
 type Props = {
-  input: ProductBundle;
-  typefaceName: string;
+  product: Product;
+  input: SanityKeyed<ProductBundle>;
   background: string;
   foreground: string;
 };
 
-const BuyBundle = ({ input, typefaceName, background, foreground }: Props) => {
+const BuyBundle = ({ product, input, background, foreground }: Props) => {
   const { dialogProducts, setDialogProducts, licenseType, isLogo } = useShop();
   const [checked, setChecked] = useState(false);
   const priceMultiplier = licenseType?.priceMultiplier || 1;
@@ -26,14 +27,16 @@ const BuyBundle = ({ input, typefaceName, background, foreground }: Props) => {
     : price;
 
   const _productData: ProductData = {
-    type: "ProductSingle",
+    productType: "ProductBundle",
+    productTypeRef: input._key,
+    productId: product._id,
+    productTitle: product.title || "",
+    fullTitle: product.title + " " + input.title,
+    description: input.description || "",
     sku: input.sku?.current || "",
     price: price,
     discount: priceDiscount,
     finalPrice: finalPrice,
-    title: input.title || "",
-    description: input.description || "",
-    typefaceName: typefaceName || "",
     background: background || "",
     foreground: foreground || "",
     license: _localizeField(licenseType?.label) || "",

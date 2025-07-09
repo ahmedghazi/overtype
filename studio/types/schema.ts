@@ -617,6 +617,13 @@ export interface Order extends SanityDocument {
   title?: string;
 
   /**
+   * status — `string`
+   *
+   *
+   */
+  status?: string;
+
+  /**
    * Invoice Number — `string`
    *
    *
@@ -631,11 +638,25 @@ export interface Order extends SanityDocument {
   creationDate?: string;
 
   /**
-   * email — `string`
+   * totalAmount — `number`
    *
    *
    */
-  email?: string;
+  totalAmount?: number;
+
+  /**
+   * User — `reference`
+   *
+   *
+   */
+  user?: SanityReference<User>;
+
+  /**
+   * items — `array`
+   *
+   *
+   */
+  items?: Array<SanityKeyedReference<OrderItem>>;
 
   /**
    * attachments — `array`
@@ -650,6 +671,36 @@ export interface Order extends SanityDocument {
    *
    */
   json?: string;
+}
+
+/**
+ * User
+ *
+ *
+ */
+export interface User extends SanityDocument {
+  _type: "user";
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Email — `string`
+   *
+   *
+   */
+  email?: string;
+
+  /**
+   * orders — `array`
+   *
+   *
+   */
+  orders?: Array<SanityKeyedReference<Order>>;
 }
 
 export type ProductBundle = {
@@ -793,6 +844,86 @@ export type TypefaceFile = {
    * IMPORTANT FOR THE FRONTEND
    */
   base64?: string;
+};
+
+export type OrderItem = {
+  _type: "orderItem";
+  /**
+   * Product Type — `string`
+   *
+   *
+   */
+  productType?: string;
+
+  /**
+   * SKU — `string`
+   *
+   *
+   */
+  sku?: string;
+
+  /**
+   * Price — `number`
+   *
+   *
+   */
+  price?: number;
+
+  /**
+   * Discount — `number`
+   *
+   *
+   */
+  discount?: number;
+
+  /**
+   * Final Price — `number`
+   *
+   *
+   */
+  finalPrice?: number;
+
+  /**
+   * Typeface Name — `string`
+   *
+   *
+   */
+  typefaceName?: string;
+
+  /**
+   * Title — `string`
+   *
+   *
+   */
+  title?: string;
+
+  /**
+   * description — `string`
+   *
+   *
+   */
+  description?: string;
+
+  /**
+   * license — `string`
+   *
+   *
+   */
+  license?: string;
+
+  /**
+   * licenseInfos — `string`
+   *
+   *
+   */
+  licenseInfos?: string;
+
+  /**
+   * isLogo — `boolean`
+   *
+   *
+   */
+  isLogo?: boolean;
 };
 
 export type LicenseType = {
@@ -1250,7 +1381,8 @@ export type Documents =
   | Tag
   | Product
   | Typeface
-  | Order;
+  | Order
+  | User;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but

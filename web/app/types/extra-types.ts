@@ -28,3 +28,21 @@ export interface ProductBundleExtend extends SanityKeyed<ProductBundle> {
 export interface ProductSingleExtend extends SanityKeyed<ProductSingle> {
   finalPrice: number;
 }
+
+export interface ProductData {
+  productType: "ProductBundle" | "ProductSingle";
+  productTypeRef: string;
+  sku: string;
+  price: number;
+  discount: number;
+  finalPrice: number;
+  background: string;
+  foreground: string;
+  productId: string;
+  productTitle: string;
+  fullTitle: string;
+  description: string;
+  license: string;
+  licenseInfos: string;
+  isLogo: boolean;
+}
