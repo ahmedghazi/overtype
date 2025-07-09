@@ -34,8 +34,10 @@ import productSingle from './shop/productSingle'
 import typeface from './shop/typeface'
 import typefaceFile from './shop/typefaceFile'
 import order from './shop/order'
+import user from './shop/user'
 import licenseType from './shop/licenseType'
 import licenseSize from './shop/licenseSize'
+import orderItem from './shop/orderItem'
 
 export const schemaTypes = [
   home,
@@ -51,6 +53,8 @@ export const schemaTypes = [
   typeface,
   typefaceFile,
   order,
+  orderItem,
+  user,
   licenseType,
   licenseSize,
 

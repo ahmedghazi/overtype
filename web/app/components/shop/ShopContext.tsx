@@ -13,6 +13,7 @@ import {
   SanityKeyed,
 } from "@/app/types/schema";
 import { usePathname } from "next/navigation";
+import { ProductData } from "@/app/types/extra-types";
 
 interface ShopContextProps {
   // location?: object;
@@ -82,26 +83,6 @@ function trialsReducer(state: any, action: any) {
     default:
       throw new Error();
   }
-}
-
-export interface ProductData {
-  type: "ProductBundle" | "ProductSingle";
-  sku: string;
-  price: number;
-  discount: number;
-  finalPrice: number;
-  // url: string;
-  typefaceName: string;
-  background: string;
-  foreground: string;
-  title: string;
-  description: string;
-  license: string;
-  licenseInfos: string;
-  isLogo: boolean;
-
-  // customFields: any[];
-  // metadata: string;
 }
 
 type ContextProps = {

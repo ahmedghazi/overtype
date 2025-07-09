@@ -40,11 +40,7 @@ export default async function RootLayout({
                 <ShopWrapper licenses={settings.licenses}>
                   <PaddleProvider>
                     <Header settings={settings} />
-                    <main>
-                      {" "}
-                      <NotifyButton />
-                      {children}
-                    </main>
+                    <main>{children}</main>
 
                     <Footer settings={settings} />
                     <ToastContainer

@@ -111,9 +111,8 @@ const Buy = ({ input }: Props) => {
                     {input.bundles?.map((item, i) => (
                       <BuyBundle
                         key={i}
+                        product={input}
                         input={item}
-                        // typefaceName={`${input.title} ${input.title}` || ""}
-                        typefaceName={input.title || ""}
                         background={input.background?.hex || ""}
                         foreground={input.foreground?.hex || ""}
                       />
@@ -135,7 +134,8 @@ const Buy = ({ input }: Props) => {
                         <BuySingle
                           key={i}
                           input={item}
-                          typefaceName={input.title || ""}
+                          product={input}
+                          // typefaceName={input.title || ""}
                           // typefaceName={`${input.title} ${input.title}` || ""}
                           background={input.background?.hex || ""}
                           foreground={input.foreground?.hex || ""}

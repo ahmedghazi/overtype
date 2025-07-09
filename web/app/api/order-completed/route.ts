@@ -1,196 +1,255 @@
-import { NextApiResponse } from "next";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { client } from "../../utils/sanity-client";
-import { Product, ProductBundle, Typeface } from "@/app/types/schema";
+import { environment } from "@/env.mjs";
+import { client } from "@/app/sanity-api/sanity-client";
+import { v4 as uuidv4 } from "uuid";
+import {
+  Order,
+  OrderItem,
+  Product,
+  ProductBundle,
+  ProductSingle,
+  User,
+} from "@/app/types/schema";
+import { ProductData } from "@/app/types/extra-types";
 
-type SendProps = {
-  payload: any;
-  client_name: string;
-  destination: string;
-};
-
-type ProductOrderData = {
-  productId: string;
-  // licenseCategoryZip: string
-  licenseWeb: boolean;
-  licenseDesktop: boolean;
-  type: "bundle" | "single";
-  bundleOrSingleKey: string;
-};
-
-export async function POST(req: NextRequest, res: NextApiResponse) {
-  if (req.method !== "POST") {
-    // res.status(405).json({ message: "INVALID_METHOD" });
-    // return;
-    return new NextResponse(JSON.stringify({ message: "INVALID_METHOD" }), {
-      status: 405,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  try {
-    const body = await req.json(); // res now contains body
-    // console.log(body);
-    const { eventName } = body;
-    if (eventName === "order.completed") {
-      const { items, user } = body.content;
-      // console.log(items);
-
-      /*
-      on a
-      - licenses
-      - metadata
-      - - productId
-      - - type: "bundle" | "single";
-      - - bundle or single ref Id
-
-
-      on veut
-      [
-        {
-          zipName
-          zipUrl
-        },
-        {
-          zipName
-          zipUrl
-        }
-      ]
-      */
-
-      const _productOrderData = _collectProductsOrderData(items);
-      const _productOrderDataZips = await _collectProductsOrderZips(
-        _productOrderData
-      );
-      const _attachments = await _generateAttachments(_productOrderDataZips);
-      console.log("got _attachments, ready to send email");
-      // return new NextResponse(JSON.stringify(_productOrderDataZips), {
-      //   status: 200,
-      //   headers: { "Content-Type": "application/json" },
-      // });
-
-      const stored = await _saveOrder(body.content, _attachments);
-      console.log("Stored order", stored);
-      // return new NextResponse(JSON.stringify(stored), {
-      //   status: 201,
-      //   headers: { "Content-Type": "application/json" },
-      // });
-
-      const params: SendProps = {
-        destination: user.email,
-        client_name: `${user.billingAddress.fullName}`,
-        payload: _attachments,
-      };
-      const _sendEmailresult = await _sendEmail(params);
-      if (_sendEmailresult.status === "success") {
-        const response_success = {
-          ok: true,
-          message: "success",
-          data: JSON.stringify(_sendEmailresult),
-        };
-        // console.log(response_success);
-        return new NextResponse(JSON.stringify(response_success), {
-          status: 201,
-          headers: { "Content-Type": "application/json" },
-        });
-      } else {
-        const response_error = {
-          ok: false,
-          status: "error",
-          message: "something went wrong with the email",
-          // raw: error,
-        };
-        return new NextResponse(JSON.stringify(response_error), {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        });
-      }
-    } else {
-      return new NextResponse(JSON.stringify({ eventName: eventName }), {
-        status: 201,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
-  } catch (error: any) {
-    console.log(error);
-    const response_error = {
-      ok: false,
-      status: "error",
-      message: error.message,
-      raw: error,
+interface PaddleWebhookData {
+  id: string;
+  transaction_id: string;
+  status: string;
+  currency_code: string;
+  customer: {
+    id: string;
+    email: string;
+    address: {
+      country_code: string;
+      postal_code: string;
+      city: string;
+      region: string;
+      first_line: string;
     };
-    return new NextResponse(JSON.stringify(response_error), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    business?: {
+      name?: string;
+      tax_identifier?: string;
+    };
+  };
+  items: Array<{
+    price_id: string;
+    product: {
+      id: string;
+      name: string;
+      description: string;
+    };
+    totals: {
+      total: number;
+    };
+    billing_cycle: any;
+  }>;
+}
+
+export async function POST(request: Request) {
+  try {
+    const { paddleData, products } = (await request.json()) as {
+      paddleData: PaddleWebhookData;
+      products: ProductData[];
+    };
+    // return NextResponse.json({ success: true, paddleData, products });
+
+    const { customer, items, id: transactionId, status } = paddleData;
+
+    const totalAmount = products.reduce((sum: number, item) => {
+      return sum + item.finalPrice;
+    }, 0);
+
+    const user = await _storeUser(customer);
+    const userId = user._id;
+
+    const order = await _storeOrder(userId, paddleData, products);
+    const orderId = order._id;
+
+    // Add order to user's orders array
+    console.log("userId", userId);
+    console.log("orderId", orderId);
+
+    await client
+      .patch(userId)
+      .setIfMissing({ orders: [] })
+      .append("orders", [
+        {
+          _type: "reference",
+          _ref: orderId,
+          _key: uuidv4(), // ✅ clé explicite
+        },
+      ])
+      .commit();
+
+    const _productOrderData = _collectProductsOrderData(products);
+    const _productOrderDataZips = await _collectProductsOrderZips(
+      _productOrderData
+    );
+    // return NextResponse.json({ success: true, _productOrderDataZips });
+
+    const _attachments = _generateAttachments(_productOrderDataZips);
+    // return NextResponse.json({ success: true, _attachments });
+
+    // Send email to user
+    await sendEmail(
+      customer.email,
+      customer.business?.name || customer.email.split("@")[0],
+      {
+        invoiceNumber: transactionId,
+        items,
+        totalAmount,
+        currencyCode: "€",
+      },
+      "user",
+      "€",
+      _attachments
+    );
+
+    // // Send email to admin
+    await sendEmail(
+      environment.email.from as string,
+      "Admin",
+      {
+        invoiceNumber: transactionId,
+        items,
+        totalAmount,
+        currencyCode: "€",
+        customer: {
+          email: customer.email,
+          name: customer.business?.name || customer.email.split("@")[0],
+          address: customer.address,
+        },
+      },
+      "admin",
+      "€"
+    );
+
+    return NextResponse.json({ success: true, orderId });
+  } catch (error) {
+    console.error("Error processing order:", error);
+    return NextResponse.json(
+      { success: false, error: "Failed to process order" },
+      { status: 500 }
+    );
   }
 }
 
-const _collectProductsOrderData = (items: any): ProductOrderData[] => {
-  // let _data: ProductOrderData[] = [];
+async function _storeUser(data: any): Promise<User> {
+  try {
+    const existingUser = await client.fetch(
+      `
+      *[_type == "user" && email == $email]
+    `,
+      {
+        email: data.email,
+      }
+    );
 
-  return items.map((item: any) => {
-    const metadata = JSON.parse(item.metadata);
-    const { productId, type, _key } = metadata;
+    // Get the user ID
+    const user =
+      existingUser.length > 0
+        ? existingUser[0]
+        : await client.create({
+            _type: "user",
+            email: data.email,
+            name: data.business?.name || data.email.split("@")[0],
+            orders: [],
+          });
 
+    return user;
+  } catch (error) {
+    console.error("Error storing user:", error);
+    throw new Error("Failed to store user data");
+  }
+}
+
+async function _storeOrder(
+  userId: string,
+  paddleData: PaddleWebhookData,
+  products: ProductData[]
+): Promise<Order> {
+  try {
+    const { id: transactionId, status, items } = paddleData;
+
+    const totalAmount = products.reduce((sum: number, item) => {
+      return sum + item.finalPrice;
+    }, 0);
+
+    // Create order items documents in Sanity
+    const orderItems = await Promise.all(
+      products.map(async (item) => {
+        const res = await client.create({
+          _type: "orderItem",
+          ...item,
+        });
+        return res;
+      })
+    );
+
+    const order: any = await client.create({
+      _type: "order",
+      title: `Order #${transactionId}`,
+      invoiceNumber: transactionId,
+      // creationDate: new Date().toISOString(),
+      creationDate: new Date(),
+      user: {
+        _type: "reference",
+        _ref: userId,
+      },
+      items: orderItems.map((item) => ({
+        _type: "reference",
+        _ref: item._id,
+        _key: uuidv4(),
+      })),
+      json: JSON.stringify(items),
+      totalAmount,
+      status,
+      transactionId,
+    });
+
+    // const orderId = await client.create(orderData);
+    return order;
+  } catch (error) {
+    console.error("Error storing order:", error);
+    throw new Error("Failed to store order data");
+  }
+}
+
+const _collectProductsOrderData = (
+  items: ProductData[]
+): ProductOrderData[] => {
+  return items.map((item: ProductData) => {
     return {
-      productId: productId,
-      type: type,
-      bundleOrSingleKey: _key,
-      licenseDesktop: _getLicenseWebOrDesktop(item.customFields, "desktop"),
-      licenseWeb: _getLicenseWebOrDesktop(item.customFields, "web"),
+      productId: item.productId,
+      type: item.productType,
+      bundleOrSingleRef: item.productTypeRef,
     };
   });
 };
 
-/*
-  SEARCH ORDER CUSTOM FIELDS (VARIANTS),
-*/
-const _getLicenseWebOrDesktop = (input: any[], searchFor: string): boolean => {
-  let returnValue: boolean = false;
-  const values =
-    searchFor === "web"
-      ? ["web"]
-      : [
-          "desktop/print",
-          "logo",
-          "social-media/ad",
-          "video/streaming",
-          "app/game/epub",
-        ];
-  const filteredLicensesByType = input.filter(
-    (el) => values.indexOf(el.name.toLowerCase()) > -1
-  );
-  //ici on a les licenses web ou desktop triées
-  // maintenant on doit filter les licenses achetées
-  if (filteredLicensesByType.length > 0) {
-    const activeLicenses = filteredLicensesByType.filter(
-      (el) => el.value === "true"
-    );
-    returnValue = activeLicenses.length > 0;
-  }
-  return returnValue;
+type ProductOrderData = {
+  productId: string;
+  type: "ProductBundle" | "ProductSingle";
+  bundleOrSingleRef: string;
 };
-
 const _collectProductsOrderZips = async (items: ProductOrderData[]) => {
   const result = [];
   for await (const item of items) {
     const data = await _getProductData(item.productId);
+    // console.log(data);
     const bundleOrsingle = _getBundleOrSingle(
       item.type,
-      item.bundleOrSingleKey,
+      item.bundleOrSingleRef,
       data
     );
-    // console.log(bundleOrsingle);
+    console.log(bundleOrsingle);
     // result.push(bundleOrsingle);
     const title = `${data.title} ${bundleOrsingle?.title}`;
     const sanitizedData = {
       zipTitle: title,
-      licenseWeb: item.licenseWeb,
-      licenseDesktop: item.licenseDesktop,
-      zipWeb: item.licenseWeb ? bundleOrsingle?.zipWeb : null,
-      zipDesktop: item.licenseDesktop ? bundleOrsingle?.zipDesktop : null,
+      zip: bundleOrsingle?.zip,
     };
     result.push(sanitizedData);
   }
@@ -203,30 +262,21 @@ const _getProductData = async (productId: string) => {
     singles[]{
       _key,
       title,
-      zipDesktop{
+      zip{
         asset->{
           url
         }
       },
-      zipWeb{
-        asset->{
-          url
-        }
-      }
+
     },
     bundles[]{
       _key,
       title,
-      zipDesktop{
+      zip{
         asset->{
           url
         }
       },
-      zipWeb{
-        asset->{
-          url
-        }
-      }
     }
   }`;
   const res = await client.fetch(query, { productId: productId });
@@ -236,166 +286,108 @@ const _getProductData = async (productId: string) => {
 /**
  *
  * @param type Bundle or Single
- * @param bundleOrSingleKey Bundle or Single key
+ * @param bundleOrSingleRef Bundle or Single key
  * @param productData Product
  * @returns
  */
 const _getBundleOrSingle = (
   type: string,
-  bundleOrSingleKey: string,
+  bundleOrSingleRef: string,
   productData: Product
-) => {
+): ProductBundle | ProductSingle | null => {
   const bundleOrSingle =
-    type === "bundle" ? productData.bundles : productData.singles;
+    type === "ProductBundle" ? productData.bundles : productData.singles;
   const filtered = bundleOrSingle?.filter(
-    (el) => el._key === bundleOrSingleKey
+    (el) => el._key === bundleOrSingleRef
   );
   return filtered ? filtered[0] : null;
 };
 
-const _generateAttachments = (items: any) => {
+type AttachementProps = {
+  filename: string;
+  path: string;
+};
+const _generateAttachments = (items: any): AttachementProps[] => {
   const result: any[] = [];
   items.forEach((item: any) => {
-    if (item.zipWeb) {
-      result.push({
-        filename: _sanitizeTitle(`${item.zipTitle}--web.zip`),
-        path: item.zipWeb.asset.url,
-      });
-    }
-    if (item.zipDesktop) {
-      result.push({
-        filename: _sanitizeTitle(`${item.zipTitle}--desktop.zip`),
-        path: item.zipDesktop.asset.url,
-      });
-    }
-    // else {
-    //   result.push({
-    //     filename: "no zip found",
-    //     path: "",
-    //   });
-    // }
+    result.push({
+      filename: _sanitizeTitle(`${item.zipTitle}.zip`),
+      path: item.zip.asset.url,
+    });
   });
   return result;
-  // return items.map((item: any) => {
-  //   if (item.zipWeb) {
-  //     return {
-  //       filename: _sanitizeTitle(`${item.zipTitle}--web.zip`),
-  //       path: item.zipWeb.asset.url,
-  //     };
-  //   } else if (item.zipDesktop) {
-  //     return {
-  //       filename: _sanitizeTitle(`${item.zipTitle}--desktop.zip`),
-  //       path: item.zipDesktop.asset.url,
-  //     };
-  //   } else {
-  //     return {
-  //       filename: "no zip found",
-  //       path: "",
-  //     };
-  //   }
-  // });
 };
 
 const _sanitizeTitle = (str: string) =>
   str.replace(/ /g, "-").toLocaleLowerCase();
 
-/************************
- * ********************************************************************************************
- */
-
-type PayloadProps = {
-  email: string;
-  invoiceNumber: string;
-  creationDate: string;
-};
-const _saveOrder = async (payload: PayloadProps, attachments: any) => {
-  const { email, invoiceNumber, creationDate } = payload;
-  const _attachments = attachments.map((item: any) => {
-    return {
-      label: item.filename,
-      link: item.path,
-    };
-  });
-  console.log(_attachments);
-  const mutations = {
-    mutations: [
-      {
-        create: {
-          _type: "order",
-          title: `#${invoiceNumber} by ${email}`,
-          invoiceNumber: `#${invoiceNumber}`,
-          creationDate: new Date(creationDate).toISOString(),
-          email: email,
-          attachments: _attachments,
-          json: JSON.stringify(payload),
-        },
-      },
-    ],
-  };
-  const url = `https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v2021-06-07/data/mutate/${process.env.NEXT_PUBLIC_SANITY_DATASET}?autoGenerateArrayKeys=true`;
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      Authorization: `Bearer ${process.env.SANITY_API_READ_TOKEN}`,
-    },
-    body: JSON.stringify(mutations),
-  });
-
-  const result = await response.json();
-  return result;
-};
-
-/************************
- * ********************************************************************************************
- */
-const _sendEmail = async ({ destination, client_name, payload }: SendProps) => {
-  // sendGridMail.setApiKey(process.env.SENDGRID_API_KEY || "");
-  console.log("_sending to :", destination);
-
+async function sendEmail(
+  to: string,
+  name: string,
+  order: any,
+  type: "user" | "admin",
+  currencyCode: string,
+  payload?: any
+) {
   const transporter = nodemailer.createTransport({
-    host: "asmtp.mail.hostpoint.ch",
-    port: 465,
-    secure: true,
+    service: "gmail",
     auth: {
-      user: process.env.SENDER_EMAIL,
-      pass: process.env.SENDER_PASSWORD,
+      user: environment.email.user as string,
+      pass: environment.email.pass as string,
     },
   });
 
-  var mailOptions = {
-    from: process.env.SENDER_EMAIL,
-    to: destination,
-    subject: "Your Outline Online fonts",
-    // text: "le message: " + JSON.stringify(payload),
-    //[@company Name?]
-    html: `
-      <div style="font-family:monospace,sans-serif">
-        <p>Dear ${client_name},</p>
-        <p>Your payment has been successfully processed. You can find the font files for download below in the zip files along with our EULA. If any problems might occur, please get in touch through info@outline-online.com. The order details will be sent in a separate email. </p>
-        <p>Thank you for using Outline Online typefaces!</p>
-        <p>Best from,<br />
-        Outline Online</p>
-        <p></p>
-        <p>P.S. We would love to see our typefaces in use, so don’t hesitate to reach out to us at info@outline-online.com with your designs!</p>
-      </div>
-    `,
-    attachments: payload,
+  let mailOptions = {
+    from: environment.email.from as string,
+    to: to,
+    subject: type === "user" ? "Your Order Confirmation" : "New Order Received",
+    html: generateEmailHtml(name, order, type, currencyCode),
+    attachments: type === "user" ? payload : null,
   };
 
-  try {
-    const res = await transporter.sendMail(mailOptions);
-    console.log(res);
-    return {
-      status: "success",
-      raw: res,
-    };
-  } catch (error) {
-    console.log(error);
-    //throw new Error(error);
-    return {
-      status: "error",
-      raw: error,
-    };
-  }
-};
+  await transporter.sendMail(mailOptions);
+}
+
+function generateEmailHtml(
+  name: string,
+  order: any,
+  type: "user" | "admin",
+  currencyCode: string
+) {
+  const isUser = type === "user";
+
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <h1 style="color: #333;">${
+        isUser ? "Order Confirmation" : "New Order Received"
+      }</h1>
+      <p style="color: #666;">${isUser ? `Dear ${name},` : "Dear Team,"}</p>
+      <p style="color: #666;">${
+        isUser
+          ? "Thank you for your order!"
+          : "You have received a new order from Overtype."
+      }</p>
+
+      <h2 style="color: #333; margin-top: 20px;">Order Details</h2>
+      <div style="background: #f9f9f9; padding: 15px; border-radius: 5px;">
+        <p><strong>Invoice Number:</strong> ${order.invoiceNumber}</p>
+        <p><strong>Total Amount:</strong> ${
+          order.totalAmount
+        } ${currencyCode}</p>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <p style="color: #666;">${
+          isUser
+            ? "If you have any questions, please don't hesitate to contact us."
+            : "Please process this order as soon as possible."
+        }</p>
+      </div>
+
+      <div style="margin-top: 30px; text-align: center; color: #888;">
+        <p>Best regards,</p>
+        <p>Overtype Team</p>
+      </div>
+    </div>
+  `;
+}

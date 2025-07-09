@@ -1,12 +1,11 @@
 "use client";
 import React, { useMemo } from "react";
-import useShop, { ProductData } from "./ShopContext";
+import useShop from "./ShopContext";
 import { _getPriceWithDiscount } from "./utils";
 import CardToast from "./CardToast";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
-import { NotifyButton } from "../ui/Notify";
-import { publish } from "pubsub-js";
+import { ProductData } from "@/app/types/extra-types";
 
 type Props = {
   items: ProductData[];
@@ -40,7 +39,7 @@ const AddToCart = ({ items }: Props) => {
       closeButton: false,
       // progress: 0.7,
       data: {
-        title: item.typefaceName,
+        title: item.fullTitle,
         background: item.background,
         foreground: item.foreground,
       },

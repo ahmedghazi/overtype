@@ -29,14 +29,36 @@ const PaddleProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
   const _handleEvents = (data: PaddleEventData) => {
-    if (data.name == "checkout.completed") {
+    console.log(data.name);
+
+    if (data.name === "checkout.completed") {
       console.log(data);
+      _processOrderCompleted(data);
     }
   };
 
   useEffect(() => {
     _initializePaddle();
   }, []);
+
+  const _processOrderCompleted = async (data: PaddleEventData) => {
+    console.log(data);
+    const products = JSON.parse(localStorage.getItem("products") || "[]");
+    console.log(products);
+    //call api send order to server
+    const response = await fetch("/api/order-completed", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        paddleData: data.data,
+        products: products,
+      }),
+    });
+    const result = await response.json();
+    console.log(result);
+  };
 
   return (
     <PaddleContext.Provider value={paddle}>{children}</PaddleContext.Provider>

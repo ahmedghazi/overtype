@@ -9,14 +9,13 @@ const BtnCheckout = (props: Props) => {
   // const [paddle, setPaddle] = useState<Paddle>();
   const paddle = useContext(PaddleContext);
   const { products, licenseFor, licenseForData } = useShop();
-  useEffect(() => {}, []);
 
   // define customer details
   const customerInfo = {
     email: "hello@ahmedghazi.com",
     address: {
-      countryCode: "US",
-      postalCode: "10021",
+      countryCode: "FR",
+      postalCode: "75018",
     },
   };
 
@@ -25,37 +24,41 @@ const BtnCheckout = (props: Props) => {
 
     console.log("BtnCheckout clicked");
 
+    //store products (with custom data) locale storage
+    localStorage.setItem("products", JSON.stringify(products));
+    // then on order completed, get thoses produicts and post to sanity
     const items = products.map((product) => ({
       quantity: 1,
+
       price: {
-        name: `${product.typefaceName} ${product.title} ${product.license}`,
-        description: product.description || "desc",
+        name: `${product.fullTitle} ${product.license}`,
+        description: product.description || "Font license",
         quantity: {
           minimum: 1,
           maximum: 1,
         },
         unitPrice: {
+          amount: String(product.finalPrice * 100), // in cents
           currencyCode: "EUR",
-          amount: String(product.finalPrice * 100),
         },
         product: {
-          name: product.title,
-          description: product.description || "desc",
+          name: product.fullTitle,
+          description: product.sku || "sku",
           taxCategory: "standard",
         },
-        customData: {
-          type: product.type,
+        custom_data: {
+          type: product.productType,
           isLogo: product.isLogo,
           license: product.license,
           sku: product.sku,
-          licenseFor: licenseFor,
-          licenseForData: licenseForData,
+          licenseFor,
+          licenseForData,
         },
       },
     }));
     console.log(items);
 
-    const response = await fetch("/api/pay", {
+    const response = await fetch("/api/checkout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,11 +72,11 @@ const BtnCheckout = (props: Props) => {
     paddle?.Checkout.open({
       allowQuantity: false,
       transactionId: data.tsx,
-      // customer: customerInfo,
+      customer: customerInfo,
       settings: {
         displayMode: "overlay",
         theme: "dark",
-        successUrl: "http://localhost:3000/success",
+        // successUrl: "http://localhost:3000/success",
         variant: "multi-page",
       },
     });
