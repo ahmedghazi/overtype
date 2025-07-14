@@ -50,7 +50,8 @@ function productsReducer(state: any, action: any) {
       return [...state, payload];
     case "REMOVE":
       return state.filter((item: any) => item.sku !== payload.sku);
-
+    case "REMOVE_BY_SKY":
+      return state.filter((item: any) => item.sku !== payload);
     case "REPLACE":
       return state.map((item: any) => {
         return item.sku === payload.sku ? payload : item;
@@ -69,9 +70,9 @@ function trialsReducer(state: any, action: any) {
     case "ADD":
       return [...state, payload];
     case "REMOVE":
-      return state.filter((item: SanityKeyed<ProductSingle>) => {
+      return state.filter((item: Product) => {
         // console.log(item._key, payload._key);
-        return item._key !== payload._key;
+        return item._id !== payload._id;
       });
 
     // case "REPLACE":
@@ -87,12 +88,15 @@ function trialsReducer(state: any, action: any) {
 
 type ContextProps = {
   cartObject: any;
+  trials: SanityKeyed<Product>[] | null;
+  setTrials: Function;
+
   products: ProductData[];
-
   setProducts: Function;
-  dialogProducts: ProductData[];
 
+  dialogProducts: ProductData[];
   setDialogProducts: Function;
+
   licenseType: LicenseType | null;
   setLicenseType: Function;
   isLogo: boolean;
@@ -115,7 +119,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [ready, setReady] = useState<boolean>(false);
   const [products, setProducts] = useReducer(productsReducer, []);
   const [dialogProducts, setDialogProducts] = useReducer(productsReducer, []);
-  const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
+  const [trials, setTrials] = useReducer(trialsReducer, []);
   const [licenseType, setLicenseType] = useState<LicenseType | null>(null);
   const [licenseFor, setLicenseFor] = useState<"me" | "client">("me");
   const [licenseForData, setLicenseForData] = useState<{
@@ -135,6 +139,8 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   return (
     <ShopContext.Provider
       value={{
+        trials,
+        setTrials,
         products,
         setProducts,
         dialogProducts,

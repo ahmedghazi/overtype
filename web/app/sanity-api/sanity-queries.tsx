@@ -185,6 +185,13 @@ export const PROJECT_QUERY = groq`*[_type == "project" && slug.current == $slug]
   seo{
     ${seo}
   },
+  hero{
+    ...,
+    ${figure}
+  },
+  modules[]{
+    ${modules}
+  },
   nextProject->{
     _type,
     slug

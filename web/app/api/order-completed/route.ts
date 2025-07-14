@@ -18,6 +18,14 @@ interface PaddleWebhookData {
   transaction_id: string;
   status: string;
   currency_code: string;
+  custom_data: {
+    license_for: string;
+    license_for_data: {
+      email: string;
+      in_use_for: string;
+      company_name: string;
+    };
+  };
   customer: {
     id: string;
     email: string;
@@ -55,7 +63,7 @@ export async function POST(request: Request) {
     };
     // return NextResponse.json({ success: true, paddleData, products });
 
-    const { customer, items, id: transactionId, status } = paddleData;
+    const { customer, items, id: transactionId } = paddleData;
 
     const totalAmount = products.reduce((sum: number, item) => {
       return sum + item.finalPrice;
@@ -64,8 +72,27 @@ export async function POST(request: Request) {
     const user = await _storeUser(customer);
     const userId = user._id;
 
+    //error handle if no user
+    if (!userId) {
+      return NextResponse.json(
+        { success: false, error: "User not found" },
+        { status: 500 }
+      );
+    }
+
     const order = await _storeOrder(userId, paddleData, products);
     const orderId = order._id;
+    // return NextResponse.json({
+    //   success: true,
+    //   order,
+    //   custom_data: paddleData.custom_data,
+    // });
+    if (!orderId) {
+      return NextResponse.json(
+        { success: false, error: "Order not found" },
+        { status: 500 }
+      );
+    }
 
     // Add order to user's orders array
     console.log("userId", userId);
@@ -87,9 +114,21 @@ export async function POST(request: Request) {
     const _productOrderDataZips = await _collectProductsOrderZips(
       _productOrderData
     );
+    if (!_productOrderDataZips) {
+      return NextResponse.json(
+        { success: false, error: "Product order data not found" },
+        { status: 500 }
+      );
+    }
     // return NextResponse.json({ success: true, _productOrderDataZips });
 
     const _attachments = _generateAttachments(_productOrderDataZips);
+    if (!_attachments) {
+      return NextResponse.json(
+        { success: false, error: "Attachments not found" },
+        { status: 500 }
+      );
+    }
     // return NextResponse.json({ success: true, _attachments });
 
     // Send email to user
@@ -171,7 +210,7 @@ async function _storeOrder(
   products: ProductData[]
 ): Promise<Order> {
   try {
-    const { id: transactionId, status, items } = paddleData;
+    const { id: transactionId, status, items, custom_data } = paddleData;
 
     const totalAmount = products.reduce((sum: number, item) => {
       return sum + item.finalPrice;
@@ -207,6 +246,8 @@ async function _storeOrder(
       totalAmount,
       status,
       transactionId,
+      licenseFor: custom_data?.license_for,
+      licenseForData: JSON.stringify(custom_data?.license_for_data, null, 2),
     });
 
     // const orderId = await client.create(orderData);

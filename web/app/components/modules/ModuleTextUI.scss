@@ -2,6 +2,7 @@
   &:not(.full-width) {
     h2 {
       text-align: center;
+      margin-bottom: var(--spacing-2xl);
     }
     .text {
       max-width: 37.5rem;

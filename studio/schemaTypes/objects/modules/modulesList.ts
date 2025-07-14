@@ -5,4 +5,6 @@ export default [
   {type: 'sliderStoriesUI'},
   {type: 'projectsUI'},
   {type: 'fontsInUseUI'},
+  {type: 'trialsUI'},
+  {type: 'faqUI'},
 ]

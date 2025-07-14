@@ -17,7 +17,7 @@ const Footer = (props: Props) => {
   const { footerCta, navSecondary } = settings;
   return (
     <div className='px-md'>
-      <div className='text md:mb-12xl'>
+      <div className='text md:my-12xl'>
         <PortableText
           value={_localizeField(footerCta)}
           components={portableTextComponents}

@@ -1,7 +1,7 @@
 import {defineType, defineArrayMember} from 'sanity'
 // import { FiExternalLink, LinkIcon } from 'react-icons/fi'
 import {LinkIcon} from '@sanity/icons'
-import {FiExternalLink} from 'react-icons/fi'
+import {FiAlignCenter, FiAlignLeft, FiAlignRight, FiExternalLink} from 'react-icons/fi'
 import linkIntternalTypes from '../misc/linkIntternalTypes'
 /**
  * This is the schema definition for the rich text fields used for
@@ -13,26 +13,15 @@ import linkIntternalTypes from '../misc/linkIntternalTypes'
  *    type: 'blockContent'
  *  }
  */
-const TextL = (props: any): JSX.Element => (
-  <p style={{fontSize: '2rem', marginTop: 0}}> {props.children} </p>
+const TextL = (props: any) => <p style={{fontSize: '2rem', marginTop: 0}}> {props.children} </p>
+const TextH2 = (props: any) => (
+  <span style={{fontSize: '24px', marginTop: 0, marginBottom: '1rem', fontWeight: 'unset'}}>
+    {props.children}
+  </span>
 )
-// const TextIndent = (props: any): JSX.Element => (
-//   <div className="indent">
-//     <p style={{paddingLeft: '1rem', marginTop: 0}}> {props.children} </p>
-//   </div>
-// )
-const TextIndent = (props: any): JSX.Element => (
-  <span style={{paddingLeft: '1rem', marginTop: 0, display: 'inline-block'}}>{props.children}</span>
-)
-const Underline = (props: any): JSX.Element => (
-  <span style={{textDecoration: 'underline'}}> {props.children} </span>
-)
-const Outline = (props: any): JSX.Element => (
-  <span style={{border: '1px solid ', borderRadius: '100%'}}> {props.children} </span>
-)
-// const TextXL = (props: any): JSX.Element => (
-//   <p style={{fontSize: '3rem', marginTop: 0}}> {props.children} </p>
-// )
+const AlignLeftRender = (props: any) => <p style={{textAlign: 'left'}}>{props.children}</p>
+const AlignCenterRender = (props: any) => <p style={{textAlign: 'center'}}>{props.children}</p>
+const AlignRightRender = (props: any) => <p style={{textAlign: 'right'}}>{props.children}</p>
 
 export default defineType({
   title: 'Block Content',
@@ -48,7 +37,6 @@ export default defineType({
       // use your content.
       styles: [
         {title: 'Normal', value: 'normal'},
-        // { title: "Titre H2", value: "h2" },
         // { title: "Titre H3", value: "h3" },
         // {title: 'H4', value: 'h4'},
         // {title: 'Quote', value: 'blockquote'},
@@ -57,6 +45,8 @@ export default defineType({
           value: 'text-lg',
           component: TextL,
         },
+        {title: 'Titre H2', value: 'h2', component: TextH2},
+
         // {
         //   title: "Texte indenté",
         //   value: "text-index",
@@ -71,18 +61,24 @@ export default defineType({
         decorators: [
           {title: 'Strong', value: 'strong'},
           {title: 'Emphasis', value: 'em'},
-          // {
-          //   title: "Underline",
-          //   value: "u",
-          //   icon: () => "u",
-          //   component: Underline,
-          // },
-          // {
-          //   title: "Outline",
-          //   value: "outline",
-          //   icon: () => "o",
-          //   component: Outline,
-          // },
+          {
+            title: 'Align Left',
+            value: 'align_left',
+            icon: FiAlignLeft,
+            component: AlignLeftRender,
+          },
+          {
+            title: 'Align Center',
+            value: 'align_center',
+            icon: FiAlignCenter,
+            component: AlignCenterRender,
+          },
+          {
+            title: 'Align Right',
+            value: 'align_right',
+            icon: FiAlignRight,
+            component: AlignRightRender,
+          },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [

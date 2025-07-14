@@ -1,0 +1,18 @@
+.module--faq-ui {
+  nav {
+    margin-bottom: var(--spacing-4xl);
+    ul {
+      justify-content: center;
+      gap: var(--spacing-3xs);
+    }
+  }
+  .faq-item {
+    scroll-margin-top: var(--header-height);
+    h3 {
+      margin-bottom: O;
+    }
+    .accordion {
+      padding-top: var(--spacing-3xl);
+    }
+  }
+}

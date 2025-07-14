@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { subscribe, unsubscribe } from "pubsub-js";
+import { usePathname } from "next/navigation";
 
 interface DialogProps {
   isOpen: boolean;
@@ -16,6 +17,7 @@ export const Dialog: React.FC<DialogProps> = ({
   children,
   className = "",
 }) => {
+  const pathname = usePathname();
   useEffect(() => {
     const token = subscribe("DIALOG.CLOSE", () => {
       onClose();
@@ -24,6 +26,10 @@ export const Dialog: React.FC<DialogProps> = ({
       unsubscribe(token);
     };
   }, []);
+
+  useEffect(() => {
+    onClose();
+  }, [pathname]);
 
   if (!isOpen) return null;
 

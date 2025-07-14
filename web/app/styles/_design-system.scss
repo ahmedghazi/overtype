@@ -1,5 +1,9 @@
 @use "./mixins";
 
+.c-container {
+  max-width: 37.5rem;
+  margin: 0 auto;
+}
 .scroll-x {
   width: 100%;
   overflow: hidden;
@@ -104,6 +108,17 @@
     height: 1.625rem;
     line-height: 1.45rem;
   }
+}
+a.ui-btn {
+  display: inline-block;
+  &__accent {
+    &:hover {
+      color: white;
+    }
+  }
+}
+.btn__delete {
+  cursor: pointer;
 }
 
 .ui-btn--pill {
@@ -413,6 +428,9 @@
   * {
     // pointer-events: none;
   }
+  label {
+    pointer-events: none;
+  }
   input {
     margin-right: 0.625rem;
   }
@@ -492,8 +510,33 @@
   }
 }
 
+.ui-trial {
+  border-radius: var(--radius);
+  background-color: var(--color-btn);
+  padding: var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--text-lg);
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background-color: var(--color-btn--hover);
+  }
+  &.is-active {
+    background-color: var(--color-accent);
+    color: white;
+
+    input {
+      accent-color: white;
+    }
+  }
+}
+
 .dark .ui-bundle,
-.dark .ui-single {
+.dark .ui-single,
+.dark .ui-trial {
   background-color: var(--color-bg);
   color: var(--color-primary);
   &:hover,

@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
   }
   // console.log(req.body);
   const body = await req.json(); // res now contains body
-  const { items } = body;
+  const { items, custom_data } = body;
   // console.log(items);
 
   //export type TaxCategory = 'digital-goods' | 'ebooks' | 'implementation-services' | 'professional-services' | 'saas' | 'software-programming-services' | 'standard' | 'training-services' | 'website-hosting';
@@ -39,6 +39,7 @@ export async function POST(req: NextRequest) {
     const tsx = await paddle.transactions.create({
       currencyCode: "EUR",
       items: items,
+      customData: custom_data,
     });
     // console.log(tsx);
     return NextResponse.json({ tsx: tsx.id });

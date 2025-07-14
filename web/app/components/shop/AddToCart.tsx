@@ -67,7 +67,7 @@ const AddToCart = ({ items }: Props) => {
         {dialogProducts.length > 0 && <span className='ml-2'>{total}€</span>}
       </button>
 
-      <pre>{JSON.stringify(products, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(products, null, 2)}</pre> */}
     </div>
   );
 };

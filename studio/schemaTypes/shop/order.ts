@@ -59,6 +59,15 @@ export default defineType({
       title: 'attachments',
       type: 'array',
       of: [{type: 'linkExternal'}],
+      hidden: true,
+    }),
+    defineField({
+      name: 'licenseFor',
+      type: 'string',
+    }),
+    defineField({
+      name: 'licenseForData',
+      type: 'text',
     }),
     defineField({
       name: 'json',

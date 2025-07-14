@@ -9,7 +9,7 @@ const BtnCheckout = (props: Props) => {
   // const [paddle, setPaddle] = useState<Paddle>();
   const paddle = useContext(PaddleContext);
   const { products, licenseFor, licenseForData } = useShop();
-
+  console.log(products, licenseFor, licenseForData);
   // define customer details
   const customerInfo = {
     email: "hello@ahmedghazi.com",
@@ -29,7 +29,6 @@ const BtnCheckout = (props: Props) => {
     // then on order completed, get thoses produicts and post to sanity
     const items = products.map((product) => ({
       quantity: 1,
-
       price: {
         name: `${product.fullTitle} ${product.license}`,
         description: product.description || "Font license",
@@ -65,6 +64,10 @@ const BtnCheckout = (props: Props) => {
       },
       body: JSON.stringify({
         items: items,
+        custom_data: {
+          licenseFor: licenseFor,
+          licenseForData: licenseForData,
+        },
       }),
     });
     const data = await response.json();

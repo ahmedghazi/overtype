@@ -4,7 +4,11 @@ import ModuleFontsInUseUI from "./ModuleFontsInUseUI";
 import ModuleTextUI from "./ModuleTextUI";
 import ModuleSliderStoriesUI from "./ModuleSliderStoriesUI";
 import ModuleProductsUI from "./ModuleProductsUI";
+import ModuleProjectsUI from "./ModuleProjectUI";
 import "./index.scss";
+import ModuleImagesUI from "./ModuleImagesUI";
+import ModuleTrialsUI from "./ModuleTrialsUI";
+import ModuleFaqUI from "./ModuleFaqUI";
 
 const Modules = ({ modules }: _ModulesList) => {
   const _renderModules = () => {
@@ -19,7 +23,14 @@ const Modules = ({ modules }: _ModulesList) => {
           return <ModuleSliderStoriesUI key={module._key} input={module} />;
         case "productsUI":
           return <ModuleProductsUI key={module._key} input={module} />;
-
+        case "projectsUI":
+          return <ModuleProjectsUI key={module._key} input={module} />;
+        case "imagesUI":
+          return <ModuleImagesUI key={module._key} input={module} />;
+        case "trialsUI":
+          return <ModuleTrialsUI key={module._key} input={module} />;
+        case "faqUI":
+          return <ModuleFaqUI key={module._key} input={module} />;
         default:
           return null;
       }

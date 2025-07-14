@@ -1,5 +1,6 @@
 import { SanityKeyed } from "sanity-codegen";
 import {
+  FaqUI,
   FontsInUseUI,
   ImagesUI,
   Product,
@@ -9,6 +10,7 @@ import {
   ProjectsUI,
   SliderStoriesUI,
   TextUI,
+  TrialsUI,
 } from "./schema";
 
 export interface _ModulesList {
@@ -19,6 +21,8 @@ export interface _ModulesList {
     | SanityKeyed<SliderStoriesUI>
     | SanityKeyed<ProjectsUI>
     | SanityKeyed<FontsInUseUI>
+    | SanityKeyed<TrialsUI>
+    | SanityKeyed<FaqUI>
   >;
 }
 

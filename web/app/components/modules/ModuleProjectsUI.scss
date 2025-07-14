@@ -1,0 +1,19 @@
+.module--projects-ui {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    line-height: 1;
+    align-items: baseline;
+    .actions {
+      display: flex;
+      gap: 0.4em;
+      a,
+      button {
+        font-size: var(--text-lg);
+        padding-inline: 0;
+        padding-block: 0;
+        margin: 0;
+      }
+    }
+  }
+}

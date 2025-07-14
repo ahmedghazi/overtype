@@ -5,6 +5,13 @@
   section {
     width: 100%;
     margin-bottom: var(--spacing-7xl);
+    &.module--text-ui:first-child {
+      &,
+      & + .module--text-ui {
+        // background-color: red;
+        margin-bottom: var(--spacing-4xl);
+      }
+    }
     &:last-child {
       margin-bottom: 0;
     }

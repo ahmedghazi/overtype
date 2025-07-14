@@ -44,28 +44,16 @@ export default defineType({
       group: 'editorial',
     }),
     defineField({
-      name: 'subTitle',
-      type: 'string',
-      title: 'Soustitre',
-      group: 'editorial',
-    }),
-    defineField({
-      name: 'year',
-      type: 'string',
-      title: 'Année',
+      name: 'tag',
+      title: 'Tag',
+      type: 'reference',
+      to: [{type: 'tag'}],
       group: 'editorial',
     }),
 
     defineField({
-      name: 'tags',
-      title: 'Tags',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{type: 'tag'}],
-        },
-      ],
+      name: 'hero',
+      type: 'figure',
       group: 'editorial',
     }),
 
@@ -74,22 +62,6 @@ export default defineType({
       type: 'image',
       title: 'Image clef',
       description: 'Visible on liste pages, project cards (largeur 1400px)',
-      group: 'editorial',
-    }),
-
-    defineField({
-      name: 'chapo',
-      title: 'Chapo',
-      type: 'localeBlockContent',
-      group: 'editorial',
-    }),
-
-    defineField({
-      name: 'metas',
-      title: 'fiche technique',
-      type: 'array',
-      of: [{type: 'keyVal'}],
-      // description: 'fiche technique',
       group: 'editorial',
     }),
 

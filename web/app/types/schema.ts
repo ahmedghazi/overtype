@@ -274,6 +274,8 @@ export interface PageModulaire extends SanityDocument {
     | SanityKeyed<SliderStoriesUI>
     | SanityKeyed<ProjectsUI>
     | SanityKeyed<FontsInUseUI>
+    | SanityKeyed<TrialsUI>
+    | SanityKeyed<FaqUI>
   >;
 }
 
@@ -307,25 +309,18 @@ export interface Project extends SanityDocument {
   slug?: { _type: "slug"; current: string };
 
   /**
-   * Soustitre — `string`
+   * Tag — `reference`
    *
    *
    */
-  subTitle?: string;
+  tag?: SanityReference<Tag>;
 
   /**
-   * Année — `string`
+   * hero — `figure`
    *
    *
    */
-  year?: string;
-
-  /**
-   * Tags — `array`
-   *
-   *
-   */
-  tags?: Array<SanityKeyedReference<Tag>>;
+  hero?: Figure;
 
   /**
    * Image clef — `image`
@@ -338,20 +333,6 @@ export interface Project extends SanityDocument {
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
   };
-
-  /**
-   * Chapo — `localeBlockContent`
-   *
-   *
-   */
-  chapo?: LocaleBlockContent;
-
-  /**
-   * fiche technique — `array`
-   *
-   *
-   */
-  metas?: Array<SanityKeyed<KeyVal>>;
 
   /**
    * Texte — `localeBlockContent`
@@ -372,6 +353,8 @@ export interface Project extends SanityDocument {
     | SanityKeyed<SliderStoriesUI>
     | SanityKeyed<ProjectsUI>
     | SanityKeyed<FontsInUseUI>
+    | SanityKeyed<TrialsUI>
+    | SanityKeyed<FaqUI>
   >;
 }
 
@@ -675,6 +658,20 @@ export interface Order extends SanityDocument {
   attachments?: Array<SanityKeyed<LinkExternal>>;
 
   /**
+   * licenseFor — `string`
+   *
+   *
+   */
+  licenseFor?: string;
+
+  /**
+   * licenseForData — `text`
+   *
+   *
+   */
+  licenseForData?: string;
+
+  /**
    * json — `text`
    *
    *
@@ -865,6 +862,41 @@ export type OrderItem = {
   productType?: string;
 
   /**
+   * productTypeRef — `string`
+   *
+   *
+   */
+  productTypeRef?: string;
+
+  /**
+   * productId — `string`
+   *
+   *
+   */
+  productId?: string;
+
+  /**
+   * productTitle — `string`
+   *
+   *
+   */
+  productTitle?: string;
+
+  /**
+   * fullTitle — `string`
+   *
+   *
+   */
+  fullTitle?: string;
+
+  /**
+   * description — `string`
+   *
+   *
+   */
+  description?: string;
+
+  /**
    * SKU — `string`
    *
    *
@@ -891,27 +923,6 @@ export type OrderItem = {
    *
    */
   finalPrice?: number;
-
-  /**
-   * Typeface Name — `string`
-   *
-   *
-   */
-  typefaceName?: string;
-
-  /**
-   * Title — `string`
-   *
-   *
-   */
-  title?: string;
-
-  /**
-   * description — `string`
-   *
-   *
-   */
-  description?: string;
 
   /**
    * license — `string`
@@ -1193,11 +1204,11 @@ export type Figure = {
   };
 
   /**
-   * Caption — `string`
+   * Taille — `string`
    *
    *
    */
-  caption?: string;
+  size?: "w-2/2" | "w-1/2";
 };
 
 export type MosaicItem = {
@@ -1250,6 +1261,16 @@ export type FontInUse = {
 
 export type Accordion = {
   _type: "accordion";
+  /**
+   * Items — `array`
+   *
+   *
+   */
+  items?: Array<SanityKeyed<KeyVal>>;
+};
+
+export type Faq = {
+  _type: "faq";
   /**
    * Items — `array`
    *
@@ -1357,6 +1378,13 @@ export type ProjectsUI = {
   title?: string;
 
   /**
+   * cta — `linkInternal`
+   *
+   *
+   */
+  cta?: LinkInternal;
+
+  /**
    * items — `array`
    *
    *
@@ -1379,6 +1407,54 @@ export type FontsInUseUI = {
    *
    */
   items?: Array<SanityKeyed<FontInUse>>;
+};
+
+export type TrialsUI = {
+  _type: "trialsUI";
+  /**
+   * title — `string`
+   *
+   * Internal
+   */
+  title?: string;
+
+  /**
+   * text — `localeBlockContent`
+   *
+   *
+   */
+  text?: LocaleBlockContent;
+
+  /**
+   * items — `array`
+   *
+   *
+   */
+  items?: Array<SanityKeyedReference<Product>>;
+
+  /**
+   * textOptin — `localeBlockContent`
+   *
+   *
+   */
+  textOptin?: LocaleBlockContent;
+};
+
+export type FaqUI = {
+  _type: "faqUI";
+  /**
+   * title — `string`
+   *
+   * Custom works
+   */
+  title?: string;
+
+  /**
+   * items — `array`
+   *
+   *
+   */
+  items?: Array<SanityKeyed<KeyVal>>;
 };
 
 export type Documents =

@@ -1,21 +1,24 @@
 import {defineField} from 'sanity'
-import {ThListIcon} from '@sanity/icons'
+import {CiShop} from 'react-icons/ci'
 
 export default defineField({
-  name: 'projectsUI',
-  title: 'Projets UI',
+  name: 'trialsUI',
+  title: 'Trials UI',
   type: 'object',
-  icon: ThListIcon,
-
+  icon: CiShop,
+  // initialValue: {
+  //   layout: 'mosaic',
+  // },
   fields: [
     defineField({
       name: 'title',
       type: 'string',
-      description: 'Custom works',
+      description: 'Internal',
     }),
+
     defineField({
-      name: 'cta',
-      type: 'linkInternal',
+      name: 'text',
+      type: 'localeBlockContent',
     }),
     defineField({
       name: 'items',
@@ -23,9 +26,13 @@ export default defineField({
       of: [
         {
           type: 'reference',
-          to: [{type: 'project'}],
+          to: [{type: 'product'}],
         },
       ],
+    }),
+    defineField({
+      name: 'textOptin',
+      type: 'localeBlockContent',
     }),
   ],
   preview: {
@@ -36,7 +43,7 @@ export default defineField({
       const {title} = selection
       return {
         title: title,
-        subtitle: 'Projets UI',
+        subtitle: 'Trials UI',
       }
     },
   },

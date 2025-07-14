@@ -4,7 +4,14 @@
     "id": "che_01jzqqr2d818syq9dmx30kr1ex",
     "transaction_id": "txn_01jzqqr0dz0jkbzgks0crtrd4n",
     "status": "completed",
-    "custom_data": null,
+    "custom_data": {
+      "license_for": "client",
+      "license_for_data": {
+        "email": "a@a.fr",
+        "in_use_for": "zefze",
+        "company_name": "aaa"
+      }
+    },
     "currency_code": "EUR",
     "customer": {
       "id": "ctm_01jzb548q1cj0450tnqtp11hcf",

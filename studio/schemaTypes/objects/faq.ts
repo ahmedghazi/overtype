@@ -1,11 +1,11 @@
 import {defineField} from 'sanity'
-import {TfiLayoutAccordionSeparated} from 'react-icons/tfi'
+import {FaQ} from 'react-icons/fa6'
 
 export default defineField({
-  name: 'accordion',
-  title: 'Accordion',
+  name: 'faq',
+  title: 'Faq',
   type: 'object',
-  icon: TfiLayoutAccordionSeparated,
+  icon: FaQ,
 
   fields: [
     defineField({
@@ -17,7 +17,7 @@ export default defineField({
   ],
   preview: {
     select: {
-      title: 'items.0.key',
+      title: 'items.0.ekey',
     },
   },
 })

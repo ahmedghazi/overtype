@@ -2,8 +2,8 @@ import {defineField} from 'sanity'
 import {ThListIcon} from '@sanity/icons'
 
 export default defineField({
-  name: 'projectsUI',
-  title: 'Projets UI',
+  name: 'faqUI',
+  title: 'Faq UI',
   type: 'object',
   icon: ThListIcon,
 
@@ -13,17 +13,13 @@ export default defineField({
       type: 'string',
       description: 'Custom works',
     }),
-    defineField({
-      name: 'cta',
-      type: 'linkInternal',
-    }),
+
     defineField({
       name: 'items',
       type: 'array',
       of: [
         {
-          type: 'reference',
-          to: [{type: 'project'}],
+          type: 'keyVal',
         },
       ],
     }),
@@ -36,7 +32,7 @@ export default defineField({
       const {title} = selection
       return {
         title: title,
-        subtitle: 'Projets UI',
+        subtitle: 'Faq UI',
       }
     },
   },

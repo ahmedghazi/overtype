@@ -6,6 +6,7 @@ import { _linkResolver, _localizeField } from "../../sanity-api/utils";
 import useTypeFace from "../typeface/TypeFaceContext";
 import clsx from "clsx";
 import BtnPill from "../ui/buttons/BtnPill";
+import BtnIcon from "../ui/buttons/BtnIcon";
 
 type Props = {
   input: Product;
@@ -13,7 +14,7 @@ type Props = {
 };
 
 const CardProduct = ({ input, layout }: Props) => {
-  // console.log(input);
+  console.log(input);
   const { type, dispatchType } = useTypeFace();
   const [ready, setReady] = useState(false);
   const defaultTypeface = input.defaultTypeface;
@@ -49,9 +50,26 @@ const CardProduct = ({ input, layout }: Props) => {
           <h3 className='text-10xl'>{input.title}</h3>
         </div>
       </Link>
-      {input.tag && (
-        <BtnPill label={_localizeField(input.tag.title)} withIcon='dotGreen' />
-      )}
+      <div className='gradient'></div>
+      <div className='header'>
+        {input.tag && (
+          <BtnPill
+            label={_localizeField(input.tag.title)}
+            withIcon='dotGreen'
+          />
+        )}
+      </div>
+      <div className='footer'>
+        <div className='group'>
+          <div className='title ui-cartouche'>{input.title}</div>
+          <div className='styles ui-cartouche'>
+            <span>{input.singles?.length}</span> <span>styles</span>
+          </div>
+        </div>
+        <div className='group'>
+          <BtnIcon icon='see' />
+        </div>
+      </div>
     </article>
   );
 };

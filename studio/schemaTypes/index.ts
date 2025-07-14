@@ -20,6 +20,7 @@ import figure from './objects/figure'
 import mosaicItem from './objects/mosaicItem'
 import fontInUse from './objects/fontInUse'
 import accordion from './objects/accordion'
+import faq from './objects/faq'
 
 import imagesUI from './objects/modules/imagesUI'
 import productsUI from './objects/modules/productsUI'
@@ -27,6 +28,8 @@ import textUI from './objects/modules/textUI'
 import sliderStoriesUI from './objects/modules/sliderStoriesUI'
 import projectsUI from './objects/modules/projectsUI'
 import fontsInUseUI from './objects/modules/fontsInUseUI'
+import trialsUI from './objects/modules/trialsUI'
+import faqUI from './objects/modules/faqUI'
 
 import product from './shop/product'
 import productBundle from './shop/productBundle'
@@ -73,6 +76,7 @@ export const schemaTypes = [
   mosaicItem,
   fontInUse,
   accordion,
+  faq,
 
   imagesUI,
   productsUI,
@@ -80,5 +84,7 @@ export const schemaTypes = [
   sliderStoriesUI,
   projectsUI,
   fontsInUseUI,
+  trialsUI,
+  faqUI,
 ]
 export default schemaTypes

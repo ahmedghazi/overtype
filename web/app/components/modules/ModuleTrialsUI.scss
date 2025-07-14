@@ -1,0 +1,31 @@
+.module--trials-ui {
+  .c-container {
+    width: 100%;
+    max-width: 42.5rem;
+    margin: 0 auto;
+  }
+  .header {
+    text-align: center;
+    h1 {
+      line-height: 1;
+    }
+  }
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3xs);
+  }
+  .footer {
+    input[type="email"] {
+      background-color: var(--color-btn);
+    }
+    .optin {
+      display: flex;
+      align-items: start;
+      gap: var(--spacing-xs);
+      input {
+        transform: translateY(0.15em);
+      }
+    }
+  }
+}

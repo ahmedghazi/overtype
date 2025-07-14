@@ -97,7 +97,8 @@ p,
     }
   }
   a {
-    color: var(--color-secondary);
+    // color: var(--color-secondary);
+    text-decoration: underline;
   }
 }
 .ellipsis {
@@ -123,6 +124,7 @@ strong {
 
 button {
   background: transparent;
+  cursor: pointer;
 }
 
 input {

@@ -10,8 +10,8 @@
   #- footer cta
   #- form checkout > customFields
   #- deploy vercel
-
-- cart product remove error
+  #- cart product remove error
+  #- projects
 
 # order-completed
 
@@ -22,3 +22,14 @@
 #- smtp
 #- send email to user
 #- send email to admin
+
+- success page, error page
+- fix form bugs
+- single click (celui avec -25%) en prems = error prix final
+  #- cart delete item error
+- related projects
+  #- FAQ
+- cart tooltips
+- cookies
+- font tester manque des boutons
+- landing page

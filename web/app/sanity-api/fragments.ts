@@ -65,6 +65,10 @@ export const productCard = `
 	},
 	background,
 	foreground,
+	singles[]{
+		_key,
+		title
+	},
 	defaultTypeface->{
 		...,
 		_key,
@@ -111,7 +115,31 @@ const fontsInUseUI = `
 
   }
 `;
-
+const projectCard = `
+	_type,
+	slug,
+	title,
+	tag->{
+		title
+	},
+	imageCover{
+		asset->
+	},
+`;
+const projectsUI = `
+	_type == 'projectsUI' => {
+		title,
+		cta{
+			link->{
+				_type,
+				slug
+			}
+		},
+		items[]-> {
+			${projectCard}
+		}
+	}
+`;
 const storiesUI = `
   _type == 'storiesUI' => {
 		title,
@@ -136,12 +164,65 @@ const textUI = `
 	}
 `;
 
+const imagesUI = `
+	_type == 'imagesUI' => {
+		...,
+		items[] {
+			${figure}
+		}
+	}
+`;
+
+const trialsUI = `
+	_type == 'trialsUI' => {
+		...,
+		items[]-> {
+			_id,
+			title,
+			defaultTypeface->{
+				...,
+				_key,
+				title,
+				price,
+				isDefault,
+				typeface->{
+					slug,
+					title,
+					typefaceFile{
+						base64
+					}
+				},
+			}
+		},
+		textOptin{
+			${blockContent}
+		}
+	}
+`;
+
+const faqUI = `
+	_type == 'faqUI' => {
+		...,
+		title,
+		items[] {
+			key,
+			val{
+				${blockContent}
+			}
+		}
+	}
+`;
+
 export const modules = `
 	...,
 	${productsUI},
 	${fontsInUseUI},
 	${storiesUI},
-	${textUI}
+	${projectsUI},
+	${textUI},
+	${imagesUI},
+	${trialsUI},
+	${faqUI},
 `;
 
 /*

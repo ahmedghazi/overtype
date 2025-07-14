@@ -59,6 +59,10 @@ export const structure = (S) =>
 
       S.divider(),
 
+      S.listItem().title('Projects').schemaType('project').child(S.documentTypeList('project')),
+
+      S.divider(),
+
       S.listItem().title('Products').schemaType('product').child(S.documentTypeList('product')),
       S.listItem()
         .title('Typefaces (Aa Regular, Aa Italic,...)')

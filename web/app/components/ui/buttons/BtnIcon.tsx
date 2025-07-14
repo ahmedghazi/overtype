@@ -10,7 +10,8 @@ type Props = {
     | "dark-mode"
     | "cart"
     | "question"
-    | "delete";
+    | "delete"
+    | "see";
   size?: "sm" | "md" | "lg";
   onClick?: (active: boolean) => void;
 };
@@ -44,6 +45,7 @@ const BtnIcon = ({ icon, size = "md", onClick }: Props) => {
         {icon === "cart" && <i className='icon-cart'></i>}
         {icon === "question" && <span className='icn-question'>?</span>}
         {icon === "delete" && <i className='icon-delete'></i>}
+        {icon === "see" && <i className='icon-see'></i>}
       </span>
     </button>
   );

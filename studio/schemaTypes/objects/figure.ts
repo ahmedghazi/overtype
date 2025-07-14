@@ -10,16 +10,20 @@ export default defineField({
   preview: {
     select: {
       media: 'image',
-      title: `caption`,
+      title: `image.alt`,
+      size: 'size',
     },
     prepare(selection) {
-      const {media, title} = selection
+      const {media, title, size} = selection
       return {
-        title: title,
+        title: title + ' ' + size,
         media: media,
         subtitle: 'Figure',
       }
     },
+  },
+  initialValue: {
+    size: 'w-2/2',
   },
   fields: [
     defineField({
@@ -37,10 +41,21 @@ export default defineField({
         // {name: 'attribution', title: 'Attribution', type: 'string'}
       ],
     }),
+    // defineField({
+    //   name: 'caption',
+    //   title: 'Caption',
+    //   type: 'string',
+    // }),
     defineField({
-      name: 'caption',
-      title: 'Caption',
+      name: 'size',
       type: 'string',
+      title: 'Taille',
+      options: {
+        list: [
+          {title: 'Large', value: 'w-2/2'},
+          {title: 'Medium', value: 'w-1/2'},
+        ],
+      },
     }),
   ],
 })
