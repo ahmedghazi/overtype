@@ -19,12 +19,6 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// type PageProps = {
-//   params: {
-//     slug: string;
-//   };
-// };
-
 const HomePage = async function Page() {
   const { isEnabled } = await draftMode();
 
