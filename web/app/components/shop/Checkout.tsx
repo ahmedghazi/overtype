@@ -79,7 +79,8 @@ const BtnCheckout = (props: Props) => {
       settings: {
         displayMode: "overlay",
         theme: "dark",
-        successUrl: "/post-checkout?status=success",
+        successUrl:
+          "https://overtype-pi.vercel.app/post-checkout?status=success",
         // cancelUrl: "/post-checkout?status=canceled",
         variant: "multi-page",
       },
