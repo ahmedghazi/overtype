@@ -8,7 +8,7 @@ type Props = {
 };
 
 const ContentModulaire = ({ input }: Props) => {
-  console.log(input);
+  // console.log(input);
   return (
     <div className='content--modulaire'>
       {input.hero && (
