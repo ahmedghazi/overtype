@@ -80,7 +80,7 @@ const BtnCheckout = (props: Props) => {
         displayMode: "overlay",
         theme: "dark",
         successUrl: "/post-checkout?status=success",
-        cancelUrl: "/post-checkout?status=canceled",
+        // cancelUrl: "/post-checkout?status=canceled",
         variant: "multi-page",
       },
     });
