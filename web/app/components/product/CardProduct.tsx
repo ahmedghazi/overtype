@@ -14,7 +14,6 @@ type Props = {
 };
 
 const CardProduct = ({ input, layout }: Props) => {
-  // console.log(input);
   const { type, dispatchType } = useTypeFace();
   const [ready, setReady] = useState(false);
   const defaultTypeface = input.defaultTypeface;
