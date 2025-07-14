@@ -43,7 +43,7 @@ export default async function RootLayout({
 
                     <Footer settings={settings} />
                     <CookieConsent msg={settings.messagemCookie || []} />
-                    <ToastContainer
+                    {/* <ToastContainer
                       // autoClose={false}
                       position='top-right'
                       // hideProgressBar={false}
@@ -54,7 +54,7 @@ export default async function RootLayout({
                       draggable
                       pauseOnHover
                       // theme='colored'
-                    />
+                    /> */}
                     <div className='grid-sample px-md'>
                       <div className='grid grid--2 md:grid-cols-2 gap-md'>
                         <div className='item'></div>
