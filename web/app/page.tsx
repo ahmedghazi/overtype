@@ -46,7 +46,7 @@ const HomePage = async function Page() {
       data-slug={"/"}>
       <div className='h-12xl'></div>
       <ContentModulaire input={data} />
-      {/* <ContentLanding /> */}
+      {/*for later <ContentLanding /> */}
     </div>
   );
 };
