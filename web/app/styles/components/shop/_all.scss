@@ -9,3 +9,16 @@
   font-size: var(--text-sm);
   text-align: center;
 }
+
+.post-checkout {
+  .success .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-2xl);
+  }
+  p {
+    margin: 0;
+    text-align: center;
+  }
+}

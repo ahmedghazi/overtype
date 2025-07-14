@@ -1,8 +1,15 @@
 "use client";
 import React from "react";
 import { hasCookie, setCookie, deleteCookie } from "cookies-next";
+import { BlockContent } from "@/app/types/schema";
+import { PortableText } from "next-sanity";
+import { _localizeField } from "@/app/sanity-api/utils";
 
-const CookieConsent = () => {
+type Props = {
+  msg: BlockContent;
+};
+
+const CookieConsent = ({ msg }: Props) => {
   const [showConsent, setShowConsent] = React.useState<
     boolean | Promise<boolean>
   >(true);
@@ -30,8 +37,7 @@ const CookieConsent = () => {
     <div className='cookies has-blur'>
       <div className='inner flex justify-between gap-xl '>
         <div className=''>
-          This website uses cookies to ensure you get the best experience. Learn
-          more in our Privacy Policy.
+          <PortableText value={msg} />
         </div>
         <div className='flex gap-3xs'>
           <button

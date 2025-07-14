@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import React from "react";
 import CartItem from "./CartItem";
 import { ProductData } from "@/app/types/extra-types";
+import Logo from "../Logo";
 
 type Props = {};
 
@@ -11,7 +12,15 @@ const CheckoutSuccess = () => {
   return (
     <div className='success'>
       <div className='header md:mb-2xl'>
-        <h1 className='md:text-2xl'>Order recap</h1>
+        <Logo />
+        <h1 className='md:text-2xl'>Thank you for your purchase!</h1>
+        <p className='md:text-xl'>
+          Your download link is on its way to your inbox.
+        </p>
+        <p>
+          Have fun with your new typeface, <br />
+          we can’t wait to see what you do with it.
+        </p>
       </div>
       <div className='products flex flex-col gap-md'>
         {items?.map((item: ProductData, i: number) => (

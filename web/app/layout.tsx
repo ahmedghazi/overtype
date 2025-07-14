@@ -44,7 +44,7 @@ export default async function RootLayout({
                     <main>{children}</main>
 
                     <Footer settings={settings} />
-                    <CookieConsent />
+                    <CookieConsent msg={settings.messagemCookie || []} />
                     <ToastContainer
                       // autoClose={false}
                       position='top-right'
