@@ -79,8 +79,8 @@ const BtnCheckout = (props: Props) => {
       settings: {
         displayMode: "overlay",
         theme: "dark",
-        successUrl: "http://localhost:3000/post-checkout?status=success",
-        cancelUrl: "http://localhost:3000/post-checkout?status=canceled",
+        successUrl: "/post-checkout?status=success",
+        cancelUrl: "/post-checkout?status=canceled",
         variant: "multi-page",
       },
     });
