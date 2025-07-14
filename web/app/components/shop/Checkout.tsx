@@ -9,7 +9,7 @@ const BtnCheckout = (props: Props) => {
   // const [paddle, setPaddle] = useState<Paddle>();
   const paddle = useContext(PaddleContext);
   const { products, licenseFor, licenseForData } = useShop();
-  console.log(products, licenseFor, licenseForData);
+  // console.log(products, licenseFor, licenseForData);
   // define customer details
   const customerInfo = {
     email: "hello@ahmedghazi.com",
