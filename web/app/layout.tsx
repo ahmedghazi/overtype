@@ -37,35 +37,35 @@ export default async function RootLayout({
             <PageContextProvider settings={settings}>
               <ThemeProvider>
                 <ShopWrapper licenses={settings.licenses}>
-                  {/* <PaddleProvider> */}
-                  <Header settings={settings} />
-                  <main>{children}</main>
+                  <PaddleProvider>
+                    <Header settings={settings} />
+                    <main>{children}</main>
 
-                  <Footer settings={settings} />
-                  <CookieConsent msg={settings.messagemCookie || []} />
-                  <ToastContainer
-                    // autoClose={false}
-                    position='top-right'
-                    // hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick={false}
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    // theme='colored'
-                  />
-                  <div className='grid-sample px-md'>
-                    <div className='grid grid--2 md:grid-cols-2 gap-md'>
-                      <div className='item'></div>
-                    </div>
-                  </div>
-                  {isEnabled && (
-                    <VisualEditing
-                      zIndex={1000} // Optional
+                    <Footer settings={settings} />
+                    <CookieConsent msg={settings.messagemCookie || []} />
+                    <ToastContainer
+                      // autoClose={false}
+                      position='top-right'
+                      // hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick={false}
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                      // theme='colored'
                     />
-                  )}
-                  {/* </PaddleProvider> */}
+                    <div className='grid-sample px-md'>
+                      <div className='grid grid--2 md:grid-cols-2 gap-md'>
+                        <div className='item'></div>
+                      </div>
+                    </div>
+                    {isEnabled && (
+                      <VisualEditing
+                        zIndex={1000} // Optional
+                      />
+                    )}
+                  </PaddleProvider>
                 </ShopWrapper>
               </ThemeProvider>
             </PageContextProvider>

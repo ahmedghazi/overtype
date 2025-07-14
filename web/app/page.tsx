@@ -45,7 +45,7 @@ const HomePage = async function Page() {
       data-template='home'
       data-slug={"/"}>
       <div className='h-12xl'></div>
-      <ContentModulaire input={data} />
+      {/* <ContentModulaire input={data} /> */}
       {/* <ContentLanding /> */}
     </div>
   );
