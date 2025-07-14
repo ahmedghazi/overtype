@@ -27,7 +27,6 @@ const CheckoutSuccess = () => {
           <CartItem key={i} input={item} />
         ))}
       </div>
-      {/* <pre>{JSON.stringify(items, null, 2)}</pre> */}
     </div>
   );
 };
