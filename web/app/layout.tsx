@@ -38,11 +38,11 @@ export default async function RootLayout({
               <ThemeProvider>
                 <ShopWrapper licenses={settings.licenses}>
                   <PaddleProvider>
-                    <Header settings={settings} />
+                    {/* <Header settings={settings} /> */}
                     <main>{children}</main>
 
-                    <Footer settings={settings} />
-                    <CookieConsent msg={settings.messagemCookie || []} />
+                    {/* <Footer settings={settings} /> */}
+                    {/* <CookieConsent msg={settings.messagemCookie || []} /> */}
                     <ToastContainer
                       // autoClose={false}
                       position='top-right'
