@@ -30,7 +30,7 @@
   #- cart delete item error
   #- related projects
   #- FAQ
-- cart tooltips
+  #- cart tooltips
   #- cookies
 - font tester manque des boutons
   #- landing page

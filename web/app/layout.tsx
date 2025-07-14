@@ -8,11 +8,9 @@ import { getSettings } from "./sanity-api/sanity-queries";
 import { LocaleContextProvider } from "./context/LocaleContext";
 import { PaddleProvider } from "./components/shop/Paddle/PaddleProvider";
 import { ThemeProvider } from "./context/ThemeProvider";
-// import { ViewTransitions } from "next-view-transitions";
 import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
 import { ShopWrapper } from "./components/shop/ShopContext";
-import { NotifyButton } from "./components/ui/Notify";
 import { ToastContainer } from "react-toastify";
 import CookieConsent from "./components/ui/CookieConsent";
 
@@ -33,7 +31,7 @@ export default async function RootLayout({
   const { isEnabled } = await draftMode();
   return (
     <html lang='en'>
-      <body className='is-loading  ' data-theme='theme-overtype'>
+      <body className='is-loading' data-theme='theme-overtype'>
         <div id='page'>
           <LocaleContextProvider>
             <PageContextProvider settings={settings}>

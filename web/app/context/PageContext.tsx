@@ -1,14 +1,7 @@
 "use client";
-import React, {
-  createContext,
-  useContext,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useContext, ReactNode, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Settings } from "../types/schema";
-// import { getSettings } from "../utils/sanity-queries";
 
 type ContextProps = {
   settings: Settings;
