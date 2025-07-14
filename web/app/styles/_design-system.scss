@@ -1,8 +1,11 @@
 @use "./mixins";
 
 .c-container {
-  max-width: 37.5rem;
+  max-width: var(--container-md--w);
   margin: 0 auto;
+  &__lg {
+    max-width: var(--container-lg--w);
+  }
 }
 .scroll-x {
   width: 100%;
@@ -391,36 +394,24 @@ a.ui-btn {
   }
 }
 .ui-radio--group {
-  .label {
-    font-size: var(--text-lg);
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: var(--spacing-md);
+    margin: 0 !important;
+    .ui-btn--tooltip {
+      background-color: white;
+    }
+    .label {
+      font-size: var(--text-lg);
+    }
   }
+
   .ui-radio {
     cursor: pointer;
     width: 100%;
   }
-  // label {
-  //   border-radius: var(--radius);
-  //   background-color: var(--color-bg);
-  //   padding: var(--spacing-md);
-  //   font-size: var(--text-lg);
-  //   width: 100%;
-  //   cursor: pointer;
-  //   &:hover,
-  //   &:active {
-  //     background-color: var(--color-btn--hover);
-  //   }
-  //   &.is-active {
-  //     background-color: var(--color-accent);
-  //     color: white;
-  //     input {
-  //       accent-color: white;
-  //     }
-  //   }
-  //   input {
-  //     margin-right: var(--spacing-2xs);
-  //   }
-  // }
 }
 
 .ui-checkbox {

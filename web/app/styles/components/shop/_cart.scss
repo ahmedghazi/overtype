@@ -11,36 +11,38 @@
     padding: var(--spacing-2xs);
     background-color: var(--color-btn);
   }
-  .products {
-    .cart-item {
-      display: flex;
-      gap: var(--spacing-md);
-      padding: var(--spacing-md);
-      background-color: var(--color-btn);
-      margin-bottom: calc(var(--spacing-2xs) * 1.25);
-      .col-infos {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex: 2;
-        font-size: var(--text-base);
-        .cart-item-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: end;
-          .title {
-            font-size: var(--text-lg);
-          }
-          .price {
-            font-size: var(--text-md);
-          }
-        }
-      }
-    }
-  }
+
   .total {
     display: flex;
     justify-content: space-between;
     font-size: var(--text-lg);
+  }
+}
+
+.products {
+  .cart-item {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: var(--color-btn);
+    margin-bottom: calc(var(--spacing-2xs) * 1.25);
+    .col-infos {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 2;
+      font-size: var(--text-base);
+      .cart-item-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        .title {
+          font-size: var(--text-lg);
+        }
+        .price {
+          font-size: var(--text-md);
+        }
+      }
+    }
   }
 }

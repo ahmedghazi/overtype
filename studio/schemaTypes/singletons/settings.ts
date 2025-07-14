@@ -105,6 +105,33 @@ export default defineType({
       of: [{type: 'licenseType'}],
       group: 'shop',
     }),
+    defineField({
+      name: 'toolTipLicenses',
+      type: 'localeText',
+      group: 'shop',
+    }),
+    defineField({
+      name: 'toolTipLogo',
+      type: 'localeText',
+      group: 'shop',
+    }),
+    defineField({
+      name: 'toolTipLocenseFor',
+      type: 'localeText',
+      group: 'shop',
+    }),
+    defineField({
+      name: 'messagemCookie',
+      type: 'blockContent',
+      group: 'misc',
+    }),
+    defineField({
+      name: 'legalsPage',
+      description: 'Legals page',
+      type: 'reference',
+      to: [{type: 'pageModulaire'}],
+      group: 'misc',
+    }),
 
     defineField({
       name: 'message404',

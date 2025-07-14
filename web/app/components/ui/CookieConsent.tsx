@@ -27,20 +27,20 @@ const CookieConsent = () => {
   }
 
   return (
-    <div className='cookies '>
-      <div className='inner '>
-        <div className='mb-md'>
-          Ce site internet utilise des cookies. Nous utilisons des cookies sur
-          notre site pour améliorer votre expérience de navigation
+    <div className='cookies has-blur'>
+      <div className='inner flex justify-between gap-xl '>
+        <div className=''>
+          This website uses cookies to ensure you get the best experience. Learn
+          more in our Privacy Policy.
         </div>
-        <div className='flex gap-1e'>
+        <div className='flex gap-3xs'>
           <button
-            className='btn--pill- underline'
-            onClick={() => refuseCookie()}>
-            REFUSER
+            className='ui-btn ui-btn__accent'
+            onClick={() => acceptCookie()}>
+            ACCEPT
           </button>
-          <button className='btn--pill' onClick={() => acceptCookie()}>
-            ACCEPTER
+          <button className='ui-btn' onClick={() => refuseCookie()}>
+            DECLINE
           </button>
         </div>
       </div>

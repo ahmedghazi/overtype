@@ -191,6 +191,41 @@ export interface Settings extends SanityDocument {
   licenses?: Array<SanityKeyed<LicenseType>>;
 
   /**
+   * toolTipLicenses — `localeText`
+   *
+   *
+   */
+  toolTipLicenses?: LocaleText;
+
+  /**
+   * toolTipLogo — `localeText`
+   *
+   *
+   */
+  toolTipLogo?: LocaleText;
+
+  /**
+   * toolTipLocenseFor — `localeText`
+   *
+   *
+   */
+  toolTipLocenseFor?: LocaleText;
+
+  /**
+   * messagemCookie — `blockContent`
+   *
+   *
+   */
+  messagemCookie?: BlockContent;
+
+  /**
+   * legalsPage — `reference`
+   *
+   * Legals page
+   */
+  legalsPage?: SanityReference<PageModulaire>;
+
+  /**
    * Message 404 — `blockContent`
    *
    *
@@ -1012,6 +1047,16 @@ export type LocaleBlockContent = {
    *
    */
   en?: BlockContent;
+};
+
+export type LocaleText = {
+  _type: "localeText";
+  /**
+   * English — `text`
+   *
+   *
+   */
+  en?: string;
 };
 
 export type BlockContent = Array<

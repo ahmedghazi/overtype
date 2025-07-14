@@ -18,7 +18,7 @@ type Props = {
 const Buy = ({ input }: Props) => {
   // console.log(input);
   const { settings } = usePageContext();
-  const { licenses } = settings;
+  const { licenses, toolTipLicenses, toolTipLogo } = settings;
   const {
     licenseType,
     setLicenseType,
@@ -51,7 +51,7 @@ const Buy = ({ input }: Props) => {
             <div>
               <div className='header'>
                 <h4 className='md:text-lg'>What’s your company size?</h4>
-                <BtnToolTip text='It’s the size of the end user’s company that matters (not the size of the agency or service provider).' />
+                <BtnToolTip text={_localizeField(toolTipLicenses)} />
               </div>
               <div className='content'>
                 <div className='flex flex-col gap-3xs'>
@@ -77,7 +77,7 @@ const Buy = ({ input }: Props) => {
               <h4 className='md:text-lg'>
                 Would you use the font in a logo/wordmark?
               </h4>
-              <BtnToolTip text='It’s the size of the end user’s company that matters (not the size of the agency or service provider).' />
+              <BtnToolTip text={_localizeField(toolTipLogo)} />
             </div>
             <div className='content'>
               <div className='flex flex-col gap-3xs'>

@@ -9,6 +9,7 @@ import { PageModulaire } from "@/app/types/schema";
 
 import { Metadata, NextPage } from "next";
 import { draftMode } from "next/headers";
+import { notFound } from "next/navigation";
 import React from "react";
 
 type Params = Promise<{ slug: string }>;
@@ -48,7 +49,7 @@ const TemplatePageModulaire: NextPage<PageProps> = async ({ params }) => {
     data = (await getPageModulaire(slug)) as PageModulaire;
   }
 
-  if (!data) return <div>please edit page</div>;
+  if (!data) notFound();
   return (
     <div
       className='template template--page-modulaire'

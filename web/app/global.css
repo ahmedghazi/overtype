@@ -77,6 +77,9 @@
 
   --gutter: 9px;
 
+  --container-lg--w: 54rem;
+  --container-md--w: 37.5rem;
+
   --screen-sm: 768px;
   --screen-md: 1024px;
   --screen-lg: 1441px;

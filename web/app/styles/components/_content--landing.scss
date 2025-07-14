@@ -1,0 +1,34 @@
+body:has([data-template="landing"]) {
+  header,
+  .footer-cta,
+  footer {
+    display: none;
+  }
+  main {
+    padding-top: 0;
+  }
+  .content--landing {
+    height: calc(var(--vh) * 100);
+    .body {
+      text-align: center;
+      .logo svg {
+        width: 281px;
+        height: 100%;
+        aspect-ratio: 281 / 188;
+      }
+      p {
+        margin-bottom: 0;
+      }
+      .flex {
+        // align-items: center;
+      }
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 53px;
+    }
+  }
+}

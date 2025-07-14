@@ -7,6 +7,7 @@ import settings from './singletons/settings'
 
 import localeString from './locale/localeString'
 import localeBlockContent from './locale/localeBlockContent'
+import localeText from './locale/localeText'
 
 import blockContent from './objects/blockContent'
 import linkExternal from './objects/linkExternal'
@@ -63,6 +64,7 @@ export const schemaTypes = [
 
   localeString,
   localeBlockContent,
+  localeText,
 
   blockContent,
   linkExternal,

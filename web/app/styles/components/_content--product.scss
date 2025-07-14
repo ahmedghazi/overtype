@@ -40,7 +40,7 @@
       margin-bottom: var(--spacing-4xl);
     }
     .text {
-      max-width: 37.5rem;
+      max-width: var(--container-md--w);
       margin: 0 auto;
     }
   }

@@ -2,6 +2,7 @@ import clsx from "clsx";
 import React, { BaseSyntheticEvent, useEffect, useRef, useState } from "react";
 import { _slugify } from "../../shop/utils";
 import Radio from "./Radio";
+import BtnToolTip from "../buttons/BtnToolTip";
 
 type Value = {
   label: string;
@@ -12,9 +13,10 @@ type Props = {
   label: string;
   values: Value[];
   onChange?: (value: string) => void;
+  tooltip?: string;
 };
 
-const RadioGroup = ({ name, label, values, onChange }: Props) => {
+const RadioGroup = ({ name, label, values, onChange, tooltip }: Props) => {
   // const ref = useRef<HTMLInputElement>(null);
 
   // const _handleChange = (e: BaseSyntheticEvent) => {
@@ -28,7 +30,10 @@ const RadioGroup = ({ name, label, values, onChange }: Props) => {
 
   return (
     <div className={clsx("ui-radio--group")}>
-      <div className='label'>{label}</div>
+      <div className='header fles justify-between'>
+        <div className='label'>{label}</div>
+        {tooltip && <BtnToolTip text={tooltip} />}
+      </div>
       <div className='flex gap-2xs'>
         {values.map((value, i) => (
           <Radio
@@ -37,18 +42,6 @@ const RadioGroup = ({ name, label, values, onChange }: Props) => {
             label={value.label}
             onChange={() => _handleChange(value.value)}
           />
-          // <label htmlFor={_slugify(value)} key={i}>
-          //   <input
-          //     type='radio'
-          //     name={_slugify(name)}
-          //     // ref={ref}
-          //     id={value}
-          //     value={value}
-          //     // defaultChecked={isChecked ? true : false}
-          //     onChange={_handleChange}
-          //   />
-          //   {value}
-          // </label>
         ))}
       </div>
     </div>

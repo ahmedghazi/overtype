@@ -14,6 +14,7 @@ import { VisualEditing } from "next-sanity";
 import { ShopWrapper } from "./components/shop/ShopContext";
 import { NotifyButton } from "./components/ui/Notify";
 import { ToastContainer } from "react-toastify";
+import CookieConsent from "./components/ui/CookieConsent";
 
 export const metadata = {
   metadataBase: new URL(website.url),
@@ -43,6 +44,7 @@ export default async function RootLayout({
                     <main>{children}</main>
 
                     <Footer settings={settings} />
+                    <CookieConsent />
                     <ToastContainer
                       // autoClose={false}
                       position='top-right'

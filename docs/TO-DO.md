@@ -23,13 +23,15 @@
 #- send email to user
 #- send email to admin
 
-- success page, error page
+#- success page, error page
+
 - fix form bugs
 - single click (celui avec -25%) en prems = error prix final
   #- cart delete item error
-- related projects
+  #- related projects
   #- FAQ
 - cart tooltips
-- cookies
+  #- cookies
 - font tester manque des boutons
-- landing page
+  #- landing page
+  #- 404 page
