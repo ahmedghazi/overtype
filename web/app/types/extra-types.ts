@@ -39,6 +39,7 @@ export interface ProductData {
   sku: string;
   price: number;
   discount: number;
+  applyDiscount?: boolean;
   finalPrice: number;
   background: string;
   foreground: string;

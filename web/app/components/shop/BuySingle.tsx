@@ -20,20 +20,42 @@ type Props = {
 const BuySingle = ({ input, product, background, foreground }: Props) => {
   const { dialogProducts, setDialogProducts, licenseType, isLogo } = useShop();
   const [checked, setChecked] = useState(false);
+  const [applyDiscount, setApplyDiscount] = useState<boolean>(false);
   // console.log(input);
 
-  const applyDiscount = useMemo(() => {
-    if (!input.discount) return false;
+  /**
+   * ne pas faire useMemo, car le apply discount peux changer si un related est présent
+   */
+  // const applyDiscount = useMemo(() => {
+  //   if (!input.discount) return false;
+  //   if (input.relatedTypeface) {
+  //     const relatedTypefaceIsInDialogProducts = dialogProducts.some(
+  //       (el) => el.sku + "-italic" === input.sku?.current
+  //     );
+  //     if (relatedTypefaceIsInDialogProducts) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }, [dialogProducts, input.relatedTypeface]);
+  useEffect(() => {
+    if (!input.discount) return;
+    if (!checked) return;
     if (input.relatedTypeface) {
       const relatedTypefaceIsInDialogProducts = dialogProducts.some(
         (el) => el.sku + "-italic" === input.sku?.current
       );
       if (relatedTypefaceIsInDialogProducts) {
-        return true;
+        setApplyDiscount(true);
       }
     }
-    return false;
   }, [dialogProducts, input.relatedTypeface]);
+
+  useEffect(() => {
+    if (applyDiscount) {
+      setDialogProducts({ type: "REPLACE", payload: _productData });
+    }
+  }, [applyDiscount]);
 
   const priceMultiplier = licenseType?.priceMultiplier || 1;
   const price = input.price ? input.price * priceMultiplier : 0;
@@ -53,6 +75,7 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
     sku: input.sku?.current || "",
     price: price,
     discount: priceDiscount,
+    applyDiscount: applyDiscount,
     finalPrice: finalPrice,
     background: background || "",
     foreground: foreground || "",
@@ -80,6 +103,7 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
 
   const isIn = dialogProducts.some((el) => el.sku === input.sku?.current);
 
+  //need to check product is in dialogProducts, has a discount but not yet applyed
   // console.log({ applyDiscount });
   return (
     <div

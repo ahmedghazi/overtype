@@ -5,6 +5,7 @@ import React, {
   useContext,
   ReactNode,
   useReducer,
+  useEffect,
 } from "react";
 import {
   LicenseType,
@@ -14,6 +15,7 @@ import {
 } from "@/app/types/schema";
 import { usePathname } from "next/navigation";
 import { ProductData } from "@/app/types/extra-types";
+import { _getPriceWithDiscount } from "./utils";
 
 interface ShopContextProps {
   // location?: object;
@@ -50,7 +52,7 @@ function productsReducer(state: any, action: any) {
       return [...state, payload];
     case "REMOVE":
       return state.filter((item: any) => item.sku !== payload.sku);
-    case "REMOVE_BY_SKY":
+    case "REMOVE_BY_SKU":
       return state.filter((item: any) => item.sku !== payload);
     case "REPLACE":
       return state.map((item: any) => {
@@ -134,6 +136,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [isLogo, setIsLogo] = useState<boolean>(false);
   const [cartObject, setCartObject] = useState(null);
   const pathname = usePathname();
+
   // console.log(dialogProducts, products);
 
   return (

@@ -92,7 +92,7 @@ const Cart = (props: Props) => {
   }, []);
 
   const _delete = (sku: string) => {
-    setProducts({ type: "REMOVE_BY_SKY", payload: sku });
+    setProducts({ type: "REMOVE_BY_SKU", payload: sku });
   };
 
   const LicenseForValues = [
