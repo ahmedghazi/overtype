@@ -26,6 +26,7 @@
 #- success page, error page
 
 - fix form bugs
+  #- dark mode ui-radio not working (blue)
 - single click (celui avec -25%) en prems = error prix final
   #- cart delete item error
   #- related projects
@@ -35,4 +36,3 @@
 - font tester manque des boutons
   #- landing page
   #- 404 page
-- dark mode ui-radio not working (blue)

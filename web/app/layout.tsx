@@ -44,14 +44,14 @@ export default async function RootLayout({
                     <Footer settings={settings} />
                     <CookieConsent msg={settings.messagemCookie || []} />
                     <ToastContainer
-                      // autoClose={false}
+                      autoClose={false}
                       position='top-right'
-                      // hideProgressBar={false}
+                      hideProgressBar={true}
                       newestOnTop={false}
                       closeOnClick={false}
-                      rtl={false}
-                      pauseOnFocusLoss
-                      draggable
+                      // rtl={false}
+                      // pauseOnFocusLoss
+                      // draggable
                       pauseOnHover
                       // theme='colored'
                     />

@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BtnIcon from "../ui/buttons/BtnIcon";
 import { Dialog } from "../ui/Dialog";
 import Cart from "./Cart";
-import { ShopWrapper } from "./ShopContext";
+import { subscribe, unsubscribe } from "pubsub-js";
 
 type Props = {};
 
 const BtnCart = (props: Props) => {
   const [open, setOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const token = subscribe("CART_OPEN", () => {
+      setOpen(true);
+    });
+    return () => {
+      unsubscribe(token);
+    };
+  }, []);
   return (
     <>
       <div className='btn-cart'>

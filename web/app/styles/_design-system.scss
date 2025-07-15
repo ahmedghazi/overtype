@@ -411,6 +411,9 @@ a.ui-btn {
   .ui-radio {
     cursor: pointer;
     width: 100%;
+    label {
+      text-transform: capitalize;
+    }
   }
 }
 

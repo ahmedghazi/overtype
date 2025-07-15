@@ -99,7 +99,7 @@ const Buy = ({ input }: Props) => {
         </section>
         {licenseType && (
           <>
-            <section>
+            {/* <section>
               <h3 className='md:text-sm'>2/ Select your styles</h3>
               <div className='box rounded bg-btn'>
                 <div className='header'>
@@ -120,30 +120,54 @@ const Buy = ({ input }: Props) => {
                   </div>
                 </div>
               </div>
-            </section>
+            </section> */}
             <section>
               <h3 className='md:text-sm'>2/ Select your styles</h3>
               <div className='box rounded bg-btn'>
-                <div className='header'>
-                  <h4 className='md:text-lg'>Single Styles</h4>
-                </div>
-                <div className='content'>
-                  <div className='grid md:grid-cols-2 gap-3xs'>
-                    {input.singles?.map((item, i) => (
-                      <TypeFaceContextProvider key={i}>
-                        <BuySingle
-                          key={i}
-                          input={item}
-                          product={input}
-                          // typefaceName={input.title || ""}
-                          // typefaceName={`${input.title} ${input.title}` || ""}
-                          background={input.background?.hex || ""}
-                          foreground={input.foreground?.hex || ""}
-                        />
-                      </TypeFaceContextProvider>
-                    ))}
+                {input.bundles && (
+                  <div className='box-item'>
+                    <div className='header'>
+                      <h4 className='md:text-lg'>Packs</h4>
+                    </div>
+                    <div className='content'>
+                      <div className='flex flex-col gap-3xs'>
+                        {input.bundles?.map((item, i) => (
+                          <BuyBundle
+                            key={i}
+                            product={input}
+                            input={item}
+                            background={input.background?.hex || ""}
+                            foreground={input.foreground?.hex || ""}
+                          />
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                )}
+                {input.singles && (
+                  <div className='box-item mt-3xl'>
+                    <div className='header'>
+                      <h4 className='md:text-lg'>Single Styles</h4>
+                    </div>
+                    <div className='content'>
+                      <div className='grid md:grid-cols-2 gap-3xs'>
+                        {input.singles?.map((item, i) => (
+                          <TypeFaceContextProvider key={i}>
+                            <BuySingle
+                              key={i}
+                              input={item}
+                              product={input}
+                              // typefaceName={input.title || ""}
+                              // typefaceName={`${input.title} ${input.title}` || ""}
+                              background={input.background?.hex || ""}
+                              foreground={input.foreground?.hex || ""}
+                            />
+                          </TypeFaceContextProvider>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </section>
             <section className='flex  justify-center py-2xl'>

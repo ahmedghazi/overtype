@@ -14,6 +14,8 @@ import Link from "next/link";
 import { usePageContext } from "@/app/context/PageContext";
 import { _linkResolver, _localizeField } from "@/app/sanity-api/utils";
 import CartItem from "./CartItem";
+import Radio from "../ui/inputs/Radio";
+import BtnToolTip from "../ui/buttons/BtnToolTip";
 
 // type CartItemProps = {
 //   input: ProductData;
@@ -59,6 +61,7 @@ const Cart = (props: Props) => {
   const {
     products,
     setProducts,
+    licenseFor,
     setLicenseFor,
     licenseForData,
     setLicenseForData,
@@ -138,17 +141,36 @@ const Cart = (props: Props) => {
             <div className='price'>{cartTotalPrice(products)}€ </div>
           </section>
           <section className='licenseFor  md:mb-4xl mb-lg'>
-            {/* <pre>{JSON.stringify(licenseForData, null, 2)}</pre> */}
             <form action=''>
               <div className='box'>
-                <div className='form-field'>
-                  <RadioGroup
+                <div className='form-field ui-radio--group'>
+                  {/* <RadioGroup
                     name='licenseFor'
                     label='Who is the license owner?'
                     values={LicenseForValues}
                     onChange={(value) => setLicenseFor(value)}
                     tooltip={_localizeField(toolTipLocenseFor) || ""}
-                  />
+                  /> */}
+
+                  <div className='header'>
+                    <h4 className='md:text-lg'>Who is the license owner?</h4>
+                    <BtnToolTip text={_localizeField(toolTipLocenseFor)} />
+                  </div>
+                  <div className='grid grid-cols-2 gap-2xs'>
+                    <Radio
+                      name='forLogo'
+                      label='me'
+                      isChecked={licenseFor === "me"}
+                      onChange={(value) => setLicenseFor(value)}
+                    />
+                    <Radio
+                      name='forLogo'
+                      label='client'
+                      // isChecked={isLogo}
+                      isChecked={licenseFor === "client"}
+                      onChange={(value) => setLicenseFor(value)}
+                    />
+                  </div>
                 </div>
                 <div className='form-field'>
                   <TextOrEmailInput

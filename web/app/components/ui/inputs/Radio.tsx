@@ -21,7 +21,8 @@ const Radio = ({
 
   const _handleChange = (e: BaseSyntheticEvent) => {
     console.log(e.target.id, e.target.checked, e.target.value);
-    onChange?.(e.target.value);
+    // onChange?.(e.target.value);
+    onChange?.(e.target.id);
     // setChecked(e.target.checked);
     // setChecked(e.target.checked);
   };
