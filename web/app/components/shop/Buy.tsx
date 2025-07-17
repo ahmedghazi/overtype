@@ -48,7 +48,7 @@ const Buy = ({ input }: Props) => {
         <section>
           <h3 className='md:text-sm'>1/ Select your license</h3>
           <div className='box rounded bg-btn'>
-            <div>
+            <div className='md:mb-3xl'>
               <div className='header'>
                 <h4 className='md:text-lg'>What’s your company size?</h4>
                 <BtnToolTip text={_localizeField(toolTipLicenses)} />
@@ -71,6 +71,11 @@ const Buy = ({ input }: Props) => {
                     />
                   ))}
                 </div>
+                <div className='text-sm pt-sm px-md'>
+                  <a href='mailto:contact@overtype.com' className='underline!'>
+                    More than 300 workers? contact us
+                  </a>
+                </div>
               </div>
             </div>
             <div className='header'>
@@ -80,7 +85,7 @@ const Buy = ({ input }: Props) => {
               <BtnToolTip text={_localizeField(toolTipLogo)} />
             </div>
             <div className='content'>
-              <div className='flex flex-col gap-3xs'>
+              <div className='grid grid-cols-2 gap-3xs'>
                 <Radio
                   name='forLogo'
                   label='Yes'

@@ -442,6 +442,7 @@ a.ui-btn {
 .ui-bundle {
   border-radius: var(--radius);
   background-color: var(--color-btn);
+  background-color: white;
   padding: var(--spacing-md);
   display: flex;
   flex-direction: column;
@@ -474,6 +475,7 @@ a.ui-btn {
 .ui-single {
   border-radius: var(--radius);
   background-color: var(--color-btn);
+  background-color: white;
   padding: var(--spacing-md);
   display: flex;
   justify-content: space-between;

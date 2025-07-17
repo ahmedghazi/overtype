@@ -17,7 +17,7 @@ const ModuleTextUI = ({ input }: Props) => {
   return (
     <section
       className={clsx("module module--text-ui px-md", fullWidth && "w-full")}>
-      {title && <h2 className='md:text-2xl'>{title}</h2>}
+      {title && <h2 className='md:text-xl!'>{title}</h2>}
       <div className='text '>
         <PortableText
           value={_localizeField(text)}

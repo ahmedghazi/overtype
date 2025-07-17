@@ -36,3 +36,4 @@
 - font tester manque des boutons
   #- landing page
   #- 404 page
+- buy text intro

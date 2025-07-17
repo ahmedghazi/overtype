@@ -16,3 +16,9 @@
     }
   }
 }
+
+.modules:has(.module--text-ui + .module--text-ui) {
+  .module--text-ui {
+    margin-bottom: var(--spacing-4xl);
+  }
+}

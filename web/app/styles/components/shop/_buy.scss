@@ -6,20 +6,32 @@
   .header {
     text-align: center;
     margin-bottom: var(--spacing-5xl);
+    h2 {
+      margin-bottom: var(--spacing-2xl);
+      line-height: 1;
+    }
+    h2,
+    h3,
+    h4 {
+      line-height: 1;
+    }
   }
   section:not(.Toastify) {
+    margin-bottom: var(--spacing-4xl);
+
     .header {
       text-align: left;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: var(--spacing-md);
+      padding-top: calc(var(--spacing-md) * 0.6);
+      padding-bottom: calc(var(--spacing-md) * 1.1);
       margin-bottom: var(--spacing-xl);
       margin-bottom: 0;
     }
     h2 {
     }
-    margin-bottom: var(--spacing-2xl);
   }
   h3 {
     margin-bottom: var(--spacing-xl);
