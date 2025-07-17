@@ -12,6 +12,7 @@ interface Props {
 }
 
 const ModuleTextUI = ({ input }: Props) => {
+  console.log(input);
   const { text, title, fullWidth } = input;
   return (
     <section

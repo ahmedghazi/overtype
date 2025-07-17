@@ -47,7 +47,7 @@ const TrialItem = ({ input }: TrialItemProps) => {
 
   return (
     <div
-      className={clsx("ui-trial", isIn && "is-active")}
+      className={clsx("ui-trial bg-btn", isIn && "is-active")}
       onClick={() => setChecked(!checked)}>
       <div className='t-preview' style={{ fontFamily: type?.slug?.current }}>
         <Checkbox

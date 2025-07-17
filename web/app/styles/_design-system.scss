@@ -516,7 +516,7 @@ a.ui-btn {
 
 .ui-trial {
   border-radius: var(--radius);
-  background-color: var(--color-btn);
+  // background-color: var(--color-btn);
   padding: var(--spacing-md);
   display: flex;
   justify-content: space-between;
@@ -551,6 +551,9 @@ a.ui-btn {
     background-color: var(--color-accent);
     // color: white;
   }
+}
+.dark .ui-trial {
+  background-color: var(--color-btn);
 }
 
 .ui-dialog {

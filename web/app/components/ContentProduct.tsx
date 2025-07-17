@@ -30,62 +30,68 @@ const ContentProduct = ({ input }: Props) => {
   };
   return (
     <div className='content--product '>
-      {hero && hero.image && (
-        <section className='hero px-md'>
-          <Figure asset={hero.image.asset} />
+      <div className='inner'>
+        {hero && hero.image && (
+          <section className='hero px-md'>
+            <Figure asset={hero.image.asset} />
+          </section>
+        )}
+        <Waterfall title={title || ""} items={singles || []} />
+        <section className='about px-md' id='about'>
+          <h2 className='md:text-2xl'>About {title}</h2>
+          <div className='text'>
+            <PortableText
+              value={_localizeField(text)}
+              components={portableTextComponents}
+            />
+          </div>
         </section>
-      )}
+        <section className='tester' id='tester'>
+          <TypeTester singles={singles || []} />
+        </section>
+        <section className='images px-md'>
+          <div className='grid md:grid-cols-2 gap-md'>
+            {images?.map((item, i) => (
+              <div
+                className={clsx(
+                  "grid-item col-span-1",
+                  item.colSize === 2 && "col-span-2"
+                )}
+                key={i}>
+                <Figure asset={item.image?.image?.asset || null} />
+              </div>
+            ))}
+          </div>
+        </section>
+        <nav className='py-xl-'>
+          <ul className='flex justify-center gap-3xs'>
+            <li>
+              <Btn label='Styles' onClick={() => _scrollTo("waterfall")} />
+            </li>
+            <li>
+              <Btn label='About' onClick={() => _scrollTo("about")} />
+            </li>
+            <li>
+              <Btn label='Test' onClick={() => _scrollTo("tester")} />
+            </li>
+            <li>
+              <Btn
+                label='Purtchase'
+                variant='accent'
+                onClick={() => setIsOpen(true)}
+              />
+            </li>
+          </ul>
+        </nav>
+      </div>
 
-      <Waterfall title={title || ""} items={singles || []} />
-      <section className='about px-md' id='about'>
-        <h2 className='md:text-2xl'>About {title}</h2>
-        <div className='text'>
-          <PortableText
-            value={_localizeField(text)}
-            components={portableTextComponents}
-          />
-        </div>
-      </section>
-      <section className='tester' id='tester'>
-        <TypeTester singles={singles || []} />
-      </section>
-      <section className='images px-md'>
-        <div className='grid md:grid-cols-2 gap-md'>
-          {images?.map((item, i) => (
-            <div
-              className={clsx(
-                "grid-item col-span-1",
-                item.colSize === 2 && "col-span-2"
-              )}
-              key={i}>
-              <Figure asset={item.image?.image?.asset || null} />
-            </div>
-          ))}
-        </div>
-      </section>
       {related && (
         <RelatedProducts
           title='Discover our other fonts'
           items={related || []}
         />
       )}
-      <nav className='py-xl-'>
-        <ul className='flex justify-center gap-3xs'>
-          <li>
-            <Btn label='About' onClick={() => _scrollTo("about")} />
-          </li>
-          <li>
-            <Btn label='Test' onClick={() => _scrollTo("tester")} />
-          </li>
-          <li>
-            <Btn
-              label='Purtchase'
-              variant='accent'
-              onClick={() => setIsOpen(true)}
-            />
-          </li>
-        </ul>
-      </nav>
+
       <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <Buy input={input} />
       </Dialog>

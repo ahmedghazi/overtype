@@ -29,7 +29,7 @@ type Props = {
 
 const Waterfall = ({ title, items }: Props) => {
   return (
-    <section className='waterfall'>
+    <section className='waterfall' id='waterfall'>
       <div className='header'>
         <h1 className='md:text-2xl'>{title}</h1>
         <div className='text-secondary'>{items?.length} Styles</div>

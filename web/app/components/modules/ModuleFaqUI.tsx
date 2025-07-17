@@ -37,7 +37,7 @@ const ModuleFaqUI = ({ input }: Props) => {
     <section className='module module--faq-ui test px-md'>
       <div className='c-container'>
         <nav className='faq'>
-          <ul className='flex'>
+          <ul className='flex text-sm'>
             {items?.map((item, i) => (
               <li key={i}>
                 <button

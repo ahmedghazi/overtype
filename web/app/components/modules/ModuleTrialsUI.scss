@@ -16,9 +16,15 @@
     gap: var(--spacing-3xs);
   }
   .footer {
-    input[type="email"] {
-      background-color: var(--color-btn);
+    .ui-text-or-email {
+      label {
+        padding-left: 0;
+      }
+      input[type="email"] {
+        background-color: var(--color-btn);
+      }
     }
+
     .optin {
       display: flex;
       align-items: start;
