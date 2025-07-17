@@ -19,8 +19,8 @@ const CardProject = ({ input }: Props) => {
           {imageCover && <Figure asset={imageCover?.asset} />}
         </div>
         {input.tag && (
-          <div className='header-top'>
-            <div className='tag ui-cartouche'>
+          <div className='header-top text-sm'>
+            <div className='tag  ui-cartouche has-blur'>
               {_localizeField(input.tag.title)}
             </div>
           </div>

@@ -16,7 +16,7 @@ const LinkWithIcon = ({ label, link, icon }: Props) => {
       <span>{label}</span>
       {icon && (
         <span className='icon'>
-          {icon === "arrow-e" && <i className='icon-arrow-e'>→</i>}
+          {icon === "arrow-e" && <i className='icon-arrow-e'></i>}
           {icon === "arrow-s" && <i className='icon-arrow-s'>↓</i>}
         </span>
       )}

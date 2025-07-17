@@ -26,6 +26,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-arrow-s:before {
+  content: "\e90d";
+}
+.icon-arrow-e:before {
+  content: "\e90c";
+}
 .icon-delete:before {
   content: "\e90b";
 }

@@ -1,8 +1,11 @@
 @use "../variables";
 
 .template--home {
-  .module--text-ui {
-    margin-bottom: var(--spacing-md);
+  .module {
+    margin-bottom: var(--spacing-12xl);
+    &--text-ui {
+      margin-bottom: var(--spacing-3xl);
+    }
   }
 }
 

@@ -27,7 +27,7 @@
 
 - fix form bugs
   #- dark mode ui-radio not working (blue)
-- single click (celui avec -25%) en prems = error prix final
+  #- single click (celui avec -25%) en prems = error prix final
   #- cart delete item error
   #- related projects
   #- FAQ

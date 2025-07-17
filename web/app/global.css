@@ -83,6 +83,8 @@
   --screen-sm: 768px;
   --screen-md: 1024px;
   --screen-lg: 1441px;
+
+  --main-h: calc(var(--vh) * 100 - var(--header-height));
 }
 .dark {
   --color-bg: rgba(16, 16, 16, 1);

@@ -651,3 +651,8 @@ $browser-context: 14;
   $remValue: ($value / 16) + rem;
   @return $remValue;
 }
+
+@function percToEm($value) {
+  $emValue: ($value / 100) + em;
+  @return $emValue;
+}

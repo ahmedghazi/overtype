@@ -28,11 +28,18 @@
 .ui-cartouche {
   border-radius: var(--radius-sm);
   background-color: var(--color-btn);
-  padding: 0.7em var(--spacing-md);
+  // padding: 0.8em var(--spacing-md);
   display: block;
   width: 100%;
+  // line-height: 1;
+  padding: 0 var(--spacing-md);
+  line-height: 2.571em;
+  height: 2.571em;
   &:hover {
     background-color: var(--color-btn--hover);
+  }
+  &--sm {
+    padding: 0.4em var(--spacing-md);
   }
 }
 .has-submenu {
@@ -83,6 +90,9 @@
 .ui-link {
   display: flex;
   gap: 0.4em;
+  &.has-icon .icon i {
+    font-size: 0.6em;
+  }
 }
 .ui-btn {
   font-size: var(--text-sm);
@@ -602,6 +612,24 @@ a.ui-btn {
     border-radius: var(--radius);
     .product-image {
       height: 58px;
+    }
+  }
+}
+
+.module {
+  .header {
+    .actions {
+      display: flex;
+      gap: 0.4em;
+
+      a,
+      button {
+        font-size: var(--text-lg);
+        color: var(--color-secondary);
+        padding-inline: 0;
+        padding-block: 0;
+        margin: 0;
+      }
     }
   }
 }

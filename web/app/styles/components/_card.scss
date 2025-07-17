@@ -85,6 +85,9 @@
       justify-content: space-between;
       h3 {
         font-size: var(--text-md);
+        margin-bottom: 0.1em;
+        transform: translateY(-0.1em);
+        line-height: 1;
       }
     }
   }

@@ -4,7 +4,7 @@ header {
   position: fixed;
   width: 100%;
   top: 0;
-  padding: var(--spacing-md);
+  padding: 15.5px var(--spacing-md);
   z-index: 9;
   transition: transform 0.2s var(--cubic), opacity 0.2s var(--cubic);
   font-size: var(--text-sm);
@@ -20,6 +20,8 @@ header {
   }
 
   nav {
+    // padding-top: calc(var(--spacing-2xs) * 1.25);
+    padding-top: 1rem;
     li:not(.flex) {
       display: block;
       width: 100%;

@@ -27,7 +27,7 @@ const ModuleProductsUI = ({ input }: Props) => {
     <section className={clsx("module module--products-ui px-md")}>
       <div className='header mb-lg'>
         <h2 className='sans'>{title}</h2>
-        <div className='actions'>
+        <div className='actions md:tex-lg'>
           {/* <Link href={"/products"}>View all</Link> */}
           {withCta && shopPage && (
             <LinkWithIcon

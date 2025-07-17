@@ -25,7 +25,7 @@ const ModuleSliderStoriesUI = ({ input }: Props) => {
           <Stories
             loop={true}
             width={"100%"}
-            height={"var(--main-h)"}
+            height={"var(--main-h, 750px)"}
             stories={stories}
             progressContainerStyles={{
               bottom: "var(--spacing-md)",

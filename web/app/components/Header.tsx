@@ -41,13 +41,13 @@ const Header = (props: Props) => {
   const { settings } = props;
   return (
     <header>
-      <div className='grid grid-cols-4 gap-4'>
+      <div className='flex gap-xl'>
         <div className='site-name'>
           <Link href='/'>
             <Logo />
           </Link>
         </div>
-        <nav className='col-span-3'>
+        <nav className='flex-1'>
           <ul className='flex justify-between gap-3xs '>
             {settings.navPrimary?.map((item, i) => (
               <li
