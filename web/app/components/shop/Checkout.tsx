@@ -75,7 +75,7 @@ const BtnCheckout = (props: Props) => {
     paddle?.Checkout.open({
       allowQuantity: false,
       transactionId: data.tsx,
-      customer: customerInfo,
+      // customer: customerInfo,
       settings: {
         displayMode: "overlay",
         theme: "dark",
