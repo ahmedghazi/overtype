@@ -1,3 +1,5 @@
+@use "../variables";
+
 .content--project {
   section {
     margin-bottom: var(--spacing-7xl);
@@ -12,5 +14,17 @@
     font-size: var(--text-2xl);
     text-align: center;
     margin-bottom: var(--spacing-4xl);
+  }
+
+  @media all and (max-width: variables.$md) {
+    .c-container {
+      padding: 0;
+    }
+    .hero {
+      margin-bottom: 112px;
+    }
+    h1 {
+      // font-size: var(--text-4xl);
+    }
   }
 }

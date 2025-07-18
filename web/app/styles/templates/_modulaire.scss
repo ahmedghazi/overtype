@@ -1,0 +1,12 @@
+@use "../variables";
+
+.template--modulaire {
+  h1 {
+  }
+
+  @media all and (max-width: variables.$md) {
+    h1 {
+      margin-bottom: var(--spacing-4xl);
+    }
+  }
+}

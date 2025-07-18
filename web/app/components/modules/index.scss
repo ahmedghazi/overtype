@@ -10,7 +10,8 @@
       // margin-bottom: 0;
     }
 
-    @media all and (min-width: variables.$md) {
+    @media all and (max-width: variables.$md) {
+      margin-bottom: var(--spacing-4xl);
     }
   }
 }

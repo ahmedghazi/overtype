@@ -1,3 +1,5 @@
+@use "../../styles/variables";
+
 .module--faq-ui {
   nav {
     margin-bottom: var(--spacing-4xl);
@@ -15,6 +17,15 @@
     .accordion {
       // padding-top: var(--spacing-3xl);
       padding: var(--spacing-3xl) 0 0;
+    }
+  }
+
+  @media all and (max-width: variables.$md) {
+    nav {
+      ul {
+        // justify-content: center;
+        align-items: center;
+      }
     }
   }
 }

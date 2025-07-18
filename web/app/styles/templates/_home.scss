@@ -13,6 +13,9 @@
   .template--home {
     .module {
       margin-bottom: var(--spacing-7xl);
+      &--text-ui {
+        margin-bottom: var(--spacing-xl);
+      }
     }
   }
 }

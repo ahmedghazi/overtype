@@ -35,6 +35,17 @@ const ModuleProjectsUI = ({ input }: Props) => {
           ))}
         </div>
       </div>
+      <div className='footer sm-only pt-lg'>
+        {cta && (
+          <div className='flex justify-center text-lg'>
+            <LinkWithIcon
+              label='View All'
+              link={_linkResolver(cta?.link)}
+              icon='arrow-e'
+            />
+          </div>
+        )}
+      </div>
     </section>
   );
 };

@@ -90,9 +90,10 @@ const ModuleTrialsUI = ({ input }: Props) => {
   };
   return (
     <section className='module module--trials-ui px-xs md:px-md'>
+      {/* <div className='h-3xl md:h-[112px]'></div> */}
       <div className='c-container'>
         <div className='header mb-3xl px-md'>
-          <h1 className='md:text-3xl mb-4xl'>Select trials</h1>
+          <h1 className='text-2xl md:text-3xl mb-4xl'>Select trials</h1>
           <div className='text text-center'>
             <PortableText value={_localizeField(text)} />
           </div>

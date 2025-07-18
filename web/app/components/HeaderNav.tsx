@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LinkExternal, LinkInternal, Settings } from "../types/schema";
 import clsx from "clsx";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import BtnCart from "./shop/BtnCart";
 import BtnIcon from "./ui/buttons/BtnIcon";
 import useDeviceDetect from "../hooks/useDeviceDetect";
+import { usePathname } from "next/navigation";
 
 const NavItem = ({ item }: { item: LinkInternal | LinkExternal }) => {
   if (item._type === "linkInternal") {
@@ -40,6 +41,12 @@ type Props = {
 const HeaderNav = ({ settings }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   const { isMobile } = useDeviceDetect();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
     <nav className='header-nav flex-1'>
       <div className='sm-only wrapper-open'>

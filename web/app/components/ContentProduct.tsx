@@ -64,7 +64,7 @@ const ContentProduct = ({ input }: Props) => {
           </div>
         </section>
         <nav className='py-xl-'>
-          <ul className='flex justify-center gap-3xs'>
+          <ul className='flex flex-col md:flex-row justify-center gap-3xs'>
             <li>
               <Btn label='Styles' onClick={() => _scrollTo("waterfall")} />
             </li>

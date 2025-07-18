@@ -13,7 +13,7 @@ type FaqItemProps = {
 const FaqItem = ({ input, index }: FaqItemProps) => {
   return (
     <div className='faq-item' id={`item-${index}`}>
-      <h3 className='md:text-xl'>{input.key}</h3>
+      <h3 className='text-xl'>{input.key}</h3>
       <div className='text'>
         <PortableText
           value={_localizeField(input.val)}
@@ -37,7 +37,7 @@ const ModuleFaqUI = ({ input }: Props) => {
     <section className='module module--faq-ui test px-xs md:px-md'>
       <div className='c-container'>
         <nav className='faq'>
-          <ul className='flex text-sm'>
+          <ul className='flex flex-col md:flex-row text-sm'>
             {items?.map((item, i) => (
               <li key={i}>
                 <button

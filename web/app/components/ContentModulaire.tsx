@@ -15,7 +15,9 @@ const ContentModulaire = ({ input }: Props) => {
   const hasHero = input.hero && input.hero.image;
   const displayTitle = hasHero || input.titleXL;
   return (
-    <div className='content--modulaire'>
+    <div className={clsx("content--modulaire", displayTitle && "with-title")}>
+      <div className='h-2xl md:h-[112px]'></div>
+      {/* {(hasHero || displayTitle) && <div className='h-2xl md:h-[112px]'></div>} */}
       {hasHero && (
         <section className='hero'>
           <Figure asset={input.hero?.image?.asset || null} />
@@ -25,8 +27,8 @@ const ContentModulaire = ({ input }: Props) => {
         <div className='c-container'>
           <h1
             className={clsx(
-              "md:text-2xl mb-4xl md:text-center",
-              input.titleXL && "md:text-3xl"
+              "text-2xl mb-4xl text-center",
+              input.titleXL && "text-2xl md:text-3xl"
             )}>
             {_localizeField(input.title)}
           </h1>

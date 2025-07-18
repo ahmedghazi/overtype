@@ -63,9 +63,9 @@
   --header-height: 54.12px;
 
   /* Border */
-  --border-width: 1px;
+  --border-width: 0.5px;
   --border-width-lg: 2px;
-  --border: var(--border-width) solid;
+  --border: var(--border-width) solid rgba(205, 205, 205, 1);
   --border-lg: var(--border-width-lg) solid;
 
   --cubic: cubic-bezier(0.87, 0, 0.13, 1);

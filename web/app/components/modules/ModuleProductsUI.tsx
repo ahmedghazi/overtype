@@ -49,7 +49,7 @@ const ModuleProductsUI = ({ input }: Props) => {
         </div>
       </div>
       {view === "list" && (
-        <div className='view'>
+        <div className='view flex flex-col gap-xs md:gap-md'>
           {items?.map((item, index) => (
             <div className='item' key={index}>
               <TypeFaceContextProvider>
@@ -60,7 +60,7 @@ const ModuleProductsUI = ({ input }: Props) => {
         </div>
       )}
       {view === "grid" && (
-        <div className='view grid md:grid-cols-2 gap-md'>
+        <div className='view grid md:grid-cols-2 gap-xs md:gap-md'>
           {items?.map((item, index) => (
             <div className='item' key={index}>
               <TypeFaceContextProvider>
@@ -70,6 +70,18 @@ const ModuleProductsUI = ({ input }: Props) => {
           ))}
         </div>
       )}
+
+      <div className='footer sm-only pt-2xl'>
+        {withCta && shopPage && (
+          <div className='flex justify-center text-lg'>
+            <LinkWithIcon
+              label='View All'
+              link={_linkResolver(shopPage)}
+              icon='arrow-e'
+            />
+          </div>
+        )}
+      </div>
     </section>
   );
 };
