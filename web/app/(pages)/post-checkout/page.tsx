@@ -5,7 +5,7 @@ type Props = {};
 
 const page = (props: Props) => {
   return (
-    <div className='post-checkout'>
+    <div className='template post-checkout'>
       <PostCheckout />
     </div>
   );
