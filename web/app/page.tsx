@@ -38,7 +38,7 @@ const HomePage = async function Page() {
       className='template template--home'
       data-template='home'
       data-slug={"/"}>
-      <div className='h-12xl'></div>
+      <div className='h-4xl md:h-12xl'></div>
       <ContentModulaire input={data} />
       {/*for later <ContentLanding /> */}
     </div>

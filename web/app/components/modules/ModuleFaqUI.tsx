@@ -34,7 +34,7 @@ const ModuleFaqUI = ({ input }: Props) => {
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <section className='module module--faq-ui test px-md'>
+    <section className='module module--faq-ui test px-xs md:px-md'>
       <div className='c-container'>
         <nav className='faq'>
           <ul className='flex text-sm'>

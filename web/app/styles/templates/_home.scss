@@ -9,7 +9,10 @@
   }
 }
 
-@media all and (max-width: variables.$sm) {
-  .page-home {
+@media all and (max-width: variables.$md) {
+  .template--home {
+    .module {
+      margin-bottom: var(--spacing-7xl);
+    }
   }
 }

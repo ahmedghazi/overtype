@@ -19,16 +19,16 @@ header {
     }
   }
 
-  nav {
-    // padding-top: calc(var(--spacing-2xs) * 1.25);
-    padding-top: 1rem;
-    li:not(.flex) {
-      display: block;
-      width: 100%;
+  @media all and (max-width: variables.$md) {
+    padding: 17.5px var(--spacing-xs);
+    .logo {
+      svg {
+        width: 82px;
+        height: 54px;
+      }
     }
   }
-
-  @media all and (max-width: variables.$md) {
-    padding: var(--spacing-sm);
-  }
 }
+
+//118 -> 82
+// 80 -> 54

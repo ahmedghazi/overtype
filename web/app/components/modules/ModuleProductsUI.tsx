@@ -24,7 +24,7 @@ const ModuleProductsUI = ({ input }: Props) => {
   const { settings } = usePageContext();
   const { shopPage } = settings;
   return (
-    <section className={clsx("module module--products-ui px-md")}>
+    <section className={clsx("module module--products-ui px-xs md:px-md")}>
       <div className='header mb-lg'>
         <h2 className='sans'>{title}</h2>
         <div className='actions md:tex-lg'>

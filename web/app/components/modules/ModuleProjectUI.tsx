@@ -15,7 +15,7 @@ const ModuleProjectsUI = ({ input }: Props) => {
   const { title, items, cta } = input;
 
   return (
-    <section className={clsx("module module--projects-ui px-md")}>
+    <section className={clsx("module module--projects-ui px-xs md:px-md")}>
       <div className='header mb-lg '>
         <h2 className='sans'>{title}</h2>
         {cta && (

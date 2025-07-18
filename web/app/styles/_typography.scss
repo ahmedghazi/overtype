@@ -194,5 +194,8 @@ sub {
   top: 0.5ex;
 }
 
-@media all and (max-width: variables.$sm) {
+@media all and (max-width: variables.$md) {
+  h2 {
+    font-size: var(--text-xl);
+  }
 }

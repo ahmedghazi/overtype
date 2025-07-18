@@ -47,4 +47,11 @@ main {
   .hidden-sm {
     display: none;
   }
+
+  .template {
+    &:not(.template--product, .template--project) {
+      padding-top: var(--header-height);
+    }
+    // padding-top: 137px;
+  }
 }

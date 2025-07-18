@@ -11,7 +11,8 @@ type Props = {
     | "cart"
     | "question"
     | "delete"
-    | "see";
+    | "see"
+    | "close";
   size?: "sm" | "md" | "lg";
   onClick?: (active: boolean) => void;
 };
@@ -32,6 +33,7 @@ const BtnIcon = ({ icon, size = "md", onClick }: Props) => {
     <button
       className={clsx(
         "ui-btn ui-btn--icon has-blur",
+        `ui-btn--icon__${icon}`,
         size === "sm" && "ui-btn--icon__sm rounded",
         size === "md" && "ui-btn--icon__md",
         size === "lg" && "ui-btn--icon__lg"
@@ -46,6 +48,7 @@ const BtnIcon = ({ icon, size = "md", onClick }: Props) => {
         {icon === "question" && <span className='icn-question'>?</span>}
         {icon === "delete" && <i className='icon-delete'></i>}
         {icon === "see" && <i className='icon-see'></i>}
+        {icon === "close" && <i className='icon-close'></i>}
       </span>
     </button>
   );

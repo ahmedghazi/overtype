@@ -1,4 +1,5 @@
 @use "../mixins";
+@use "../variables";
 .card {
   &:hover {
     color: var(--color-muted);
@@ -70,6 +71,9 @@
         white-space: nowrap;
       }
     }
+
+    @media all and (max-width: variables.$md) {
+    }
   }
   &--font-in-use {
     // width: calc(100% / 2);
@@ -88,6 +92,15 @@
         margin-bottom: 0.1em;
         transform: translateY(-0.1em);
         line-height: 1;
+      }
+    }
+    @media all and (max-width: variables.$md) {
+      &:last-child {
+        padding-right: var(--spacing-xs);
+      }
+      .image img {
+        width: 325px !important;
+        height: 325px !important;
       }
     }
   }

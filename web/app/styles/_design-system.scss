@@ -1,4 +1,5 @@
 @use "./mixins";
+@use "./variables";
 
 .c-container {
   max-width: var(--container-md--w);
@@ -645,4 +646,14 @@ a.ui-btn {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+@media all and (max-width: variables.$md) {
+  .module {
+    .header {
+      .actions {
+        display: none !important;
+      }
+    }
+  }
 }

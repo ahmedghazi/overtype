@@ -1,7 +1,9 @@
+@use "../variables";
+
 .footer-cta {
 }
 footer {
-  padding: var(--spacing-md);
+  // padding: var(--spacing-md);
 
   .inner {
     padding: var(--spacing-md);
@@ -14,5 +16,25 @@ footer {
     margin-top: var(--spacing-9xl);
     display: flex;
     justify-content: space-between;
+  }
+
+  @media all and (max-width: variables.$md) {
+    .inner {
+      padding: 34px;
+      .grid {
+        text-align: center;
+        a {
+          font-size: var(--text-xl);
+        }
+      }
+    }
+    .credits {
+      margin-top: var(--spacing-4xl);
+      flex-direction: column;
+      justify-content: center;
+
+      text-align: center;
+      line-height: 2;
+    }
   }
 }

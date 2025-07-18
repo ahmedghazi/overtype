@@ -89,7 +89,7 @@ const ModuleTrialsUI = ({ input }: Props) => {
     console.log(result);
   };
   return (
-    <section className='module module--trials-ui px-md'>
+    <section className='module module--trials-ui px-xs md:px-md'>
       <div className='c-container'>
         <div className='header mb-3xl px-md'>
           <h1 className='md:text-3xl mb-4xl'>Select trials</h1>

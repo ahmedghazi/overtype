@@ -7,7 +7,7 @@
     margin-bottom: var(--spacing-7xl);
 
     &:last-child {
-      margin-bottom: 0;
+      // margin-bottom: 0;
     }
 
     @media all and (min-width: variables.$md) {

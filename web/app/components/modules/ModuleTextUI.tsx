@@ -16,7 +16,10 @@ const ModuleTextUI = ({ input }: Props) => {
   const { text, title, fullWidth } = input;
   return (
     <section
-      className={clsx("module module--text-ui px-md", fullWidth && "w-full")}>
+      className={clsx(
+        "module module--text-ui px-xs md:px-md",
+        fullWidth && "w-full"
+      )}>
       {title && <h2 className='md:text-xl!'>{title}</h2>}
       <div className='text '>
         <PortableText

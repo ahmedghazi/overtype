@@ -1,2 +1,9 @@
+@use "../../styles/variables";
+
 .module--slider-stories-ui {
+  @media all and (max-width: variables.$md) {
+    & > div > div {
+      max-height: 230px;
+    }
+  }
 }

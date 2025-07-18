@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { SliderStoriesUI } from "@/app/types/schema";
 import CardStory from "../CardStory";
 import Stories from "react-insta-stories";
+import "./ModuleSliderStoriesUI.scss";
 
 interface Props {
   input: SliderStoriesUI;
@@ -19,7 +20,8 @@ const ModuleSliderStoriesUI = ({ input }: Props) => {
     return arr;
   });
   return (
-    <section className={clsx("module module--slider-stories-ui px-md")}>
+    <section
+      className={clsx("module module--slider-stories-ui px-xs md:px-md")}>
       {stories && (
         <div className='rounded'>
           <Stories

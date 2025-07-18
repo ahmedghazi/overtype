@@ -1,0 +1,101 @@
+import React, { useState } from "react";
+import { LinkExternal, LinkInternal, Settings } from "../types/schema";
+import clsx from "clsx";
+import Link from "next/link";
+import { _linkResolver, _localizeField } from "../sanity-api/utils";
+import { ThemeToggle } from "./ThemeToggle";
+import BtnCart from "./shop/BtnCart";
+import BtnIcon from "./ui/buttons/BtnIcon";
+import useDeviceDetect from "../hooks/useDeviceDetect";
+
+const NavItem = ({ item }: { item: LinkInternal | LinkExternal }) => {
+  if (item._type === "linkInternal") {
+    return (
+      <Link href={_linkResolver(item.link)} className='ui-cartouche has-blur'>
+        <div className='ui-cartouche- has-blur- '>
+          {_localizeField(item.label)}
+        </div>
+      </Link>
+    );
+  }
+  if (item._type === "linkExternal") {
+    return (
+      <a
+        href={item.link}
+        target='_blank'
+        rel='noopener noreferrer'
+        className='ui-cartouche has-blur'>
+        <div className='ui-cartouche has-blur '>
+          {_localizeField(item.label)}
+        </div>
+      </a>
+    );
+  }
+};
+
+type Props = {
+  settings: Settings;
+};
+
+const HeaderNav = ({ settings }: Props) => {
+  const [open, setOpen] = useState<boolean>(false);
+  const { isMobile } = useDeviceDetect();
+  return (
+    <nav className='header-nav flex-1'>
+      <div className='sm-only wrapper-open'>
+        <button className='ui-cartouche has-blur' onClick={() => setOpen(true)}>
+          Menu
+        </button>
+      </div>
+      <div
+        className={clsx(
+          "sm-only wrapper-close",
+          isMobile && !open && "hidden!"
+        )}>
+        <BtnIcon icon='close' onClick={() => setOpen(false)} />
+      </div>
+      <ul
+        className={clsx(
+          "menu flex justify-between gap-3xs ",
+          isMobile && !open && "hidden"
+        )}>
+        {settings.navPrimary?.map((item, i) => (
+          <li
+            key={i}
+            className={clsx(
+              item._type === "linkInternal" && item.subMenu && "has-submenu"
+            )}>
+            <NavItem item={item} />
+            {item._type === "linkInternal" && item.subMenu && (
+              <i className='icon icon-drop-down'></i>
+            )}
+            {item._type === "linkInternal" && item.subMenu && (
+              <ul className='sub-menu'>
+                {item.subMenu.map((subItem, i) => (
+                  <li key={i} className='mb-3xs'>
+                    <NavItem item={subItem} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+
+        {/* <li className='actions flex gap-3xs'>
+          <ThemeToggle />
+          <BtnCart />
+        </li> */}
+      </ul>
+      <ul className='actions flex gap-3xs'>
+        <li>
+          <ThemeToggle />
+        </li>
+        <li>
+          <BtnCart />
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default HeaderNav;
