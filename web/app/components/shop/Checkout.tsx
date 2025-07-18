@@ -2,6 +2,7 @@
 import React, { useContext, useEffect } from "react";
 import { PaddleContext } from "./Paddle/PaddleProvider";
 import useShop from "./ShopContext";
+import website from "@/app/config/website";
 
 type Props = {};
 
@@ -79,8 +80,7 @@ const BtnCheckout = (props: Props) => {
       settings: {
         displayMode: "overlay",
         theme: "dark",
-        successUrl:
-          "https://overtype-pi.vercel.app/post-checkout?status=success",
+        successUrl: `${website.url}/post-checkout?status=success`,
         variant: "multi-page",
       },
     });

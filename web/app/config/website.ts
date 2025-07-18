@@ -4,7 +4,7 @@ const website = {
   titleAlt: "Overtype Foundry", // Title for JSONLD
   description: "...",
   headline: "", // Headline for schema.org JSONLD
-  url: "https://aaa.fr", // Domain of your site. No trailing slash!
+  url: "https://overtype-pi.vercel.app", // Domain of your site. No trailing slash!
   image: "", // Used for SEO
   ogLanguage: "fr_FR", // Facebook Language
 
