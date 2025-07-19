@@ -1,6 +1,6 @@
 @use "../../variables";
 .cookies {
-  z-index: 2;
+  z-index: 99999;
   position: fixed;
   bottom: var(--spacing-5xl);
   left: 50%;
@@ -12,7 +12,7 @@
   width: var(--container-lg--w);
   max-width: 100%;
   .inner {
-    padding: var(--space-md);
+    // padding: var(--spacing-md);
   }
   .ui-btn:not(.ui-btn__accent) {
     background-color: white;
@@ -20,9 +20,16 @@
   }
 
   @media all and (max-width: variables.$md) {
-    width: calc(100% - var(--space-md) * 2);
-    right: var(--space-md);
-    left: var(--space-md);
+    // width: calc(100% - var(--spacing-md) * 2);
+    right: var(--spacing-xs);
+    left: var(--spacing-xs);
+    bottom: var(--spacing-md);
+    transform: none;
+    width: auto;
+    .inner {
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
   }
 }
 .dark .cookies {

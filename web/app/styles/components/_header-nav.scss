@@ -15,6 +15,9 @@ nav.header-nav {
   }
 
   @media all and (max-width: variables.$md) {
+    &__desktop {
+      display: none;
+    }
     display: flex;
     justify-content: end;
     padding-top: 8.5px;
@@ -31,18 +34,27 @@ nav.header-nav {
       right: calc(var(--spacing-xs) + 17px);
       z-index: 2;
     }
+    .inner {
+      height: 100%;
+    }
     ul.menu {
-      border-radius: var(--radius);
-      overflow: hidden;
-      z-index: 1;
-      position: fixed;
-      top: var(--spacing-xs);
-      left: var(--spacing-xs);
-      right: var(--spacing-xs);
-      height: 100vh;
-      background: var(--color-bg);
+      height: 100%;
+      // border-radius: var(--radius);
+      // overflow: hidden;
+      // z-index: 1;
+      // position: fixed;
+      // top: var(--spacing-xs);
+      // left: var(--spacing-xs);
+      // right: var(--spacing-xs);
+      // height: 100vh;
+      // background: var(--color-bg);
       flex-direction: column;
       justify-content: center;
+      // &.hidden {
+      //   display: block;
+      //   transform: translateY(100%);
+      //   opacity: 0;
+      // }
       li {
         text-align: center;
         &.has-submenu {

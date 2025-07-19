@@ -38,7 +38,7 @@ type Props = {
   settings: Settings;
 };
 
-const HeaderNav = ({ settings }: Props) => {
+const HeaderNavDesktop = ({ settings }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   const { isMobile } = useDeviceDetect();
   const pathname = usePathname();
@@ -48,7 +48,7 @@ const HeaderNav = ({ settings }: Props) => {
   }, [pathname]);
 
   return (
-    <nav className='header-nav flex-1'>
+    <nav className='header-nav header-nav__desktop flex-1'>
       <div className='sm-only wrapper-open'>
         <button className='ui-cartouche has-blur' onClick={() => setOpen(true)}>
           Menu
@@ -87,11 +87,6 @@ const HeaderNav = ({ settings }: Props) => {
             )}
           </li>
         ))}
-
-        {/* <li className='actions flex gap-3xs'>
-          <ThemeToggle />
-          <BtnCart />
-        </li> */}
       </ul>
       <ul className='actions flex gap-3xs'>
         <li>
@@ -105,4 +100,4 @@ const HeaderNav = ({ settings }: Props) => {
   );
 };
 
-export default HeaderNav;
+export default HeaderNavDesktop;

@@ -26,11 +26,15 @@ export const PageContextProvider = (props: PageContextProps) => {
   useEffect(() => {
     _format();
     window.addEventListener("resize", _format);
-
+    document.body.classList.remove("is-loading");
     return () => {
       window.removeEventListener("resize", _format);
     };
   }, []);
+
+  useEffect(() => {
+    _format();
+  }, [pathname]);
 
   const _format = () => {
     // const wh = window.innerHeight;

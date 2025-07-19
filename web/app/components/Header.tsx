@@ -1,13 +1,11 @@
 "use client";
 import React from "react";
-import { LinkExternal, LinkInternal, Settings } from "../types/schema";
+import { Settings } from "../types/schema";
 import Link from "next/link";
 import Logo from "./Logo";
-import { ThemeToggle } from "./ThemeToggle";
-import BtnCart from "./shop/BtnCart";
-import { _linkResolver, _localizeField } from "../sanity-api/utils";
-import clsx from "clsx";
-import HeaderNav from "./HeaderNav";
+import HeaderNavDesktop from "./HeaderNavDesktop";
+import useDeviceDetect from "../hooks/useDeviceDetect";
+import HeaderNavMobile from "./HeaderNavMobile";
 
 type Props = {
   settings: Settings;
@@ -15,6 +13,7 @@ type Props = {
 
 const Header = (props: Props) => {
   const { settings } = props;
+  const { isMobile } = useDeviceDetect();
   return (
     <header>
       <div className='flex gap-xl'>
@@ -23,7 +22,11 @@ const Header = (props: Props) => {
             <Logo />
           </Link>
         </div>
-        <HeaderNav settings={settings} />
+        {isMobile ? (
+          <HeaderNavMobile settings={settings} />
+        ) : (
+          <HeaderNavDesktop settings={settings} />
+        )}
       </div>
     </header>
   );
