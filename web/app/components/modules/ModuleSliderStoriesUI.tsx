@@ -5,6 +5,7 @@ import { SliderStoriesUI } from "@/app/types/schema";
 import CardStory from "../CardStory";
 import Stories from "react-insta-stories";
 import "./ModuleSliderStoriesUI.scss";
+import useDeviceDetect from "@/app/hooks/useDeviceDetect";
 
 interface Props {
   input: SliderStoriesUI;
@@ -12,6 +13,7 @@ interface Props {
 
 const ModuleSliderStoriesUI = ({ input }: Props) => {
   const { title, items } = input;
+  const { isMobile } = useDeviceDetect();
 
   const stories = items?.map((item, i) => {
     const arr = {
@@ -29,9 +31,17 @@ const ModuleSliderStoriesUI = ({ input }: Props) => {
             width={"100%"}
             height={"var(--main-h, 750px)"}
             stories={stories}
+            // progressContainerClassName="progress-container"
             progressContainerStyles={{
-              bottom: "var(--spacing-md)",
-              gap: "var(--spacing-xl)",
+              bottom: isMobile ? "var(--spacing-md)" : "var(--spacing-md)",
+              gap: isMobile
+                ? "calc(var(--spacing-2xs) * 1.25)"
+                : "var(--spacing-xl)",
+              borderRadius: "100%",
+              padding: isMobile
+                ? "var(--spacing-md) var(--spacing-md) 0"
+                : "7px 5px 5px",
+              width: isMobile ? "100%" : "98%",
             }}
             storyStyles={{
               width: "100%",
