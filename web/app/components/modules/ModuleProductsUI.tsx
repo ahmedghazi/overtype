@@ -27,7 +27,7 @@ const ModuleProductsUI = ({ input }: Props) => {
     <section className={clsx("module module--products-ui px-xs md:px-md")}>
       <div className='header mb-lg'>
         <h2 className='sans'>{title}</h2>
-        <div className='actions md:tex-lg'>
+        <div className='actions md:tex-lg text-secondary'>
           {/* <Link href={"/products"}>View all</Link> */}
           {withCta && shopPage && (
             <LinkWithIcon
@@ -49,7 +49,7 @@ const ModuleProductsUI = ({ input }: Props) => {
         </div>
       </div>
       {view === "list" && (
-        <div className='view flex flex-col gap-xs md:gap-md'>
+        <div className='view view--list flex flex-col gap-xs md:gap-md'>
           {items?.map((item, index) => (
             <div className='item' key={index}>
               <TypeFaceContextProvider>
@@ -60,7 +60,7 @@ const ModuleProductsUI = ({ input }: Props) => {
         </div>
       )}
       {view === "grid" && (
-        <div className='view grid md:grid-cols-2 gap-xs md:gap-md'>
+        <div className='view view--grid grid md:grid-cols-2 gap-xs md:gap-md'>
           {items?.map((item, index) => (
             <div className='item' key={index}>
               <TypeFaceContextProvider>

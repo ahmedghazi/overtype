@@ -16,4 +16,10 @@
     //   }
     // }
   }
+  .view--grid .card--product {
+    .header,
+    .footer {
+      padding: var(--spacing-md);
+    }
+  }
 }

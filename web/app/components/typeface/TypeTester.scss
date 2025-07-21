@@ -1,3 +1,5 @@
+@use "../../styles/variables";
+
 .type-tester {
   background: rgba(0, 0, 0, 0.04);
 
@@ -77,6 +79,27 @@
       outline: none;
     }
     // transition: all 0.1s ease-in-out;
+  }
+
+  @media all and (max-width: variables.$md) {
+    height: auto;
+    padding: 0 var(--spacing-xs);
+    aside {
+      position: initial;
+      max-width: unset;
+      gap: var(--spacing-lg);
+      .handle {
+        display: none;
+      }
+      .styles,
+      .footer {
+        display: none;
+      }
+    }
+    .canvas {
+      padding-left: 0;
+      min-height: 420px;
+    }
   }
 }
 

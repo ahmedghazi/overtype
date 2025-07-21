@@ -16,7 +16,7 @@ const WaterfallItem = ({ input }: WaterfallItemProps) => {
         fontFamily: input?.typeface?.slug?.current,
         opacity: type ? 1 : 0,
       }}
-      className='t-preview text-3xl'>
+      className='t-preview text-xl md:text-3xl'>
       {input.title}
     </div>
   );
@@ -31,7 +31,7 @@ const Waterfall = ({ title, items }: Props) => {
   return (
     <section className='waterfall' id='waterfall'>
       <div className='header'>
-        <h1 className='md:text-2xl'>{title}</h1>
+        <h1 className='text-xl md:text-2xl'>{title}</h1>
         <div className='text-secondary'>{items?.length} Styles</div>
       </div>
       <div className='items'>

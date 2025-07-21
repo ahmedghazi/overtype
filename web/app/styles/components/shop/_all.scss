@@ -1,3 +1,14 @@
+@use "../../variables";
+
+.products {
+  .header {
+  }
+  @media all and (max-width: variables.$md) {
+    .actions {
+      display: none;
+    }
+  }
+}
 .product-image {
   border-radius: var(--radius-sm);
   aspect-ratio: 1/1;

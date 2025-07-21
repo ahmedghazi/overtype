@@ -15,10 +15,10 @@ const RelatedProducts = ({ title, items }: Props) => {
   const { settings } = usePageContext();
   const { shopPage } = settings;
   return (
-    <section className='related px-md'>
+    <section className='related px-md products'>
       <div className='header mb-lg'>
         <h2 className='md:text-2xl'>{title}</h2>
-        <div className='actions md:text-xl text-secondary'>
+        <div className='actions md:tex-lg text-secondary'>
           <LinkWithIcon
             label='View All'
             link={_linkResolver(shopPage)}

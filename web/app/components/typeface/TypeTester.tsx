@@ -10,6 +10,7 @@ import clsx from "clsx";
 import Btn from "../ui/buttons/Btn";
 import Draggable from "react-draggable";
 import "./TypeTester.scss";
+import useDeviceDetect from "@/app/hooks/useDeviceDetect";
 
 interface TextPrevizewProps {
   ref?: React.RefObject<HTMLDivElement>;
@@ -71,6 +72,8 @@ const Aside = ({ singles, target }: AsideProps) => {
     "none" | "capitalize" | "uppercase" | "lowercase"
   >("none");
   const [textAlign, setTextAlign] = useState<string>("left");
+  const { isMobile } = useDeviceDetect();
+  const initialSize = isMobile ? "56" : "100";
 
   useEffect(() => {
     setReady(true);
@@ -114,8 +117,11 @@ const Aside = ({ singles, target }: AsideProps) => {
             onChange={(e: any) => dispatchType(e.value)}
           />
         </div>
-        <div className={clsx("body pt-3xl", { "is-collapsed": collapse })}>
-          <div className='sizes mb-3xl'>
+        <div
+          className={clsx("body pt-0 md:pt-3xl", {
+            "is-collapsed": collapse,
+          })}>
+          <div className='sizes md:mb-3xl'>
             {target && (
               <>
                 <Range
@@ -124,7 +130,7 @@ const Aside = ({ singles, target }: AsideProps) => {
                   step='1'
                   unit='px'
                   label='Size'
-                  initialValue='150'
+                  initialValue={initialSize}
                   target={target}
                   cssVar='--font-size'
                 />

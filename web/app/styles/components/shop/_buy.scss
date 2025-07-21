@@ -1,3 +1,5 @@
+@use "../../variables";
+
 .buy {
   width: 100%;
   max-width: 55.375rem;
@@ -40,5 +42,10 @@
   }
   .box {
     padding: var(--spacing-2xs);
+  }
+
+  @media all and (max-width: variables.$md) {
+    // background-color: red;
+    padding: 110px var(--spacing-xs);
   }
 }

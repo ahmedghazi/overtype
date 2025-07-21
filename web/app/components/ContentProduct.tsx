@@ -38,7 +38,7 @@ const ContentProduct = ({ input }: Props) => {
         )}
         <Waterfall title={title || ""} items={singles || []} />
         <section className='about px-md' id='about'>
-          <h2 className='md:text-2xl'>About {title}</h2>
+          <h2 className='text-xl md:text-2xl'>About {title}</h2>
           <div className='text'>
             <PortableText
               value={_localizeField(text)}
@@ -65,7 +65,7 @@ const ContentProduct = ({ input }: Props) => {
         </section>
         <nav className='py-xl-'>
           <ul className='flex flex-col md:flex-row justify-center gap-3xs'>
-            <li>
+            <li className='hidden-sm'>
               <Btn label='Styles' onClick={() => _scrollTo("waterfall")} />
             </li>
             <li>

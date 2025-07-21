@@ -30,13 +30,19 @@ const Buy = ({ input }: Props) => {
 
   const _updateLicense = (license: LicenseType) => {
     //reset
+    // let isLicenseUpdated = false;
     setDialogProducts({ type: "REMOVE_ALL" });
-    setLicenseType(license);
+    setLicenseType(null);
+    setTimeout(() => {
+      // if (!isLicenseUpdated)
+      setLicenseType(license);
+      // isLicenseUpdated = true;
+    }, 150);
   };
   return (
     <div className='buy'>
       <div className='header'>
-        <h2 className='md:text-2xl'>Purchase {input.title}</h2>
+        <h2 className='text-2xl'>Purchase {input.title}</h2>
         <p>
           Pricing scales with your company size. Our licenses are all-in-one,
           you can use the font anywhere. Just add the “logo/wordmark” option if
@@ -48,9 +54,11 @@ const Buy = ({ input }: Props) => {
         <section>
           <h3 className='md:text-sm'>1/ Select your license</h3>
           <div className='box rounded bg-btn'>
-            <div className='md:mb-3xl'>
+            <div className='mb-3xl'>
               <div className='header'>
-                <h4 className='md:text-lg'>What’s your company size?</h4>
+                <h4 className='text-md md:text-lg'>
+                  What’s your company size?
+                </h4>
                 <BtnToolTip text={_localizeField(toolTipLicenses)} />
               </div>
               <div className='content'>
@@ -78,54 +86,35 @@ const Buy = ({ input }: Props) => {
                 </div>
               </div>
             </div>
-            <div className='header'>
-              <h4 className='md:text-lg'>
-                Would you use the font in a logo/wordmark?
-              </h4>
-              <BtnToolTip text={_localizeField(toolTipLogo)} />
-            </div>
-            <div className='content'>
-              <div className='grid grid-cols-2 gap-3xs'>
-                <Radio
-                  name='forLogo'
-                  label='Yes'
-                  isChecked={isLogo}
-                  onChange={() => setIsLogo(true)}
-                />
-                <Radio
-                  name='forLogo'
-                  label='No'
-                  isChecked={!isLogo}
-                  onChange={() => setIsLogo(false)}
-                />
+            <div>
+              <div className='header'>
+                <h4 className='text-md md:text-lg'>
+                  Would you use the font in a logo/wordmark?
+                </h4>
+                <BtnToolTip text={_localizeField(toolTipLogo)} />
+              </div>
+              <div className='content'>
+                <div className='grid md:grid-cols-2 gap-3xs'>
+                  <Radio
+                    name='forLogo'
+                    label='Yes'
+                    isChecked={isLogo}
+                    onChange={() => setIsLogo(true)}
+                  />
+                  <Radio
+                    name='forLogo'
+                    label='No'
+                    isChecked={!isLogo}
+                    onChange={() => setIsLogo(false)}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </section>
+        {/* <pre>{JSON.stringify(licenseType, null, 2)}</pre> */}
         {licenseType && (
           <>
-            {/* <section>
-              <h3 className='md:text-sm'>2/ Select your styles</h3>
-              <div className='box rounded bg-btn'>
-                <div className='header'>
-                  <h4 className='md:text-lg'>Packs</h4>
-                </div>
-
-                <div className='content'>
-                  <div className='flex flex-col gap-3xs'>
-                    {input.bundles?.map((item, i) => (
-                      <BuyBundle
-                        key={i}
-                        product={input}
-                        input={item}
-                        background={input.background?.hex || ""}
-                        foreground={input.foreground?.hex || ""}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </section> */}
             <section>
               <h3 className='md:text-sm'>2/ Select your styles</h3>
               <div className='box rounded bg-btn'>
@@ -162,8 +151,6 @@ const Buy = ({ input }: Props) => {
                               key={i}
                               input={item}
                               product={input}
-                              // typefaceName={input.title || ""}
-                              // typefaceName={`${input.title} ${input.title}` || ""}
                               background={input.background?.hex || ""}
                               foreground={input.foreground?.hex || ""}
                             />
@@ -177,6 +164,7 @@ const Buy = ({ input }: Props) => {
             </section>
             <section className='flex  justify-center py-2xl'>
               <AddToCart items={dialogProducts} />
+              {/* <pre>{JSON.stringify(dialogProducts, null, 2)}</pre> */}
             </section>
           </>
         )}

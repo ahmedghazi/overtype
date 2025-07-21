@@ -55,7 +55,8 @@ const AddToCart = ({ items }: Props) => {
       const itemPrice = el.discount
         ? _getPriceWithDiscount(el.price || 0, el.discount)
         : el.price;
-      if (itemPrice) finalPrice += itemPrice * priceMultiplier;
+      // if (itemPrice) finalPrice += itemPrice * priceMultiplier;
+      if (itemPrice) finalPrice += itemPrice;
     });
     return finalPrice;
   }, [items]);

@@ -1,3 +1,5 @@
+@use "../variables";
+
 .content--product {
   --space-top: calc(var(--spacing-md) + var(--header-height));
   section:not(.Toastify) {
@@ -40,19 +42,12 @@
 
   nav {
     position: sticky;
-    // top: calct(var(--header-height) + var(--spacing-md));
-    // top: 2rem;
     bottom: var(--spacing-md);
     z-index: 8;
     margin-bottom: var(--spacing-9xl);
     .ui-btn {
       width: 7.938rem;
     }
-  }
-
-  h2 {
-    // text-align: center;
-    // margin-bottom: var(--spacing-4xl);
   }
 
   .images {
@@ -71,7 +66,26 @@
       align-items: baseline;
     }
     h2 {
-      font-size: var(--text-2xl);
+      // font-size: var(--text-2xl);
+    }
+  }
+
+  @media all and (max-width: variables.$md) {
+    section:not(.Toastify) {
+      margin-bottom: 0;
+      &.waterfall {
+        // padding-top: 0;
+      }
+      &.about {
+        margin-bottom: 112px;
+      }
+    }
+
+    nav ul {
+      align-items: center;
+      li {
+        width: auto;
+      }
     }
   }
 }

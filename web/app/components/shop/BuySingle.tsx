@@ -22,6 +22,12 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
     useShop();
   const [checked, setChecked] = useState(false);
   const [applyDiscount, setApplyDiscount] = useState<boolean>(false);
+
+  // useEffect(() => {
+  //   if (!dialogProducts) {
+  //     // setChecked(false);
+  //   }
+  // }, [dialogProducts]);
   // console.log(input);
 
   /**
@@ -41,7 +47,7 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
   // }, [dialogProducts, input.relatedTypeface]);
   useEffect(() => {
     if (!input.discount) return;
-    if (!checked) return;
+    // if (!checked) return;
     if (input.relatedTypeface) {
       const relatedTypefaceIsInDialogProducts = dialogProducts.some(
         (el) => el.sku + "-italic" === input.sku?.current

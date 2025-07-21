@@ -468,6 +468,9 @@ a.ui-btn {
     }
   }
   cursor: pointer;
+  .infos {
+    padding-left: calc(0.813rem + 0.625rem);
+  }
   .footer {
     display: flex;
     justify-content: space-between;
@@ -661,5 +664,33 @@ a.ui-btn {
   }
   .ui-dialog {
     padding: var(--spacing-xs);
+  }
+  .ui-radio,
+  .ui-checkbox,
+  .ui-select {
+    padding: calc(var(--spacing-md) * 0.8) var(--spacing-md);
+    &,
+    .inner {
+      font-size: var(--text-md);
+    }
+  }
+  .ui-bundle {
+    padding: var(--spacing-sm) var(--spacing-xs);
+    gap: 65px;
+    .ui-checkbox {
+      padding: 0;
+    }
+    .footer {
+      align-items: end;
+      .price {
+        line-height: 0.9;
+      }
+    }
+  }
+  .ui-single {
+    padding: calc(var(--spacing-sm) * 0.75) var(--spacing-xs);
+    .ui-checkbox {
+      padding: 0;
+    }
   }
 }

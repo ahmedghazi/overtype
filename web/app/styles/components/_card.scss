@@ -72,6 +72,13 @@
     }
 
     @media all and (max-width: variables.$md) {
+      .header,
+      .footer {
+        padding: var(--spacing-md);
+      }
+      .footer {
+        font-size: var(--text-sm);
+      }
     }
   }
   &--font-in-use {
@@ -147,6 +154,12 @@
       color: white;
 
       font-size: var(--text-xl);
+    }
+    @media all and (max-width: variables.$md) {
+      .header {
+        font-size: var(--text-md);
+        padding: 42px var(--spacing-md);
+      }
     }
   }
 }
