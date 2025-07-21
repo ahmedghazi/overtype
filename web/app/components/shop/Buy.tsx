@@ -10,6 +10,7 @@ import AddToCart from "./AddToCart";
 
 import BuySingle from "./BuySingle";
 import { TypeFaceContextProvider } from "../typeface/TypeFaceContext";
+import BtnPill from "../ui/buttons/BtnPill";
 
 type Props = {
   input: Product;
@@ -142,6 +143,9 @@ const Buy = ({ input }: Props) => {
                   <div className='box-item mt-3xl'>
                     <div className='header'>
                       <h4 className='md:text-lg'>Single Styles</h4>
+                      <div className='text-sm ui-btn--pill ui-btn--pill__accent sm-only'>
+                        <span>-50% on the 2nd style</span>
+                      </div>
                     </div>
                     <div className='content'>
                       <div className='grid md:grid-cols-2 gap-3xs'>
@@ -162,7 +166,7 @@ const Buy = ({ input }: Props) => {
                 )}
               </div>
             </section>
-            <section className='flex  justify-center py-2xl'>
+            <section className='flex  justify-center px-2xl md:py-2xl'>
               <AddToCart items={dialogProducts} />
               {/* <pre>{JSON.stringify(dialogProducts, null, 2)}</pre> */}
             </section>

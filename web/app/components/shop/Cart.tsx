@@ -95,16 +95,16 @@ const Cart = (props: Props) => {
     setProducts({ type: "REMOVE_BY_SKU", payload: sku });
   };
 
-  const LicenseForValues = [
-    {
-      label: "Me",
-      value: "me",
-    },
-    {
-      label: "My client",
-      value: "client",
-    },
-  ];
+  // const LicenseForValues = [
+  //   {
+  //     label: "Me",
+  //     value: "me",
+  //   },
+  //   {
+  //     label: "My client",
+  //     value: "client",
+  //   },
+  // ];
   return (
     <div className={clsx("cart")}>
       <div className='header'>
@@ -153,10 +153,10 @@ const Cart = (props: Props) => {
                   /> */}
 
                   <div className='header'>
-                    <h4 className='md:text-lg'>Who is the license owner?</h4>
+                    <h4 className='text-lg'>Who is the license owner?</h4>
                     <BtnToolTip text={_localizeField(toolTipLocenseFor)} />
                   </div>
-                  <div className='grid grid-cols-2 gap-2xs'>
+                  <div className='grid md:grid-cols-2 gap-2xs'>
                     <Radio
                       name='forLogo'
                       label='me'
