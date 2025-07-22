@@ -97,7 +97,7 @@ const ModuleTrialsUI = ({ input }: Props) => {
 
   useEffect(() => {
     if (status === "initial" || status === "optin") return;
-    toast(status);
+    toast(`Trials : ${status}`);
   }, [status]);
 
   const canSubmit = email && optin && trials && trials?.length > 0;
