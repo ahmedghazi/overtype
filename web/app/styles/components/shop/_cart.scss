@@ -23,6 +23,9 @@
   @media all and (max-width: variables.$md) {
     // background-color: red;
     padding: 110px var(--spacing-xs);
+    h2 {
+      font-size: var(--text-2xl);
+    }
     .total {
       font-size: var(--text-base);
     }

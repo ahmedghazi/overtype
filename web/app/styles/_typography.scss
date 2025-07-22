@@ -129,6 +129,11 @@ strong {
 button {
   background: transparent;
   cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
 
 input {

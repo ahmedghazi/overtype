@@ -615,6 +615,10 @@ a.ui-btn {
   --toastify-toast-top: var(--header-height);
   --toastify-toast-bd-radius: var(--radius);
   // padding-top: var(--header-height);
+  @media all and (max-width: variables.$md) {
+    --toastify-toast-top: var(--header-height);
+    --toastify-toast-right: var(--spacing-xs);
+  }
   .Toastify__toast-theme--light {
     background-color: var(--color-btn);
     padding: 0;

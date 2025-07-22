@@ -14,6 +14,7 @@ import useShop from "../shop/ShopContext";
 import TextOrEmailInput from "../ui/inputs/TextOrEmailInput";
 import Btn from "../ui/buttons/Btn";
 import portableTextComponents from "@/app/sanity-api/portableTextComponents";
+import { toast } from "react-toastify";
 type TrialItemProps = {
   input: Product;
 };
@@ -66,12 +67,16 @@ type Props = {
 const ModuleTrialsUI = ({ input }: Props) => {
   const { text, items, textOptin } = input;
   const [email, setEmail] = useState<string>("");
+  const [status, setStatus] = useState<
+    "initial" | "optin" | "sending" | "success" | "error"
+  >("initial");
   const [optin, setOptin] = useState<boolean>(false);
 
   const { trials } = useShop();
 
   const _handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setStatus("sending");
     console.log(email, optin, trials);
     if (!email || !optin || !trials) return;
     const response = await fetch("/api/trials", {
@@ -87,7 +92,16 @@ const ModuleTrialsUI = ({ input }: Props) => {
     });
     const result = await response.json();
     console.log(result);
+    setStatus("success");
   };
+
+  useEffect(() => {
+    if (status === "initial" || status === "optin") return;
+    toast(status);
+  }, [status]);
+
+  const canSubmit = email && optin && trials && trials?.length > 0;
+
   return (
     <section className='module module--trials-ui px-xs md:px-md'>
       {/* <div className='h-3xl md:h-[112px]'></div> */}
@@ -123,7 +137,10 @@ const ModuleTrialsUI = ({ input }: Props) => {
                 type='checkbox'
                 id='optin'
                 required
-                onChange={(e) => setOptin(e.target.checked)}
+                onChange={(e) => {
+                  setOptin(e.target.checked);
+                  setStatus("optin");
+                }}
               />
               <label htmlFor='optin'>
                 <PortableText
@@ -133,7 +150,11 @@ const ModuleTrialsUI = ({ input }: Props) => {
               </label>
             </div>
             <div className='form-row text-center py-4xl'>
-              <Btn label='Request trials' variant='accent' />
+              <Btn
+                label='Request trials'
+                variant='accent'
+                disabled={!canSubmit}
+              />
             </div>
           </form>
         </div>

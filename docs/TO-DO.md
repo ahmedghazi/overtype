@@ -38,3 +38,4 @@
   #- 404 page
 - buy text intro
 - related project
+- trial success screen ou toasty

@@ -111,6 +111,9 @@
     }
   }
   &--project {
+    &:hover .ui-cartouche {
+      background-color: var(--color-btn--hover);
+    }
     a {
       position: relative;
     }

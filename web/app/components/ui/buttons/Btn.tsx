@@ -8,9 +8,17 @@ type Props = {
   size?: "sm" | "md" | "lg";
   onClick?: () => void;
   variant?: "accent";
+  disabled?: boolean;
 };
 
-const Btn = ({ label, children, size = "md", onClick, variant }: Props) => {
+const Btn = ({
+  label,
+  children,
+  size = "md",
+  onClick,
+  variant,
+  disabled = false,
+}: Props) => {
   const _onClick = () => {
     if (typeof onClick === "function") onClick();
   };
@@ -21,7 +29,8 @@ const Btn = ({ label, children, size = "md", onClick, variant }: Props) => {
         size === "sm" && "ui-btn--sm",
         variant === "accent" && "ui-btn__accent"
       )}
-      onClick={_onClick}>
+      onClick={_onClick}
+      disabled={disabled}>
       {children || label}
     </button>
   );

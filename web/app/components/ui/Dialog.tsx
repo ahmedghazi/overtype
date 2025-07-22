@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { gsap } from "gsap";
 import { subscribe, unsubscribe } from "pubsub-js";
 import { usePathname } from "next/navigation";
 
@@ -18,6 +18,19 @@ export const Dialog: React.FC<DialogProps> = ({
   className = "",
 }) => {
   const pathname = usePathname();
+  const DURATION = 0.6;
+  const [open, setOpen] = useState<boolean>(isOpen);
+  const [isClosing, setIsClosing] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isClosing) {
+      setTimeout(() => {
+        onClose();
+        setIsClosing(false);
+      }, DURATION * 1000);
+    }
+  }, [isClosing, onClose]);
+
   useEffect(() => {
     const token = subscribe("DIALOG.CLOSE", () => {
       onClose();
@@ -31,24 +44,62 @@ export const Dialog: React.FC<DialogProps> = ({
     onClose();
   }, [pathname]);
 
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      gsap.from(overlayRef.current!, {
+        opacity: 0,
+        duration: DURATION,
+        ease: "power2.inOut",
+      });
+
+      gsap.from(dialogRef.current!, {
+        scale: 0.95,
+        opacity: 0,
+        y: "100%",
+        duration: DURATION,
+        ease: "power2.inOut",
+      });
+    }
+  }, [isOpen, DURATION]);
+
+  useEffect(() => {
+    if (isClosing) {
+      const tl = gsap.timeline();
+      tl.to(dialogRef.current!, {
+        scale: 0.95,
+        opacity: 0,
+        y: "100%",
+        duration: DURATION,
+        ease: "power2.inOut",
+      }).to(overlayRef.current!, {
+        opacity: 0,
+        duration: DURATION,
+        ease: "power2.inOut",
+        onComplete: () => {
+          onClose();
+          setIsClosing(false);
+        },
+      });
+    }
+  }, [isClosing, DURATION, onClose]);
+
   if (!isOpen) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.6, type: "tween", ease: "easeInOut" }}
-      className='ui-dialog  has-blur '
-      onClick={onClose}>
-      <motion.div
-        initial={{ scale: 0.95, opacity: 0, y: "100%" }}
-        animate={{ scale: 1, opacity: 1, y: "0%" }}
-        exit={{ scale: 0.95, opacity: 0, y: "100%" }}
-        transition={{ duration: 0.6, type: "tween", ease: "easeInOut" }}
+    <div
+      ref={overlayRef}
+      className='ui-dialog  has-blur'
+      onClick={() => setIsClosing(true)}>
+      <div
+        ref={dialogRef}
         className={`dialog-inner relative ${className}`}
         onClick={(e) => e.stopPropagation()}>
-        <button onClick={onClose} className='absolute top-4 right-4 '>
+        <button
+          onClick={() => setIsClosing(true)}
+          className='absolute top-4 right-4 hover:scale-110 transition-transform duration-200'>
           <svg
             className='w-6 h-6'
             fill='none'
@@ -63,7 +114,7 @@ export const Dialog: React.FC<DialogProps> = ({
           </svg>
         </button>
         {children}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };

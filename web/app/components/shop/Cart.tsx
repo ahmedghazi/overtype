@@ -108,7 +108,7 @@ const Cart = (props: Props) => {
   return (
     <div className={clsx("cart")}>
       <div className='header'>
-        <h2 className='md:text-2xl'>Cart</h2>
+        <h2 className='text-2xl'>Cart</h2>
       </div>
       <div className='body'>
         {products && products.length === 0 && (

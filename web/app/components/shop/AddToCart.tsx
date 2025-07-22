@@ -6,6 +6,7 @@ import CardToast from "./CardToast";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { ProductData } from "@/app/types/extra-types";
+import { publish } from "pubsub-js";
 
 type Props = {
   items: ProductData[];
@@ -32,6 +33,12 @@ const AddToCart = ({ items }: Props) => {
       // publish("DIALOG.CLOSE");
       notify(item);
     });
+    if (items.length > 0) {
+      publish("DIALOG.CLOSE");
+      setTimeout(() => {
+        publish("CART_OPEN");
+      }, 700);
+    }
   };
 
   const notify = (item: ProductData) => {
