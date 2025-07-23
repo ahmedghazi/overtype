@@ -12,6 +12,7 @@ import localeText from './locale/localeText'
 import blockContent from './objects/blockContent'
 import linkExternal from './objects/linkExternal'
 import linkInternal from './objects/linkInternal'
+import linkFile from './objects/linkFile'
 import linkGroup from './objects/linkGroup'
 import seo from './objects/seo'
 import keyVal from './objects/keyVal'
@@ -70,6 +71,7 @@ export const schemaTypes = [
   linkExternal,
   linkInternal,
   linkGroup,
+  linkFile,
   seo,
   keyVal,
   keyValString,

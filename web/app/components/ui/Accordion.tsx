@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { PortableText } from "next-sanity";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Link from "next/link";
 
 const AccordionItem = ({ item }: { item: KeyVal }) => {
   const [active, setActive] = useState<boolean>(false);
@@ -53,12 +54,36 @@ type Props = {
 };
 
 const AccordionComponent = ({ input }: Props) => {
+  const { items, links } = input;
   return (
     <div className='accordion'>
-      {input.items?.map((item, index) => (
+      {items?.map((item, index) => (
         <AccordionItem key={index} item={item} />
       ))}
-      {/* <pre>{JSON.stringify(input, null, 2)}</pre> */}
+      {links?.map((link, index) => (
+        <div className='accordion--item' key={index}>
+          {link._type === "linkFile" && (
+            <a
+              href={link.file?.asset.url}
+              target='_blank'
+              rel='noopener noreferrer'>
+              <div className='header'>
+                <h3 className='label'>{link.label}</h3>
+                <div>
+                  <i className='icon-download'></i>
+                </div>
+              </div>
+            </a>
+          )}
+          {/* {link._type === "linkInternal" &&
+            <Link href={_linkResolver(link.link)}>{link.label}</Link>
+          }
+          {link._type === "linkExternal" &&
+            <a href={link.link} target="_blank" rel="noopener noreferrer">{link.label}</a>
+          } */}
+        </div>
+      ))}
+      {/* <pre>{JSON.stringify(links, null, 2)}</pre> */}
     </div>
   );
 };

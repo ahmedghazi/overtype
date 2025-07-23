@@ -1155,6 +1155,23 @@ export type LinkGroup = {
   items?: Array<SanityKeyed<LinkInternal> | SanityKeyed<LinkExternal>>;
 };
 
+export type LinkFile = {
+  _type: "linkFile";
+  /**
+   * Label — `string`
+   *
+   *
+   */
+  label?: string;
+
+  /**
+   * File — `file`
+   *
+   *
+   */
+  file?: { _type: "file"; asset: SanityReference<any> };
+};
+
 export type Seo = {
   _type: "seo";
   /**
@@ -1332,6 +1349,17 @@ export type Accordion = {
    *
    */
   items?: Array<SanityKeyed<KeyVal>>;
+
+  /**
+   * Links — `array`
+   *
+   *
+   */
+  links?: Array<
+    | SanityKeyed<LinkInternal>
+    | SanityKeyed<LinkExternal>
+    | SanityKeyed<LinkFile>
+  >;
 };
 
 export type Faq = {

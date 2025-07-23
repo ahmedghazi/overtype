@@ -14,6 +14,22 @@ export default defineField({
       type: 'array',
       of: [{type: 'keyVal'}],
     }),
+    defineField({
+      name: 'links',
+      title: 'Links',
+      type: 'array',
+      of: [
+        {
+          type: 'linkInternal',
+        },
+        {
+          type: 'linkExternal',
+        },
+        {
+          type: 'linkFile',
+        },
+      ],
+    }),
   ],
   preview: {
     select: {

@@ -1,11 +1,11 @@
-import {FiExternalLink} from 'react-icons/fi'
+import {FiDownload} from 'react-icons/fi'
 import {defineField} from 'sanity'
 
 export default defineField({
-  title: 'Link External',
-  name: 'linkExternal',
+  title: 'Link File',
+  name: 'linkFile',
   type: 'object',
-  icon: FiExternalLink,
+  icon: FiDownload,
   preview: {
     select: {
       label: `label`,
@@ -24,9 +24,9 @@ export default defineField({
       type: 'string',
     }),
     defineField({
-      name: 'link',
-      title: 'Link',
-      type: 'string',
+      name: 'file',
+      title: 'File',
+      type: 'file',
     }),
   ],
 })

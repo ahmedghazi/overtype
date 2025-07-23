@@ -26,15 +26,28 @@ export const blockContent = `
 			_type == "linkInternal" => {
 				...,
 				reference->,
-
 			},
+
 		},
 		_type == 'icon' => {
 			...,
 			image{
 				asset->
 			},
-    }
+    },
+		_type == "accordion" => {
+			...,
+			links[]{
+				_type == "linkFile" => {
+					...,
+					file{
+						asset->{
+							url
+						}
+					}
+				},
+			}
+		},
 	},
 	fr[]{
 		...,
@@ -43,16 +56,27 @@ export const blockContent = `
 			_type == "linkInternal" => {
 				...,
 				reference->,
-
 			},
-
 		},
 		_type == 'icon' => {
 			...,
 			image{
 				asset->
 			},
-    }
+    },
+		_type == "accordion" => {
+			...,
+			links[]{
+			_type == "linkFile" => {
+					...,
+					file{
+						asset->{
+							url
+						}
+					}
+				},
+			}
+		},
 	}
 `;
 
