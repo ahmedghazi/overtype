@@ -8,7 +8,7 @@ import Waterfall from "./typeface/Waterfall";
 import TypeTester from "./typeface/TypeTester";
 import { PortableText } from "next-sanity";
 import portableTextComponents from "../sanity-api/portableTextComponents";
-import { _localizeField } from "../sanity-api/utils";
+import { _linkResolver, _localizeField } from "../sanity-api/utils";
 import Figure from "./ui/Figure";
 import clsx from "clsx";
 import Btn from "./ui/buttons/Btn";
@@ -17,6 +17,8 @@ import { Dialog } from "./ui/Dialog";
 import Buy from "./shop/Buy";
 import HeroSlider from "./HeroSlider";
 import CardFontInUse from "./CardFontInUse";
+import LinkWithIcon from "./ui/buttons/LinkWithIcon";
+import { usePageContext } from "../context/PageContext";
 
 type Props = {
   input: Product;
@@ -24,12 +26,18 @@ type Props = {
 
 const ContentProduct = ({ input }: Props) => {
   // console.log(input);
-  const { title, singles, hero, text, images, inUse, related } = input;
+  const { title, singles, hero, text, images, inUse, inUseCta, related } =
+    input;
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const _scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
+  const {
+    settings: { shopPage },
+  } = usePageContext();
+
   return (
     <div className='content--product '>
       <div className='inner'>
@@ -93,6 +101,13 @@ const ContentProduct = ({ input }: Props) => {
         <section className='in-use px-md'>
           <div className='header mb-lg px-xs md:px-md'>
             <h2 className='sans'>In Use</h2>
+            <div className='actions'>
+              <LinkWithIcon
+                label={inUseCta?.label || "View"}
+                link={inUseCta?.link || ""}
+                icon='arrow-e'
+              />
+            </div>
           </div>
           <div className='items'>
             <div className='scroll-x px-xs md:px-md'>

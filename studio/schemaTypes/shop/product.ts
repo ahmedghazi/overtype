@@ -168,6 +168,11 @@ export default defineType({
     }),
 
     defineField({
+      name: 'inUseCta',
+      type: 'linkExternal',
+      group: 'editorial',
+    }),
+    defineField({
       name: 'inUse',
       type: 'array',
       of: [

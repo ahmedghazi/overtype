@@ -4,6 +4,8 @@ import { FontsInUseUI } from "@/app/types/schema";
 import LinkWithIcon from "../ui/buttons/LinkWithIcon";
 import CardFontInUse from "../CardFontInUse";
 import "./ModuleFontsInUseUI.scss";
+import { usePageContext } from "@/app/context/PageContext";
+import { _linkResolver } from "@/app/sanity-api/utils";
 
 interface Props {
   input: FontsInUseUI;
@@ -11,13 +13,20 @@ interface Props {
 
 const ModuleFontsInUseUI = ({ input }: Props) => {
   const { title, items } = input;
+  const {
+    settings: { shopPage },
+  } = usePageContext();
 
   return (
     <section className={clsx("module module--fonts-in-use-ui ")}>
       <div className='header mb-lg px-xs md:px-md'>
         <h2 className='sans'>{title}</h2>
         <div className='actions'>
-          <LinkWithIcon label='View All' link='/products' icon='arrow-e' />
+          <LinkWithIcon
+            label='View All'
+            link={_linkResolver(shopPage)}
+            icon='arrow-e'
+          />
         </div>
       </div>
       <div className='items'>

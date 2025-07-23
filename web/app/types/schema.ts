@@ -551,6 +551,13 @@ export interface Product extends SanityDocument {
   singles?: Array<SanityKeyed<ProductSingle>>;
 
   /**
+   * inUseCta — `linkExternal`
+   *
+   *
+   */
+  inUseCta?: LinkExternal;
+
+  /**
    * inUse — `array`
    *
    *

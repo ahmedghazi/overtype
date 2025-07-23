@@ -64,6 +64,13 @@ const Range = ({
     ref.current?.style.setProperty("--background-size", getBackgroundSize());
   };
 
+  const _sanitizeValue = (val: string) => {
+    console.log(val.indexOf("."));
+    if (val.indexOf(".") === -1) return val;
+    const parts = val.split(".");
+    return `${parts[0]}.${parts[1].slice(0, 2)}`;
+  };
+
   return (
     <div className='ui-range '>
       <div className='flex justify-between label'>
@@ -74,7 +81,7 @@ const Range = ({
         <input
           type='number'
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => setValue(_sanitizeValue(e.target.value))}
         />
         {unit}
       </div>
@@ -86,7 +93,7 @@ const Range = ({
         min={min}
         max={max}
         step={step}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setValue(_sanitizeValue(e.target.value))}
       />
     </div>
   );
