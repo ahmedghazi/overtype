@@ -182,6 +182,13 @@ export interface Settings extends SanityDocument {
   licenses?: Array<SanityKeyed<LicenseType>>;
 
   /**
+   * messageDialogBuy — `blockContent`
+   *
+   *
+   */
+  messageDialogBuy?: BlockContent;
+
+  /**
    * toolTipLicenses — `localeText`
    *
    *

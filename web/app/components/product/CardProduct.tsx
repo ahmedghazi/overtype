@@ -60,7 +60,15 @@ const CardProduct = ({ input, layout }: Props) => {
       </div>
       <div className='footer'>
         <div className='group'>
-          <div className='title ui-cartouche'>{input.title}</div>
+          <div
+            className='title ui-cartouche'
+            style={{
+              background: input?.background?.hex || "var(--color-bg)",
+              color: input?.foreground?.hex || "var(--color-primary)",
+            }}>
+            {input.title}
+          </div>
+
           <div className='styles ui-cartouche'>
             <span>{input.singles?.length}</span> <span>styles</span>
           </div>

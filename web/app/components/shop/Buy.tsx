@@ -11,6 +11,8 @@ import AddToCart from "./AddToCart";
 import BuySingle from "./BuySingle";
 import { TypeFaceContextProvider } from "../typeface/TypeFaceContext";
 import BtnPill from "../ui/buttons/BtnPill";
+import { PortableText } from "next-sanity";
+import portableTextComponents from "@/app/sanity-api/portableTextComponents";
 
 type Props = {
   input: Product;
@@ -19,7 +21,8 @@ type Props = {
 const Buy = ({ input }: Props) => {
   // console.log(input);
   const { settings } = usePageContext();
-  const { licenses, toolTipLicenses, toolTipLogo } = settings;
+  const { licenses, toolTipLicenses, toolTipLogo, messagemDialogBuy } =
+    settings;
   const {
     licenseType,
     setLicenseType,
@@ -44,12 +47,12 @@ const Buy = ({ input }: Props) => {
     <div className='buy'>
       <div className='header'>
         <h2 className='text-2xl'>Purchase {input.title}</h2>
-        <p>
-          Pricing scales with your company size. Our licenses are all-in-one,
-          you can use the font anywhere. Just add the “logo/wordmark” option if
-          you're using it in a logo. Have a quick look at our EULA to make sure
-          you're all set.
-        </p>
+        {messagemDialogBuy && (
+          <PortableText
+            value={_localizeField(messagemDialogBuy)}
+            components={portableTextComponents}
+          />
+        )}
       </div>
       <div className='body'>
         <section>

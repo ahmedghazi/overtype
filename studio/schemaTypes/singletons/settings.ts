@@ -106,6 +106,11 @@ export default defineType({
       group: 'shop',
     }),
     defineField({
+      name: 'messageDialogBuy',
+      type: 'blockContent',
+      group: 'shop',
+    }),
+    defineField({
       name: 'toolTipLicenses',
       type: 'localeText',
       group: 'shop',
