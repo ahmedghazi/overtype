@@ -43,6 +43,10 @@ const Range = ({
     _update();
   }, [value]);
 
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
+
   function getBackgroundSize() {
     const _min = parseFloat(min) || 0;
     const _max = parseFloat(max) || 100;

@@ -116,3 +116,9 @@ export const _localizeField = (
 
 //   return min + rand;
 // };
+
+const _modulo = (arr: string[], value: string) => {
+  const index = arr.indexOf(value);
+  const nextIndex = (index + 1) % arr.length;
+  return arr[nextIndex];
+};

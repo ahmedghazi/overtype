@@ -106,6 +106,12 @@ export default defineType({
       group: 'shop',
     }),
     defineField({
+      name: 'pangrams',
+      type: 'array',
+      of: [{type: 'string'}],
+      group: 'shop',
+    }),
+    defineField({
       name: 'messageDialogBuy',
       type: 'blockContent',
       group: 'shop',

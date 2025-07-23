@@ -11,49 +11,66 @@ import Btn from "../ui/buttons/Btn";
 import Draggable from "react-draggable";
 import "./TypeTester.scss";
 import useDeviceDetect from "@/app/hooks/useDeviceDetect";
+import { usePageContext } from "@/app/context/PageContext";
+import { publish, subscribe, unsubscribe } from "pubsub-js";
+import TesterTextType from "./TesterTextType";
 
 interface TextPrevizewProps {
   ref?: React.RefObject<HTMLDivElement>;
+  pangram: string;
+  isParagraph: boolean;
 }
 
 const TextPrevizew = React.forwardRef<HTMLDivElement, TextPrevizewProps>(
-  (props, ref) => {
+  ({ pangram, isParagraph }, ref) => {
     TextPrevizew.displayName = "TextPrevizew";
     const { type } = useTypeFace();
-    const [content, setContent] = useState("Test the font here");
+
+    const [content, setContent] = useState(pangram || "AaBbCcXx");
+    useEffect(() => {
+      setContent(pangram || "AaBbCcXx");
+    }, [pangram]);
 
     const handleContentChange = (e: React.ChangeEvent<HTMLDivElement>) => {
       setContent(e.target.textContent || "");
     };
 
-    if (!type)
-      return (
-        <div
-          ref={ref}
-          className='t-preview text-10xl'
-          contentEditable={true}
-          suppressContentEditableWarning={true}
-          spellCheck='false'
-          autoCorrect='off'
-          onInput={handleContentChange}
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
-      );
+    // if (!type)
+    //   return (
+    //     <div
+    //       ref={ref}
+    //       className={clsx(
+    //         "t-preview md:text-10xl",
+    //         isParagraph && "md:columns-2"
+    //       )}
+    //       contentEditable={true}
+    //       suppressContentEditableWarning={true}
+    //       spellCheck='false'
+    //       autoCorrect='off'
+    //       onInput={handleContentChange}
+    //       dangerouslySetInnerHTML={{ __html: content }}
+    //     />
+    //   );
+    if (!type) return null;
 
     return (
       <div
         ref={ref}
-        className='t-preview text-10xl'
+        className={clsx(
+          "t-preview md:text-10xl",
+          isParagraph && "md:columns-2"
+        )}
         contentEditable={true}
         suppressContentEditableWarning={true}
         spellCheck='false'
         autoCorrect='off'
-        onInput={handleContentChange}
-        dangerouslySetInnerHTML={{ __html: content }}
+        // onInput={handleContentChange}
+        // dangerouslySetInnerHTML={{ __html: content }}
         style={{
           fontFamily: type.slug?.current || "inherit",
-        }}
-      />
+        }}>
+        {content}
+      </div>
     );
   }
 );
@@ -61,8 +78,9 @@ const TextPrevizew = React.forwardRef<HTMLDivElement, TextPrevizewProps>(
 interface AsideProps {
   singles: ProductSingle[];
   target: HTMLDivElement | null;
+  textType: "title" | "paragraph";
 }
-const Aside = ({ singles, target }: AsideProps) => {
+const Aside = ({ singles, target, textType }: AsideProps) => {
   const nodeRef = useRef<HTMLDivElement>(null);
 
   const [ready, setReady] = useState<boolean>(false);
@@ -73,13 +91,20 @@ const Aside = ({ singles, target }: AsideProps) => {
   >("none");
   const [textAlign, setTextAlign] = useState<string>("left");
   const { isMobile } = useDeviceDetect();
-  const initialSize = isMobile ? "56" : "100";
+  const [initialSize, setInitialSize] = useState<string>(
+    isMobile ? "56" : "100"
+  );
 
   useEffect(() => {
     setReady(true);
     const initialType = singles.find((el) => el.isDefault);
     if (initialType) dispatchType(initialType.typeface);
   }, []);
+
+  useEffect(() => {
+    if (textType === "paragraph") setInitialSize(isMobile ? "14" : "12");
+    else setInitialSize(isMobile ? "56" : "100");
+  }, [textType, isMobile]);
 
   useEffect(() => {
     if (target) {
@@ -96,11 +121,6 @@ const Aside = ({ singles, target }: AsideProps) => {
     }));
   }, [singles]);
 
-  const _modulo = (arr: string[], value: string) => {
-    const index = arr.indexOf(value);
-    const nextIndex = (index + 1) % arr.length;
-    return arr[nextIndex];
-  };
   const _getY = () => {
     const wh = window.innerHeight;
   };
@@ -110,6 +130,7 @@ const Aside = ({ singles, target }: AsideProps) => {
     <Draggable handle='.handle' nodeRef={nodeRef}>
       <aside className='rounded' ref={nodeRef}>
         <div className='handle'></div>
+
         <div className=''>
           <Select
             name='font-tyles'
@@ -158,13 +179,14 @@ const Aside = ({ singles, target }: AsideProps) => {
             )}
           </div>
           <div className='styles'>
-            <select
-              className='ui-select mb-2xs'
-              name='open-type'
-              id=''></select>
+            <select className='ui-select mb-2xs' name='open-type' id=''>
+              <option value='ss01'>ss01</option>
+              <option value='ss02'>ss02</option>
+              <option value='ss03'>ss03</option>
+            </select>
             <div className='flex flex-wrap items-start gap-0.5 gap-y-2xs'>
-              <BtnPill label='Title' />
-              <BtnPill label='Paragraph' />
+              <TesterTextType type={textType} />
+
               <div className='wrap'></div>
 
               <BtnTransform
@@ -201,18 +223,45 @@ type TypeTesterProps = {
 const TypeTester = ({ singles }: TypeTesterProps) => {
   const previewRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
+  const [textType, setTextType] = useState<"title" | "paragraph">("title");
 
   useEffect(() => {
     setReady(true);
+    const token = subscribe("TESTER_TEXT", (msg, { type }) => {
+      setTextType(type);
+    });
+    return () => {
+      unsubscribe(token);
+    };
   }, []);
 
+  const {
+    settings: { pangrams },
+  } = usePageContext();
+
+  const randomPagran = useMemo(() => {
+    if (!pangrams) return "";
+    const randomIndex = Math.floor(Math.random() * pangrams.length);
+    return pangrams[randomIndex];
+  }, [pangrams]);
+
   return (
-    <div className='type-tester'>
+    <div className='type-tester rounded'>
       <TypeFaceContextProvider>
         <div className='canvas'>
-          <TextPrevizew ref={previewRef} />
+          <TextPrevizew
+            ref={previewRef}
+            pangram={textType === "title" ? "Test font here" : randomPagran}
+            isParagraph={textType === "paragraph"}
+          />
         </div>
-        {ready && <Aside singles={singles} target={previewRef.current} />}
+        {ready && (
+          <Aside
+            singles={singles}
+            target={previewRef.current}
+            textType={textType}
+          />
+        )}
       </TypeFaceContextProvider>
     </div>
   );

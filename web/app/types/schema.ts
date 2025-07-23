@@ -191,6 +191,13 @@ export interface Settings extends SanityDocument {
   licenses?: Array<SanityKeyed<LicenseType>>;
 
   /**
+   * pangrams — `array`
+   *
+   *
+   */
+  pangrams?: Array<SanityKeyed<string>>;
+
+  /**
    * messageDialogBuy — `blockContent`
    *
    *
@@ -509,6 +516,13 @@ export interface Product extends SanityDocument {
   images?: Array<SanityKeyed<MosaicItem>>;
 
   /**
+   * Blurb — `string`
+   *
+   * short description for the cart
+   */
+  blurb?: string;
+
+  /**
    * metadata — `array`
    *
    *
@@ -535,13 +549,6 @@ export interface Product extends SanityDocument {
    * used for shop, also used to display typeface in frontend
    */
   singles?: Array<SanityKeyed<ProductSingle>>;
-
-  /**
-   * Blurb — `string`
-   *
-   * short description for the cart
-   */
-  blurb?: string;
 
   /**
    * Related Products — `array`

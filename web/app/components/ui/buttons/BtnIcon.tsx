@@ -7,6 +7,7 @@ type Props = {
     | "dotGreen"
     | "textLeft"
     | "textCenter"
+    | "textRight"
     | "dark-mode"
     | "cart"
     | "question"
@@ -39,6 +40,7 @@ const BtnIcon = ({ icon, size = "md", onClick }: Props) => {
         {icon === "dotGreen" && <i className='icon-dot-green'></i>}
         {icon === "textCenter" && <i className='icon-text-center'></i>}
         {icon === "textLeft" && <i className='icon-text-left'></i>}
+        {icon === "textRight" && <i className='icon-text-right'></i>}
         {icon === "dark-mode" && <i className='icon-dark-mode'></i>}
         {icon === "cart" && <i className='icon-cart'></i>}
         {icon === "question" && <span className='icn-question'>?</span>}

@@ -114,6 +114,14 @@ export default defineType({
     }),
 
     defineField({
+      name: 'blurb',
+      title: 'Blurb',
+      type: 'string',
+      description: 'short description for the cart',
+      group: 'shop',
+    }),
+
+    defineField({
       name: 'metadata',
       type: 'array',
       of: [
@@ -154,14 +162,6 @@ export default defineType({
           type: 'productSingle',
         },
       ],
-      group: 'shop',
-    }),
-
-    defineField({
-      name: 'blurb',
-      title: 'Blurb',
-      type: 'string',
-      description: 'short description for the cart',
       group: 'shop',
     }),
 

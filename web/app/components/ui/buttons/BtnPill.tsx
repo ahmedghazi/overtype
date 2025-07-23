@@ -6,13 +6,24 @@ type Props = {
   withIcon?: "dotGreen" | "textLeft" | "textCenter";
   withActive?: boolean;
   onClick?: (active: boolean) => void;
+  isActive?: boolean;
 };
 
-const BtnPill = ({ label, withIcon, withActive = true, onClick }: Props) => {
+const BtnPill = ({
+  label,
+  withIcon,
+  withActive = true,
+  onClick,
+  isActive = false,
+}: Props) => {
   const [active, setActive] = useState<boolean>(false);
   useEffect(() => {
     if (typeof onClick === "function") onClick(active);
   }, [active]);
+
+  useEffect(() => {
+    if (isActive) setActive(isActive);
+  }, [isActive]);
 
   return (
     <div

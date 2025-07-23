@@ -46,7 +46,7 @@ const ContentProduct = ({ input }: Props) => {
             />
           </div>
         </section>
-        <section className='tester' id='tester'>
+        <section className='tester px-md' id='tester'>
           <TypeTester singles={singles || []} />
         </section>
         <section className='images px-md'>
