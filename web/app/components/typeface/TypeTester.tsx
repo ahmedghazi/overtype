@@ -132,7 +132,7 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
             <div className='sizes md:mb-3xl'>
               <Range
                 min='12'
-                max='300'
+                max='200'
                 step='1'
                 unit='px'
                 label='Size'
@@ -141,17 +141,17 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
                 cssVar='--font-size'
               />
               <Range
-                min='-5'
-                max='5'
+                min='-1'
+                max='1'
                 step='0.005'
                 initialValue='0'
-                unit='em'
+                unit='%'
                 label='Letter spacing'
                 target={target}
                 cssVar='--letter-spacing'
               />
               <Range
-                min='0'
+                min='0.7'
                 max='2'
                 step='0.1'
                 unit=''
