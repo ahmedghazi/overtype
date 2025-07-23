@@ -19,10 +19,6 @@ type Props = {
 
 const BtnIcon = ({ icon, size = "md", onClick }: Props) => {
   const [active, setActive] = useState(false);
-  // useEffect(() => {
-  //   // console.log(active, icon);
-  //   if (typeof onClick === "function") onClick(active);
-  // }, [active]);
 
   const _onClick = () => {
     setActive(!active);

@@ -1,5 +1,12 @@
 @use "../../variables";
 
+.btn-cart {
+  &.has-products {
+    i {
+      color: var(--color-accent);
+    }
+  }
+}
 .cart {
   width: 100%;
   max-width: 55.375rem;
