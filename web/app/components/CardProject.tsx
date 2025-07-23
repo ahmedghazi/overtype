@@ -5,6 +5,7 @@ import { _linkResolver, _localizeField } from "../sanity-api/utils";
 import Figure from "./ui/Figure";
 import Link from "next/link";
 import BtnPill from "./ui/buttons/BtnPill";
+import BtnIcon from "./ui/buttons/BtnIcon";
 
 type Props = {
   input: Project;
@@ -17,6 +18,9 @@ const CardProject = ({ input }: Props) => {
       <Link href={_linkResolver(input)}>
         <div className='image rounded'>
           {imageCover && <Figure asset={imageCover?.asset} />}
+          <div className='overlay'>
+            <BtnIcon icon='see' onClick={() => {}} />
+          </div>
         </div>
         {input.tag && (
           <div className='header-top text-sm'>

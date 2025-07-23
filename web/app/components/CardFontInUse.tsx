@@ -4,6 +4,7 @@ import { FontInUse } from "../types/schema";
 import { _linkResolver, _localizeField } from "../sanity-api/utils";
 import Figure from "./ui/Figure";
 import BtnLink from "./ui/buttons/BtnLink";
+import BtnIcon from "./ui/buttons/BtnIcon";
 
 type Props = {
   input: FontInUse;
@@ -15,6 +16,9 @@ const CardFontInUse = ({ input }: Props) => {
     <article className='card card--font-in-use'>
       <div className='image rounded'>
         {image && <Figure asset={image?.image?.asset} />}
+        <div className='overlay'>
+          <BtnIcon icon='see' onClick={() => {}} />
+        </div>
       </div>
       <div className='header'>
         <div>
