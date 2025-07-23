@@ -62,30 +62,25 @@
   .canvas {
     height: calc(var(--main-h) - var(--spacing-md));
     overflow: clip;
-
-    // display: grid;
-    // align-items: center;
-    // justify-items: center;
-    // height: 100%;
-    // padding: 0 0 0 calc(var(--spacing-md) * 2 + 235px);
-  }
-  .t-preview {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: var(--text-align, "center");
-    font-size: var(--font-size, 9.375rem);
-    font-family: var(--font-family);
-    line-height: var(--line-height, 1);
-    letter-spacing: var(--letter-spacing, 0);
-    // word-break: break-all;
-    // overflow: clip;
-    // background-color: red;
-    &:focus {
-      outline: none;
+    .t-preview {
+      position: absolute;
+      left: 0%;
+      top: 50%;
+      transform: translate(-0%, -50%);
+      width: 100%;
+      text-align: var(--text-align, "center");
+      font-size: var(--font-size, 9.375rem);
+      font-family: var(--font-family);
+      line-height: var(--line-height, 1);
+      letter-spacing: var(--letter-spacing, 0);
+      // word-break: break-all;
+      // overflow: clip;
+      // background-color: red;
+      &:focus {
+        outline: none;
+      }
+      // transition: all 0.1s ease-in-out;
     }
-    // transition: all 0.1s ease-in-out;
   }
 
   @media all and (max-width: variables.$md) {

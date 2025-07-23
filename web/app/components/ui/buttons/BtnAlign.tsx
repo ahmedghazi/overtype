@@ -9,10 +9,10 @@ type Props = {
 const BtnAlign = ({ onClick }: Props) => {
   const [active, setActive] = useState(false);
   const [textAlign, setTextAlign] = useState<"left" | "center" | "right">(
-    "left"
+    "center"
   );
   const [icon, setIcon] = useState<"textLeft" | "textCenter" | "textRight">(
-    "textLeft"
+    "textCenter"
   );
 
   useEffect(() => {
@@ -29,7 +29,6 @@ const BtnAlign = ({ onClick }: Props) => {
     const nextIndex = (index + 1) % arr.length;
     setTextAlign(arr[nextIndex]);
   };
-
   return <BtnIcon icon={icon} size='sm' onClick={_onClick} />;
 };
 

@@ -1,6 +1,5 @@
 import { ProductSingle } from "@/app/types/schema";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import BtnPill from "../ui/buttons/BtnPill";
 import Select from "../ui/inputs/Select";
 import useTypeFace, { TypeFaceContextProvider } from "./TypeFaceContext";
 import Range from "../ui/inputs/Range";
@@ -9,11 +8,11 @@ import BtnAlign from "../ui/buttons/BtnAlign";
 import clsx from "clsx";
 import Btn from "../ui/buttons/Btn";
 import Draggable from "react-draggable";
-import "./TypeTester.scss";
 import useDeviceDetect from "@/app/hooks/useDeviceDetect";
 import { usePageContext } from "@/app/context/PageContext";
 import { publish, subscribe, unsubscribe } from "pubsub-js";
 import TesterTextType from "./TesterTextType";
+import "./TypeTester.scss";
 
 interface TextPrevizewProps {
   ref?: React.RefObject<HTMLDivElement>;
@@ -35,22 +34,6 @@ const TextPrevizew = React.forwardRef<HTMLDivElement, TextPrevizewProps>(
       setContent(e.target.textContent || "");
     };
 
-    // if (!type)
-    //   return (
-    //     <div
-    //       ref={ref}
-    //       className={clsx(
-    //         "t-preview md:text-10xl",
-    //         isParagraph && "md:columns-2"
-    //       )}
-    //       contentEditable={true}
-    //       suppressContentEditableWarning={true}
-    //       spellCheck='false'
-    //       autoCorrect='off'
-    //       onInput={handleContentChange}
-    //       dangerouslySetInnerHTML={{ __html: content }}
-    //     />
-    //   );
     if (!type) return null;
 
     return (
@@ -58,7 +41,7 @@ const TextPrevizew = React.forwardRef<HTMLDivElement, TextPrevizewProps>(
         ref={ref}
         className={clsx(
           "t-preview md:text-10xl",
-          isParagraph && "md:columns-2"
+          isParagraph && "md:columns-3 gap-md"
         )}
         contentEditable={true}
         suppressContentEditableWarning={true}
@@ -89,7 +72,7 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
   const [textTansform, setTextTansform] = useState<
     "none" | "capitalize" | "uppercase" | "lowercase"
   >("none");
-  const [textAlign, setTextAlign] = useState<string>("left");
+  const [textAlign, setTextAlign] = useState<string>("center");
   const { isMobile } = useDeviceDetect();
   const [initialSize, setInitialSize] = useState<string>(
     isMobile ? "56" : "100"
@@ -107,9 +90,12 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
   }, [textType, isMobile]);
 
   useEffect(() => {
+    console.log(target, textTansform, textAlign);
     if (target) {
-      target.style.textTransform = textTansform;
-      target.style.textAlign = textAlign;
+      // target.style.textTransform = textTansform;
+      // target.style.textAlign = textAlign;
+      target.style.setProperty("--text-transform", textTansform);
+      target.style.setProperty("--text-align", textAlign);
     }
   }, [textTansform, textAlign]);
 
@@ -138,70 +124,68 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
             onChange={(e: any) => dispatchType(e.value)}
           />
         </div>
-        <div
-          className={clsx("body pt-0 md:pt-3xl", {
-            "is-collapsed": collapse,
-          })}>
-          <div className='sizes md:mb-3xl'>
-            {target && (
-              <>
-                <Range
-                  min='12'
-                  max='300'
-                  step='1'
-                  unit='px'
-                  label='Size'
-                  initialValue={initialSize}
-                  target={target}
-                  cssVar='--font-size'
-                />
-                <Range
-                  min='-5'
-                  max='5'
-                  step='0.005'
-                  initialValue='0'
-                  unit='em'
-                  label='Letter spacing'
-                  target={target}
-                  cssVar='--letter-spacing'
-                />
-                <Range
-                  min='0'
-                  max='2'
-                  step='0.1'
-                  unit=''
-                  label='Line height'
-                  initialValue='1'
-                  target={target}
-                  cssVar='--line-height'
-                />
-              </>
-            )}
-          </div>
-          <div className='styles'>
-            <select className='ui-select mb-2xs' name='open-type' id=''>
-              <option value='ss01'>ss01</option>
-              <option value='ss02'>ss02</option>
-              <option value='ss03'>ss03</option>
-            </select>
-            <div className='flex flex-wrap items-start gap-0.5 gap-y-2xs'>
-              <TesterTextType type={textType} />
-
-              <div className='wrap'></div>
-
-              <BtnTransform
-                onClick={(val) => {
-                  setTextTansform(val);
-                }}
+        {target && (
+          <div
+            className={clsx("body pt-0 md:pt-3xl", {
+              "is-collapsed": collapse,
+            })}>
+            <div className='sizes md:mb-3xl'>
+              <Range
+                min='12'
+                max='300'
+                step='1'
+                unit='px'
+                label='Size'
+                initialValue={initialSize}
+                target={target}
+                cssVar='--font-size'
               />
-              <BtnAlign
-                onClick={(val) => {
-                  setTextAlign(val);
-                }}
+              <Range
+                min='-5'
+                max='5'
+                step='0.005'
+                initialValue='0'
+                unit='em'
+                label='Letter spacing'
+                target={target}
+                cssVar='--letter-spacing'
+              />
+              <Range
+                min='0'
+                max='2'
+                step='0.1'
+                unit=''
+                label='Line height'
+                initialValue='1'
+                target={target}
+                cssVar='--line-height'
               />
             </div>
+            <div className='styles'>
+              <select className='ui-select mb-2xs' name='open-type' id=''>
+                <option value='ss01'>ss01</option>
+                <option value='ss02'>ss02</option>
+                <option value='ss03'>ss03</option>
+              </select>
+              <div className='flex flex-wrap items-start gap-0.5 gap-y-2xs'>
+                <TesterTextType type={textType} />
+
+                <div className='wrap'></div>
+
+                <BtnTransform
+                  onClick={(val) => {
+                    setTextTansform(val);
+                  }}
+                />
+                <BtnAlign
+                  onClick={(val) => {
+                    setTextAlign(val);
+                  }}
+                />
+              </div>
+            </div>
           </div>
-        </div>
+        )}
         <div className='footer'>
           <Btn size='md' onClick={() => setCollapse(!collapse)}>
             {collapse ? (
@@ -224,17 +208,23 @@ const TypeTester = ({ singles }: TypeTesterProps) => {
   const previewRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
   const [textType, setTextType] = useState<"title" | "paragraph">("title");
+  const [target, setTarget] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setReady(true);
     const token = subscribe("TESTER_TEXT", (msg, { type }) => {
       setTextType(type);
     });
-    console.log(previewRef);
-    const fallbackPreviewRef = document.querySelector(".t-preview");
-    if (!previewRef.current)
-      previewRef.current = fallbackPreviewRef as HTMLDivElement;
-
+    // console.log(previewRef);
+    // if (!previewRef.current) {
+    setTimeout(() => {
+      const fallbackPreviewRef = document.querySelector(
+        ".canvas .t-preview"
+      ) as HTMLDivElement;
+      setTarget(fallbackPreviewRef);
+      // if (fallbackPreviewRef) previewRef.current = fallbackPreviewRef;
+    }, 250);
+    // }
     return () => {
       unsubscribe(token);
     };
@@ -261,11 +251,7 @@ const TypeTester = ({ singles }: TypeTesterProps) => {
           />
         </div>
         {ready && (
-          <Aside
-            singles={singles}
-            target={previewRef.current}
-            textType={textType}
-          />
+          <Aside singles={singles} target={target} textType={textType} />
         )}
       </TypeFaceContextProvider>
     </div>
