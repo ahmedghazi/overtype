@@ -230,6 +230,11 @@ const TypeTester = ({ singles }: TypeTesterProps) => {
     const token = subscribe("TESTER_TEXT", (msg, { type }) => {
       setTextType(type);
     });
+    console.log(previewRef);
+    const fallbackPreviewRef = document.querySelector(".t-preview");
+    if (!previewRef.current)
+      previewRef.current = fallbackPreviewRef as HTMLDivElement;
+
     return () => {
       unsubscribe(token);
     };
