@@ -5,6 +5,7 @@ import Link from "next/link";
 import { _linkResolver } from "./utils";
 import Accordion from "../components/ui/Accordion";
 import Figure from "../components/ui/Figure";
+import KeyValStringComponent from "../components/ui/KeyValString";
 // import Figure from "../components/ui/Figure";
 // import clsx from "clsx";
 // import { VideoWrapper } from "../components/ui/player";
@@ -63,6 +64,9 @@ const portableTextComponents: PortableTextComponents = {
     // },
     accordion: ({ value }) => {
       return <Accordion input={value} />;
+    },
+    keyValString: ({ value }) => {
+      return <KeyValStringComponent input={value} />;
     },
   },
 

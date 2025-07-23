@@ -1,4 +1,4 @@
-import {defineType, defineArrayMember} from 'sanity'
+import {defineType, defineArrayMember, defineField} from 'sanity'
 // import { FiExternalLink, LinkIcon } from 'react-icons/fi'
 import {LinkIcon} from '@sanity/icons'
 import {FiAlignCenter, FiAlignLeft, FiAlignRight, FiExternalLink} from 'react-icons/fi'
@@ -124,6 +124,11 @@ export default defineType({
 
     defineArrayMember({
       type: 'accordion',
+    }),
+    defineArrayMember({
+      type: 'keyValString',
+      name: 'keyValString',
+      // of: [{type: 'keyValString'}],
     }),
   ],
 })

@@ -1096,6 +1096,7 @@ export type BlockContent = Array<
       hotspot?: SanityImageHotspot;
     }>
   | SanityKeyed<Accordion>
+  | SanityKeyed<KeyValString>
 >;
 
 export type LinkExternal = {
