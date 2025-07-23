@@ -145,7 +145,7 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
                 max='1'
                 step='0.005'
                 initialValue='0'
-                unit='%'
+                unit='em'
                 label='Letter spacing'
                 target={target}
                 cssVar='--letter-spacing'
@@ -188,7 +188,7 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
         )}
         <div className='footer'>
           <Btn size='md' onClick={() => setCollapse(!collapse)}>
-            {collapse ? (
+            {!collapse ? (
               <i className='icon-mask'></i>
             ) : (
               <i className='icon-see'></i>
