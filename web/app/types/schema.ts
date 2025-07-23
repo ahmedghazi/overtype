@@ -495,11 +495,11 @@ export interface Product extends SanityDocument {
   foreground?: Color;
 
   /**
-   * hero — `figure`
+   * Hero  — `array`
    *
    *
    */
-  hero?: Figure;
+  hero?: Array<SanityKeyed<Figure>>;
 
   /**
    * text — `localeBlockContent`
@@ -549,6 +549,13 @@ export interface Product extends SanityDocument {
    * used for shop, also used to display typeface in frontend
    */
   singles?: Array<SanityKeyed<ProductSingle>>;
+
+  /**
+   * inUse — `array`
+   *
+   *
+   */
+  inUse?: Array<SanityKeyed<FontInUse>>;
 
   /**
    * Related Products — `array`

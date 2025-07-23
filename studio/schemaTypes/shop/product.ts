@@ -98,7 +98,9 @@ export default defineType({
 
     defineField({
       name: 'hero',
-      type: 'figure',
+      title: 'Hero ',
+      type: 'array',
+      of: [{type: 'figure'}],
       group: 'editorial',
     }),
     defineField({
@@ -165,6 +167,16 @@ export default defineType({
       group: 'shop',
     }),
 
+    defineField({
+      name: 'inUse',
+      type: 'array',
+      of: [
+        {
+          type: 'fontInUse',
+        },
+      ],
+      group: 'editorial',
+    }),
     defineField({
       name: 'related',
       title: 'Related Products',

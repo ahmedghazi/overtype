@@ -15,6 +15,7 @@ import Btn from "./ui/buttons/Btn";
 import RelatedProducts from "./product/RelatedProducts";
 import { Dialog } from "./ui/Dialog";
 import Buy from "./shop/Buy";
+import HeroSlider from "./HeroSlider";
 
 type Props = {
   input: Product;
@@ -31,11 +32,12 @@ const ContentProduct = ({ input }: Props) => {
   return (
     <div className='content--product '>
       <div className='inner'>
-        {hero && hero.image && (
+        {/* {hero && hero.image && (
           <section className='hero px-md'>
             <Figure asset={hero.image.asset} />
           </section>
-        )}
+        )} */}
+        <HeroSlider input={hero || []} />
         <Waterfall title={title || ""} items={singles || []} />
         <section className='about px-md' id='about'>
           <h2 className='text-xl md:text-2xl'>About {title}</h2>

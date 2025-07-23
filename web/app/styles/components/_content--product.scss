@@ -5,8 +5,15 @@
   section:not(.Toastify) {
     scroll-margin-top: calct(var(--header-height) + var(--spacing-4xl));
     margin-bottom: var(--spacing-6xl);
-    &.hero {
+    &.hero-slider {
       // margin-bottom: var(--spacing-md);
+      figure {
+        display: block;
+      }
+      img {
+        height: calc(var(--main-h) - var(--spacing-md)) !important;
+        object-fit: cover !important;
+      }
     }
     &.waterfall {
       text-align: center;

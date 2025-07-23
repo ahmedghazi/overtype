@@ -143,7 +143,7 @@ export const PRODUCT_QUERY = groq`*[_type == "product" && slug.current == $slug]
   seo{
     ${seo}
   },
-  hero{
+  hero[]{
     ...,
     ${figure}
   },
