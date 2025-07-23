@@ -83,7 +83,7 @@ const Range = ({
           value={value}
           onChange={(e) => setValue(_sanitizeValue(e.target.value))}
         />
-        {unit}
+        {/* {unit} */}
       </div>
       <input
         ref={ref}

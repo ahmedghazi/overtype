@@ -194,6 +194,8 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
               <i className='icon-see'></i>
             )}
           </Btn>
+          {/* <i className='icon-see'></i>
+          <i className='icon-mask'></i> */}
         </div>
       </aside>
     </Draggable>
