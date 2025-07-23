@@ -8,7 +8,7 @@ import {
   Project,
   Settings,
 } from "../types/schema";
-import { figure, modules, productCard, seo } from "./fragments";
+import { figure, inUseCard, modules, productCard, seo } from "./fragments";
 // import { revalidatePath } from "next/cache";
 
 /*****************************************************************************************************
@@ -163,6 +163,9 @@ export const PRODUCT_QUERY = groq`*[_type == "product" && slug.current == $slug]
     mosaicItem->{
       ${figure}
     }
+  },
+  inUse[]{
+    ${inUseCard}
   },
   related[]->{
     ${productCard}

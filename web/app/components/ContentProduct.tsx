@@ -16,6 +16,7 @@ import RelatedProducts from "./product/RelatedProducts";
 import { Dialog } from "./ui/Dialog";
 import Buy from "./shop/Buy";
 import HeroSlider from "./HeroSlider";
+import CardFontInUse from "./CardFontInUse";
 
 type Props = {
   input: Product;
@@ -23,7 +24,7 @@ type Props = {
 
 const ContentProduct = ({ input }: Props) => {
   // console.log(input);
-  const { title, singles, hero, text, images, related } = input;
+  const { title, singles, hero, text, images, inUse, related } = input;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const _scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -86,6 +87,24 @@ const ContentProduct = ({ input }: Props) => {
           </ul>
         </nav>
       </div>
+
+      {/* <pre>{JSON.stringify(inUse, null, 2)}</pre> */}
+      {inUse && (
+        <section className='in-use px-md'>
+          <div className='header mb-lg px-xs md:px-md'>
+            <h2 className='sans'>In Use</h2>
+          </div>
+          <div className='items'>
+            <div className='scroll-x px-xs md:px-md'>
+              <div className='flex gap-md'>
+                {inUse?.map((item, i) => (
+                  <CardFontInUse key={i} input={item} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {related && (
         <RelatedProducts

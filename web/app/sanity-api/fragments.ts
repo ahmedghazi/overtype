@@ -95,22 +95,26 @@ const productsUI = `
     }
   }
 `;
+
+export const inUseCard = `
+	image{
+		${figure}
+	},
+	title,
+	source,
+	product->{
+		_type,
+		slug,
+		title,
+		background,
+		foreground
+	}`;
+
 const fontsInUseUI = `
   _type == 'fontsInUseUI' => {
 		title,
 		items[] {
-			image{
-        ${figure}
-      },
-			title,
-			source,
-			product->{
-				_type,
-				slug,
-				title,
-				background,
-				foreground
-			}
+			${inUseCard}
 		}
 
   }
