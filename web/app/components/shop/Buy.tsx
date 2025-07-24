@@ -71,12 +71,7 @@ const Buy = ({ input }: Props) => {
                       key={i}
                       name='licenseSize'
                       isChecked={licenseType === item}
-                      label={
-                        _localizeField(item.label) +
-                        ": (x" +
-                        item.priceMultiplier +
-                        ")"
-                      }
+                      label={_localizeField(item.label)}
                       subLabel={_localizeField(item.infos)}
                       onChange={() => _updateLicense(item)}
                     />
