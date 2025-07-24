@@ -1,6 +1,9 @@
 @use "../variables";
 
 .footer-cta {
+  p a {
+    text-decoration: none;
+  }
 }
 footer {
   // padding: var(--spacing-md);
