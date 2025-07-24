@@ -60,12 +60,14 @@
   .canvas {
     height: calc(var(--main-h) - var(--spacing-md));
     overflow: clip;
+    // padding: var(--spacing-md);
+    // background-color: red;
     .t-preview {
       position: absolute;
-      left: 0%;
+      left: var(--spacing-md);
       top: 50%;
       transform: translate(-0%, -50%);
-      width: 100%;
+      width: calc(100% - var(--spacing-md) * 2);
       text-align: var(--text-align, "center");
       font-size: var(--font-size, 9.375rem);
       font-family: var(--font-family);

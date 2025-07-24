@@ -90,10 +90,8 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
   }, [textType, isMobile]);
 
   useEffect(() => {
-    console.log(target, textTansform, textAlign);
+    // console.log(target, textTansform, textAlign);
     if (target) {
-      // target.style.textTransform = textTansform;
-      // target.style.textAlign = textAlign;
       target.style.setProperty("--text-transform", textTansform);
       target.style.setProperty("--text-align", textAlign);
     }
@@ -106,10 +104,6 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
       label: item.typeface?.title,
     }));
   }, [singles]);
-
-  const _getY = () => {
-    const wh = window.innerHeight;
-  };
 
   if (!ready) return null;
   return (
