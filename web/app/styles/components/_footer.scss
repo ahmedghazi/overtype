@@ -17,6 +17,9 @@ footer {
     display: flex;
     justify-content: space-between;
   }
+  a:hover {
+    color: var(--color-secondary);
+  }
 
   @media all and (max-width: variables.$md) {
     .inner {
