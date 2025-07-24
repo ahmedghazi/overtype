@@ -36,7 +36,7 @@ const Slider = ({ children, settingsOverride }) => {
     // autoplay: !isMobile,
     autoplaySpeed: 3000,
     autoplay: false,
-    dots: true,
+    dots: false,
     speed: isMobile ? 250 : 500,
     // speed: 500,
     swipeToSlide: true,
