@@ -25,7 +25,7 @@ const Footer = (props: Props) => {
         />
       </div>
 
-      <footer className=' px-xs md:px-md'>
+      <footer className=' p-xs md:p-md'>
         <div className='inner rounded'>
           <FooterNav settings={settings} />
           <div className='credits text-secondary md:text-sm'>
