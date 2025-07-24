@@ -13,7 +13,7 @@ const CartItem = ({ input, _delete }: Props) => {
       <div className='inner'>
         <div className='media'>
           <ProductImage
-            title={input.fullTitle}
+            title={input.productTitle}
             background={input.background}
             foreground={input.foreground}
           />

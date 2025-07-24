@@ -46,7 +46,7 @@ const AddToCart = ({ items }: Props) => {
       closeButton: false,
       // progress: 0.7,
       data: {
-        title: item.fullTitle,
+        title: item.productTitle,
         background: item.background,
         foreground: item.foreground,
       },
