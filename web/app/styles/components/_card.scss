@@ -67,8 +67,11 @@
         display: flex;
         gap: var(--spacing-3xs);
       }
-      .ui-cartouche {
+      .ui-cartouche,
+      .ui-btn {
         white-space: nowrap;
+        background-color: var(--color-tag);
+        color: white;
       }
     }
 
