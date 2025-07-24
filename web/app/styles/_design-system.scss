@@ -75,7 +75,6 @@
   }
   .sub-menu {
     display: none;
-
     z-index: 2;
     width: 100%;
     // background-color: var(--color-btn);
@@ -83,6 +82,12 @@
     border-bottom-right-radius: var(--radius-sm);
     padding: var(--spacing-3xs);
 
+    li .ui-cartouche {
+      background-color: transparent;
+      &:hover {
+        background-color: var(--color-btn--hover);
+      }
+    }
     li:last-child {
       margin-bottom: 0;
     }

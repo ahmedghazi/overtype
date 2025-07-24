@@ -39,22 +39,10 @@ nav.header-nav {
     }
     ul.menu {
       height: 100%;
-      // border-radius: var(--radius);
-      // overflow: hidden;
-      // z-index: 1;
-      // position: fixed;
-      // top: var(--spacing-xs);
-      // left: var(--spacing-xs);
-      // right: var(--spacing-xs);
-      // height: 100vh;
-      // background: var(--color-bg);
+
       flex-direction: column;
       justify-content: center;
-      // &.hidden {
-      //   display: block;
-      //   transform: translateY(100%);
-      //   opacity: 0;
-      // }
+
       li {
         text-align: center;
         &.has-submenu {

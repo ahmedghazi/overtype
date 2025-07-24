@@ -38,6 +38,7 @@ export const blockContent = `
 		_type == "accordion" => {
 			...,
 			links[]{
+				...,
 				_type == "linkFile" => {
 					...,
 					file{

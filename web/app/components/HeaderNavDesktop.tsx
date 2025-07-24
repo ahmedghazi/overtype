@@ -10,12 +10,12 @@ import useDeviceDetect from "../hooks/useDeviceDetect";
 import { usePathname } from "next/navigation";
 
 const NavItem = ({ item }: { item: LinkInternal | LinkExternal }) => {
+  console.log(item);
+
   if (item._type === "linkInternal") {
     return (
       <Link href={_linkResolver(item.link)} className='ui-cartouche has-blur'>
-        <div className='ui-cartouche- has-blur- '>
-          {_localizeField(item.label)}
-        </div>
+        <div className=''>{_localizeField(item.label)}</div>
       </Link>
     );
   }
@@ -26,9 +26,7 @@ const NavItem = ({ item }: { item: LinkInternal | LinkExternal }) => {
         target='_blank'
         rel='noopener noreferrer'
         className='ui-cartouche has-blur'>
-        <div className='ui-cartouche has-blur '>
-          {_localizeField(item.label)}
-        </div>
+        <div className=''>{item.label}</div>
       </a>
     );
   }

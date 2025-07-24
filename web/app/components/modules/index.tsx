@@ -13,7 +13,7 @@ import ModuleFaqUI from "./ModuleFaqUI";
 const Modules = ({ modules }: _ModulesList) => {
   const _renderModules = () => {
     return modules?.map((module: any, i: number) => {
-      console.log(module._type);
+      // console.log(module._type);
       switch (module._type) {
         case "fontsInUseUI":
           return <ModuleFontsInUseUI key={module._key} input={module} />;
