@@ -46,7 +46,7 @@ export const Dialog: React.FC<DialogProps> = ({
 
   const overlayRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
-
+  console.log(isOpen);
   useEffect(() => {
     if (isOpen) {
       gsap.from(overlayRef.current!, {
@@ -62,6 +62,10 @@ export const Dialog: React.FC<DialogProps> = ({
         duration: DURATION,
         ease: "power2.inOut",
       });
+
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
     }
   }, [isOpen, DURATION]);
 
@@ -83,6 +87,9 @@ export const Dialog: React.FC<DialogProps> = ({
           setIsClosing(false);
         },
       });
+      document.body.style.overflow = "auto";
+    } else {
+      // document.body.style.overflow = "hidden";
     }
   }, [isClosing, DURATION, onClose]);
 
