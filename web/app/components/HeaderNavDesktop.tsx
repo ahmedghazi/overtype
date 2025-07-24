@@ -10,8 +10,6 @@ import useDeviceDetect from "../hooks/useDeviceDetect";
 import { usePathname } from "next/navigation";
 
 const NavItem = ({ item }: { item: LinkInternal | LinkExternal }) => {
-  console.log(item);
-
   if (item._type === "linkInternal") {
     return (
       <Link href={_linkResolver(item.link)} className='ui-cartouche has-blur'>

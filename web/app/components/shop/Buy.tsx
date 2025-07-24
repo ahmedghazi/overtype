@@ -22,6 +22,7 @@ const Buy = ({ input }: Props) => {
   // console.log(input);
   const { settings } = usePageContext();
   const { licenses, toolTipLicenses, toolTipLogo, messageDialogBuy } = settings;
+  console.log(messageDialogBuy);
   const {
     licenseType,
     setLicenseType,
@@ -48,7 +49,7 @@ const Buy = ({ input }: Props) => {
         <h2 className='text-2xl'>Purchase {input.title}</h2>
         {messageDialogBuy && (
           <PortableText
-            value={_localizeField(messageDialogBuy)}
+            value={messageDialogBuy}
             components={portableTextComponents}
           />
         )}
