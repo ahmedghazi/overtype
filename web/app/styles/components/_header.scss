@@ -22,6 +22,8 @@ header {
 
   @media all and (max-width: variables.$md) {
     padding: 17.5px var(--spacing-xs);
+    max-height: 89px;
+
     .logo {
       svg {
         width: 82px;
