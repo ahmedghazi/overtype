@@ -31,6 +31,7 @@ const Buy = ({ input }: Props) => {
     dialogProducts,
     setDialogProducts,
   } = useShop();
+  console.log({ isLogo });
 
   const _updateLicense = (license: LicenseType) => {
     //reset
@@ -97,13 +98,13 @@ const Buy = ({ input }: Props) => {
                   <Radio
                     name='forLogo'
                     label='Yes'
-                    isChecked={isLogo}
+                    isChecked={isLogo === true}
                     onChange={() => setIsLogo(true)}
                   />
                   <Radio
                     name='forLogo'
                     label='No'
-                    isChecked={!isLogo}
+                    isChecked={isLogo === false}
                     onChange={() => setIsLogo(false)}
                   />
                 </div>

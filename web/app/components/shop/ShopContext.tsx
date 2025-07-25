@@ -133,7 +133,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
     email: "",
     inUseFor: "",
   });
-  const [isLogo, setIsLogo] = useState<boolean>(false);
+  const [isLogo, setIsLogo] = useState<boolean | undefined>(undefined);
   const [cartObject, setCartObject] = useState(null);
   const pathname = usePathname();
 
