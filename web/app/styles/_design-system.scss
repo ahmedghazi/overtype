@@ -221,6 +221,10 @@ a.ui-btn {
   border-radius: var(--radius-sm);
   overflow: clip;
   padding: 0 0.928em;
+  &.ui-btn--icon {
+    width: 2.25rem;
+    padding: 0;
+  }
   &:hover,
   &:active,
   &.is-active {
