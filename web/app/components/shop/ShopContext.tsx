@@ -101,7 +101,7 @@ type ContextProps = {
 
   licenseType: LicenseType | null;
   setLicenseType: Function;
-  isLogo: boolean;
+  isLogo: boolean | undefined;
   setIsLogo: Function;
   licenseFor: "me" | "client";
   setLicenseFor: Function;
