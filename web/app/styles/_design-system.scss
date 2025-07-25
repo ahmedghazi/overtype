@@ -389,15 +389,23 @@ a.ui-btn {
   width: 100%;
   // max-width: 188px;
   position: relative;
+  height: 2.25rem;
+  line-height: 2.35rem;
+
+  padding: 0 1.428em;
   // display: inline-block;
   background-color: var(--color-btn);
-  padding: 7.8px var(--spacing-md);
+  // padding: 7.8px var(--spacing-md);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' x='0px' y='0px' viewBox='0 0 12 7' xml:space='preserve'%3E%3Cpolygon fill='%23101010' points='6,6.7 0.6,1.3 1.4,0.6 6,5.2 10.6,0.6 11.4,1.3 '/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position-x: 92%;
   background-position-y: 15px;
   border-radius: var(--radius-sm);
 }
+.dark .ui-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' x='0px' y='0px' viewBox='0 0 12 7' xml:space='preserve'%3E%3Cpolygon fill='white' points='6,6.7 0.6,1.3 1.4,0.6 6,5.2 10.6,0.6 11.4,1.3 '/%3E%3C/svg%3E");
+}
+
 .is-chrome .select-ui {
   &::before {
     top: 24%;
