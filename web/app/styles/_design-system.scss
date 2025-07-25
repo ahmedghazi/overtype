@@ -246,6 +246,13 @@ a.ui-btn {
 .ui-btn--tooltip {
   position: relative;
   overflow: unset;
+  background-color: var(--color-bg);
+  &__sm {
+    line-height: 1.825rem;
+    span {
+      font-size: var(--text-sm);
+    }
+  }
   .tooltip {
     position: absolute;
     right: calc(100% + var(--spacing-xs));
@@ -255,6 +262,7 @@ a.ui-btn {
     padding: 0.5em 1em;
     border-radius: var(--radius-sm);
     width: 213px;
+    line-height: 1;
     &::after {
       content: "";
       position: absolute;
