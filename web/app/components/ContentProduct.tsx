@@ -87,7 +87,7 @@ const ContentProduct = ({ input }: Props) => {
             </li>
             <li>
               <Btn
-                label='Purtchase'
+                label='Purchase'
                 variant='accent'
                 onClick={() => setIsOpen(true)}
               />
