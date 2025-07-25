@@ -8,6 +8,7 @@ header {
   z-index: 51;
   transition: transform 0.2s var(--cubic), opacity 0.2s var(--cubic);
   font-size: var(--text-sm);
+  max-height: 111px;
   &.is-down {
     transform: translateY(-100%);
     opacity: 0;
