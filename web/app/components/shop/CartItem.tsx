@@ -11,13 +11,18 @@ type Props = {
 const CartItem = ({ input, _delete }: Props) => {
   const { products } = useShop();
 
-  const relatedTypefaceIsInProducts = useMemo(() => {
-    if (!input.relatedTypefaceSku) return false;
-    return products.some(
-      (el) => el.sku + "-italic" === input.relatedTypefaceSku + ""
-    );
+  const hasRelatedTypefaceInProducts = useMemo(() => {
+    if (!input.relatedTypefaceSku || input.relatedTypefaceSku === "")
+      return false;
+    const res = products.some((el) => {
+      console.log(el);
+      return el.sku === input.relatedTypefaceSku;
+    });
+    console.log({ res });
+    return res;
   }, [products, input.relatedTypefaceSku]);
-  console.log(input);
+  console.log(input.sku, input.relatedTypefaceSku);
+  console.log(hasRelatedTypefaceInProducts);
 
   return (
     <div className='cart-item gap-md'>
@@ -44,7 +49,7 @@ const CartItem = ({ input, _delete }: Props) => {
             <div className='price'>{input.finalPrice}€</div>
           </div>
         </div>
-        {_delete && !relatedTypefaceIsInProducts && (
+        {_delete && !hasRelatedTypefaceInProducts && (
           <button className='btn__delete' onClick={() => _delete(input.sku)}>
             <i className='icon-delete'></i>
           </button>
