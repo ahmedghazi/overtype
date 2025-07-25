@@ -55,8 +55,15 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
       const relatedTypefaceIsInProducts = products.some(
         (el) => el.sku + "-italic" === input.sku?.current
       );
-      if (relatedTypefaceIsInDialogProducts || relatedTypefaceIsInProducts) {
+
+      if (relatedTypefaceIsInDialogProducts) {
         setApplyDiscount(true);
+      }
+      if (relatedTypefaceIsInProducts) {
+        setApplyDiscount(true);
+      }
+      if (!relatedTypefaceIsInDialogProducts && !relatedTypefaceIsInProducts) {
+        setApplyDiscount(false);
       }
     }
   }, [dialogProducts, input.relatedTypeface]);

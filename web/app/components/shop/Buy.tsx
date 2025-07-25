@@ -22,7 +22,6 @@ const Buy = ({ input }: Props) => {
   // console.log(input);
   const { settings } = usePageContext();
   const { licenses, toolTipLicenses, toolTipLogo, messageDialogBuy } = settings;
-  console.log(messageDialogBuy);
   const {
     licenseType,
     setLicenseType,
@@ -31,7 +30,6 @@ const Buy = ({ input }: Props) => {
     dialogProducts,
     setDialogProducts,
   } = useShop();
-  console.log({ isLogo });
 
   const _updateLicense = (license: LicenseType) => {
     //reset
