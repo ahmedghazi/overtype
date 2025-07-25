@@ -454,6 +454,15 @@ a.ui-btn {
     }
   }
 }
+.dark .ui-radio:hover,
+.dark .ui-radio:active {
+  background-color: rgba(27, 27, 27, 1);
+  &.is-active {
+    background-color: var(--color-accent);
+  }
+  // color: var(--color-primary);
+}
+
 .ui-radio--group {
   .header {
     display: flex;
