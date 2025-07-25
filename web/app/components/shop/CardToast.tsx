@@ -28,7 +28,7 @@ const CardToast = ({ data }: Props) => {
           foreground={data.foreground || "var(--color-primary)"}
         />
       </div>
-      <div className='col-infos'>
+      <div className='col-infos text-white'>
         <div className='msg text-sm'>Added!</div>
         <div className='title '>{data.title}</div>
       </div>

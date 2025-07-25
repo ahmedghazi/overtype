@@ -7,7 +7,6 @@ import clsx from "clsx";
 import { _getPriceWithDiscount } from "./utils";
 import useTypeFace from "../typeface/TypeFaceContext";
 import { _localizeField } from "@/app/sanity-api/utils";
-import { Console } from "console";
 import { ProductData } from "@/app/types/extra-types";
 
 type Props = {
@@ -72,7 +71,7 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
     discount: priceDiscount,
     applyDiscount: applyDiscount,
     relatedTypefaceSku: input.relatedTypeface
-      ? input.relatedTypeface?.slug?.current
+      ? `single-${input.relatedTypeface?.slug?.current}`
       : "",
     finalPrice: finalPrice,
     background: background || "",

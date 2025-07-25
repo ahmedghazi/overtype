@@ -1,5 +1,5 @@
 import { ProductData } from "@/app/types/extra-types";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ProductImage from "./ProductImage";
 import useShop from "./ShopContext";
 
@@ -10,11 +10,14 @@ type Props = {
 
 const CartItem = ({ input, _delete }: Props) => {
   const { products } = useShop();
-  const hasRelatedTypeface = input.relatedTypefaceSku;
-  const relatedTypefaceIsInProducts = products.some(
-    (el) => el.sku + "-italic" === "single-" + hasRelatedTypeface + ""
-  );
-  // console.log(input);
+
+  const relatedTypefaceIsInProducts = useMemo(() => {
+    if (!input.relatedTypefaceSku) return false;
+    return products.some(
+      (el) => el.sku + "-italic" === input.relatedTypefaceSku + ""
+    );
+  }, [products, input.relatedTypefaceSku]);
+  console.log(input);
 
   return (
     <div className='cart-item gap-md'>
