@@ -3,6 +3,8 @@ import { ReactNode } from "react";
 import { gsap } from "gsap";
 import { subscribe, unsubscribe } from "pubsub-js";
 import { usePathname } from "next/navigation";
+import Btn from "./buttons/Btn";
+import BtnIcon from "./buttons/BtnIcon";
 
 interface DialogProps {
   isOpen: boolean;
@@ -104,7 +106,10 @@ export const Dialog: React.FC<DialogProps> = ({
         ref={dialogRef}
         className={`dialog-inner relative ${className}`}
         onClick={(e) => e.stopPropagation()}>
-        <button
+        <div className='absolute top-4 right-4 '>
+          <BtnIcon icon='close' onClick={() => setIsClosing(true)} />
+        </div>
+        {/* <button
           onClick={() => setIsClosing(true)}
           className='absolute top-4 right-4 hover:scale-110 transition-transform duration-200'>
           <svg
@@ -119,7 +124,7 @@ export const Dialog: React.FC<DialogProps> = ({
               d='M6 18L18 6M6 6l12 12'
             />
           </svg>
-        </button>
+        </button> */}
         {children}
       </div>
     </div>

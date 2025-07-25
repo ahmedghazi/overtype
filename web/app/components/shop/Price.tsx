@@ -19,7 +19,8 @@ const Price = ({ price, discount, displayOldPrice = true }: Props) => {
   return (
     <div className='price flex gap-2xs'>
       {displayOldPrice && (
-        <span className={clsx("price", discount && "text-secondary")}>
+        <span
+          className={clsx("price", discount && "text-secondary line-through")}>
           {price}€
         </span>
       )}
