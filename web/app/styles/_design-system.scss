@@ -89,6 +89,8 @@
 
     li .ui-cartouche {
       background-color: transparent;
+      padding-left: calc(var(--spacing-md) - var(--spacing-3xs));
+      padding-right: calc(var(--spacing-md) - var(--spacing-3xs));
       &:hover {
         background-color: var(--color-btn--hover);
       }
