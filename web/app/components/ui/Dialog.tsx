@@ -46,7 +46,7 @@ export const Dialog: React.FC<DialogProps> = ({
 
   const overlayRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
-  console.log(isOpen);
+
   useEffect(() => {
     if (isOpen) {
       gsap.from(overlayRef.current!, {

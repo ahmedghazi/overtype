@@ -48,7 +48,8 @@ export default defineField({
     defineField({
       name: 'isDefault',
       type: 'boolean',
-      description: 'use as default preview in homepage or elsewhere',
+      description: 'use as default in font tester',
+      // validation: (Rule) => Rule.required(),
     }),
     defineField({
       title: 'Description',

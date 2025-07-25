@@ -158,8 +158,20 @@ export const PRODUCT_QUERY = groq`*[_type == "product" && slug.current == $slug]
     ...,
   },
   singles[]{
-    ...,
-    typeface->,
+    // ...,
+    sku,
+    title,
+    price,
+    discount,
+    isDefault,
+    // typeface->,
+    typeface->{
+      title,
+      slug,
+      typefaceFile{
+        base64
+      }
+    },
     relatedTypeface->{
       slug
     }

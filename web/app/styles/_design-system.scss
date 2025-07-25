@@ -34,8 +34,13 @@
   width: 100%;
   // line-height: 1;
   padding: 0 var(--spacing-md);
-  line-height: 2.571em;
-  height: 2.571em;
+  // height: 2.571em;
+  // line-height: 2.571em;
+  // line-height: 2.771em;
+
+  height: 2.25rem;
+  line-height: 2.35rem;
+
   &:hover {
     background-color: var(--color-btn--hover);
   }
@@ -105,6 +110,11 @@
   border-radius: var(--radius-sm);
   height: 2.571em;
   line-height: 2.571em;
+  line-height: 2.771em;
+
+  height: 2.25rem;
+  line-height: 2.35rem;
+
   padding: 0 1.428em;
   cursor: pointer;
   background-color: var(--color-btn);
@@ -127,7 +137,8 @@
   }
   &--sm {
     height: 1.625rem;
-    line-height: 1.45rem;
+    // line-height: 1.45rem;
+    line-height: 1.625rem;
   }
 }
 a.ui-btn {
@@ -148,25 +159,35 @@ a.ui-btn {
   padding: 0 0.625em 0 0.688em;
   background-color: #1b1b1b4d;
   color: #f6f6f6;
-  display: flex;
-  gap: 0.6em;
+  // display: flex;
+  // align-items: center;
+  // gap: 0.6em;
   font-size: var(--text-sm);
   height: 1.625rem;
-  line-height: 1.625rem;
-  align-items: center;
+  // line-height: 1.625rem;
+  line-height: 1.725rem;
+
   &.has-icon {
-    padding-left: 8px;
+    // padding-left: 8px;
+    position: relative;
+    padding-left: calc(11px + 0.51rem + 0.3rem);
   }
   &:not(.has-icon) {
     padding-left: 1rem;
     padding-right: 1rem;
   }
   span {
-    line-height: 0.8;
-    display: block;
+    // line-height: 0.8;
+    // line-height: 1.725;
+    // display: block;
+    // background-color: red;
   }
   .icon {
     display: block;
+    position: absolute;
+    left: 0.51rem;
+    top: 0.05rem;
+    // transform: translateY(-50%);
     .icon-dot-green {
       width: 11px;
       height: 11px;
@@ -192,6 +213,11 @@ a.ui-btn {
   background-color: var(--color-btn);
   height: 2.25rem;
   line-height: 2.25rem;
+
+  height: 2.25rem;
+  line-height: 2.35rem;
+  line-height: 2.55rem;
+
   border-radius: var(--radius-sm);
   overflow: clip;
   padding: 0 0.928em;
@@ -207,6 +233,7 @@ a.ui-btn {
     height: 1.625rem;
     padding: 0;
     line-height: 1.45rem;
+    line-height: 1.625rem;
     border-radius: 100%;
     &.rounded {
       width: 1.625rem;

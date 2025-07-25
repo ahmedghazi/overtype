@@ -13,6 +13,7 @@ type Props = {
     | "question"
     | "delete"
     | "see"
+    | "mask"
     | "close";
   size?: "sm" | "md" | "lg";
   onClick?: (active: boolean) => void;
@@ -46,6 +47,7 @@ const BtnIcon = ({ icon, size = "md", onClick }: Props) => {
         {icon === "question" && <span className='icn-question'>?</span>}
         {icon === "delete" && <i className='icon-delete'></i>}
         {icon === "see" && <i className='icon-see'></i>}
+        {icon === "mask" && <i className='icon-mask'></i>}
         {icon === "close" && <i className='icon-close'></i>}
       </span>
     </button>

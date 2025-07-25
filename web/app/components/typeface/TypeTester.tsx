@@ -13,6 +13,7 @@ import { usePageContext } from "@/app/context/PageContext";
 import { publish, subscribe, unsubscribe } from "pubsub-js";
 import TesterTextType from "./TesterTextType";
 import "./TypeTester.scss";
+import BtnIcon from "../ui/buttons/BtnIcon";
 
 interface TextPrevizewProps {
   ref?: React.RefObject<HTMLDivElement>;
@@ -77,7 +78,6 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
   const [initialSize, setInitialSize] = useState<string>(
     isMobile ? "56" : "100"
   );
-
   useEffect(() => {
     setReady(true);
     const initialType = singles.find((el) => el.isDefault);
@@ -100,10 +100,19 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
   const fontStyles = useMemo(() => {
     return singles.map((item, i) => ({
       key: i,
-      value: item.typeface,
       label: item.typeface?.title,
+      value: item.typeface?.slug?.current,
+      // selected: item.isDefault,
     }));
   }, [singles]);
+
+  const defaultStyle = useMemo(() => {
+    return singles.find((el) => el.isDefault);
+  }, [singles]);
+
+  const getSingleBySlug = (slug: string) => {
+    return singles.find((el) => el.typeface?.slug?.current === slug);
+  };
 
   if (!ready) return null;
   return (
@@ -115,7 +124,11 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
           <Select
             name='font-tyles'
             options={fontStyles}
-            onChange={(e: any) => dispatchType(e.value)}
+            defaultValue={defaultStyle?.typeface?.slug?.current}
+            onChange={(e: any) => {
+              const single = getSingleBySlug(e);
+              if (single) dispatchType(single.typeface);
+            }}
           />
         </div>
         {target && (
@@ -181,15 +194,18 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
           </div>
         )}
         <div className='footer'>
-          <Btn size='md' onClick={() => setCollapse(!collapse)}>
+          {/* <Btn size='md' onClick={() => setCollapse(!collapse)}>
             {!collapse ? (
               <i className='icon-mask'></i>
             ) : (
               <i className='icon-see'></i>
             )}
-          </Btn>
-          {/* <i className='icon-see'></i>
-          <i className='icon-mask'></i> */}
+          </Btn> */}
+
+          <BtnIcon
+            icon={collapse ? "see" : "mask"}
+            onClick={() => setCollapse(!collapse)}
+          />
         </div>
       </aside>
     </Draggable>

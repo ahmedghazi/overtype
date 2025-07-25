@@ -5,6 +5,7 @@ type Props = {
   name: string;
   label?: string;
   options: any[];
+  defaultValue?: any;
   onChange: Function;
   disabled?: boolean;
 };
@@ -13,6 +14,7 @@ const Select = ({
   name,
   label,
   options,
+  defaultValue,
   onChange,
   disabled = false,
 }: Props) => {
@@ -32,7 +34,7 @@ const Select = ({
     // console.log("_clickOutside");
     setActive(false);
   };
-  // console.log(label, active);
+  // console.log(label, defaultValue);
   return (
     <select
       className={clsx("ui-select", active && "is-active")}
@@ -44,14 +46,16 @@ const Select = ({
       onChange={(e) => {
         // console.log(e.target.value);
         if (e.target.value) {
-          onChange(JSON.parse(e.target.value));
+          // onChange(JSON.parse(e.target.value));
+          onChange(e.target.value);
           setActive(false);
         }
       }}
       defaultValue={
-        label === "" && options[0] && options[0]._type === "keyValString"
-          ? JSON.stringify(options[0])
-          : ""
+        // label === "" && options[0] && options[0]._type === "keyValString"
+        //   ? JSON.stringify(options[0])
+        //   : ""
+        label || defaultValue || ""
       }>
       {label && (
         <option defaultValue='' value=''>
@@ -62,12 +66,14 @@ const Select = ({
         options.map((item, i) => (
           <option
             key={i}
-            value={JSON.stringify(item)}
+            // value={JSON.stringify(item)}
+            // value={JSON.stringify(item.value)}
+            value={item.value}
+            // value={item._key}
+            // defaultValue={item.selected}
             // defaultValue={JSON.stringify(item)}
           >
             {item.label}
-            {/* {item._type === "licenseSize" && item.title} */}
-            {/* {item._type === "keyValString" && item.key} */}
           </option>
         ))}
       {/* <i className='icon icon-drop-down'></i> */}

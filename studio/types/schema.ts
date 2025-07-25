@@ -841,7 +841,7 @@ export type ProductSingle = {
   /**
    * isDefault — `boolean`
    *
-   * use as default preview in homepage or elsewhere
+   * use as default in font tester
    */
   isDefault?: boolean;
 
