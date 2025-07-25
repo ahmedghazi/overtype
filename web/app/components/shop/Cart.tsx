@@ -17,43 +17,6 @@ import CartItem from "./CartItem";
 import Radio from "../ui/inputs/Radio";
 import BtnToolTip from "../ui/buttons/BtnToolTip";
 
-// type CartItemProps = {
-//   input: ProductData;
-//   _delete?: Function;
-// };
-// const CartItem = ({ input, _delete }: CartItemProps) => (
-//   <div className='cart-item gap-md'>
-//     <div className='media'>
-//       <ProductImage
-//         title={input.fullTitle}
-//         background={input.background}
-//         foreground={input.foreground}
-//       />
-//     </div>
-//     <div className='col-infos'>
-//       <div className='cart-item-row'>
-//         <div className='title '>{input.fullTitle}</div>
-//         {_delete && (
-//           <button className='btn__delete' onClick={() => _delete(input.sku)}>
-//             {/* <BtnIcon icon='delete' /> */}
-//             <i className='icon-delete'></i>
-//           </button>
-//         )}
-//       </div>
-//       <div className='cart-item-row'>
-//         <div className='metas'>
-//           <div>Use in logo/wordmark : {input.isLogo ? "Yes" : "No"}</div>
-//           <div>
-//             Size licenses : {input.license}{" "}
-//             <span className='text-secondary'>{input.licenseInfos}</span>
-//           </div>
-//         </div>
-//         <div className='price'>{input.finalPrice}€</div>
-//       </div>
-//     </div>
-//   </div>
-// );
-
 type Props = {};
 
 const Cart = (props: Props) => {

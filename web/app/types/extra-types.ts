@@ -40,6 +40,7 @@ export interface ProductData {
   price: number;
   discount: number;
   applyDiscount?: boolean;
+  relatedTypefaceSku?: string;
   finalPrice: number;
   background: string;
   foreground: string;

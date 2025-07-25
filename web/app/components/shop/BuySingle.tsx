@@ -23,28 +23,6 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
   const [checked, setChecked] = useState(false);
   const [applyDiscount, setApplyDiscount] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   if (!dialogProducts) {
-  //     // setChecked(false);
-  //   }
-  // }, [dialogProducts]);
-  // console.log(input);
-
-  /**
-   * ne pas faire useMemo, car le apply discount peux changer si un related est présent
-   */
-  // const applyDiscount = useMemo(() => {
-  //   if (!input.discount) return false;
-  //   if (input.relatedTypeface) {
-  //     const relatedTypefaceIsInDialogProducts = dialogProducts.some(
-  //       (el) => el.sku + "-italic" === input.sku?.current
-  //     );
-  //     if (relatedTypefaceIsInDialogProducts) {
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // }, [dialogProducts, input.relatedTypeface]);
   useEffect(() => {
     if (!input.discount) return;
     // if (!checked) return;
@@ -93,6 +71,9 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
     price: price,
     discount: priceDiscount,
     applyDiscount: applyDiscount,
+    relatedTypefaceSku: input.relatedTypeface
+      ? input.relatedTypeface?.slug?.current
+      : "",
     finalPrice: finalPrice,
     background: background || "",
     foreground: foreground || "",
@@ -100,6 +81,7 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
     licenseInfos: _localizeField(licenseType?.infos) || "",
     isLogo: isLogo || false,
   };
+  // console.log(_productData);
 
   const { type, dispatchType } = useTypeFace();
   useEffect(() => {
