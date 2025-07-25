@@ -1,6 +1,14 @@
 @use "variables";
 @use "mixins";
 
+@font-face {
+  font-family: "LastGothic Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/LastGothic-Regular.woff2") format("woff2");
+  // unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
 // @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 //ABCDiatype-Regular
