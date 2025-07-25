@@ -396,6 +396,13 @@ export interface Project extends SanityDocument {
     | SanityKeyed<TrialsUI>
     | SanityKeyed<FaqUI>
   >;
+
+  /**
+   * Related Projects — `array`
+   *
+   *
+   */
+  related?: Array<SanityKeyedReference<Project>>;
 }
 
 /**

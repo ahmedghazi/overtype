@@ -80,7 +80,18 @@ export default defineType({
       of: modulesList,
       group: 'editorial',
     }),
-
+    defineField({
+      name: 'related',
+      title: 'Related Projects',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'project'}],
+        },
+      ],
+      group: 'editorial',
+    }),
     // defineField({
     //   name: 'relatedProjects',
     //   title: 'Projets liés',

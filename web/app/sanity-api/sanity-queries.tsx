@@ -14,6 +14,7 @@ import {
   inUseCard,
   modules,
   productCard,
+  projectCard,
   seo,
 } from "./fragments";
 // import { revalidatePath } from "next/cache";
@@ -219,6 +220,9 @@ export const PROJECT_QUERY = groq`*[_type == "project" && slug.current == $slug]
   nextProject->{
     _type,
     slug
+  },
+  related[]->{
+    ${projectCard}
   }
 }`;
 

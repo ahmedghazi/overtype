@@ -405,6 +405,13 @@ export interface Project extends SanityDocument {
     | SanityKeyed<TrialsUI>
     | SanityKeyed<FaqUI>
   >;
+
+  /**
+   * Related Projects — `array`
+   *
+   *
+   */
+  related?: Array<SanityKeyedReference<Project>>;
 }
 
 /**
@@ -850,7 +857,7 @@ export type ProductSingle = {
   /**
    * isDefault — `boolean`
    *
-   * use as default preview in homepage or elsewhere
+   * use as default in font tester
    */
   isDefault?: boolean;
 

@@ -144,7 +144,7 @@ const fontsInUseUI = `
 
   }
 `;
-const projectCard = `
+export const projectCard = `
 	_type,
 	slug,
 	title,
@@ -155,6 +155,7 @@ const projectCard = `
 		asset->
 	},
 `;
+
 const projectsUI = `
 	_type == 'projectsUI' => {
 		title,
