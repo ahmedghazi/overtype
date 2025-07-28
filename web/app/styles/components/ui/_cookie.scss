@@ -3,6 +3,7 @@
   z-index: 99999;
   position: fixed;
   bottom: var(--spacing-5xl);
+  bottom: calc(15.5px + 1rem);
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--color-btn);

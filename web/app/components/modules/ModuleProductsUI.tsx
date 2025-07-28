@@ -38,10 +38,14 @@ const ModuleProductsUI = ({ input }: Props) => {
           )}
           {withToggle && (
             <>
-              <button className='toggle' onClick={() => setView("list")}>
+              <button
+                className={clsx("toggle", view === "list" && "is-active")}
+                onClick={() => setView("list")}>
                 List
               </button>
-              <button className='toggle' onClick={() => setView("grid")}>
+              <button
+                className={clsx("toggle", view === "grid" && "is-active")}
+                onClick={() => setView("grid")}>
                 Grid
               </button>
             </>

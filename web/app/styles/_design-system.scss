@@ -29,18 +29,11 @@
 .ui-cartouche {
   border-radius: var(--radius-sm);
   background-color: var(--color-btn);
-  // padding: 0.8em var(--spacing-md);
   display: block;
   width: 100%;
-  // line-height: 1;
   padding: 0 var(--spacing-md);
-  // height: 2.571em;
-  // line-height: 2.571em;
-  // line-height: 2.771em;
-
   height: 2.25rem;
   line-height: 2.35rem;
-
   &:hover {
     background-color: var(--color-btn--hover);
   }
@@ -63,19 +56,7 @@
   }
   &:hover {
     height: auto;
-    // background-color: var(--color-btn);
-    // backdrop-filter: blur(30px);
 
-    & > a {
-      // pointer-events: none;
-      // border-bottom-left-radius: 0;
-      // border-bottom-right-radius: 0;
-      // background: transparent;
-      // backdrop-filter: blur(0px);
-      // &:hover {
-      //   background-color: transparent;
-      // }
-    }
     .sub-menu {
       display: block;
     }
@@ -743,6 +724,11 @@ a.ui-btn {
         padding-inline: 0;
         padding-block: 0;
         margin: 0;
+        &:hover,
+        &:active,
+        &.is-active {
+          color: var(--color-primary);
+        }
       }
     }
   }
