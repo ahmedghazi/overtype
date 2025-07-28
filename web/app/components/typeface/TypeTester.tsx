@@ -148,8 +148,8 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
                 cssVar='--font-size'
               />
               <Range
-                min='-0.2'
-                max='0.2'
+                min='-0.1'
+                max='0.15'
                 step='0.005'
                 initialValue='0'
                 unit='em'
