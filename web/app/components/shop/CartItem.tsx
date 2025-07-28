@@ -12,6 +12,7 @@ const CartItem = ({ input, _delete }: Props) => {
   const { products } = useShop();
 
   const hasRelatedTypefaceInProducts = useMemo(() => {
+    if (!input.applyDiscount) return;
     if (!input.relatedTypefaceSku || input.relatedTypefaceSku === "")
       return false;
     const res = products.some((el) => {
@@ -37,6 +38,12 @@ const CartItem = ({ input, _delete }: Props) => {
         <div className='col-infos'>
           <div className='cart-item-row'>
             <div className='title '>{input.fullTitle}</div>
+            {hasRelatedTypefaceInProducts && (
+              // <div className='related-typeface'>has discount</div>
+              <div className='discount ui-btn--pill ui-btn--pill__accent'>
+                <span>-{input.discount}%</span>
+              </div>
+            )}
           </div>
           <div className='cart-item-row'>
             <div className='metas'>
