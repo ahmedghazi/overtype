@@ -30,7 +30,8 @@ const Buy = ({ input }: Props) => {
     dialogProducts,
     setDialogProducts,
   } = useShop();
-
+  // console.log("dialogProducts");
+  // console.log(dialogProducts);
   const _updateLicense = (license: LicenseType) => {
     //reset
     // let isLicenseUpdated = false;

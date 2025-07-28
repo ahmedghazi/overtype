@@ -2,6 +2,7 @@ import { ProductData } from "@/app/types/extra-types";
 import React, { useEffect, useMemo, useState } from "react";
 import ProductImage from "./ProductImage";
 import useShop from "./ShopContext";
+import { _getPriceWithDiscount } from "./utils";
 
 type Props = {
   input: ProductData;
@@ -9,21 +10,46 @@ type Props = {
 };
 
 const CartItem = ({ input, _delete }: Props) => {
-  const { products } = useShop();
+  const { products, setProducts } = useShop();
+  const [hasRelatedTypefaceInProducts, setHasRelatedTypefaceInProducts] =
+    useState<boolean>(false);
+  // const [updatedProduct, setUpdatedProduct] = useState<ProductData | null>(
+  //   null
+  // );
 
-  const hasRelatedTypefaceInProducts = useMemo(() => {
-    if (!input.applyDiscount) return;
-    if (!input.relatedTypefaceSku || input.relatedTypefaceSku === "")
-      return false;
+  useEffect(() => {
+    // if (!input.applyDiscount) return;
+    if (!input.relatedTypefaceSku || input.relatedTypefaceSku === "") return;
     const res = products.some((el) => {
-      console.log(el);
       return el.sku === input.relatedTypefaceSku;
     });
-    console.log({ res });
-    return res;
-  }, [products, input.relatedTypefaceSku]);
-  console.log(input.sku, input.relatedTypefaceSku);
-  console.log(hasRelatedTypefaceInProducts);
+    console.log(input.sku, res);
+    setHasRelatedTypefaceInProducts(res);
+  }, [products, input.applyDiscount, input.relatedTypefaceSku]);
+
+  useEffect(() => {
+    if (!input.relatedTypefaceSku || input.relatedTypefaceSku === "") return;
+    console.log(input.sku, hasRelatedTypefaceInProducts);
+    if (hasRelatedTypefaceInProducts && input.applyDiscount === false) {
+      const finalPrice =
+        input.applyDiscount && input.discount
+          ? _getPriceWithDiscount(input.price, input.discount)
+          : input.price;
+      const updatedProduct = {
+        ...input,
+        finalPrice: finalPrice,
+        applyDiscount: true,
+      };
+      // setProducts({ type: "REPLACE", payload: updatedProduct });
+    } else {
+      const updatedProduct = {
+        ...input,
+        finalPrice: input.price,
+        applyDiscount: false,
+      };
+      // setProducts({ type: "REPLACE", payload: updatedProduct });
+    }
+  }, [hasRelatedTypefaceInProducts, products, input]);
 
   return (
     <div className='cart-item gap-md- rounded'>
@@ -38,12 +64,6 @@ const CartItem = ({ input, _delete }: Props) => {
         <div className='col-infos'>
           <div className='cart-item-row'>
             <div className='title '>{input.fullTitle}</div>
-            {hasRelatedTypefaceInProducts && (
-              // <div className='related-typeface'>has discount</div>
-              <div className='discount ui-btn--pill ui-btn--pill__accent'>
-                <span>-{input.discount}%</span>
-              </div>
-            )}
           </div>
           <div className='cart-item-row'>
             <div className='metas'>
@@ -53,10 +73,15 @@ const CartItem = ({ input, _delete }: Props) => {
                 <span className='text-secondary'>{input.licenseInfos}</span>
               </div>
             </div>
+            {hasRelatedTypefaceInProducts && input.applyDiscount && (
+              <div className='discount ui-btn--pill ui-btn--pill__accent'>
+                <span>-{input.discount}%</span>
+              </div>
+            )}
             <div className='price'>{input.finalPrice}€</div>
           </div>
         </div>
-        {_delete && !hasRelatedTypefaceInProducts && (
+        {_delete && (
           <button className='btn__delete' onClick={() => _delete(input.sku)}>
             <i className='icon-delete'></i>
           </button>

@@ -58,16 +58,8 @@ const Cart = (props: Props) => {
     setProducts({ type: "REMOVE_BY_SKU", payload: sku });
   };
 
-  // const LicenseForValues = [
-  //   {
-  //     label: "Me",
-  //     value: "me",
-  //   },
-  //   {
-  //     label: "My client",
-  //     value: "client",
-  //   },
-  // ];
+  // console.log("products");
+  // console.log(products);
   return (
     <div className={clsx("cart")}>
       <div className='header'>
@@ -107,14 +99,6 @@ const Cart = (props: Props) => {
             <form action=''>
               <div className='box'>
                 <div className='form-field ui-radio--group'>
-                  {/* <RadioGroup
-                    name='licenseFor'
-                    label='Who is the license owner?'
-                    values={LicenseForValues}
-                    onChange={(value) => setLicenseFor(value)}
-                    tooltip={_localizeField(toolTipLocenseFor) || ""}
-                  /> */}
-
                   <div className='header'>
                     <h4 className='text-lg'>Who is the license owner?</h4>
                     <BtnToolTip text={_localizeField(toolTipLocenseFor)} />
