@@ -72,7 +72,13 @@
     position: sticky;
     bottom: var(--spacing-md);
     bottom: calc(15.5px + 1rem);
-    margin-bottom: var(--spacing-9xl);
+    // margin-bottom: var(--spacing-9xl);
+    transition: all 0.2s;
+    &.is-collapsed {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
     .ui-btn {
       width: 7.938rem;
     }
@@ -88,6 +94,10 @@
     }
   }
   .related {
+    .card {
+      aspect-ratio: 1 / 1;
+      height: 100%;
+    }
     .header,
     .footer {
       padding: var(--spacing-md);

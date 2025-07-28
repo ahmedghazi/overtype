@@ -1,9 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Product, ProductSingle } from "../types/schema";
-import useTypeFace, {
-  TypeFaceContextProvider,
-} from "./typeface/TypeFaceContext";
+import React, { useState } from "react";
+import { Product } from "../types/schema";
 import Waterfall from "./typeface/Waterfall";
 import TypeTester from "./typeface/TypeTester";
 import { PortableText } from "next-sanity";
@@ -18,14 +15,13 @@ import Buy from "./shop/Buy";
 import HeroSlider from "./HeroSlider";
 import CardFontInUse from "./CardFontInUse";
 import LinkWithIcon from "./ui/buttons/LinkWithIcon";
-import { usePageContext } from "../context/PageContext";
+import { useInView } from "react-intersection-observer";
 
 type Props = {
   input: Product;
 };
 
 const ContentProduct = ({ input }: Props) => {
-  // console.log(input);
   const {
     title,
     singles,
@@ -38,23 +34,20 @@ const ContentProduct = ({ input }: Props) => {
     initialPangram,
   } = input;
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
 
   const _scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
-  const {
-    settings: { shopPage },
-  } = usePageContext();
 
   return (
     <div className='content--product '>
+      {/* {inView && <div className='fixed'>in view</div>} */}
       <div className='inner'>
-        {/* {hero && hero.image && (
-          <section className='hero px-md'>
-            <Figure asset={hero.image.asset} />
-          </section>
-        )} */}
         <HeroSlider input={hero || []} />
         <Waterfall title={title || ""} items={singles || []} />
         <section className='about px-md' id='about'>
@@ -86,7 +79,7 @@ const ContentProduct = ({ input }: Props) => {
             ))}
           </div>
         </section>
-        <nav className='py-xl-'>
+        <nav className={clsx(inView && "is-collapsed")}>
           <ul className='flex flex-col md:flex-row justify-center gap-3xs'>
             <li className='hidden-sm'>
               <Btn label='Styles' onClick={() => _scrollTo("waterfall")} />
@@ -109,36 +102,38 @@ const ContentProduct = ({ input }: Props) => {
       </div>
 
       {/* <pre>{JSON.stringify(inUse, null, 2)}</pre> */}
-      {inUse && (
-        <section className='in-use px-md-'>
-          <div className='header mb-lg px-xs md:px-md'>
-            <h2 className='sans'>In Use</h2>
-            <div className='actions'>
-              <LinkWithIcon
-                label={inUseCta?.label || "View"}
-                link={inUseCta?.link || ""}
-                icon='arrow-e'
-              />
-            </div>
-          </div>
-          <div className='items'>
-            <div className='scroll-x px-xs md:px-md'>
-              <div className='flex gap-md'>
-                {inUse?.map((item, i) => (
-                  <CardFontInUse key={i} input={item} />
-                ))}
+      <div className='content--product__footer' ref={ref}>
+        {inUse && (
+          <section className='in-use px-md-'>
+            <div className='header mb-lg px-xs md:px-md'>
+              <h2 className='sans'>In Use</h2>
+              <div className='actions'>
+                <LinkWithIcon
+                  label={inUseCta?.label || "View"}
+                  link={inUseCta?.link || ""}
+                  icon='arrow-e'
+                />
               </div>
             </div>
-          </div>
-        </section>
-      )}
+            <div className='items'>
+              <div className='scroll-x px-xs md:px-md'>
+                <div className='flex gap-md'>
+                  {inUse?.map((item, i) => (
+                    <CardFontInUse key={i} input={item} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
-      {related && (
-        <RelatedProducts
-          title='Discover our other fonts'
-          items={related || []}
-        />
-      )}
+        {related && (
+          <RelatedProducts
+            title='Discover our other fonts'
+            items={related || []}
+          />
+        )}
+      </div>
 
       <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <Buy input={input} />
