@@ -71,6 +71,7 @@
     z-index: 50;
     position: sticky;
     bottom: var(--spacing-md);
+    bottom: calc(15.5px + 1rem);
     margin-bottom: var(--spacing-9xl);
     .ui-btn {
       width: 7.938rem;
