@@ -57,6 +57,9 @@
       flex: 2;
       min-width: 2em;
     }
+    .body.is-collapsed + .footer .ui-btn {
+      line-height: 2.7rem;
+    }
     .footer {
       // @include mixins.debugFiletY(50%);
       .ui-btn {
