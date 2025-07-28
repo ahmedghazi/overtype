@@ -493,6 +493,13 @@ export interface Product extends SanityDocument {
   foreground?: Color;
 
   /**
+   * Initial Font Size — `number`
+   *
+   * used for product cards
+   */
+  initialFontSize?: number;
+
+  /**
    * initialPangram — `array`
    *
    * Random pangrams for the type tester

@@ -96,12 +96,20 @@ export default defineType({
       group: 'editorial',
     }),
     defineField({
+      name: 'initialFontSize',
+      title: 'Initial Font Size',
+      type: 'number',
+      description: 'used for product cards',
+      group: 'editorial',
+    }),
+    defineField({
       name: 'initialPangram',
       type: 'array',
       of: [{type: 'string'}],
       description: 'Random pangrams for the type tester',
       group: 'editorial',
     }),
+
     defineField({
       name: 'hero',
       title: 'Hero ',
@@ -160,6 +168,7 @@ export default defineType({
         'used for shop, also used to display typeface in frontend, product card, related',
       group: 'shop',
     }),
+
     defineField({
       name: 'singles',
       title: 'singles',

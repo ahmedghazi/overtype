@@ -90,6 +90,7 @@ export const productCard = `
 	},
 	background,
 	foreground,
+	initialFontSize,
 	singles[]{
 		_key,
 		title

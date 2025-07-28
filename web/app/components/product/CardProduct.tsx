@@ -29,6 +29,7 @@ const CardProduct = ({ input, layout }: Props) => {
     background: input.background.hex || "var(--color-bg)",
     color: input.foreground.hex || "var(--color-primary)",
   };
+  console.log(input);
   return (
     <article
       className={clsx(
@@ -46,7 +47,13 @@ const CardProduct = ({ input, layout }: Props) => {
           style={{
             fontFamily: type?.slug?.current,
           }}>
-          <h3 className='text-3xl md:text-10xl'>{input.title}</h3>
+          <h3
+            className='text-3xl md:text-10xl'
+            style={{
+              fontSize: input.initialFontSize + "px",
+            }}>
+            {input.title}
+          </h3>
         </div>
       </Link>
       <div className='gradient'></div>
