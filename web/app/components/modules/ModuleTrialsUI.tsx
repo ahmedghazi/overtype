@@ -159,7 +159,7 @@ const ModuleTrialsUI = ({ input }: Props) => {
           </form>
         </div>
 
-        <pre>{JSON.stringify(trials, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(trials, null, 2)}</pre> */}
       </div>
     </section>
   );
