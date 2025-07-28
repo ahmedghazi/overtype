@@ -37,8 +37,7 @@
         display: none;
       }
       .sizes {
-        padding: var(--spacing-2xl) 0
-          calc(var(--spacing-2xl) + var(--spacing-xs));
+        padding: var(--spacing-lg) 0 calc(var(--spacing-lg) + var(--spacing-xs));
         .ui-range:last-child {
           margin: 0;
         }
