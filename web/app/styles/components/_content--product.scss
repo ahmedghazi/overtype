@@ -88,6 +88,10 @@
     }
   }
   .related {
+    .header,
+    .footer {
+      padding: var(--spacing-md);
+    }
     .header {
       display: flex;
       justify-content: space-between;
