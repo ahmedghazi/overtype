@@ -456,7 +456,8 @@ a.ui-btn {
     // gap: 0.625rem;
     font-size: var(--text-lg);
     input {
-      margin-right: 0.625rem;
+      // margin-right: 0.625rem;
+      visibility: hidden;
     }
   }
 }
@@ -490,19 +491,21 @@ a.ui-btn {
     label {
       text-transform: capitalize;
     }
+    input {
+      visibility: hidden;
+    }
   }
 }
 
 .ui-checkbox {
   font-size: var(--text-lg);
-  * {
-    // pointer-events: none;
-  }
+
   label {
     pointer-events: none;
   }
   input {
-    margin-right: 0.625rem;
+    // margin-right: 0.625rem;
+    visibility: hidden;
   }
 }
 .ui-bundle {
