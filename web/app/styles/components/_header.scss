@@ -9,6 +9,12 @@ header {
   transition: transform 0.2s var(--cubic), opacity 0.2s var(--cubic);
   font-size: var(--text-sm);
   max-height: 111px;
+  pointer-events: none;
+  a,
+  button,
+  .has-submenu {
+    pointer-events: auto;
+  }
   &.is-down {
     transform: translateY(-100%);
     opacity: 0;
