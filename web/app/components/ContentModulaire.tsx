@@ -16,7 +16,8 @@ const ContentModulaire = ({ input }: Props) => {
   const displayTitle = hasHero || input.titleXL;
   return (
     <div className={clsx("content--modulaire", displayTitle && "with-title")}>
-      <div className='h-2xl md:h-[112px]'></div>
+      {/* <div className='h-2xl md:h-[112px]'></div> */}
+      <div className='h-2xl md:h-[142px]'></div>
       {/* {(hasHero || displayTitle) && <div className='h-2xl md:h-[112px]'></div>} */}
       {hasHero && (
         <section className='hero'>
