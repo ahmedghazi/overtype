@@ -111,8 +111,8 @@ const Buy = ({ input }: Props) => {
             </div>
           </div>
         </section>
-        {/* <pre>{JSON.stringify(licenseType, null, 2)}</pre> */}
-        {licenseType && (
+        {/* <pre>{JSON.stringify(isLogo, null, 2)}</pre> */}
+        {licenseType && (isLogo === false || isLogo === true) && (
           <>
             <section>
               <h3 className='md:text-sm'>2/ Select your styles</h3>
