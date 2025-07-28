@@ -98,7 +98,7 @@ const ContentProduct = ({ input }: Props) => {
 
       {/* <pre>{JSON.stringify(inUse, null, 2)}</pre> */}
       {inUse && (
-        <section className='in-use px-md'>
+        <section className='in-use px-md-'>
           <div className='header mb-lg px-xs md:px-md'>
             <h2 className='sans'>In Use</h2>
             <div className='actions'>
