@@ -3,6 +3,9 @@
 .footer-cta {
   p a {
     text-decoration: none;
+    &:hover {
+      color: var(--color-primary);
+    }
   }
 }
 footer {
