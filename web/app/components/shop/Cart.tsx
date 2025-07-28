@@ -31,7 +31,7 @@ const Cart = (props: Props) => {
   } = useShop();
   const { settings } = usePageContext();
   const { toolTipLocenseFor } = settings;
-
+  const isEmpty = products.length === 0;
   // console.log(products);
   // const [open, setOpen] = useState<boolean>(false);
   // const [licenseFor, setLicenseFor] = useState<"me" | "client">("me");
@@ -61,112 +61,114 @@ const Cart = (props: Props) => {
   // console.log("products");
   // console.log(products);
   return (
-    <div className={clsx("cart")}>
-      <div className='header'>
-        <h2 className='text-2xl'>Cart</h2>
-      </div>
-      <div className='body'>
-        {products && products.length === 0 && (
-          <section className='cart-empty py-xl flex justify-center'>
-            <div className='flex flex-col items-center gap-md'>
-              <div className='md:text-2xl '>Your cart is empty</div>
-              <Link
-                href={_linkResolver(settings.shopPage)}
-                className='ui-btn ui-btn__accent'>
-                Explore our catalogue
-              </Link>
-            </div>
-          </section>
+    <div className={clsx("cart", { "is-empty": isEmpty })}>
+      <div className='inner'>
+        <div className='header'>
+          <h2 className='text-2xl'>Cart</h2>
+        </div>
+        <div className='body'>
+          {isEmpty && (
+            <section className='cart-empty py-xl flex justify-center'>
+              <div className='flex flex-col items-center gap-md'>
+                <div className='md:text-2xl '>Your cart is empty</div>
+                <Link
+                  href={_linkResolver(settings.shopPage)}
+                  className='ui-btn ui-btn__accent'>
+                  Explore our catalogue
+                </Link>
+              </div>
+            </section>
+          )}
+        </div>
+        {products && products.length > 0 && (
+          <div className='cart-content'>
+            <section className='products mb-lg'>
+              {products &&
+                products.map((item, i) => (
+                  <CartItem
+                    key={i}
+                    input={item}
+                    _delete={() => _delete(item.sku)}
+                  />
+                ))}
+            </section>
+            <section className='total md:mb-4xl mb-lg'>
+              <div className='label'>Total (excl. VAT)</div>
+              <div className='price'>{cartTotalPrice(products)}€ </div>
+            </section>
+            <section className='licenseFor md:mb-4xl mb-lg rounded'>
+              <form action=''>
+                <div className='box'>
+                  <div className='form-field ui-radio--group'>
+                    <div className='header'>
+                      <h4 className='text-lg'>Who is the license owner?</h4>
+                      <BtnToolTip text={_localizeField(toolTipLocenseFor)} />
+                    </div>
+                    <div className='grid md:grid-cols-2 gap-2xs'>
+                      <Radio
+                        name='forLogo'
+                        label='me'
+                        isChecked={licenseFor === "me"}
+                        onChange={(value) => setLicenseFor(value)}
+                      />
+                      <Radio
+                        name='forLogo'
+                        label='client'
+                        // isChecked={isLogo}
+                        isChecked={licenseFor === "client"}
+                        onChange={(value) => setLicenseFor(value)}
+                      />
+                    </div>
+                  </div>
+                  <div className='form-field'>
+                    <TextOrEmailInput
+                      label='Company name'
+                      name='companyName'
+                      type='text'
+                      onChange={(e) => {
+                        setLicenseForData({
+                          ...licenseForData,
+                          companyName: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className='form-field'>
+                    <TextOrEmailInput
+                      label='Email'
+                      name='email'
+                      type='email'
+                      onChange={(e) => {
+                        setLicenseForData({
+                          ...licenseForData,
+                          email: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className='form-field'>
+                    <TextOrEmailInput
+                      label='Where the font will be used?'
+                      name='inUseFor'
+                      type='text'
+                      onChange={(e) => {
+                        setLicenseForData({
+                          ...licenseForData,
+                          inUseFor: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                </div>
+              </form>
+            </section>
+
+            <section className='checkout'>
+              <BtnCheckout />
+            </section>
+          </div>
         )}
       </div>
-      {products && products.length > 0 && (
-        <div className='cart-content'>
-          <section className='products mb-lg'>
-            {products &&
-              products.map((item, i) => (
-                <CartItem
-                  key={i}
-                  input={item}
-                  _delete={() => _delete(item.sku)}
-                />
-              ))}
-          </section>
-          <section className='total md:mb-4xl mb-lg'>
-            <div className='label'>Total (excl. VAT)</div>
-            <div className='price'>{cartTotalPrice(products)}€ </div>
-          </section>
-          <section className='licenseFor md:mb-4xl mb-lg rounded'>
-            <form action=''>
-              <div className='box'>
-                <div className='form-field ui-radio--group'>
-                  <div className='header'>
-                    <h4 className='text-lg'>Who is the license owner?</h4>
-                    <BtnToolTip text={_localizeField(toolTipLocenseFor)} />
-                  </div>
-                  <div className='grid md:grid-cols-2 gap-2xs'>
-                    <Radio
-                      name='forLogo'
-                      label='me'
-                      isChecked={licenseFor === "me"}
-                      onChange={(value) => setLicenseFor(value)}
-                    />
-                    <Radio
-                      name='forLogo'
-                      label='client'
-                      // isChecked={isLogo}
-                      isChecked={licenseFor === "client"}
-                      onChange={(value) => setLicenseFor(value)}
-                    />
-                  </div>
-                </div>
-                <div className='form-field'>
-                  <TextOrEmailInput
-                    label='Company name'
-                    name='companyName'
-                    type='text'
-                    onChange={(e) => {
-                      setLicenseForData({
-                        ...licenseForData,
-                        companyName: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-                <div className='form-field'>
-                  <TextOrEmailInput
-                    label='Email'
-                    name='email'
-                    type='email'
-                    onChange={(e) => {
-                      setLicenseForData({
-                        ...licenseForData,
-                        email: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-                <div className='form-field'>
-                  <TextOrEmailInput
-                    label='Where the font will be used?'
-                    name='inUseFor'
-                    type='text'
-                    onChange={(e) => {
-                      setLicenseForData({
-                        ...licenseForData,
-                        inUseFor: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-              </div>
-            </form>
-          </section>
-
-          <section className='checkout'>
-            <BtnCheckout />
-          </section>
-        </div>
-      )}
     </div>
   );
 };
