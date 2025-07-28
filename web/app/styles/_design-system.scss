@@ -51,17 +51,30 @@
 .has-submenu {
   position: relative;
   border-radius: var(--radius-sm);
-
+  background-color: var(--color-btn);
+  backdrop-filter: blur(30px);
+  height: 2.25rem;
+  .ui-cartouche {
+    background-color: transparent;
+    backdrop-filter: none;
+    &:hover {
+      background-color: transparent;
+    }
+  }
   &:hover {
-    background-color: var(--color-btn);
+    height: auto;
+    // background-color: var(--color-btn);
+    // backdrop-filter: blur(30px);
 
     & > a {
       // pointer-events: none;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      background-color: transparent;
-      &:hover {
-      }
+      // border-bottom-left-radius: 0;
+      // border-bottom-right-radius: 0;
+      // background: transparent;
+      // backdrop-filter: blur(0px);
+      // &:hover {
+      //   background-color: transparent;
+      // }
     }
     .sub-menu {
       display: block;
@@ -88,11 +101,12 @@
     padding: var(--spacing-3xs);
 
     li .ui-cartouche {
-      background-color: transparent;
       padding-left: calc(var(--spacing-md) - var(--spacing-3xs));
       padding-right: calc(var(--spacing-md) - var(--spacing-3xs));
+
       &:hover {
         background-color: var(--color-btn--hover);
+        backdrop-filter: blur(30px);
       }
     }
     li:last-child {
