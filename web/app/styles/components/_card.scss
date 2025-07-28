@@ -14,8 +14,13 @@
     // margin-bottom: var(--spacing-md);
     position: relative;
     a {
-      padding: 116px 0 109px;
-      display: block;
+      // padding: 116px 0 109px;
+      height: 23rem;
+      display: flex;
+      // flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      // display: block;
     }
     // @include mixins.debugFiletY(50%);
     &.is-square {
