@@ -218,4 +218,18 @@
       }
     }
   }
+  &--toast {
+    border-radius: var(--radius);
+    .product-image {
+      height: 58px;
+    }
+    .col-infos {
+      color: black;
+    }
+  }
+}
+.dark .card {
+  &--toast .col-infos {
+    color: white;
+  }
 }
