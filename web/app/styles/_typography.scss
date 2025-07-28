@@ -207,6 +207,20 @@ sub {
   top: 0.5ex;
 }
 
+.line-through {
+  text-decoration: none;
+  // background-color: red;
+  position: relative;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+}
 @media all and (max-width: variables.$md) {
   h2 {
     font-size: var(--text-xl);
