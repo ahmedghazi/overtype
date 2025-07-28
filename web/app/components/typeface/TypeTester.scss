@@ -1,4 +1,5 @@
 @use "../../styles/variables";
+@use "../../styles/mixins";
 
 .type-tester {
   background: rgba(0, 0, 0, 0.04);
@@ -51,9 +52,11 @@
       min-width: 2em;
     }
     .footer {
+      // @include mixins.debugFiletY(50%);
       .ui-btn {
         width: 100%;
-        line-height: 2.6rem;
+        // line-height: 2.6rem;
+        line-height: 2.8rem;
       }
     }
   }
