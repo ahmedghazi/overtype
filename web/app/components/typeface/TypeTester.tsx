@@ -41,8 +41,8 @@ const TextPrevizew = React.forwardRef<HTMLDivElement, TextPrevizewProps>(
       <div
         ref={ref}
         className={clsx(
-          "t-preview md:text-10xl",
-          isParagraph && "md:columns-3 gap-md"
+          "t-preview md:text-10xl"
+          // isParagraph && "md:columns-3 gap-md"
         )}
         contentEditable={true}
         suppressContentEditableWarning={true}
@@ -194,14 +194,6 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
           </div>
         )}
         <div className='footer'>
-          {/* <Btn size='md' onClick={() => setCollapse(!collapse)}>
-            {!collapse ? (
-              <i className='icon-mask'></i>
-            ) : (
-              <i className='icon-see'></i>
-            )}
-          </Btn> */}
-
           <BtnIcon
             icon={collapse ? "see" : "mask"}
             onClick={() => setCollapse(!collapse)}
@@ -246,7 +238,7 @@ const TypeTester = ({ singles, initialPangram }: TypeTesterProps) => {
   const {
     settings: { pangrams },
   } = usePageContext();
-  console.log(initialPangram);
+  // console.log(initialPangram);
   const randomInitialPagran = useMemo(() => {
     if (!initialPangram) return "";
     const randomIndex = Math.floor(Math.random() * initialPangram.length);

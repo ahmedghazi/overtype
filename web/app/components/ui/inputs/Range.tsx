@@ -56,12 +56,23 @@ const Range = ({
 
     return size.toString() + "%";
   }
-
+  const _handleFontSize = (value: number) => {
+    if (!target) return;
+    if (value < 30) {
+      target.style.setProperty("--column-count", "3");
+    } else if (value < 50) {
+      target.style.setProperty("--column-count", "2");
+    } else {
+      target.style.setProperty("--column-count", "1");
+    }
+  };
   const _update = () => {
     if (!target) return;
     target.style.setProperty(cssVar, `${value}${unit}`);
-
     ref.current?.style.setProperty("--background-size", getBackgroundSize());
+    if (label === "Size") {
+      _handleFontSize(Number(value));
+    }
   };
 
   const _sanitizeValue = (val: string) => {
