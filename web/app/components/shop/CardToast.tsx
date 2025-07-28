@@ -29,7 +29,7 @@ const CardToast = ({ data }: Props) => {
         />
       </div>
       <div className='col-infos text-white'>
-        <div className='msg text-sm'>Added!</div>
+        <div className='msg text-sm text-secondary'>Added!</div>
         <div className='title '>{data.title}</div>
       </div>
     </div>
