@@ -1,5 +1,5 @@
 import { ProductData } from "@/app/types/extra-types";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import ProductImage from "./ProductImage";
 import useShop from "./ShopContext";
 import { _getPriceWithDiscount } from "./utils";
@@ -13,76 +13,108 @@ const CartItem = ({ input, _delete }: Props) => {
   const { products, setProducts } = useShop();
   const [hasRelatedTypefaceInProducts, setHasRelatedTypefaceInProducts] =
     useState<boolean>(false);
-  // const [updatedProduct, setUpdatedProduct] = useState<ProductData | null>(
-  //   null
-  // );
 
-  useEffect(() => {
-    // if (!input.applyDiscount) return;
-    if (!input.relatedTypefaceSku || input.relatedTypefaceSku === "") return;
-    const res = products.some((el) => {
-      return el.sku === input.relatedTypefaceSku;
-    });
-    console.log(input.sku, res);
-    setHasRelatedTypefaceInProducts(res);
-  }, [products, input.applyDiscount, input.relatedTypefaceSku]);
+  // Memoize the input prop to prevent unnecessary re-renders
+  const memoizedInput = useMemo(
+    () => input,
+    [
+      // input.sku,
+      // input.relatedTypefaceSku,
+      input.applyDiscount,
+      // input.price,
+      // input.discount,
+    ]
+  );
 
+  // Memoize the product update function to avoid recreating it on every render
+  const updateProduct = useMemo(
+    () =>
+      (product: ProductData): ProductData => ({
+        ...product,
+        applyDiscount: hasRelatedTypefaceInProducts,
+        finalPrice: hasRelatedTypefaceInProducts
+          ? _getPriceWithDiscount(product.price, product.discount)
+          : product.price,
+      }),
+    [hasRelatedTypefaceInProducts]
+  );
+
+  // Memoize the products array to prevent unnecessary re-renders
+  const memoizedProducts = useMemo(() => products, [products]);
+
+  // Check for related product and update state only once per render
   useEffect(() => {
-    if (!input.relatedTypefaceSku || input.relatedTypefaceSku === "") return;
-    console.log(input.sku, hasRelatedTypefaceInProducts);
-    if (hasRelatedTypefaceInProducts && input.applyDiscount === false) {
-      const finalPrice =
-        input.applyDiscount && input.discount
-          ? _getPriceWithDiscount(input.price, input.discount)
-          : input.price;
-      const updatedProduct = {
-        ...input,
-        finalPrice: finalPrice,
-        applyDiscount: true,
-      };
-      // setProducts({ type: "REPLACE", payload: updatedProduct });
-    } else {
-      const updatedProduct = {
-        ...input,
-        finalPrice: input.price,
-        applyDiscount: false,
-      };
-      // setProducts({ type: "REPLACE", payload: updatedProduct });
+    if (
+      !memoizedInput.relatedTypefaceSku ||
+      memoizedInput.relatedTypefaceSku === ""
+    ) {
+      // Only clear hasRelatedTypefaceInProducts, keep other state
+      setHasRelatedTypefaceInProducts(false);
+      return;
     }
-  }, [hasRelatedTypefaceInProducts, products, input]);
+
+    const hasRelated = memoizedProducts.some(
+      (el) => el.sku === memoizedInput.relatedTypefaceSku
+    );
+    setHasRelatedTypefaceInProducts(hasRelated);
+  }, [memoizedProducts, memoizedInput.relatedTypefaceSku]);
+
+  // Update product state only when hasRelatedTypefaceInProducts changes
+  useEffect(() => {
+    if (
+      !memoizedInput.relatedTypefaceSku ||
+      memoizedInput.relatedTypefaceSku === ""
+    )
+      return;
+
+    const updatedProduct = {
+      ...memoizedInput,
+      applyDiscount: hasRelatedTypefaceInProducts,
+      finalPrice: hasRelatedTypefaceInProducts
+        ? _getPriceWithDiscount(memoizedInput.price, memoizedInput.discount)
+        : memoizedInput.price,
+    };
+    setProducts({ type: "REPLACE", payload: updatedProduct });
+  }, [hasRelatedTypefaceInProducts, memoizedInput, setProducts]);
 
   return (
     <div className='cart-item gap-md- rounded'>
       <div className='inner'>
         <div className='media'>
           <ProductImage
-            title={input.productTitle}
-            background={input.background}
-            foreground={input.foreground}
+            title={memoizedInput.productTitle}
+            background={memoizedInput.background}
+            foreground={memoizedInput.foreground}
           />
         </div>
         <div className='col-infos'>
           <div className='cart-item-row'>
-            <div className='title '>{input.fullTitle}</div>
+            <div className='title '>{memoizedInput.fullTitle}</div>
           </div>
           <div className='cart-item-row'>
             <div className='metas'>
-              <div>Use in logo/wordmark : {input.isLogo ? "Yes" : "No"}</div>
               <div>
-                Size licenses : {input.license}{" "}
-                <span className='text-secondary'>{input.licenseInfos}</span>
+                Use in logo/wordmark : {memoizedInput.isLogo ? "Yes" : "No"}
+              </div>
+              <div>
+                Size licenses : {memoizedInput.license}{" "}
+                <span className='text-secondary'>
+                  {memoizedInput.licenseInfos}
+                </span>
               </div>
             </div>
-            {hasRelatedTypefaceInProducts && input.applyDiscount && (
+            {hasRelatedTypefaceInProducts && memoizedInput.applyDiscount && (
               <div className='discount ui-btn--pill ui-btn--pill__accent'>
-                <span>-{input.discount}%</span>
+                <span>-{memoizedInput.discount}%</span>
               </div>
             )}
-            <div className='price'>{input.finalPrice}€</div>
+            <div className='price'>{memoizedInput.finalPrice}€</div>
           </div>
         </div>
         {_delete && (
-          <button className='btn__delete' onClick={() => _delete(input.sku)}>
+          <button
+            className='btn__delete'
+            onClick={() => _delete(memoizedInput.sku)}>
             <i className='icon-delete'></i>
           </button>
         )}
