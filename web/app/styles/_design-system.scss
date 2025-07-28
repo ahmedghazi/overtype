@@ -657,6 +657,9 @@ a.ui-btn {
     max-width: 55.375rem;
   }
 }
+.dark .ui-dialog {
+  background: rgba(255, 255, 255, 0.05);
+}
 
 .form-field {
   margin-bottom: var(--spacing-sm);
