@@ -25,7 +25,7 @@ const CartItem = ({ input, _delete }: Props) => {
   console.log(hasRelatedTypefaceInProducts);
 
   return (
-    <div className='cart-item gap-md'>
+    <div className='cart-item gap-md- rounded'>
       <div className='inner'>
         <div className='media'>
           <ProductImage

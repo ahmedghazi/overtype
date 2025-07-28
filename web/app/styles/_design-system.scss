@@ -457,7 +457,6 @@ a.ui-btn {
     font-size: var(--text-lg);
     input {
       // margin-right: 0.625rem;
-      visibility: hidden;
     }
   }
 }
@@ -491,9 +490,6 @@ a.ui-btn {
     label {
       text-transform: capitalize;
     }
-    input {
-      visibility: hidden;
-    }
   }
 }
 
@@ -505,7 +501,15 @@ a.ui-btn {
   }
   input {
     // margin-right: 0.625rem;
+  }
+}
+
+.ui-radio,
+.ui-checkbox {
+  input {
     visibility: hidden;
+    margin: 0;
+    position: absolute;
   }
 }
 .ui-bundle {

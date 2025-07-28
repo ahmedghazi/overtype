@@ -103,7 +103,7 @@ const Cart = (props: Props) => {
             <div className='label'>Total (excl. VAT)</div>
             <div className='price'>{cartTotalPrice(products)}€ </div>
           </section>
-          <section className='licenseFor  md:mb-4xl mb-lg'>
+          <section className='licenseFor md:mb-4xl mb-lg rounded'>
             <form action=''>
               <div className='box'>
                 <div className='form-field ui-radio--group'>
