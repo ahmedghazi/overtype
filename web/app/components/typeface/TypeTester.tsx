@@ -214,9 +214,10 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
 
 type TypeTesterProps = {
   singles: ProductSingle[];
+  initialPangram: string[];
 };
 
-const TypeTester = ({ singles }: TypeTesterProps) => {
+const TypeTester = ({ singles, initialPangram }: TypeTesterProps) => {
   const previewRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
   const [textType, setTextType] = useState<"title" | "paragraph">("title");
@@ -245,6 +246,12 @@ const TypeTester = ({ singles }: TypeTesterProps) => {
   const {
     settings: { pangrams },
   } = usePageContext();
+  console.log(initialPangram);
+  const randomInitialPagran = useMemo(() => {
+    if (!initialPangram) return "";
+    const randomIndex = Math.floor(Math.random() * initialPangram.length);
+    return initialPangram[randomIndex] || "Test font here";
+  }, [initialPangram]);
 
   const randomPagran = useMemo(() => {
     if (!pangrams) return "";
@@ -258,7 +265,7 @@ const TypeTester = ({ singles }: TypeTesterProps) => {
         <div className='canvas'>
           <TextPrevizew
             ref={previewRef}
-            pangram={textType === "title" ? "Test font here" : randomPagran}
+            pangram={textType === "title" ? randomInitialPagran : randomPagran}
             isParagraph={textType === "paragraph"}
           />
         </div>

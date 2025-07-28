@@ -26,8 +26,17 @@ type Props = {
 
 const ContentProduct = ({ input }: Props) => {
   // console.log(input);
-  const { title, singles, hero, text, images, inUse, inUseCta, related } =
-    input;
+  const {
+    title,
+    singles,
+    hero,
+    text,
+    images,
+    inUse,
+    inUseCta,
+    related,
+    initialPangram,
+  } = input;
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const _scrollTo = (id: string) => {
@@ -58,7 +67,10 @@ const ContentProduct = ({ input }: Props) => {
           </div>
         </section>
         <section className='tester px-md' id='tester'>
-          <TypeTester singles={singles || []} />
+          <TypeTester
+            singles={singles || []}
+            initialPangram={initialPangram || []}
+          />
         </section>
         <section className='images px-md'>
           <div className='grid md:grid-cols-2 gap-md'>

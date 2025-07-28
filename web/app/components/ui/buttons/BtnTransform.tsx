@@ -10,14 +10,22 @@ const BtnTransform = ({ onClick }: Props) => {
   const [active, setActive] = useState<boolean>(false);
   const [textTransform, setTextTransform] = useState<
     "none" | "uppercase" | "lowercase"
-  >("none");
-  const [label, setLabel] = useState<"Aa" | "AA" | "aa">("Aa");
+  >("lowercase");
+  const [label, setLabel] = useState<"Aa" | "AA" | "aa">("aa");
 
   useEffect(() => {
     if (typeof onClick === "function") onClick(textTransform);
-    if (textTransform === "none") setLabel("Aa");
-    if (textTransform === "uppercase") setLabel("AA");
-    if (textTransform === "lowercase") setLabel("aa");
+    switch (textTransform) {
+      case "none":
+        setLabel("Aa");
+        break;
+      case "uppercase":
+        setLabel("AA");
+        break;
+      case "lowercase":
+        setLabel("aa");
+        break;
+    }
   }, [textTransform]);
 
   const _onClick = () => {
@@ -25,6 +33,7 @@ const BtnTransform = ({ onClick }: Props) => {
     const arr = ["none", "uppercase", "lowercase"] as const;
     const index = arr.indexOf(textTransform);
     const nextIndex = (index + 1) % arr.length;
+    console.log(arr[nextIndex]);
     setTextTransform(arr[nextIndex]);
   };
 

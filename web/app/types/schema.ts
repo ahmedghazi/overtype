@@ -502,6 +502,13 @@ export interface Product extends SanityDocument {
   foreground?: Color;
 
   /**
+   * initialPangram — `array`
+   *
+   * Random pangrams for the type tester
+   */
+  initialPangram?: Array<SanityKeyed<string>>;
+
+  /**
    * Hero  — `array`
    *
    *
@@ -1509,6 +1516,13 @@ export type FontsInUseUI = {
    * Custom works
    */
   title?: string;
+
+  /**
+   * cta — `linkExternal`
+   *
+   *
+   */
+  cta?: LinkExternal;
 
   /**
    * items — `array`

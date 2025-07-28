@@ -95,7 +95,13 @@ export default defineType({
       description: 'used on list pages',
       group: 'editorial',
     }),
-
+    defineField({
+      name: 'initialPangram',
+      type: 'array',
+      of: [{type: 'string'}],
+      description: 'Random pangrams for the type tester',
+      group: 'editorial',
+    }),
     defineField({
       name: 'hero',
       title: 'Hero ',

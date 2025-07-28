@@ -13,7 +13,10 @@ export default defineField({
       type: 'string',
       description: 'Custom works',
     }),
-
+    defineField({
+      name: 'cta',
+      type: 'linkExternal',
+    }),
     defineField({
       name: 'items',
       type: 'array',

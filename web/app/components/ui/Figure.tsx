@@ -8,11 +8,17 @@ type Props = {
   asset: SanityImageAsset | any;
   width?: number;
   alt?: string | any;
+  rounded?: boolean;
 };
 
-const Figure = ({ asset, width = 1000, alt = website.title }: Props) => {
+const Figure = ({
+  asset,
+  width = 1000,
+  alt = website.title,
+  rounded = true,
+}: Props) => {
   return (
-    <figure className='rounded'>
+    <figure className={rounded ? "rounded" : ""}>
       <Image
         src={urlFor(asset, width)}
         width={asset?.metadata?.dimensions.width || width}
