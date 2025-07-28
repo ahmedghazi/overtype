@@ -36,6 +36,13 @@
       &.is-collapsed {
         display: none;
       }
+      .sizes {
+        padding: var(--spacing-2xl) 0
+          calc(var(--spacing-2xl) + var(--spacing-xs));
+        .ui-range:last-child {
+          margin: 0;
+        }
+      }
     }
     .ui-btn,
     .ui-select {

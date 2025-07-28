@@ -133,10 +133,10 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
         </div>
         {target && (
           <div
-            className={clsx("body pt-0 md:pt-3xl", {
+            className={clsx("body pt-0 md:pt-3xl-", {
               "is-collapsed": collapse,
             })}>
-            <div className='sizes md:mb-3xl'>
+            <div className='sizes md:mb-3xl-'>
               <Range
                 min='12'
                 max='200'
