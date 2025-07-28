@@ -677,7 +677,7 @@ a.ui-btn {
   overflow: hidden;
   overflow-y: auto;
   height: calc(var(--vh) * 100);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
   .dialog-inner {
     border-radius: var(--radius);
     background-color: var(--color-bg);
