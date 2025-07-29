@@ -9,12 +9,12 @@ type Props = {
 };
 
 const LinkWithIcon = ({ label, link, icon }: Props) => {
-  const itExternal = link.indexOf("overtype") === -1;
+  const isExternal = link.indexOf("http") !== -1;
   return (
     <Link
       href={link}
-      target={itExternal ? "_blank" : "_self"}
-      rel={itExternal ? "noopener noreferrer" : ""}
+      target={isExternal ? "_blank" : "_self"}
+      rel={isExternal ? "noopener noreferrer" : ""}
       className={clsx("ui-link color-secondary", icon && "has-icon")}>
       <span>{label}</span>
       {icon && (

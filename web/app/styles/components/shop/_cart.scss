@@ -12,8 +12,8 @@
   width: 100%;
   max-width: 55.375rem;
   padding: var(--spacing-8xl) var(--spacing-6xl);
-  @include mixins.debugFiletY(50%);
-  @include mixins.debugFiletX(50%);
+  // @include mixins.debugFiletY(50%);
+  // @include mixins.debugFiletX(50%);
   &.is-empty {
     height: 100%;
     display: flex;
