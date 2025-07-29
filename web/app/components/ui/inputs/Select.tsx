@@ -8,6 +8,7 @@ type Props = {
   defaultValue?: any;
   onChange: Function;
   disabled?: boolean;
+  multiple?: boolean;
 };
 
 const Select = ({
@@ -17,6 +18,7 @@ const Select = ({
   defaultValue,
   onChange,
   disabled = false,
+  multiple = false,
 }: Props) => {
   const [active, setActive] = useState<boolean>(false);
   const ref = useRef<HTMLElement>(null);
@@ -43,6 +45,7 @@ const Select = ({
       onFocus={(e) => setActive(true)}
       onBlur={(e) => setActive(false)}
       disabled={disabled}
+      multiple={multiple}
       onChange={(e) => {
         // console.log(e.target.value);
         if (e.target.value) {

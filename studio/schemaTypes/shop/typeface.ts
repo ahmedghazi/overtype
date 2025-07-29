@@ -81,6 +81,7 @@ export default defineField({
       type: 'array',
       of: [{type: 'keyValString'}],
       group: 'editorial',
+      hidden: true,
     }),
     defineField({
       name: 'scriptsSupporter',
@@ -91,6 +92,7 @@ export default defineField({
         // isHighlighted: true,
       },
       group: 'editorial',
+      hidden: true,
     }),
   ],
 })

@@ -56,6 +56,7 @@ export default defineType({
       title: 'Sup Title',
       type: 'string',
       group: 'editorial',
+      hidden: true,
     }),
 
     defineField({
@@ -72,6 +73,7 @@ export default defineType({
       title: 'Sub Title',
       type: 'string',
       group: 'editorial',
+      hidden: true,
     }),
 
     defineField({
@@ -109,6 +111,14 @@ export default defineType({
       description: 'Random pangrams for the type tester',
       group: 'editorial',
     }),
+    defineField({
+      name: 'stylisticSets',
+      type: 'array',
+      of: [{type: 'keyValString'}],
+      description:
+        'values here: https://css-tricks.com/almanac/properties/f/font-feature-settings/',
+      group: 'editorial',
+    }),
 
     defineField({
       name: 'hero',
@@ -134,17 +144,6 @@ export default defineType({
       title: 'Blurb',
       type: 'string',
       description: 'short description for the cart',
-      group: 'shop',
-    }),
-
-    defineField({
-      name: 'metadata',
-      type: 'array',
-      of: [
-        {
-          type: 'string',
-        },
-      ],
       group: 'shop',
     }),
 
@@ -177,6 +176,17 @@ export default defineType({
       of: [
         {
           type: 'productSingle',
+        },
+      ],
+      group: 'shop',
+    }),
+
+    defineField({
+      name: 'metadata',
+      type: 'array',
+      of: [
+        {
+          type: 'string',
         },
       ],
       group: 'shop',

@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Draggable from "react-draggable";
 import Select from "../ui/inputs/Select";
 import Range from "../ui/inputs/Range";
-import { ProductSingle } from "@/app/types/schema";
+import { KeyVal, KeyValString, ProductSingle } from "@/app/types/schema";
 import TesterTextType from "./TesterTextType";
 import BtnTransform from "../ui/buttons/BtnTransform";
 import BtnAlign from "../ui/buttons/BtnAlign";
@@ -14,10 +14,11 @@ import BtnIcon from "../ui/buttons/BtnIcon";
 interface AsideProps {
   singles: ProductSingle[];
   target: HTMLDivElement | null;
+  stylisticSets?: KeyValString[];
   textType: "title" | "paragraph";
 }
 
-const Aside = ({ singles, target, textType }: AsideProps) => {
+const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
   const nodeRef = useRef<HTMLDivElement>(null);
 
   const [ready, setReady] = useState<boolean>(false);
@@ -26,6 +27,7 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
   const [textTansform, setTextTansform] = useState<
     "none" | "capitalize" | "uppercase" | "lowercase"
   >("none");
+  const [fontFeatures, setFontFeatures] = useState<string[]>([]);
   const [textAlign, setTextAlign] = useState<string>("center");
   const { isMobile } = useDeviceDetect();
   const [initialSize, setInitialSize] = useState<string>(
@@ -50,7 +52,7 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
     }
   }, [textTansform, textAlign]);
 
-  const fontStyles = useMemo(() => {
+  const fontStylesOptions = useMemo(() => {
     return singles.map((item, i) => ({
       key: i,
       label: item.typeface?.title,
@@ -58,6 +60,14 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
       // selected: item.isDefault,
     }));
   }, [singles]);
+
+  const stylisticSetsOptions = useMemo(() => {
+    return stylisticSets?.map((item, i) => ({
+      key: i,
+      label: item.key,
+      value: item.val,
+    }));
+  }, [stylisticSets]);
 
   const defaultStyle = useMemo(() => {
     return singles.find((el) => el.isDefault);
@@ -67,6 +77,28 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
     return singles.find((el) => el.typeface?.slug?.current === slug);
   };
 
+  const _handleStylisticSets = (set: any) => {
+    if (!target) return;
+    if (set) {
+      setFontFeatures((prev) => [...prev, `"${set}" on`]);
+    } else {
+      setFontFeatures([]);
+    }
+  };
+
+  useEffect(() => {
+    if (!target) return;
+    console.log(fontFeatures);
+    const fontFeatureSettings = fontFeatures.map((item) => {
+      return item;
+    });
+    target.style.setProperty(
+      "--font-feature-settings",
+      fontFeatureSettings.join(", ")
+    );
+  }, [fontFeatures]);
+
+  // console.log(stylisticSetsOptions);
   if (!ready) return null;
   return (
     <Draggable handle='.handle' nodeRef={nodeRef}>
@@ -76,7 +108,7 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
         <div className=''>
           <Select
             name='font-tyles'
-            options={fontStyles}
+            options={fontStylesOptions}
             defaultValue={defaultStyle?.typeface?.slug?.current}
             onChange={(e: any) => {
               const single = getSingleBySlug(e);
@@ -122,11 +154,21 @@ const Aside = ({ singles, target, textType }: AsideProps) => {
               />
             </div>
             <div className='styles'>
-              <select className='ui-select mb-2xs' name='open-type' id=''>
-                <option value='ss01'>ss01</option>
-                <option value='ss02'>ss02</option>
-                <option value='ss03'>ss03</option>
-              </select>
+              {stylisticSetsOptions && (
+                <div className='mb-2xs'>
+                  <Select
+                    name='stylistic-sets'
+                    options={stylisticSetsOptions}
+                    // defaultValue={"Stylistic Sets"}
+                    label='Stylistic Sets'
+                    // multiple={true}
+                    onChange={(e: any) => {
+                      _handleStylisticSets(e);
+                    }}
+                  />
+                </div>
+              )}
+
               <div className='flex flex-wrap items-start gap-0.5 gap-y-2xs'>
                 <TesterTextType type={textType} />
 

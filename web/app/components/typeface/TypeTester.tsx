@@ -1,4 +1,4 @@
-import { ProductSingle } from "@/app/types/schema";
+import { KeyVal, KeyValString, ProductSingle } from "@/app/types/schema";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import useTypeFace, { TypeFaceContextProvider } from "./TypeFaceContext";
 import { usePageContext } from "@/app/context/PageContext";
@@ -10,9 +10,14 @@ import "./TypeTester.scss";
 type TypeTesterProps = {
   singles: ProductSingle[];
   initialPangram: string[];
+  stylisticSets?: KeyValString[];
 };
 
-const TypeTester = ({ singles, initialPangram }: TypeTesterProps) => {
+const TypeTester = ({
+  singles,
+  initialPangram,
+  stylisticSets,
+}: TypeTesterProps) => {
   const previewRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
   const [textType, setTextType] = useState<"title" | "paragraph">("title");
@@ -69,7 +74,12 @@ const TypeTester = ({ singles, initialPangram }: TypeTesterProps) => {
           </div>
         </div>
         {ready && (
-          <Aside singles={singles} target={target} textType={textType} />
+          <Aside
+            singles={singles}
+            target={target}
+            stylisticSets={stylisticSets}
+            textType={textType}
+          />
         )}
       </TypeFaceContextProvider>
     </div>

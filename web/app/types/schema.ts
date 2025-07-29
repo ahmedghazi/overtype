@@ -516,6 +516,13 @@ export interface Product extends SanityDocument {
   initialPangram?: Array<SanityKeyed<string>>;
 
   /**
+   * stylisticSets — `array`
+   *
+   * values here: https://css-tricks.com/almanac/properties/f/font-feature-settings/
+   */
+  stylisticSets?: Array<SanityKeyed<KeyValString>>;
+
+  /**
    * Hero  — `array`
    *
    *
@@ -544,13 +551,6 @@ export interface Product extends SanityDocument {
   blurb?: string;
 
   /**
-   * metadata — `array`
-   *
-   *
-   */
-  metadata?: Array<SanityKeyed<string>>;
-
-  /**
    * Bundles — `array`
    *
    *
@@ -570,6 +570,13 @@ export interface Product extends SanityDocument {
    * used for shop, also used to display typeface in frontend
    */
   singles?: Array<SanityKeyed<ProductSingle>>;
+
+  /**
+   * metadata — `array`
+   *
+   *
+   */
+  metadata?: Array<SanityKeyed<string>>;
 
   /**
    * inUseCta — `linkExternal`

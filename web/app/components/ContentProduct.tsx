@@ -32,6 +32,7 @@ const ContentProduct = ({ input }: Props) => {
     inUseCta,
     related,
     initialPangram,
+    stylisticSets,
   } = input;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { ref, inView, entry } = useInView({
@@ -63,6 +64,7 @@ const ContentProduct = ({ input }: Props) => {
           <TypeTester
             singles={singles || []}
             initialPangram={initialPangram || []}
+            stylisticSets={stylisticSets || []}
           />
         </section>
         <section className='images px-md'>
