@@ -31,9 +31,9 @@ const AddToCart = ({ items }: Props) => {
       setProducts({ type: "ADD", payload: item });
       // TOASTER
       // publish("DIALOG.CLOSE");
-      notify(item);
     });
     if (items.length > 0) {
+      notify(items[0]);
       publish("DIALOG.CLOSE");
       setTimeout(() => {
         publish("CART_OPEN");
