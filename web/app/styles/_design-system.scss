@@ -20,7 +20,8 @@
 }
 
 .has-blur {
-  backdrop-filter: blur(30px);
+  // backdrop-filter: blur(30px);
+  backdrop-filter: blur(20px);
 }
 .rounded {
   border-radius: var(--radius);
