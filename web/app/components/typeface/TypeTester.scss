@@ -47,7 +47,7 @@
       }
     }
     .ui-btn,
-    .ui-select {
+    .ui-select:not(.rmsc) {
       background-color: white;
       color: var(--color-primary);
       &:hover,
@@ -55,6 +55,9 @@
       &.is-active {
         background-color: rgba(214, 214, 214, 1);
       }
+    }
+    .ui-select.rmsc {
+      --rmsc-bg: white !important;
     }
     .wrap {
       flex: 2;
@@ -151,13 +154,4 @@
 }
 
 .rmsc {
-  --rmsc-main: #4285f4 !important;
-  --rmsc-hover: #f1f3f5 !important;
-  --rmsc-selected: red !important;
-  --rmsc-border: transparent !important;
-  --rmsc-gray: #var(--color-secondary) !important;
-  --rmsc-bg: var(--color-btn) !important;
-  --rmsc-p: 10px !important;
-  --rmsc-radius: var(--radius-sm) !important;
-  --rmsc-h: 38px !important;
 }

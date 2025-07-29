@@ -28,7 +28,7 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
   const [textTansform, setTextTansform] = useState<
     "none" | "capitalize" | "uppercase" | "lowercase"
   >("none");
-  const [fontFeatures, setFontFeatures] = useState<string[]>([]);
+  const [fontFeatures, setFontFeatures] = useState<any[]>([]);
   const [textAlign, setTextAlign] = useState<string>("center");
   const { isMobile } = useDeviceDetect();
   const [initialSize, setInitialSize] = useState<string>(
@@ -78,10 +78,11 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
     return singles.find((el) => el.typeface?.slug?.current === slug);
   };
 
-  const _handleStylisticSets = (set: any) => {
+  const _handleStylisticSets = (set: any[]) => {
     if (!target) return;
     if (set) {
-      setFontFeatures((prev) => [...prev, `"${set}" on`]);
+      // setFontFeatures((prev) => [...prev, `"${set.value}" on`]);
+      setFontFeatures(set);
     } else {
       setFontFeatures([]);
     }
@@ -90,9 +91,13 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
   useEffect(() => {
     if (!target) return;
     console.log(fontFeatures);
+
+    // console.log(fontFeatures);
     const fontFeatureSettings = fontFeatures.map((item) => {
-      return item;
+      return `"${item.value}" on`;
     });
+    console.log(fontFeatureSettings);
+
     target.style.setProperty(
       "--font-feature-settings",
       fontFeatureSettings.join(", ")
@@ -155,10 +160,22 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
               />
             </div>
             <div className='styles'>
-              {stylisticSetsOptions && (
+              {/* {stylisticSetsOptions && (
                 <div className='mb-2xs'>
                   <Select
                     name='stylistic-sets'
+                    options={stylisticSetsOptions}
+                    label='Stylistic Sets'
+                    onChange={(e: any) => {
+                      // _handleStylisticSets(e);
+                    }}
+                  />
+                </div>
+              )} */}
+
+              {stylisticSetsOptions && (
+                <div className='mb-2xs'>
+                  <TesterStylisticSets
                     options={stylisticSetsOptions}
                     label='Stylistic Sets'
                     onChange={(e: any) => {
@@ -167,16 +184,6 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
                   />
                 </div>
               )}
-
-              {/* {stylisticSetsOptions && (
-                <TesterStylisticSets
-                  options={stylisticSetsOptions}
-                  label='Stylistic Sets'
-                  onChange={(e: any) => {
-                    _handleStylisticSets(e);
-                  }}
-                />
-              )} */}
 
               <div className='flex flex-wrap items-start gap-0.5 gap-y-2xs'>
                 <TesterTextType type={textType} />
