@@ -17,15 +17,15 @@ const Footer = (props: Props) => {
   const { settings } = usePageContext();
   const { footerCta, navSecondary } = settings;
   return (
-    <>
-      <div className='text py-7xl- md:my-12xl px-xs md:px-md footer-cta'>
+    <div className='footer-group p-xs md:p-md'>
+      <div className='text  md:my-12xl- px-xs- md:px-md- footer-cta'>
         <PortableText
           value={_localizeField(footerCta)}
           components={portableTextComponents}
         />
       </div>
 
-      <footer className=' p-xs md:p-md'>
+      <footer className=' '>
         <div className='inner rounded'>
           <FooterNav settings={settings} />
           <div className='credits text-secondary md:text-sm'>
@@ -44,7 +44,7 @@ const Footer = (props: Props) => {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 };
 
