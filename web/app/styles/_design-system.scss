@@ -264,6 +264,7 @@ a.ui-btn {
     border-radius: var(--radius-sm);
     width: 213px;
     line-height: 1;
+    text-align: left;
     &::after {
       content: "";
       position: absolute;
