@@ -33,6 +33,7 @@ const Range = ({
   // const { initialValue } = props;
   // console.log(ref);
   const [value, setValue] = useState<string>(initialValue);
+  const [maxValue, setMaxValue] = useState<string | null>(null);
   const ref = useRef<HTMLInputElement>(null);
   useEffect(() => {
     _update();
@@ -56,27 +57,45 @@ const Range = ({
 
     return size.toString() + "%";
   }
-  const _handleFontSize = (value: number) => {
+  const _handleFontSize = (size: number) => {
+    let lastValue = value;
     if (!target) return;
-    if (value < 30) {
+    if (size < 30) {
       target.style.setProperty("--column-count", "3");
-    } else if (value < 50) {
+    } else if (size < 50) {
       target.style.setProperty("--column-count", "2");
     } else {
       target.style.setProperty("--column-count", "1");
     }
+
+    // const parent = target.parentElement;
+    // if (parent) {
+    //   const targetBounding: DOMRect = target.getBoundingClientRect();
+    //   const parentBounding: DOMRect = parent.getBoundingClientRect();
+    //   console.log(targetBounding.height, parentBounding.height);
+    //   if (targetBounding.height >= parentBounding.height) {
+    //     setMaxValue(lastValue);
+    //   } else {
+    //     setMaxValue(null);
+    //   }
+    // }
   };
+
+  useEffect(() => {
+    if (!maxValue) return;
+    setValue(maxValue.toString());
+  }, [maxValue]);
+
   const _update = () => {
     if (!target) return;
-    target.style.setProperty(cssVar, `${value}${unit}`);
     ref.current?.style.setProperty("--background-size", getBackgroundSize());
+    target.style.setProperty(cssVar, `${value}${unit}`);
     if (label === "Size") {
       _handleFontSize(Number(value));
     }
   };
 
   const _sanitizeValue = (val: string) => {
-    console.log(val.indexOf("."));
     if (val.indexOf(".") === -1) return val;
     const parts = val.split(".");
     return `${parts[0]}.${parts[1].slice(0, 2)}`;

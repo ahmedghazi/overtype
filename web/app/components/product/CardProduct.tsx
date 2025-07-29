@@ -29,7 +29,6 @@ const CardProduct = ({ input, layout }: Props) => {
     background: input.background.hex || "var(--color-bg)",
     color: input.foreground.hex || "var(--color-primary)",
   };
-  console.log(input);
   return (
     <article
       className={clsx(

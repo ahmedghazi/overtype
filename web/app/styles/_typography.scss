@@ -81,7 +81,7 @@ a[aria-current="page"] {
   // &:active,
   &:hover {
     // color: var(--color-hover);
-    color: var(--color-muted);
+    color: var(--color-secondary);
   }
   &.is-active {
     color: var(--color-blue);
