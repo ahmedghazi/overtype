@@ -2,7 +2,7 @@
 @use "../../styles/mixins";
 
 .type-tester {
-  background: rgba(0, 0, 0, 0.04);
+  // background: rgba(0, 0, 0, 0.04);
   // background-color: red;
   position: relative;
 
@@ -21,6 +21,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xs);
+    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.15);
+
     .handle {
       height: 25px;
       cursor: move;
@@ -62,16 +64,15 @@
       line-height: 2.7rem;
     }
     .footer {
-      // @include mixins.debugFiletY(50%);
       .ui-btn {
         width: 100%;
-        // line-height: 2.6rem;
         line-height: 2.8rem;
       }
     }
   }
 
   .canvas {
+    background: rgba(0, 0, 0, 0.04);
     height: calc(var(--main-h) - var(--spacing-md));
     overflow: hidden;
     overflow-y: auto;
@@ -129,7 +130,7 @@
   }
   aside {
     background-color: rgba(71, 71, 71, 0.4);
-    background-color: #000;
+    background-color: #2d2d2d;
     .ui-btn {
       background-color: rgba(60, 60, 60, 1);
       &:hover,
@@ -147,4 +148,16 @@
       }
     }
   }
+}
+
+.rmsc {
+  --rmsc-main: #4285f4 !important;
+  --rmsc-hover: #f1f3f5 !important;
+  --rmsc-selected: red !important;
+  --rmsc-border: transparent !important;
+  --rmsc-gray: #var(--color-secondary) !important;
+  --rmsc-bg: var(--color-btn) !important;
+  --rmsc-p: 10px !important;
+  --rmsc-radius: var(--radius-sm) !important;
+  --rmsc-h: 38px !important;
 }

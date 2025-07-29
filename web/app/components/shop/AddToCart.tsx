@@ -71,7 +71,7 @@ const AddToCart = ({ items }: Props) => {
   return (
     <div className='add-to-cart'>
       <button className='ui-btn ui-btn__accent' onClick={handleAddToCart}>
-        Add To Cart
+        Add to cart
         {dialogProducts.length > 0 && <span className='ml-2'>{total}€</span>}
       </button>
 

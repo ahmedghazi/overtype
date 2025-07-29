@@ -76,8 +76,8 @@
     }
     &.related {
       .card {
-        aspect-ratio: 1 / 1;
-        height: 100%;
+        // aspect-ratio: 1 / 1;
+        // height: 100%;
         .header,
         .footer {
           padding: var(--spacing-md);

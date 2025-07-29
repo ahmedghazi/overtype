@@ -21,7 +21,7 @@
 
 .has-blur {
   // backdrop-filter: blur(30px);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(15px);
 }
 .rounded {
   border-radius: var(--radius);
@@ -296,6 +296,7 @@ a.ui-btn {
   --thumb-height: 16px;
   --thumb-width: 16px;
   --color: var(--color-secondary);
+  // --color: var(--color-accent);
   --color-bg: white;
   font-size: var(--text-sm);
   margin-bottom: var(--spacing-xs);
@@ -313,8 +314,6 @@ a.ui-btn {
     &[type="range"] {
       width: 100%;
       accent-color: var(--color);
-      // accent-color: red;
-      // background-color: red;
     }
 
     &[type="range"],
@@ -404,7 +403,7 @@ a.ui-btn {
   position: relative;
   height: 2.25rem;
   line-height: 2.35rem;
-
+  font-size: var(--text-sm);
   padding: 0 1.428em;
   // display: inline-block;
   background-color: var(--color-btn);
@@ -641,7 +640,7 @@ a.ui-btn {
   position: fixed;
   inset: 0;
   padding: var(--spacing-md);
-  padding-top: var(--spacing-6xl);
+  // padding-top: var(--spacing-6xl);
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

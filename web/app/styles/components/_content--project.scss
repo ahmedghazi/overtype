@@ -9,6 +9,10 @@
   }
   .hero {
     margin-bottom: var(--spacing-7xl);
+    img {
+      height: calc(var(--main-h) - var(--spacing-md)) !important;
+      object-fit: cover !important;
+    }
   }
   h1 {
     font-size: var(--text-2xl);

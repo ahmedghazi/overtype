@@ -75,15 +75,8 @@ const AccordionComponent = ({ input }: Props) => {
               </div>
             </a>
           )}
-          {/* {link._type === "linkInternal" &&
-            <Link href={_linkResolver(link.link)}>{link.label}</Link>
-          }
-          {link._type === "linkExternal" &&
-            <a href={link.link} target="_blank" rel="noopener noreferrer">{link.label}</a>
-          } */}
         </div>
       ))}
-      {/* <pre>{JSON.stringify(links, null, 2)}</pre> */}
     </div>
   );
 };

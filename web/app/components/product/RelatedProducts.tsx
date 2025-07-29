@@ -5,6 +5,7 @@ import CardProduct from "./CardProduct";
 import LinkWithIcon from "../ui/buttons/LinkWithIcon";
 import { usePageContext } from "@/app/context/PageContext";
 import { _linkResolver } from "@/app/sanity-api/utils";
+import clsx from "clsx";
 
 type Props = {
   title: string;
@@ -14,6 +15,8 @@ type Props = {
 const RelatedProducts = ({ title, items }: Props) => {
   const { settings } = usePageContext();
   const { shopPage } = settings;
+  // const gridLength = items.length < 4 ? items.length : 4;
+  const gridLength = 2;
   return (
     <section className='related px-md products'>
       <div className='header mb-lg'>
@@ -27,7 +30,7 @@ const RelatedProducts = ({ title, items }: Props) => {
         </div>
       </div>
 
-      <div className='grid md:grid-cols-4 gap-md'>
+      <div className={clsx("grid gap-md", `md:grid-cols-${gridLength}`)}>
         {items.map((item, index) => (
           <div className='item' key={index}>
             <TypeFaceContextProvider>

@@ -40,7 +40,6 @@ const CardProduct = ({ input, layout }: Props) => {
       )}
       style={style}>
       <Link href={_linkResolver(input)}>
-        {/* {_linkResolver(input)} */}
         <div
           className='t-preview'
           style={{
@@ -49,7 +48,7 @@ const CardProduct = ({ input, layout }: Props) => {
           <h3
             className='text-3xl md:text-10xl'
             style={{
-              fontSize: input.initialFontSize + "px",
+              fontSize: input.initialFontSize + "vw",
             }}>
             {input.title}
           </h3>

@@ -2,7 +2,9 @@
   padding: var(--spacing-4xl) 0;
   .accordion--item {
     border-top: var(--border);
-
+    &:last-child {
+      border-bottom: var(--border);
+    }
     .header {
       display: flex;
       justify-content: space-between;

@@ -10,6 +10,7 @@ import TesterTextType from "./TesterTextType";
 import BtnTransform from "../ui/buttons/BtnTransform";
 import BtnAlign from "../ui/buttons/BtnAlign";
 import BtnIcon from "../ui/buttons/BtnIcon";
+import TesterStylisticSets from "./TesterStylisticSets";
 
 interface AsideProps {
   singles: ProductSingle[];
@@ -40,7 +41,7 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
   }, []);
 
   useEffect(() => {
-    if (textType === "paragraph") setInitialSize(isMobile ? "14" : "12");
+    if (textType === "paragraph") setInitialSize(isMobile ? "14" : "56");
     else setInitialSize(isMobile ? "56" : "100");
   }, [textType, isMobile]);
 
@@ -159,15 +160,23 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
                   <Select
                     name='stylistic-sets'
                     options={stylisticSetsOptions}
-                    // defaultValue={"Stylistic Sets"}
                     label='Stylistic Sets'
-                    // multiple={true}
                     onChange={(e: any) => {
                       _handleStylisticSets(e);
                     }}
                   />
                 </div>
               )}
+
+              {/* {stylisticSetsOptions && (
+                <TesterStylisticSets
+                  options={stylisticSetsOptions}
+                  label='Stylistic Sets'
+                  onChange={(e: any) => {
+                    _handleStylisticSets(e);
+                  }}
+                />
+              )} */}
 
               <div className='flex flex-wrap items-start gap-0.5 gap-y-2xs'>
                 <TesterTextType type={textType} />

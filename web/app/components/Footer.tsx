@@ -33,12 +33,21 @@ const Footer = (props: Props) => {
               © {new Date().getFullYear()} {website.title}
             </div>
             <div className='colophon'>
-              Designed by us Developed by{" "}
+              Designed by{" "}
+              <a
+                href='https://www.olympicstudio.fr'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-primary'>
+                Olympic Studio
+              </a>{" "}
+              Developed by{" "}
               <a
                 href='http://ahmedghazi.com'
                 target='_blank'
-                rel='noopener noreferrer'>
-                a_e_a_i_
+                rel='noopener noreferrer'
+                className='text-primary'>
+                AeAi
               </a>
             </div>
           </div>

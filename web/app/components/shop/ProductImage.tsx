@@ -9,9 +9,10 @@ type Props = {
 const ProductImage = ({ title, background, foreground }: Props) => {
   return (
     <div
-      className='product-image'
+      className='product-image text-xl'
       style={{ backgroundColor: background, color: foreground }}>
       {title}
+      {/* <span className='text-2xl'>Aa</span> */}
     </div>
   );
 };
