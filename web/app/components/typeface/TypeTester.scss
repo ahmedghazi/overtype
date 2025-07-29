@@ -73,15 +73,21 @@
 
   .canvas {
     height: calc(var(--main-h) - var(--spacing-md));
-    overflow: clip;
-    // padding: var(--spacing-md);
+    overflow: hidden;
+    overflow-y: auto;
+    padding: var(--spacing-md);
+    .inner {
+      height: 100%;
+      display: grid;
+      align-items: center;
+    }
     // background-color: red;
     .t-preview {
-      position: absolute;
-      left: var(--spacing-md);
-      top: 50%;
-      transform: translate(-0%, -50%);
-      width: calc(100% - var(--spacing-md) * 2);
+      // position: absolute;
+      // left: var(--spacing-md);
+      // width: calc(100% - var(--spacing-md) * 2);
+      // top: 50%;
+      // transform: translate(-0%, -50%);
       text-align: var(--text-align, "center");
       font-size: var(--font-size, 9.375rem);
       font-family: var(--font-family);
