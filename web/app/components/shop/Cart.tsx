@@ -82,7 +82,7 @@ const Cart = (props: Props) => {
         </div>
         {products && products.length > 0 && (
           <div className='cart-content'>
-            <section className='products mb-lg'>
+            <section className='products mb-lg flex flex-col gap-2xs'>
               {products &&
                 products.map((item, i) => (
                   <CartItem

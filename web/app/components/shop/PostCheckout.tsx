@@ -22,7 +22,7 @@ const CheckoutSuccess = () => {
           we can’t wait to see what you do with it.
         </p>
       </div>
-      <div className='products flex flex-col gap-md'>
+      <div className='products flex flex-col gap-2xs'>
         {items?.map((item: ProductData, i: number) => (
           <CartItem key={i} input={item} />
         ))}
