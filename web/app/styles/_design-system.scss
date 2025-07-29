@@ -293,6 +293,8 @@ a.ui-btn {
   --track-height: 11px;
   --thumb-height: 16px;
   --thumb-width: 16px;
+  --color: var(--color-secondary);
+  --color-bg: white;
   font-size: var(--text-sm);
   margin-bottom: var(--spacing-xs);
   .label {
@@ -308,7 +310,7 @@ a.ui-btn {
     border: none;
     &[type="range"] {
       width: 100%;
-      accent-color: var(--color-secondary);
+      accent-color: var(--color);
       // accent-color: red;
       // background-color: red;
     }
@@ -321,12 +323,8 @@ a.ui-btn {
 
     &[type="range"]::-webkit-slider-runnable-track {
       height: var(--track-height);
-      background: linear-gradient(
-        to right,
-        var(--color-secondary),
-        var(--color-secondary)
-      );
-      background-color: white;
+      background: linear-gradient(to right, var(--color), var(--color));
+      background-color: var(--color-bg);
       background-size: var(--background-size, 0%) 100%;
       background-repeat: no-repeat;
       border-radius: var(--radius-sm);
@@ -336,7 +334,7 @@ a.ui-btn {
       width: var(--thumb-width);
       height: var(--thumb-height);
       cursor: pointer;
-      background: var(--color-secondary);
+      background: var(--color);
       border: none;
       border-radius: 50%;
       margin-top: calc((var(--track-height) / 2) - (var(--thumb-height) / 2));
@@ -351,12 +349,8 @@ a.ui-btn {
 
     &[type="range"]::-moz-range-track {
       height: var(--track-height);
-      background: linear-gradient(
-        to right,
-        var(--color-secondary),
-        var(--color-secondary)
-      );
-      background-color: white;
+      background: linear-gradient(to right, var(--color), var(--color));
+      background-color: var(--color-bg);
       background-size: var(--background-size, 0%) 100%;
       background-repeat: no-repeat;
       border-radius: var(--radius-sm);
@@ -366,7 +360,7 @@ a.ui-btn {
       width: var(--thumb-width);
       height: var(--thumb-height);
       cursor: pointer;
-      background: var(--color-secondary);
+      background: var(--color);
       border: none;
       border-radius: 50%;
       margin-top: calc((var(--track-height) / 2) - (var(--thumb-height) / 2));
@@ -390,22 +384,17 @@ a.ui-btn {
   }
 }
 .dark .ui-range input[type="range"] {
-  &::-moz-range-progress {
-    background-color: var(--color-bg);
-  }
+  --color-bg: #3c3c3c;
+  // --color-bg: var(--color-primary);
+  // &::-moz-range-progress {
+  //   background-color: var(--color-bg);
+  // }
 
-  &::-webkit-slider-runnable-track {
-    // background: linear-gradient(
-    //   to right,
-    //   rgba(143, 143, 143, 1),
-    //   rgba(143, 143, 143, 1)
-    // );
-    background-color: var(--color-bg);
-  }
+  // &::-webkit-slider-runnable-track {
+  //   background-color: var(--color-bg);
+  // }
 }
-// .footer {
-//   @include debugFiletY(50%);
-// }
+
 .ui-select {
   appearance: none;
   width: 100%;

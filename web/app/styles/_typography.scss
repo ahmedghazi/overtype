@@ -81,7 +81,7 @@ a[aria-current="page"] {
   // &:active,
   &:hover {
     // color: var(--color-hover);
-    color: var(--color-secondary);
+    // color: var(--color-secondary);
   }
   &.is-active {
     // color: var(--color-blue);
@@ -111,6 +111,9 @@ p,
   a {
     // color: var(--color-secondary);
     text-decoration: underline;
+    &:hover {
+      color: var(--color-secondary);
+    }
   }
 }
 .ellipsis {

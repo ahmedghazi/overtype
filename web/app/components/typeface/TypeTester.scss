@@ -15,6 +15,7 @@
     max-width: 235px;
     width: 100%;
     background: rgba(231, 231, 231, 1);
+    background-color: #ededed;
     backdrop-filter: blur(54px);
     padding: var(--spacing-xs);
     display: flex;
@@ -127,6 +128,7 @@
   }
   aside {
     background-color: rgba(71, 71, 71, 0.4);
+    background-color: #000;
     .ui-btn {
       background-color: rgba(60, 60, 60, 1);
       &:hover,
