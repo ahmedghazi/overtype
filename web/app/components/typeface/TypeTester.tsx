@@ -60,9 +60,9 @@ const TypeTester = ({
   }, [pangrams]);
 
   return (
-    <div className='type-tester rounded'>
+    <div className='type-tester '>
       <TypeFaceContextProvider>
-        <div className='canvas'>
+        <div className='canvas rounded'>
           <div className='inner'>
             <TextPreview
               ref={previewRef}
