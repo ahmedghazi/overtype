@@ -16,9 +16,9 @@ const CardFontInUse = ({ input }: Props) => {
     <article className='card card--font-in-use'>
       <div className='image rounded'>
         {image && <Figure asset={image?.image?.asset} />}
-        <div className='overlay'>
+        {/* <div className='overlay'>
           <BtnIcon icon='see' onClick={() => {}} />
-        </div>
+        </div> */}
       </div>
       <div className='header'>
         <div>
