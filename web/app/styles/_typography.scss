@@ -84,10 +84,10 @@ a[aria-current="page"] {
     color: var(--color-secondary);
   }
   &.is-active {
-    color: var(--color-blue);
+    // color: var(--color-blue);
   }
   &.is-current-page {
-    color: var(--color-muted);
+    // color: var(--color-muted);
   }
 }
 

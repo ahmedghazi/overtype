@@ -75,7 +75,7 @@
     // margin-bottom: var(--spacing-9xl);
     transition: all 0.2s;
     &.is-collapsed {
-      transform: translateY(-100%);
+      transform: translateY(100%);
       opacity: 0;
       pointer-events: none;
     }
