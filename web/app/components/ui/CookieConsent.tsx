@@ -43,10 +43,10 @@ const CookieConsent = ({ msg }: Props) => {
           <button
             className='ui-btn ui-btn__accent'
             onClick={() => acceptCookie()}>
-            ACCEPT
+            Accep
           </button>
           <button className='ui-btn' onClick={() => refuseCookie()}>
-            DECLINE
+            Decline
           </button>
         </div>
       </div>
