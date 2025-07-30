@@ -33,7 +33,9 @@ const ContentProduct = ({ input }: Props) => {
     related,
     initialPangram,
     stylisticSets,
+    openTypeFeatures,
   } = input;
+  console.log(input);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { ref, inView, entry } = useInView({
     /* Optional options */
@@ -65,6 +67,7 @@ const ContentProduct = ({ input }: Props) => {
             singles={singles || []}
             initialPangram={initialPangram || []}
             stylisticSets={stylisticSets || []}
+            openTypeFeatures={openTypeFeatures || []}
           />
         </section>
         <section className='images px-md'>

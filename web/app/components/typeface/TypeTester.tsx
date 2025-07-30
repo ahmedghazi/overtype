@@ -10,12 +10,14 @@ import "./TypeTester.scss";
 type TypeTesterProps = {
   singles: ProductSingle[];
   initialPangram: string[];
+  openTypeFeatures?: KeyValString[];
   stylisticSets?: KeyValString[];
 };
 
 const TypeTester = ({
   singles,
   initialPangram,
+  openTypeFeatures,
   stylisticSets,
 }: TypeTesterProps) => {
   const previewRef = useRef<HTMLDivElement>(null);
@@ -78,6 +80,7 @@ const TypeTester = ({
             singles={singles}
             target={target}
             stylisticSets={stylisticSets}
+            openTypeFeatures={openTypeFeatures}
             textType={textType}
           />
         )}

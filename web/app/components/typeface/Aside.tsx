@@ -10,16 +10,23 @@ import TesterTextType from "./TesterTextType";
 import BtnTransform from "../ui/buttons/BtnTransform";
 import BtnAlign from "../ui/buttons/BtnAlign";
 import BtnIcon from "../ui/buttons/BtnIcon";
-import TesterStylisticSets from "./TesterStylisticSets";
+import TesterFeatures from "./TesterFeatures";
 
 interface AsideProps {
   singles: ProductSingle[];
   target: HTMLDivElement | null;
   stylisticSets?: KeyValString[];
+  openTypeFeatures?: KeyValString[];
   textType: "title" | "paragraph";
 }
 
-const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
+const Aside = ({
+  singles,
+  target,
+  stylisticSets,
+  openTypeFeatures,
+  textType,
+}: AsideProps) => {
   const nodeRef = useRef<HTMLDivElement>(null);
 
   const [ready, setReady] = useState<boolean>(false);
@@ -62,13 +69,27 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
     }));
   }, [singles]);
 
+  const openTypeFeaturesOptions = useMemo(() => {
+    return openTypeFeatures?.map((item, i) => ({
+      key: i + "open-type-features",
+      type: "open-type-features",
+      label: item.key,
+      value: item.val,
+    }));
+  }, [openTypeFeatures]);
+
   const stylisticSetsOptions = useMemo(() => {
     return stylisticSets?.map((item, i) => ({
-      key: i,
+      key: i + "stylistic-sets",
+      type: "stylistic-sets",
       label: item.key,
       value: item.val,
     }));
   }, [stylisticSets]);
+
+  const testerFeaturesOptions = useMemo(() => {
+    return openTypeFeaturesOptions?.concat(stylisticSetsOptions || []);
+  }, [openTypeFeaturesOptions, stylisticSetsOptions]);
 
   const defaultStyle = useMemo(() => {
     return singles.find((el) => el.isDefault);
@@ -78,10 +99,9 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
     return singles.find((el) => el.typeface?.slug?.current === slug);
   };
 
-  const _handleStylisticSets = (set: any[]) => {
+  const _handleFeatures = (set: any[]) => {
     if (!target) return;
     if (set) {
-      // setFontFeatures((prev) => [...prev, `"${set.value}" on`]);
       setFontFeatures(set);
     } else {
       setFontFeatures([]);
@@ -92,7 +112,6 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
     if (!target) return;
     console.log(fontFeatures);
 
-    // console.log(fontFeatures);
     const fontFeatureSettings = fontFeatures.map((item) => {
       return `"${item.value}" on`;
     });
@@ -108,7 +127,8 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
   if (!ready) return null;
   return (
     <Draggable handle='.handle' nodeRef={nodeRef}>
-      <aside className='rounded' ref={nodeRef}>
+      <aside className='rounded)' ref={nodeRef}>
+        <div className='bg rounded'></div>
         <div className='handle'></div>
 
         <div className=''>
@@ -127,7 +147,7 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
             className={clsx("body pt-0 md:pt-3xl-", {
               "is-collapsed": collapse,
             })}>
-            <div className='sizes md:mb-3xl-'>
+            <div className='sizes'>
               <Range
                 min='12'
                 max='200'
@@ -160,26 +180,13 @@ const Aside = ({ singles, target, stylisticSets, textType }: AsideProps) => {
               />
             </div>
             <div className='styles'>
-              {/* {stylisticSetsOptions && (
+              {testerFeaturesOptions && (
                 <div className='mb-2xs'>
-                  <Select
-                    name='stylistic-sets'
-                    options={stylisticSetsOptions}
+                  <TesterFeatures
+                    options={testerFeaturesOptions}
                     label='Stylistic Sets'
                     onChange={(e: any) => {
-                      // _handleStylisticSets(e);
-                    }}
-                  />
-                </div>
-              )} */}
-
-              {stylisticSetsOptions && (
-                <div className='mb-2xs'>
-                  <TesterStylisticSets
-                    options={stylisticSetsOptions}
-                    label='Stylistic Sets'
-                    onChange={(e: any) => {
-                      _handleStylisticSets(e);
+                      _handleFeatures(e);
                     }}
                   />
                 </div>

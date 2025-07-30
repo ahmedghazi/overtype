@@ -507,6 +507,13 @@ export interface Product extends SanityDocument {
   initialPangram?: Array<SanityKeyed<string>>;
 
   /**
+   * openTypeFeatures — `array`
+   *
+   * values here: https://css-tricks.com/almanac/properties/f/font-feature-settings/
+   */
+  openTypeFeatures?: Array<SanityKeyed<KeyValString>>;
+
+  /**
    * stylisticSets — `array`
    *
    * values here: https://css-tricks.com/almanac/properties/f/font-feature-settings/

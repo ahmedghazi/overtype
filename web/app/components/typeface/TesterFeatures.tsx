@@ -8,9 +8,9 @@ type Props = {
   onChange: Function;
 };
 
-const TesterStylisticSets = ({ options, label, onChange }: Props) => {
+const TesterFeatures = ({ options, label, onChange }: Props) => {
   const [selected, setSelected] = useState([]);
-
+  console.log(options);
   useEffect(() => {
     if (selected.length === 0) return;
     console.log(selected);
@@ -19,8 +19,7 @@ const TesterStylisticSets = ({ options, label, onChange }: Props) => {
 
   return (
     <div>
-      {/* <h1>Select Fruits</h1>
-      <pre>{JSON.stringify(selected)}</pre> */}
+      {/* <pre>{JSON.stringify(options, null, 2)}</pre> */}
       <MultiSelect
         options={options}
         value={selected}
@@ -44,4 +43,4 @@ const TesterStylisticSets = ({ options, label, onChange }: Props) => {
   );
 };
 
-export default TesterStylisticSets;
+export default TesterFeatures;
