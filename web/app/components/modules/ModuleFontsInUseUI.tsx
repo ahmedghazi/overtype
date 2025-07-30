@@ -12,7 +12,7 @@ interface Props {
 }
 
 const ModuleFontsInUseUI = ({ input }: Props) => {
-  const { title, items } = input;
+  const { title, cta, items } = input;
   const {
     settings: { shopPage },
   } = usePageContext();
@@ -23,8 +23,8 @@ const ModuleFontsInUseUI = ({ input }: Props) => {
         <h2 className='sans'>{title}</h2>
         <div className='actions'>
           <LinkWithIcon
-            label='View All'
-            link={_linkResolver(shopPage)}
+            label={cta?.label || "View All"}
+            link={cta?.link || "/"}
             icon='arrow-e'
           />
         </div>
