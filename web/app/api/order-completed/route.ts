@@ -80,31 +80,31 @@ export async function POST(request: Request) {
       );
     }
 
-    // const order = await _storeOrder(userId, paddleData, products);
-    // const orderId = order._id;
+    const order = await _storeOrder(userId, paddleData, products);
+    const orderId = order._id;
 
-    // if (!orderId) {
-    //   return NextResponse.json(
-    //     { success: false, error: "Order not found" },
-    //     { status: 500 }
-    //   );
-    // }
+    if (!orderId) {
+      return NextResponse.json(
+        { success: false, error: "Order not found" },
+        { status: 500 }
+      );
+    }
 
     // Add order to user's orders array
-    // console.log("userId", userId);
-    // console.log("orderId", orderId);
+    console.log("userId", userId);
+    console.log("orderId", orderId);
 
-    // await client
-    //   .patch(userId)
-    //   .setIfMissing({ orders: [] })
-    //   .append("orders", [
-    //     {
-    //       _type: "reference",
-    //       _ref: orderId,
-    //       _key: uuidv4(), // ✅ clé explicite
-    //     },
-    //   ])
-    //   .commit();
+    await client
+      .patch(userId)
+      .setIfMissing({ orders: [] })
+      .append("orders", [
+        {
+          _type: "reference",
+          _ref: orderId,
+          _key: uuidv4(), // ✅ clé explicite
+        },
+      ])
+      .commit();
 
     const _productOrderData = _collectProductsOrderData(products);
 
@@ -369,8 +369,17 @@ async function sendEmail(
   currencyCode: string,
   payload?: any
 ) {
+  // const transporter = nodemailer.createTransport({
+  //   service: "gmail",
+  //   auth: {
+  //     user: environment.email.user as string,
+  //     pass: environment.email.pass as string,
+  //   },
+  // });
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "ssl0.ovh.net",
+    port: 465,
+    secure: true,
     auth: {
       user: environment.email.user as string,
       pass: environment.email.pass as string,
