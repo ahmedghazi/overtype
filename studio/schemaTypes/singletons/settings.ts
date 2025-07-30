@@ -99,6 +99,12 @@ export default defineType({
       group: 'shop',
     }),
     defineField({
+      name: 'logoPriceMultiplier',
+      type: 'number',
+      description: 'Logo price multiplier, will multiply bundle or single price',
+      group: 'shop',
+    }),
+    defineField({
       name: 'licenses',
       description: 'Global Licenses calculation',
       type: 'array',

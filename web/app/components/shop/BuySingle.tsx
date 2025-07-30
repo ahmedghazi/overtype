@@ -8,6 +8,7 @@ import { _getPriceWithDiscount } from "./utils";
 import useTypeFace from "../typeface/TypeFaceContext";
 import { _localizeField } from "@/app/sanity-api/utils";
 import { ProductData } from "@/app/types/extra-types";
+import { usePageContext } from "@/app/context/PageContext";
 
 type Props = {
   product: Product;
@@ -19,6 +20,9 @@ type Props = {
 const BuySingle = ({ input, product, background, foreground }: Props) => {
   const { products, dialogProducts, setDialogProducts, licenseType, isLogo } =
     useShop();
+  const {
+    settings: { logoPriceMultiplier },
+  } = usePageContext();
   const [checked, setChecked] = useState(false);
   const [applyDiscount, setApplyDiscount] = useState<boolean>(false);
 
@@ -52,7 +56,8 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
   }, [applyDiscount]);
 
   let priceMultiplier = licenseType?.priceMultiplier || 1;
-  if (isLogo) priceMultiplier += 0.5;
+  if (isLogo && logoPriceMultiplier) priceMultiplier += logoPriceMultiplier;
+
   const price = input.price ? input.price * priceMultiplier : 0;
   const totalDiscount = applyDiscount && input.discount ? input.discount : 0;
   const finalPrice =

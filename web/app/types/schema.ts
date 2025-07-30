@@ -184,6 +184,13 @@ export interface Settings extends SanityDocument {
   shopPage?: SanityReference<PageModulaire>;
 
   /**
+   * logoPriceMultiplier — `number`
+   *
+   * Logo price multiplier, will multiply bundle or single price
+   */
+  logoPriceMultiplier?: number;
+
+  /**
    * licenses — `array`
    *
    * Global Licenses calculation

@@ -21,7 +21,13 @@ type Props = {
 const Buy = ({ input }: Props) => {
   // console.log(input);
   const { settings } = usePageContext();
-  const { licenses, toolTipLicenses, toolTipLogo, messageDialogBuy } = settings;
+  const {
+    licenses,
+    toolTipLicenses,
+    toolTipLogo,
+    messageDialogBuy,
+    logoPriceMultiplier,
+  } = settings;
   const {
     licenseType,
     setLicenseType,
@@ -81,30 +87,32 @@ const Buy = ({ input }: Props) => {
                 </div>
               </div>
             </div>
-            <div>
-              <div className='header'>
-                <h4 className='text-md md:text-lg'>
-                  Would you use the font in a logo/wordmark?
-                </h4>
-                <BtnToolTip text={_localizeField(toolTipLogo)} />
-              </div>
-              <div className='content'>
-                <div className='grid md:grid-cols-2 gap-3xs'>
-                  <Radio
-                    name='forLogo'
-                    label='Yes'
-                    isChecked={isLogo === true}
-                    onChange={() => setIsLogo(true)}
-                  />
-                  <Radio
-                    name='forLogo'
-                    label='No'
-                    isChecked={isLogo === false}
-                    onChange={() => setIsLogo(false)}
-                  />
+            {logoPriceMultiplier && (
+              <div className='logo'>
+                <div className='header'>
+                  <h4 className='text-md md:text-lg'>
+                    Would you use the font in a logo/wordmark?
+                  </h4>
+                  <BtnToolTip text={_localizeField(toolTipLogo)} />
+                </div>
+                <div className='content'>
+                  <div className='grid md:grid-cols-2 gap-3xs'>
+                    <Radio
+                      name='forLogo'
+                      label='Yes'
+                      isChecked={isLogo === true}
+                      onChange={() => setIsLogo(true)}
+                    />
+                    <Radio
+                      name='forLogo'
+                      label='No'
+                      isChecked={isLogo === false}
+                      onChange={() => setIsLogo(false)}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </section>
         {/* <pre>{JSON.stringify(isLogo, null, 2)}</pre> */}

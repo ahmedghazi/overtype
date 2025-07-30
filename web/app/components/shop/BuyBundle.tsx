@@ -8,6 +8,7 @@ import clsx from "clsx";
 import { _getPriceWithDiscount } from "./utils";
 import { _localizeField } from "@/app/sanity-api/utils";
 import { ProductData } from "@/app/types/extra-types";
+import { usePageContext } from "@/app/context/PageContext";
 
 type Props = {
   product: Product;
@@ -19,10 +20,13 @@ type Props = {
 const BuyBundle = ({ product, input, background, foreground }: Props) => {
   const { dialogProducts, setDialogProducts, licenseType, isLogo } = useShop();
   const [checked, setChecked] = useState(false);
+  const {
+    settings: { logoPriceMultiplier },
+  } = usePageContext();
 
   // const priceMultiplier = licenseType?.priceMultiplier || 1;
   let priceMultiplier = licenseType?.priceMultiplier || 1;
-  if (isLogo) priceMultiplier += 0.5;
+  if (isLogo && logoPriceMultiplier) priceMultiplier += logoPriceMultiplier;
 
   const price = input.price ? input.price * priceMultiplier : 0;
   const priceDiscount = input.discount ? input.discount : 0;

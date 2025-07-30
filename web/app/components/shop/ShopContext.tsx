@@ -89,7 +89,7 @@ function trialsReducer(state: any, action: any) {
 }
 
 type ContextProps = {
-  cartObject: any;
+  // cartObject: any;
   trials: SanityKeyed<Product>[] | null;
   setTrials: Function;
 
@@ -134,7 +134,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
     inUseFor: "",
   });
   const [isLogo, setIsLogo] = useState<boolean | undefined>(undefined);
-  const [cartObject, setCartObject] = useState(null);
+  // const [cartObject, setCartObject] = useState(null);
   // const pathname = usePathname();
 
   console.log(dialogProducts);
@@ -150,7 +150,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
         setDialogProducts,
         licenseType,
         setLicenseType,
-        cartObject,
+        // cartObject,
         isLogo,
         setIsLogo,
         licenseFor,
