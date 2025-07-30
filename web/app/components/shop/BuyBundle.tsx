@@ -19,7 +19,11 @@ type Props = {
 const BuyBundle = ({ product, input, background, foreground }: Props) => {
   const { dialogProducts, setDialogProducts, licenseType, isLogo } = useShop();
   const [checked, setChecked] = useState(false);
-  const priceMultiplier = licenseType?.priceMultiplier || 1;
+
+  // const priceMultiplier = licenseType?.priceMultiplier || 1;
+  let priceMultiplier = licenseType?.priceMultiplier || 1;
+  if (isLogo) priceMultiplier += 0.5;
+
   const price = input.price ? input.price * priceMultiplier : 0;
   const priceDiscount = input.discount ? input.discount : 0;
   const finalPrice = input.discount

@@ -135,7 +135,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   });
   const [isLogo, setIsLogo] = useState<boolean | undefined>(undefined);
   const [cartObject, setCartObject] = useState(null);
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
   console.log(dialogProducts);
 
