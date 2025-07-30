@@ -112,6 +112,14 @@ export default defineType({
       group: 'editorial',
     }),
     defineField({
+      name: 'openTypeFeatures',
+      type: 'array',
+      of: [{type: 'keyValString'}],
+      description:
+        'values here: https://css-tricks.com/almanac/properties/f/font-feature-settings/',
+      group: 'editorial',
+    }),
+    defineField({
       name: 'stylisticSets',
       type: 'array',
       of: [{type: 'keyValString'}],
