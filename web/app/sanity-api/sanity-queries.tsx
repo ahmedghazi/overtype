@@ -160,6 +160,7 @@ export const PRODUCT_QUERY = groq`*[_type == "product" && slug.current == $slug]
   },
   singles[]{
     // ...,
+    _key,
     sku,
     title,
     price,

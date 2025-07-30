@@ -80,40 +80,38 @@ export async function POST(request: Request) {
       );
     }
 
-    const order = await _storeOrder(userId, paddleData, products);
-    const orderId = order._id;
-    // return NextResponse.json({
-    //   success: true,
-    //   order,
-    //   custom_data: paddleData.custom_data,
-    // });
-    if (!orderId) {
-      return NextResponse.json(
-        { success: false, error: "Order not found" },
-        { status: 500 }
-      );
-    }
+    // const order = await _storeOrder(userId, paddleData, products);
+    // const orderId = order._id;
+
+    // if (!orderId) {
+    //   return NextResponse.json(
+    //     { success: false, error: "Order not found" },
+    //     { status: 500 }
+    //   );
+    // }
 
     // Add order to user's orders array
-    console.log("userId", userId);
-    console.log("orderId", orderId);
+    // console.log("userId", userId);
+    // console.log("orderId", orderId);
 
-    await client
-      .patch(userId)
-      .setIfMissing({ orders: [] })
-      .append("orders", [
-        {
-          _type: "reference",
-          _ref: orderId,
-          _key: uuidv4(), // ✅ clé explicite
-        },
-      ])
-      .commit();
+    // await client
+    //   .patch(userId)
+    //   .setIfMissing({ orders: [] })
+    //   .append("orders", [
+    //     {
+    //       _type: "reference",
+    //       _ref: orderId,
+    //       _key: uuidv4(), // ✅ clé explicite
+    //     },
+    //   ])
+    //   .commit();
 
     const _productOrderData = _collectProductsOrderData(products);
+
     const _productOrderDataZips = await _collectProductsOrderZips(
       _productOrderData
     );
+    // return NextResponse.json({ success: true, _productOrderDataZips });
     if (!_productOrderDataZips) {
       return NextResponse.json(
         { success: false, error: "Product order data not found" },
@@ -292,6 +290,7 @@ const _collectProductsOrderZips = async (items: ProductOrderData[]) => {
       zipTitle: title,
       zip: bundleOrsingle?.zip,
     };
+    console.log(sanitizedData);
     result.push(sanitizedData);
   }
   return result;

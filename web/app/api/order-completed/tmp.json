@@ -1,0 +1,38 @@
+[
+  {
+    "productType": "ProductSingle",
+    "productId": "5a0679c0-aa58-499a-a968-493f9bdd51a3",
+    "productTitle": "Last",
+    "fullTitle": "Last Regular",
+    "description": "",
+    "sku": "single-last-regular",
+    "price": 90,
+    "discount": 0,
+    "applyDiscount": false,
+    "relatedTypefaceSku": "",
+    "finalPrice": 90,
+    "background": "#b9ff60",
+    "foreground": "#000000",
+    "license": "XS",
+    "licenseInfos": "(1-5 employés)",
+    "isLogo": true
+  },
+  {
+    "productType": "ProductSingle",
+    "productId": "5a0679c0-aa58-499a-a968-493f9bdd51a3",
+    "productTitle": "Last",
+    "fullTitle": "Last Regular Italic",
+    "description": "",
+    "sku": "single-last-regular-italic",
+    "price": 90,
+    "discount": 25,
+    "applyDiscount": true,
+    "relatedTypefaceSku": "single-last-regular",
+    "finalPrice": 67.5,
+    "background": "#b9ff60",
+    "foreground": "#000000",
+    "license": "XS",
+    "licenseInfos": "(1-5 employés)",
+    "isLogo": true
+  }
+]
