@@ -28,8 +28,8 @@ const TextPreview = React.forwardRef<HTMLDivElement, TextPrevizewProps>(
       <div
         ref={ref}
         className={clsx(
-          "t-preview md:text-10xl"
-          // isParagraph && "md:columns-3 gap-md"
+          "t-preview md:text-10xl",
+          isParagraph && "is-paragraph"
         )}
         contentEditable={true}
         suppressContentEditableWarning={true}

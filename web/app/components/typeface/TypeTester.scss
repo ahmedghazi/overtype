@@ -101,11 +101,13 @@
       line-height: var(--line-height, 1);
       letter-spacing: var(--letter-spacing, 0);
       text-transform: var(--text-transform, "none");
-      column-count: var(--column-count, 1);
       font-feature-settings: var(--font-feature-settings);
       // font-variant-caps: var(--font-variant-caps);
       // font-variant-ligatures: var(--font-variant-ligatures);
       // font-variant-numeric: var(--font-variant-numeric);
+      &.is-paragraph {
+        column-count: var(--column-count, 1);
+      }
       &:focus {
         outline: none;
       }
