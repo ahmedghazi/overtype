@@ -33,7 +33,9 @@ const AddToCart = ({ items }: Props) => {
       // publish("DIALOG.CLOSE");
     });
     if (items.length > 0) {
-      notify(items[0]);
+      const lastItem = items.pop();
+      if (lastItem) notify(lastItem);
+
       publish("DIALOG.CLOSE");
       setTimeout(() => {
         publish("CART_OPEN");
