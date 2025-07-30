@@ -155,17 +155,17 @@
         background-color: rgba(111, 111, 111, 1);
       }
     }
+    .ui-select:not(.rmsc) {
+      background-color: rgba(60, 60, 60, 1);
+      &:hover,
+      &:active,
+      &.is-active {
+        background-color: rgba(111, 111, 111, 1);
+      }
+    }
     .ui-select.rmsc {
       --rmsc-bg: rgba(60, 60, 60, 1) !important;
     }
-    // .ui-select {
-    //   background-color: rgba(60, 60, 60, 1);
-    //   &:hover,
-    //   &:active,
-    //   &.is-active {
-    //     background-color: rgba(111, 111, 111, 1);
-    //   }
-    // }
   }
 }
 
