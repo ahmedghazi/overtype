@@ -53,11 +53,16 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
 
   const priceMultiplier = licenseType?.priceMultiplier || 1;
   const price = input.price ? input.price * priceMultiplier : 0;
-  const priceDiscount = applyDiscount && input.discount ? input.discount : 0;
+  const totalDiscount = applyDiscount && input.discount ? input.discount : 0;
   const finalPrice =
     applyDiscount && input.discount
-      ? _getPriceWithDiscount(price, priceDiscount)
+      ? _getPriceWithDiscount(price, totalDiscount)
       : price;
+
+  //need an array of price modifier, discount, isLogo (+50%)
+  const priceModifiers = [];
+  if (applyDiscount) priceModifiers.push(totalDiscount);
+  if (isLogo) priceModifiers.push(50);
 
   const _productData: ProductData = {
     productType: "ProductSingle",
@@ -68,7 +73,7 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
     description: input.description || "",
     sku: input.sku?.current || "",
     price: price,
-    discount: priceDiscount,
+    discount: totalDiscount,
     applyDiscount: applyDiscount,
     relatedTypefaceSku: input.relatedTypeface
       ? `single-${input.relatedTypeface?.slug?.current}`

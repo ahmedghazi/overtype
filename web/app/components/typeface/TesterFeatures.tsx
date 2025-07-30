@@ -10,10 +10,8 @@ type Props = {
 
 const TesterFeatures = ({ options, label, onChange }: Props) => {
   const [selected, setSelected] = useState([]);
-  console.log(options);
   useEffect(() => {
     if (selected.length === 0) return;
-    console.log(selected);
     onChange(selected);
   }, [selected, onChange]);
 
@@ -27,7 +25,7 @@ const TesterFeatures = ({ options, label, onChange }: Props) => {
         labelledBy={label}
         disableSearch={true}
         className='ui-select'
-        defaultIsOpen={true}
+        // defaultIsOpen={true}
         ArrowRenderer={() => (
           <svg
             width='12'

@@ -35,7 +35,6 @@ const ContentProduct = ({ input }: Props) => {
     stylisticSets,
     openTypeFeatures,
   } = input;
-  console.log(input);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { ref, inView, entry } = useInView({
     /* Optional options */

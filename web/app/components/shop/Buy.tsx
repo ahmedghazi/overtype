@@ -30,17 +30,13 @@ const Buy = ({ input }: Props) => {
     dialogProducts,
     setDialogProducts,
   } = useShop();
-  // console.log("dialogProducts");
-  // console.log(dialogProducts);
+
   const _updateLicense = (license: LicenseType) => {
     //reset
-    // let isLicenseUpdated = false;
     setDialogProducts({ type: "REMOVE_ALL" });
     setLicenseType(null);
     setTimeout(() => {
-      // if (!isLicenseUpdated)
       setLicenseType(license);
-      // isLicenseUpdated = true;
     }, 150);
   };
   return (

@@ -137,7 +137,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [cartObject, setCartObject] = useState(null);
   const pathname = usePathname();
 
-  // console.log(dialogProducts, products);
+  console.log(dialogProducts);
 
   return (
     <ShopContext.Provider
