@@ -53,7 +53,7 @@ const ContentProduct = ({ input }: Props) => {
       <div className='inner'>
         <HeroSlider input={hero || []} />
         <Waterfall title={title || ""} items={singles || []} />
-        <section className='about px-md' id='about'>
+        <section className='about px-xs md:px-md' id='about'>
           <h2 className='text-xl md:text-2xl'>About {title}</h2>
           <div className='text'>
             <PortableText
@@ -62,7 +62,7 @@ const ContentProduct = ({ input }: Props) => {
             />
           </div>
         </section>
-        <section className='tester px-md' id='tester'>
+        <section className='tester px-xs md:px-md' id='tester'>
           <TypeTester
             singles={singles || []}
             initialPangram={initialPangram || []}
@@ -70,8 +70,8 @@ const ContentProduct = ({ input }: Props) => {
             openTypeFeatures={openTypeFeatures || []}
           />
         </section>
-        <section className='images px-md'>
-          <div className='grid md:grid-cols-2 gap-md'>
+        <section className='images px-xs md:px-md'>
+          <div className='grid md:grid-cols-2 gap-xs md:gap-md'>
             {images?.map((item, i) => (
               <div
                 className={clsx(

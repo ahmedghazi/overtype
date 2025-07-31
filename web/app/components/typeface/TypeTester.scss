@@ -117,7 +117,7 @@
 
   @media all and (max-width: variables.$md) {
     height: auto;
-    padding: 0 var(--spacing-xs);
+    // padding: 0 var(--spacing-xs);
     aside {
       position: initial;
       max-width: unset;
@@ -128,6 +128,11 @@
       .styles,
       .footer {
         display: none;
+      }
+      .body {
+        .sizes {
+          padding: 0;
+        }
       }
     }
     .canvas {

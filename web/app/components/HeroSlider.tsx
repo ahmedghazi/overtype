@@ -11,7 +11,7 @@ type Props = {
 
 const HeroSlider = ({ input }: Props) => {
   return (
-    <section className='hero-slider px-md '>
+    <section className='hero-slider px-xs md:px-md '>
       <div className='inner rounded'>
         {input.length > 1 && (
           <Slider
