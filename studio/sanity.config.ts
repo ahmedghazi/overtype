@@ -11,7 +11,7 @@ import {colorInput} from '@sanity/color-input'
 
 const devOnlyPlugins = [getStartedPlugin()]
 
-const remoteURL = 'https://overtype-foundry.vercel.app'
+const remoteURL = 'https://preprod-overtype-foundry.vercel.app'
 const localURL = 'http://localhost:3000'
 const previewURL = window.location.hostname === 'localhost' ? localURL : remoteURL
 
