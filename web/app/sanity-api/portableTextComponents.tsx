@@ -76,10 +76,14 @@ const portableTextComponents: PortableTextComponents = {
     },
 
     linkExternal: ({ children, value }) => {
-      const { href } = value;
+      const { href, cta } = value;
 
       return (
-        <a href={href} rel={"noreferrer noopener"} target='_blank'>
+        <a
+          href={href}
+          rel={"noreferrer noopener"}
+          target='_blank'
+          className={cta ? "ui-btn ui-btn__accent " : ""}>
           <span>{children}</span>
         </a>
       );

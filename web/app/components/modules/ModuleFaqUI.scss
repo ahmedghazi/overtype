@@ -20,6 +20,12 @@
     }
   }
 
+  & + .module--text-ui {
+    p {
+      text-align: center;
+    }
+  }
+
   @media all and (max-width: variables.$md) {
     nav {
       ul {

@@ -3,6 +3,7 @@ import {defineType, defineArrayMember, defineField} from 'sanity'
 import {LinkIcon} from '@sanity/icons'
 import {FiAlignCenter, FiAlignLeft, FiAlignRight, FiExternalLink} from 'react-icons/fi'
 import linkIntternalTypes from '../misc/linkIntternalTypes'
+import LinkExternalComponent from '../../src/components/LinkExternalComponent'
 /**
  * This is the schema definition for the rich text fields used for
  * for this blog studio. When you import it in schemas.js it can be
@@ -108,7 +109,16 @@ export default defineType({
                 name: 'href',
                 type: 'string',
               },
+              {
+                title: 'CTA',
+                name: 'cta',
+                type: 'boolean',
+                initialValue: false,
+              },
             ],
+            // components: {
+            //   annotation: LinkExternalComponent,
+            // },
           },
         ],
       },
