@@ -119,8 +119,17 @@ async function sendEmail(
 
   payload?: any
 ) {
+  // const transporter = nodemailer.createTransport({
+  //   service: "gmail",
+  //   auth: {
+  //     user: environment.email.user as string,
+  //     pass: environment.email.pass as string,
+  //   },
+  // });
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "ssl0.ovh.net",
+    port: 465,
+    secure: true,
     auth: {
       user: environment.email.user as string,
       pass: environment.email.pass as string,

@@ -1330,7 +1330,7 @@ export type Figure = {
   /**
    * Taille — `string`
    *
-   *
+   * largeur dans la grille
    */
   size?: "w-2/2" | "w-1/2";
 };
