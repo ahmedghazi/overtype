@@ -21,6 +21,10 @@
   }
 
   & + .module--text-ui {
+    h2,
+    p {
+      margin-bottom: var(--spacing-2xl);
+    }
     p {
       text-align: center;
     }
