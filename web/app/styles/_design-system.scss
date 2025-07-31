@@ -7,6 +7,9 @@
   &__lg {
     max-width: var(--container-lg--w);
   }
+  &__xl {
+    max-width: var(--container-xl--w);
+  }
 }
 .scroll-x {
   width: 100%;

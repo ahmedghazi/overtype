@@ -35,7 +35,7 @@ const ModuleFaqUI = ({ input }: Props) => {
   };
   return (
     <section className='module module--faq-ui test px-xs md:px-md'>
-      <div className='c-container'>
+      <div className='c-container c-container__xl'>
         <nav className='faq'>
           <ul className='flex flex-col md:flex-row text-sm'>
             {items?.map((item, i) => (
