@@ -1,7 +1,9 @@
+html,
 body:has([data-template="landing"]) {
+  overflow: hidden;
   header,
   .footer-cta,
-  footer {
+  .footer-group {
     display: none;
   }
   main {
