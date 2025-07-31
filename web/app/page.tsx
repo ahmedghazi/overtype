@@ -6,7 +6,7 @@ import { PageModulaire } from "./types/schema";
 import { getClient } from "./sanity-api/sanity-client";
 import { notFound } from "next/navigation";
 import ContentModulaire from "./components/ContentModulaire";
-import ContentLanding from "./components/ContentLanding";
+// import ContentLanding from "./components/ContentLanding";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getHome();
