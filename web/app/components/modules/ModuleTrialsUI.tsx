@@ -15,6 +15,14 @@ import TextOrEmailInput from "../ui/inputs/TextOrEmailInput";
 import Btn from "../ui/buttons/Btn";
 import portableTextComponents from "@/app/sanity-api/portableTextComponents";
 import { toast } from "react-toastify";
+
+type TrialToastProps = {
+  data: { status: string };
+};
+const TrialToast = ({ data }: TrialToastProps) => (
+  <div className='card-trial-toast px-md'>{data.status}</div>
+);
+
 type TrialItemProps = {
   input: Product;
 };
@@ -26,6 +34,11 @@ const TrialItem = ({ input }: TrialItemProps) => {
   const defaultTypeface = input.defaultTypeface;
 
   useEffect(() => {
+    // toast(TrialToast, {
+    //   closeButton: false,
+    //   data: { status: "Trials : test" },
+    // });
+
     if (!defaultTypeface) return;
     dispatchType(defaultTypeface);
     setReady(true);
@@ -97,7 +110,11 @@ const ModuleTrialsUI = ({ input }: Props) => {
 
   useEffect(() => {
     if (status === "initial" || status === "optin") return;
-    toast(`Trials : ${status}`);
+    // toast(`Trials : ${status}`);
+    toast(TrialToast, {
+      closeButton: false,
+      data: { status: `Trials : ${status}` },
+    });
   }, [status]);
 
   const canSubmit = email && optin && trials && trials?.length > 0;
