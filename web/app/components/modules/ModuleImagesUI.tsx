@@ -2,6 +2,7 @@ import { ImagesUI } from "@/app/types/schema";
 import React from "react";
 import Figure from "../ui/Figure";
 import clsx from "clsx";
+import "./ModuleImagesUI.scss";
 
 type Props = {
   input: ImagesUI;

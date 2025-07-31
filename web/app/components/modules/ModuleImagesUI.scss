@@ -1,0 +1,9 @@
+.module.module--images-ui {
+  .item:not(.col-span-2) {
+    img {
+      // aspect-ratio: 1/1 !important;
+      // height: 100% !important;
+      // object-fit: cover !important;
+    }
+  }
+}
