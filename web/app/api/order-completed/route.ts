@@ -389,7 +389,8 @@ async function sendEmail(
   let mailOptions = {
     from: environment.email.from as string,
     to: to,
-    subject: type === "user" ? "Your Order Confirmation" : "New Order Received",
+    subject:
+      type === "user" ? "Your Order Confirmation" : "New Client Order Received",
     html: generateEmailHtml(name, order, type, currencyCode),
     attachments: type === "user" ? payload : null,
   };
