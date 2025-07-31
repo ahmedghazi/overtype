@@ -14,7 +14,7 @@ function NotFoundPage() {
         </p>
       </div>
       <Link href='/' className='ui-btn ui-btn__accent'>
-        Go to the home
+        Back to home
       </Link>
     </div>
   );
