@@ -33,12 +33,12 @@ const HomePage = async function Page() {
 
   if (!data) return notFound();
   return (
-    /*    <div
-      className='template template--landing'
-      data-template='landing'
-      data-slug={"/"}>
-      <ContentLanding />
-    </div>*/
+    // <div
+    //   className='template template--landing'
+    //   data-template='landing'
+    //   data-slug={"/"}>
+    //   <ContentLanding />
+    // </div>
     <div
       className='template template--home'
       data-template='home'

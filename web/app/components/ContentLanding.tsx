@@ -22,6 +22,14 @@ const ContentLanding = (props: Props) => {
             <ul className='flex justify-center gap-2xl'>
               <li>
                 <a
+                  href='mailto:contact@overtypefoundry.com'
+                  target='_blank'
+                  rel='noopener noreferrer'>
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a
                   href='http://instagram.com/overtypefoundry'
                   target='_blank'
                   rel='noopener noreferrer'>
@@ -30,7 +38,7 @@ const ContentLanding = (props: Props) => {
               </li>
               <li>
                 <a
-                  href='http://twitter.com/overtypefoundry'
+                  href='http://twitter.com/OvertypeFoundry'
                   target='_blank'
                   rel='noopener noreferrer'>
                   Twitter
@@ -38,7 +46,7 @@ const ContentLanding = (props: Props) => {
               </li>
               <li>
                 <a
-                  href='http://linkedin.com/overtypefoundry'
+                  href='https://www.linkedin.com/company/overtypefoundry/'
                   target='_blank'
                   rel='noopener noreferrer'>
                   Linkedin
