@@ -50,10 +50,11 @@ export default defineField({
       name: 'size',
       type: 'string',
       title: 'Taille',
+      description: 'largeur dans la grille',
       options: {
         list: [
-          {title: 'Large', value: 'w-2/2'},
-          {title: 'Medium', value: 'w-1/2'},
+          {title: '2 colonnes', value: 'w-2/2'},
+          {title: '1 colonne', value: 'w-1/2'},
         ],
       },
     }),

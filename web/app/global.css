@@ -116,6 +116,7 @@
     sans-serif;
 
   /* Spacing */
+  --spacing-header-height: var(--header-height);
   --spacing-0: var(--spacing-0);
   --spacing-3xs: var(--spacing-3xs); /* 4px */
   --spacing-2xs: var(--spacing-2xs); /* 8px */
