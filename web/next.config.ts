@@ -16,6 +16,25 @@ const nextConfig: NextConfig = {
     // Enables the styled-components SWC transform
     // styledComponents: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/:slug",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/product/:slug",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/project/:slug",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
