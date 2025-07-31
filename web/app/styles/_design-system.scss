@@ -753,6 +753,7 @@ a.ui-btn {
   // top: var(--header-height);
   --toastify-toast-top: var(--header-height);
   --toastify-toast-bd-radius: var(--radius);
+  --toastify-font-family: var(--font-primary);
   // padding-top: var(--header-height);
   @media all and (max-width: variables.$md) {
     --toastify-toast-top: var(--header-height);
