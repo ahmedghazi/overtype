@@ -61,6 +61,19 @@
         line-height: 1;
         align-items: baseline;
       }
+      .card.card--font-in-use {
+        &:last-child {
+          padding-right: var(--spacing-md);
+        }
+      }
+
+      @media all and (max-width: variables.$md) {
+        .card.card--font-in-use {
+          &:last-child {
+            padding-right: var(--spacing-xs);
+          }
+        }
+      }
     }
     &.related {
       .card {
