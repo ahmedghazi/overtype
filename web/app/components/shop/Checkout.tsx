@@ -4,10 +4,13 @@ import { PaddleContext } from "./Paddle/PaddleProvider";
 import useShop from "./ShopContext";
 import website from "@/app/config/website";
 import { ProductData } from "@/app/types/extra-types";
+import clsx from "clsx";
 
-type Props = {};
+type Props = {
+  canCheckout: boolean;
+};
 
-const BtnCheckout = (props: Props) => {
+const BtnCheckout = ({ canCheckout }: Props) => {
   // const [paddle, setPaddle] = useState<Paddle>();
   const paddle = useContext(PaddleContext);
   const { products, licenseFor, licenseForData } = useShop();
@@ -103,7 +106,9 @@ const BtnCheckout = (props: Props) => {
   };
   return (
     <div className='flex justify-center'>
-      <button className='ui-btn ui-btn__accent ' onClick={handleCheckout}>
+      <button
+        className={clsx("ui-btn ui-btn__accent", !canCheckout && "disabled")}
+        onClick={handleCheckout}>
         Checkout
       </button>
     </div>

@@ -173,11 +173,9 @@ const Cart = (props: Props) => {
               </form>
             </section>
 
-            {canCheckout && (
-              <section className='checkout'>
-                <BtnCheckout />
-              </section>
-            )}
+            <section className='checkout'>
+              <BtnCheckout canCheckout={canCheckout} />
+            </section>
           </div>
         )}
       </div>
