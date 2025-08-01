@@ -474,7 +474,7 @@ function generateUserEmailHtml(name: string, order: any, currencyCode: string) {
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <h1 style="color: #333; font-weight: 400; text-align:center">Your Order from Overtype</h1>
-      <p style="color: #666;">Hi ${name},</p>
+      <p style="color: #666;">Hi,</p>
       <p style="color: #666;">Thank you for your order!</p>
       <p style="color: #666;">We hope you enjoy using your new fonts. Don't hesitate to share your work with us — we'd love to see what you create!</p>
 
