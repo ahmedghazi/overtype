@@ -1,4 +1,5 @@
 import React from "react";
+import BtnToolTip from "../buttons/BtnToolTip";
 
 type Props = {
   label: string;
@@ -6,6 +7,7 @@ type Props = {
   placeholder?: string;
   type: "text" | "email";
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  tooltip?: string;
 };
 
 const TextOrEmailInput = ({
@@ -13,11 +15,15 @@ const TextOrEmailInput = ({
   name,
   placeholder,
   type,
+  tooltip,
   onChange,
 }: Props) => {
   return (
     <div className='ui-text-or-email'>
-      <label htmlFor={name}>{label}</label>
+      <div className='header'>
+        <label htmlFor={name}>{label}</label>
+        {tooltip && <BtnToolTip text={tooltip} />}
+      </div>
       <input
         type={type}
         name={name}

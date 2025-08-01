@@ -233,6 +233,27 @@ export interface Settings extends SanityDocument {
   toolTipLocenseFor?: LocaleText;
 
   /**
+   * toolTipCompanyName — `localeText`
+   *
+   *
+   */
+  toolTipCompanyName?: LocaleText;
+
+  /**
+   * toolTipEmail — `localeText`
+   *
+   *
+   */
+  toolTipEmail?: LocaleText;
+
+  /**
+   * toolTipInUseFor — `localeText`
+   *
+   *
+   */
+  toolTipInUseFor?: LocaleText;
+
+  /**
    * messagemCookie — `blockContent`
    *
    *

@@ -30,12 +30,17 @@ const Cart = (props: Props) => {
     setLicenseForData,
   } = useShop();
   const { settings } = usePageContext();
-  const { toolTipLocenseFor } = settings;
+  const {
+    toolTipLocenseFor,
+    toolTipCompanyName,
+    toolTipEmail,
+    toolTipInUseFor,
+  } = settings;
   const isEmpty = products.length === 0;
   const [canCheckout, setCanCheckout] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(licenseForData);
+    // console.log(licenseForData);
     const allFieldsFilled =
       licenseForData.companyName != "" &&
       licenseForData.email != "" &&
@@ -116,13 +121,13 @@ const Cart = (props: Props) => {
                     </div>
                     <div className='grid md:grid-cols-2 gap-2xs'>
                       <Radio
-                        name='forLogo'
+                        name='lincenseFor'
                         label='me'
                         isChecked={licenseFor === "me"}
                         onChange={(value) => setLicenseFor(value)}
                       />
                       <Radio
-                        name='forLogo'
+                        name='lincenseFor'
                         label='client'
                         // isChecked={isLogo}
                         isChecked={licenseFor === "client"}
@@ -141,6 +146,7 @@ const Cart = (props: Props) => {
                           companyName: e.target.value,
                         });
                       }}
+                      tooltip={_localizeField(toolTipCompanyName)}
                     />
                   </div>
                   <div className='form-field'>
@@ -154,6 +160,7 @@ const Cart = (props: Props) => {
                           email: e.target.value,
                         });
                       }}
+                      tooltip={_localizeField(toolTipEmail)}
                     />
                   </div>
                   <div className='form-field'>
@@ -167,6 +174,7 @@ const Cart = (props: Props) => {
                           inUseFor: e.target.value,
                         });
                       }}
+                      tooltip={_localizeField(toolTipInUseFor)}
                     />
                   </div>
                 </div>

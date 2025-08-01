@@ -728,10 +728,15 @@ a.ui-btn {
 }
 
 .ui-text-or-email {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    margin: 0 !important;
+  }
   label {
     font-size: var(--text-lg);
     display: block;
-    padding: var(--spacing-md);
   }
   input {
     background-color: var(--color-bg);

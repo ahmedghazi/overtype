@@ -138,6 +138,21 @@ export default defineType({
       group: 'shop',
     }),
     defineField({
+      name: 'toolTipCompanyName',
+      type: 'localeText',
+      group: 'shop',
+    }),
+    defineField({
+      name: 'toolTipEmail',
+      type: 'localeText',
+      group: 'shop',
+    }),
+    defineField({
+      name: 'toolTipInUseFor',
+      type: 'localeText',
+      group: 'shop',
+    }),
+    defineField({
       name: 'messagemCookie',
       type: 'blockContent',
       group: 'misc',
