@@ -86,7 +86,7 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
     licenseInfos: _localizeField(licenseType?.infos) || "",
     isLogo: isLogo || false,
   };
-  console.log(_productData);
+  // console.log(_productData);
 
   const { type, dispatchType } = useTypeFace();
   useEffect(() => {

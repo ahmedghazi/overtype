@@ -23,9 +23,9 @@ const PaddleProvider = ({ children }: { children: React.ReactNode }) => {
     }).then((paddleInstance: Paddle | undefined) => {
       if (paddleInstance) {
         console.log("Paddle initialized");
-        localStorage.setItem("products", "");
+        // localStorage.setItem("products", "");
         setPaddle(paddleInstance);
-        console.log(paddleInstance);
+        // console.log(paddleInstance);
       }
     });
   };
@@ -46,6 +46,7 @@ const PaddleProvider = ({ children }: { children: React.ReactNode }) => {
     console.log(data);
     const products = JSON.parse(localStorage.getItem("products") || "[]");
     console.log(products);
+    // return;
     //call api send order to server
     const response = await fetch("/api/order-completed", {
       method: "POST",
@@ -54,7 +55,7 @@ const PaddleProvider = ({ children }: { children: React.ReactNode }) => {
       },
       body: JSON.stringify({
         paddleData: data.data,
-        products: products,
+        products: products.value,
       }),
     });
     const result = await response.json();

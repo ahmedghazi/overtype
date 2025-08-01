@@ -21,27 +21,33 @@ const BtnCheckout = (props: Props) => {
     },
   };
 
-  const productMetadata = (product: ProductData) => {
-    //liceznse, isLogo
-    let metadata = "";
-    metadata += "Use in logo/wordmark: " + product.isLogo;
-    metadata += "[separator]";
-    metadata += "Size licenses: " + product.license;
-    return metadata;
+  const storeProducts = (products: ProductData[], ttl: number) => {
+    const now = new Date();
+
+    // `item` is an object which contains the original value
+    // as well as the time when it's supposed to expire
+    const item = {
+      value: products,
+      expiry: now.getTime() + ttl,
+    };
+    localStorage.setItem("products", JSON.stringify(item));
   };
+
   const handleCheckout = async () => {
     if (!paddle) return alert("Paddle not initialized");
 
     console.log("BtnCheckout clicked");
 
     //store products (with custom data) locale storage
-    localStorage.setItem("products", JSON.stringify(products));
+
+    // localStorage.setItem("products", JSON.stringify(products));
+    storeProducts(products, 300);
     // then on order completed, get thoses produicts and post to sanity
     const items = products.map((product) => ({
       quantity: 1,
       price: {
         name: `${product.fullTitle} ${product.license}`,
-        description: productMetadata(product),
+        description: product.sku,
         quantity: {
           minimum: 1,
           maximum: 1,
