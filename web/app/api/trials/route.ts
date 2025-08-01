@@ -167,17 +167,22 @@ async function sendEmail(
 
 function generateEmailHtml(name: string) {
   return `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-      <h1 style="color: #333;">${"Your Trials from Overtype"}</h1>
-      <p style="color: #666;">Dear ${name}</p>
+     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <h1 style="color: #333; font-weight: 400; text-align:center">Your trials from Overtype</h1>
+      <p style="color: #666;">Hi,</p>
+      <p style="color: #666;">Thank you for trying out our typefaces!</p>
+      <p style="color: #666;">Please note that the trial versions include only basic characters (letters, numbers, and punctuation).</p>
+      <p style="color: #666;">When you're ready, you can purchase a full license at <a href="https://www.overtypefoundry.com">www.overtypefoundry.com</a></p>
+      <p style="color: #666;">We'd love to see what you create-feel free to share your work with us!</p>
 
-      // <h2 style="color: #333; margin-top: 20px;">Trials Details</h2>
-
-
-
-      <div style="margin-top: 30px; text-align: center; color: #888;">
-        <p>Best regards,</p>
-        <p>Overtype Team</p>
+      <div style="margin-top: 30px;  color: #333;">
+        <p style="color: #666;">All the best,<br />
+        Overtype</p>
+      </div>
+      <div>
+        <div style="margin:0 auto; width:119px">
+          <img src="https://cdn.sanity.io/images/ltdaocfm/production/bbaeb32bbba9a7a83dd9e98c55aa849d694959d0-120x80.png" width="119" height="80" alt="logo overtype" />
+        </div>
       </div>
     </div>
   `;
