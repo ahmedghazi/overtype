@@ -173,7 +173,7 @@ function generateEmailHtml(name: string) {
       <p style="color: #666;">Thank you for trying out our typefaces!</p>
       <p style="color: #666;">Please note that the trial versions include only basic characters (letters, numbers, and punctuation).</p>
       <p style="color: #666;">When you're ready, you can purchase a full license at <a href="https://www.overtypefoundry.com">www.overtypefoundry.com</a></p>
-      <p style="color: #666;">We'd love to see what you create-feel free to share your work with us!</p>
+      <p style="color: #666;">We'd love to see what you create — feel free to share your work with us!</p>
 
       <div style="margin-top: 30px;  color: #333;">
         <p style="color: #666;">All the best,<br />
