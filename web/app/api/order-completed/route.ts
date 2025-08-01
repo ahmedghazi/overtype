@@ -487,7 +487,7 @@ function generateUserEmailHtml(name: string, order: any, currencyCode: string) {
       </div>
 
       <div style="margin-top: 20px;">
-        <p style="color: #999;">If you encounter any issues with the files or have questions about the licenses, feel free to <a href:"mailto:contact@overtypefoundry.com">contact us</a>.</p>
+        <p style="color: #999;">If you encounter any issues with the files or have questions about the licenses, feel free to <a href="mailto:contact@overtypefoundry.com">contact us</a>.</p>
         <p style="color: #999;">You'll receive your invoice from Paddle by email.</p>
       </div>
 
