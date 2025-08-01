@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
    * from these ids get content (bundles, singles)
    */
   const _productsData = await _collectProductsData(_productIds);
-  console.log(_productsData);
+  // console.log(_productsData);
   const _attachments = _collectZips(_productsData);
   console.log(_attachments);
 
@@ -59,15 +59,20 @@ const _collectProductsData = async (_ids: string[]) => {
   const query = `*[_type == "product" && _id in $_ids
     ]{
     title,
-    singles[]{
-      _key,
-      title,
-      zipTrials{
-        asset->{
-          url
-        }
+    zipTrials{
+      asset->{
+        url
       }
     }
+    // singles[]{
+    //   _key,
+    //   title,
+    //   zipTrials{
+    //     asset->{
+    //       url
+    //     }
+    //   }
+    // }
   }`;
   // console.log(query);
   const res = await client.fetch(query, { _ids: _ids });
@@ -78,21 +83,34 @@ const _collectProductsData = async (_ids: string[]) => {
 const _collectZips = (items: Product[]) => {
   const zips: any[] = [];
   items.forEach((product) => {
-    product.singles?.forEach((single) => {
-      let zip = {};
-      if (single.zipTrials) {
-        zip = {
-          filename: `${product.title}-${single.title}.zip`,
-          path: single.zipTrials.asset.url,
-        };
-      } else {
-        zip = {
-          filename: "no zip found",
-          path: "",
-        };
-      }
-      zips.push(zip);
-    });
+    let zip = {};
+    if (product.zipTrials) {
+      zip = {
+        filename: `${product.title}.zip`,
+        path: product.zipTrials.asset.url,
+      };
+    } else {
+      zip = {
+        filename: "no zip found",
+        path: "",
+      };
+    }
+    zips.push(zip);
+    // product.singles?.forEach((single) => {
+    //   let zip = {};
+    //   if (single.zipTrials) {
+    //     zip = {
+    //       filename: `${product.title}-${single.title}.zip`,
+    //       path: single.zipTrials.asset.url,
+    //     };
+    //   } else {
+    //     zip = {
+    //       filename: "no zip found",
+    //       path: "",
+    //     };
+    //   }
+    //   zips.push(zip);
+    // });
   });
   return zips;
 };

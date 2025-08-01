@@ -106,6 +106,7 @@ export default defineField({
       name: 'zipTrials',
       type: 'file',
       description: 'Digital good client will receive',
+      hidden: true,
     }),
   ],
 })

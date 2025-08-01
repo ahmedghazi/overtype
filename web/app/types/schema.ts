@@ -586,6 +586,13 @@ export interface Product extends SanityDocument {
   singles?: Array<SanityKeyed<ProductSingle>>;
 
   /**
+   * Zip File Trials — `file`
+   *
+   * Digital good client will receive
+   */
+  zipTrials?: { _type: "file"; asset: SanityReference<any> };
+
+  /**
    * metadata — `array`
    *
    *
@@ -1339,7 +1346,7 @@ export type Figure = {
   /**
    * Taille — `string`
    *
-   *
+   * largeur dans la grille
    */
   size?: "w-2/2" | "w-1/2";
 };

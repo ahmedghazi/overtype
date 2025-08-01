@@ -190,6 +190,14 @@ export default defineType({
     }),
 
     defineField({
+      title: 'Zip File Trials',
+      name: 'zipTrials',
+      type: 'file',
+      description: 'Digital good client will receive',
+      group: 'shop',
+    }),
+
+    defineField({
       name: 'metadata',
       type: 'array',
       of: [
