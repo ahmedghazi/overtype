@@ -23,6 +23,7 @@ const PaddleProvider = ({ children }: { children: React.ReactNode }) => {
     }).then((paddleInstance: Paddle | undefined) => {
       if (paddleInstance) {
         console.log("Paddle initialized");
+        localStorage.setItem("products", "");
         setPaddle(paddleInstance);
         console.log(paddleInstance);
       }
