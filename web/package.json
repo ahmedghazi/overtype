@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.14.1",
     "@gsap/react": "^2.1.2",
     "@mui/material": "^7.2.0",
+    "@next/third-parties": "^15.4.5",
     "@paddle/paddle-js": "^1.4.1",
     "@paddle/paddle-node-sdk": "^2.7.1",
     "@portabletext/react": "^3.2.1",
