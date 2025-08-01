@@ -32,6 +32,16 @@ const Cart = (props: Props) => {
   const { settings } = usePageContext();
   const { toolTipLocenseFor } = settings;
   const isEmpty = products.length === 0;
+  const [canCheckout, setCanCheckout] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(licenseForData);
+    const allFieldsFilled =
+      licenseForData.companyName != "" &&
+      licenseForData.email != "" &&
+      licenseForData.inUseFor != "";
+    setCanCheckout(allFieldsFilled);
+  }, [licenseForData]);
   // console.log(products);
   // const [open, setOpen] = useState<boolean>(false);
   // const [licenseFor, setLicenseFor] = useState<"me" | "client">("me");
@@ -163,9 +173,11 @@ const Cart = (props: Props) => {
               </form>
             </section>
 
-            <section className='checkout'>
-              <BtnCheckout />
-            </section>
+            {canCheckout && (
+              <section className='checkout'>
+                <BtnCheckout />
+              </section>
+            )}
           </div>
         )}
       </div>
