@@ -13,6 +13,7 @@ import { VisualEditing } from "next-sanity";
 import { ShopWrapper } from "./components/shop/ShopContext";
 import { ToastContainer } from "react-toastify";
 import CookieConsent from "./components/ui/CookieConsent";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata = {
   metadataBase: new URL(website.url),
@@ -44,7 +45,7 @@ export default async function RootLayout({
                     <Footer settings={settings} />
                     <CookieConsent msg={settings.messagemCookie || []} />
                     <ToastContainer
-                      autoClose={3000}
+                      autoClose={false}
                       position='top-right'
                       hideProgressBar={true}
                       newestOnTop={false}
@@ -72,6 +73,7 @@ export default async function RootLayout({
           </LocaleContextProvider>
         </div>
       </body>
+      <GoogleAnalytics gaId='G-PB2Y9GBKE3' />
     </html>
   );
 }
