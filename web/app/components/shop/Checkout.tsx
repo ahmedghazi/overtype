@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { PaddleContext } from "./Paddle/PaddleProvider";
 import useShop from "./ShopContext";
 import website from "@/app/config/website";
+import { ProductData } from "@/app/types/extra-types";
 
 type Props = {};
 
@@ -20,6 +21,14 @@ const BtnCheckout = (props: Props) => {
     },
   };
 
+  const productMetadata = (product: ProductData) => {
+    //liceznse, isLogo
+    let metadata = "";
+    metadata += "Use in logo/wordmark: " + product.isLogo;
+    metadata += "[separator]";
+    metadata += "Size licenses: " + product.license;
+    return metadata;
+  };
   const handleCheckout = async () => {
     if (!paddle) return alert("Paddle not initialized");
 
@@ -32,7 +41,7 @@ const BtnCheckout = (props: Props) => {
       quantity: 1,
       price: {
         name: `${product.fullTitle} ${product.license}`,
-        description: product.description || "Font license",
+        description: productMetadata(product),
         quantity: {
           minimum: 1,
           maximum: 1,
@@ -57,6 +66,7 @@ const BtnCheckout = (props: Props) => {
       },
     }));
     console.log(items);
+    // return;
 
     const response = await fetch("/api/checkout", {
       method: "POST",

@@ -28,66 +28,99 @@
     },
     "items": [
       {
-        "price_id": "pri_01jzqqr0gc8vnhzcnwtpseccmm",
-        "price_name": "Last Duo SM",
-        "product": {
-          "id": "pro_01jzqqr0e2evvz2e6wy9wjh8ep",
-          "name": "Last Duo",
-          "description": "bundle-last-duo",
-          "image_url": null
-        },
-        "billing_cycle": null,
-        "trial_period": null,
         "quantity": 1,
-        "totals": {
-          "subtotal": 150,
-          "tax": 30,
-          "total": 180,
-          "discount": 0,
-          "balance": 180,
-          "credit": 0
+        "price": {
+          "name": "Miro Full Family + Variable XS",
+          "description": "Use in logo/wordmark: true[separator]Size licenses: XS",
+          "quantity": {
+            "minimum": 1,
+            "maximum": 1
+          },
+          "unitPrice": {
+            "amount": "37800",
+            "currencyCode": "EUR"
+          },
+          "product": {
+            "name": "Miro Full Family + Variable",
+            "description": "bundle-miro-full-family-variable",
+            "taxCategory": "standard"
+          },
+          "custom_data": {
+            "type": "ProductBundle",
+            "isLogo": true,
+            "license": "XS",
+            "sku": "bundle-miro-full-family-variable",
+            "licenseFor": "me",
+            "licenseForData": {
+              "companyName": "",
+              "email": "",
+              "inUseFor": ""
+            }
+          }
         }
       },
       {
-        "price_id": "pri_01jzqqr0gm7t4sj1m0d6ykx2x7",
-        "price_name": "Last Regular SM",
-        "product": {
-          "id": "pro_01jzqqr0e2evvz2e6wybgjn0b0",
-          "name": "Last Regular",
-          "description": "single-last-regular",
-          "image_url": null
-        },
-        "billing_cycle": null,
-        "trial_period": null,
         "quantity": 1,
-        "totals": {
-          "subtotal": 100,
-          "tax": 20,
-          "total": 120,
-          "discount": 0,
-          "balance": 120,
-          "credit": 0
+        "price": {
+          "name": "Miro Regular XS",
+          "description": "Use in logo/wordmark: true[separator]Size licenses: XS",
+          "quantity": {
+            "minimum": 1,
+            "maximum": 1
+          },
+          "unitPrice": {
+            "amount": "9000",
+            "currencyCode": "EUR"
+          },
+          "product": {
+            "name": "Miro Regular",
+            "description": "single-miro-regular",
+            "taxCategory": "standard"
+          },
+          "custom_data": {
+            "type": "ProductSingle",
+            "isLogo": true,
+            "license": "XS",
+            "sku": "single-miro-regular",
+            "licenseFor": "me",
+            "licenseForData": {
+              "companyName": "",
+              "email": "",
+              "inUseFor": ""
+            }
+          }
         }
       },
       {
-        "price_id": "pri_01jzqqr0gsahrkj2npxjpn69fn",
-        "price_name": "Last Regular Italic SM",
-        "product": {
-          "id": "pro_01jzqqr0e2evvz2e6wyebrxm37",
-          "name": "Last Regular Italic",
-          "description": "single-last-regular-italic",
-          "image_url": null
-        },
-        "billing_cycle": null,
-        "trial_period": null,
         "quantity": 1,
-        "totals": {
-          "subtotal": 75,
-          "tax": 15,
-          "total": 90,
-          "discount": 0,
-          "balance": 90,
-          "credit": 0
+        "price": {
+          "name": "Miro Regular Italic XS",
+          "description": "Use in logo/wordmark: true[separator]Size licenses: XS",
+          "quantity": {
+            "minimum": 1,
+            "maximum": 1
+          },
+          "unitPrice": {
+            "amount": "9000",
+            "currencyCode": "EUR"
+          },
+          "product": {
+            "name": "Miro Regular Italic",
+            "description": "single-miro-regular-italic",
+            "taxCategory": "standard"
+          },
+          "custom_data": {
+            "type": "ProductSingle",
+            "isLogo": true,
+            "license": "XS",
+            "sku": "single-miro-regular-italic",
+            "licenseFor": "me",
+            "licenseForData": {
+              "companyName": "",
+              "email": "",
+              "inUseFor": ""
+            }
+          }
         }
       }
     ],
