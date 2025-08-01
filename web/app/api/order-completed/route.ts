@@ -497,7 +497,7 @@ function generateUserEmailHtml(name: string, order: any, currencyCode: string) {
       </div>
       <div>
         <div style="margin:0 auto; width:119px">
-          <img src="https://cdn.sanity.io/images/ltdaocfm/production/138b70d9ac439acac934564a107380d9bfb80b68-119x80.svg" width="119" height="80" alt="logo overtype" />
+          <img src="https://cdn.sanity.io/images/ltdaocfm/production/bbaeb32bbba9a7a83dd9e98c55aa849d694959d0-120x80.png" width="119" height="80" alt="logo overtype" />
 
         </div>
 
