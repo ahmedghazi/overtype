@@ -8,7 +8,8 @@ import Logo from "../Logo";
 type Props = {};
 
 const CheckoutSuccess = () => {
-  const items = JSON.parse(localStorage.getItem("products") || "[]");
+  const products = JSON.parse(localStorage.getItem("products") || "[]");
+  const items = products.value;
   return (
     <div className='success'>
       <div className='header md:mb-2xl'>
