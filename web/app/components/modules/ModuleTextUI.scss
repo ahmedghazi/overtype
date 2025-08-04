@@ -19,6 +19,9 @@
 
 .modules:has(.module--text-ui + .module--text-ui) {
   .module--text-ui {
-    margin-bottom: var(--spacing-4xl);
+    margin-bottom: var(--spacing-12xl);
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 }
