@@ -2,13 +2,13 @@
 
 .content--project {
   section {
-    margin-bottom: var(--spacing-7xl);
+    // margin-bottom: var(--spacing-12xl);
     &:last-child {
       margin-bottom: 0;
     }
   }
   .hero {
-    margin-bottom: var(--spacing-7xl);
+    // margin-bottom: var(--spacing-7xl);
     img {
       height: calc(var(--main-h) - var(--spacing-md)) !important;
       object-fit: cover !important;

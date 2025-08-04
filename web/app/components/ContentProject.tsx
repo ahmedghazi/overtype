@@ -23,15 +23,17 @@ const ContentProject = ({ input }: Props) => {
         </section>
       )}
       <div className='c-container'>
-        <h1>{_localizeField(title)}</h1>
-        {text && (
-          <div className='text'>
-            <PortableText
-              value={_localizeField(text)}
-              components={portableTextComponents}
-            />
-          </div>
-        )}
+        <div className='my-12xl'>
+          <h1>{_localizeField(title)}</h1>
+          {text && (
+            <div className='text'>
+              <PortableText
+                value={_localizeField(text)}
+                components={portableTextComponents}
+              />
+            </div>
+          )}
+        </div>
       </div>
       {modules && <Modules modules={modules} />}
 
