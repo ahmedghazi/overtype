@@ -40,7 +40,9 @@
     justify-content: space-between;
     font-size: var(--text-lg);
   }
-
+  .form-field .header label {
+    text-align: left;
+  }
   @media all and (max-width: variables.$md) {
     // background-color: red;
     padding: 110px var(--spacing-xs);

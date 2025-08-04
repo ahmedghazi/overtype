@@ -58,7 +58,7 @@ const Buy = ({ input }: Props) => {
       </div>
       <div className='body'>
         <section>
-          <h3 className='md:text-sm'>1/ Select your license</h3>
+          <h3 className='text-sm'>1/ Select your license</h3>
           <div className='box rounded bg-btn'>
             <div className='mb-3xl'>
               <div className='header'>
@@ -124,7 +124,7 @@ const Buy = ({ input }: Props) => {
                 {input.bundles && (
                   <div className='box-item'>
                     <div className='header'>
-                      <h4 className='md:text-lg'>Packs</h4>
+                      <h4 className='text-md md:text-lg'>Packs</h4>
                     </div>
                     <div className='content'>
                       <div className='flex flex-col gap-3xs'>
@@ -144,7 +144,7 @@ const Buy = ({ input }: Props) => {
                 {input.singles && (
                   <div className='box-item mt-3xl'>
                     <div className='header'>
-                      <h4 className='md:text-lg'>Single Styles</h4>
+                      <h4 className='text-md md:text-lg'>Single Styles</h4>
                       <div className='text-sm ui-btn--pill ui-btn--pill__accent sm-only'>
                         <span>-50% on the 2nd style</span>
                       </div>
@@ -168,7 +168,7 @@ const Buy = ({ input }: Props) => {
                 )}
               </div>
             </section>
-            <section className='flex  justify-center px-2xl md:py-2xl'>
+            <section className='flex  justify-center px-2xl py-2xl'>
               <AddToCart items={dialogProducts} />
               {/* <pre>{JSON.stringify(dialogProducts, null, 2)}</pre> */}
             </section>

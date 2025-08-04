@@ -58,6 +58,9 @@
     .t-preview {
       h3 {
         line-height: 1;
+        &.has-font-size {
+          font-size: var(--font-size);
+        }
       }
     }
     .footer {
@@ -82,12 +85,17 @@
     }
 
     @media all and (max-width: variables.$md) {
+      aspect-ratio: 1 / 1;
+      height: 100%;
       .header,
       .footer {
         padding: var(--spacing-md);
       }
       .footer {
         font-size: var(--text-sm);
+      }
+      .t-preview h3.has-font-size {
+        font-size: calc(var(--font-size) * 1.5);
       }
     }
   }

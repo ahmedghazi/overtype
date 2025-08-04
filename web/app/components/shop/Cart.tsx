@@ -107,19 +107,19 @@ const Cart = (props: Props) => {
                   />
                 ))}
             </section>
-            <section className='total md:mb-4xl mb-lg'>
+            <section className='total mb-4xl'>
               <div className='label'>Total (excl. VAT)</div>
               <div className='price'>{cartTotalPrice(products)}€ </div>
             </section>
-            <section className='licenseFor md:mb-4xl mb-lg rounded'>
-              <form action=''>
+            <section className='licenseFor md:mb-4xl mb-2xl rounded'>
+              <form action='' onSubmit={(e) => e.preventDefault()}>
                 <div className='box'>
                   <div className='form-field ui-radio--group'>
                     <div className='header'>
                       <h4 className='text-lg'>Who is the license owner?</h4>
                       <BtnToolTip text={_localizeField(toolTipLocenseFor)} />
                     </div>
-                    <div className='grid md:grid-cols-2 gap-2xs'>
+                    <div className='grid grid-cols-2 gap-2xs'>
                       <Radio
                         name='lincenseFor'
                         label='me'

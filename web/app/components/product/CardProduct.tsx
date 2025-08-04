@@ -29,6 +29,12 @@ const CardProduct = ({ input, layout }: Props) => {
     background: input.background.hex || "var(--color-bg)",
     color: input.foreground.hex || "var(--color-primary)",
   };
+  const h3Style = {
+    "--font-size": input.initialFontSize
+      ? input.initialFontSize + "vw"
+      : "3.75rem",
+  } as React.CSSProperties;
+
   return (
     <article
       className={clsx(
@@ -46,10 +52,11 @@ const CardProduct = ({ input, layout }: Props) => {
             fontFamily: type?.slug?.current,
           }}>
           <h3
-            className='text-3xl md:text-10xl'
-            style={{
-              fontSize: input.initialFontSize + "vw",
-            }}>
+            className={clsx(
+              "text-3xl md:text-10xl",
+              input.initialFontSize && "has-font-size"
+            )}
+            style={h3Style}>
             {input.title}
           </h3>
         </div>
