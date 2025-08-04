@@ -3,6 +3,9 @@
     h2 {
       text-align: center;
       margin-bottom: var(--spacing-2xl);
+      & + .text:has(.accordion) .accordion {
+        padding-top: var(--spacing-lg);
+      }
     }
     .text {
       max-width: var(--container-md--w);
