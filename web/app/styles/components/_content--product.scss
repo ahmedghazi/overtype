@@ -122,6 +122,11 @@
   @media all and (max-width: variables.$md) {
     section:not(.Toastify) {
       margin-bottom: 0;
+      &.hero-slider {
+        img {
+          height: calc(var(--vh) * 30) !important;
+        }
+      }
       &.waterfall {
         // padding-top: 0;
         // .items {

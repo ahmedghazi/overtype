@@ -89,10 +89,10 @@ const ContentProduct = ({ input }: Props) => {
             <li className='hidden-sm'>
               <Btn label='Styles' onClick={() => _scrollTo("waterfall")} />
             </li>
-            <li>
+            <li className='hidden-sm'>
               <Btn label='About' onClick={() => _scrollTo("about")} />
             </li>
-            <li>
+            <li className='hidden-sm'>
               <Btn label='Tester' onClick={() => _scrollTo("tester")} />
             </li>
             <li>
