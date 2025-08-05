@@ -37,7 +37,7 @@ const ModuleProjectsUI = ({ input }: Props) => {
       </div>
       <div className='footer sm-only pt-lg'>
         {cta && (
-          <div className='flex justify-center text-lg'>
+          <div className='flex justify-center text-lg text-secondary'>
             <LinkWithIcon
               label='View All'
               link={_linkResolver(cta?.link)}

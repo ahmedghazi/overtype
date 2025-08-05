@@ -40,8 +40,13 @@ footer {
   @media all and (max-width: variables.$md) {
     .inner {
       padding: 34px;
+      h4 {
+        line-height: 1;
+        margin-bottom: 1em;
+      }
       .grid {
         text-align: center;
+        gap: 50px;
         a {
           font-size: var(--text-xl);
         }

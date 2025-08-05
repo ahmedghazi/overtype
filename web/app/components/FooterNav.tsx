@@ -14,10 +14,10 @@ const FooterNav = ({ settings }: Props) => {
       <div className='grid md:grid-cols-6 gap-md'>
         {navSecondary?.map((item, index) => (
           <div key={index}>
-            <h4 className='md:text-sm text-secondary'>
+            <h4 className='text-sm text-secondary'>
               {_localizeField(item.title)}
             </h4>
-            <ul className='md:text-lg'>
+            <ul className='text-xl md:text-lg'>
               {item.items?.map((item, index) => (
                 <li key={index}>
                   {item._type === "linkInternal" && (

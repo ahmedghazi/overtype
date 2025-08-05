@@ -77,7 +77,7 @@ const ModuleProductsUI = ({ input }: Props) => {
 
       <div className='footer sm-only pt-2xl'>
         {withCta && shopPage && (
-          <div className='flex justify-center text-lg'>
+          <div className='flex justify-center text-lg text-secondary'>
             <LinkWithIcon
               label='View All'
               link={_linkResolver(shopPage)}

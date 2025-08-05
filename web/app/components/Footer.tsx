@@ -28,7 +28,7 @@ const Footer = (props: Props) => {
       <footer className=' '>
         <div className='inner rounded'>
           <FooterNav settings={settings} />
-          <div className='credits text-secondary md:text-sm'>
+          <div className='credits text-secondary text-sm'>
             <div className='copy'>
               © {new Date().getFullYear()} {website.title}
             </div>
@@ -41,6 +41,7 @@ const Footer = (props: Props) => {
                 className='text-primary'>
                 Olympic Studio
               </a>{" "}
+              <br className='sm-only' />
               Developed by{" "}
               <a
                 href='http://ahmedghazi.com'

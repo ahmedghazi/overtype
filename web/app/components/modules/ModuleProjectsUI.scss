@@ -1,3 +1,5 @@
+@use "../../styles/variables";
+
 .module--projects-ui {
   .header {
     display: flex;
@@ -14,6 +16,11 @@
         padding-block: 0;
         margin: 0;
       }
+    }
+  }
+  @media all and (max-width: variables.$md) {
+    .grid {
+      row-gap: 0;
     }
   }
 }
