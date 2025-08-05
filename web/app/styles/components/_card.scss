@@ -95,7 +95,7 @@
         font-size: var(--text-sm);
       }
       .t-preview h3.has-font-size {
-        font-size: calc(var(--font-size) * 1.5);
+        font-size: calc(var(--font-size) * 2);
       }
     }
   }
@@ -159,6 +159,7 @@
     }
     a {
       position: relative;
+      display: block;
     }
     .image {
       position: relative;
@@ -227,6 +228,9 @@
       .header {
         font-size: var(--text-md);
         padding: 42px var(--spacing-md);
+      }
+      img {
+        max-height: 450px;
       }
     }
   }

@@ -1,6 +1,7 @@
 import { ProductSingle } from "@/app/types/schema";
 import React, { useEffect } from "react";
 import useTypeFace, { TypeFaceContextProvider } from "./TypeFaceContext";
+import clsx from "clsx";
 
 type WaterfallItemProps = {
   input: ProductSingle;
@@ -10,15 +11,22 @@ const WaterfallItem = ({ input }: WaterfallItemProps) => {
   useEffect(() => {
     dispatchType(input.typeface);
   }, []);
+  const isItalic = input.typeface?.slug?.current?.includes("italic");
   return (
-    <div
-      style={{
-        fontFamily: input?.typeface?.slug?.current,
-        opacity: type ? 1 : 0,
-      }}
-      className='t-preview text-xl md:text-3xl'>
-      {input.title}
-    </div>
+    <>
+      <div
+        style={{
+          fontFamily: input?.typeface?.slug?.current,
+          opacity: type ? 1 : 0,
+        }}
+        className={clsx(
+          "t-preview text-xl md:text-3xl",
+          isItalic && "is-italic"
+        )}>
+        {input.title}
+      </div>
+      {isItalic && <div className='hr' />}
+    </>
   );
 };
 
@@ -36,11 +44,9 @@ const Waterfall = ({ title, items }: Props) => {
       </div>
       <div className='items'>
         {items?.map((item, i) => (
-          <div key={i}>
-            <TypeFaceContextProvider>
-              <WaterfallItem input={item} />
-            </TypeFaceContextProvider>
-          </div>
+          <TypeFaceContextProvider key={i}>
+            <WaterfallItem input={item} />
+          </TypeFaceContextProvider>
         ))}
       </div>
     </section>
