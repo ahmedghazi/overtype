@@ -1,3 +1,5 @@
+@use "../variables";
+
 .content--modulaire {
   section {
     margin-bottom: var(--spacing-7xl);
@@ -9,5 +11,16 @@
     max-width: 37.5rem;
     margin: 0 auto;
     margin-bottom: var(--spacing-7xl);
+  }
+
+  @media all and (max-width: variables.$md) {
+    section {
+      margin-bottom: 112px;
+    }
+    .hero {
+      padding-left: var(--spacing-xs);
+      padding-right: var(--spacing-xs);
+      margin-bottom: 112px;
+    }
   }
 }

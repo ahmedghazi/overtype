@@ -4,7 +4,7 @@
   section {
     // margin-bottom: var(--spacing-12xl);
     &:last-child {
-      margin-bottom: 0;
+      // margin-bottom: 0;
     }
   }
   .hero {
@@ -26,6 +26,9 @@
     }
     .hero {
       margin-bottom: 112px;
+      img {
+        height: auto !important;
+      }
     }
     h1 {
       // font-size: var(--text-4xl);

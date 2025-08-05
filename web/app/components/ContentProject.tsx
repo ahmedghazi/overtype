@@ -23,7 +23,7 @@ const ContentProject = ({ input }: Props) => {
         </section>
       )}
       <div className='c-container'>
-        <div className='my-12xl'>
+        <div className='my-[112px] md:my-12xl'>
           <h1>{_localizeField(title)}</h1>
           {text && (
             <div className='text'>
@@ -38,7 +38,7 @@ const ContentProject = ({ input }: Props) => {
       {modules && <Modules modules={modules} />}
 
       {related && (
-        <section className='related md:mt-12xl'>
+        <section className='related mt-[112px] md:mt-12xl'>
           <div className='header mb-lg'>
             <h2 className='md:text-2xl'>Next projects</h2>
             {/* <div className='actions md:tex-lg text-secondary'>

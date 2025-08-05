@@ -12,10 +12,10 @@ const ModuleImagesUI = ({ input }: Props) => {
   const { items } = input;
   return (
     <section className='module module--images-ui'>
-      <div className='grid md:grid-cols-2 gap-md'>
+      <div className='grid md:grid-cols-2 gap-xs md:gap-md'>
         {items?.map((item, i) => (
           <div
-            className={clsx("item", item.size === "w-2/2" && "col-span-2")}
+            className={clsx("item", item.size === "w-2/2" && "md:col-span-2")}
             key={i}>
             <Figure asset={item.image?.asset || null} />
           </div>
