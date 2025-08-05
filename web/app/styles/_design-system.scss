@@ -841,7 +841,7 @@ section {
   }
   .ui-select {
     padding: 0 var(--spacing-md);
-    background-position-y: 15px;
+    // background-position-y: 15px;
 
     // height: auto;
     // line-height: unset;
@@ -871,9 +871,25 @@ section {
     // padding: calc(var(--spacing-sm) * 0.75) var(--spacing-xs);
     padding: calc(var(--spacing-sm) * 0.85) var(--spacing-xs);
     padding: calc(var(--spacing-sm) * 0.85) 1em;
+    min-width: 0;
+    gap: 1em;
+    .t-preview {
+      flex: 1;
+      min-width: 0; /* or some value */
 
-    .discount {
+      & > div {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+    .t-preview,
+    .footer {
+      flex-shrink: 0;
+    }
+    .footer .discount {
       // display: none;
+      position: initial;
     }
     .ui-checkbox {
       padding: 0;
