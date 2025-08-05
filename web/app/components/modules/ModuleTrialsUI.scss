@@ -1,3 +1,5 @@
+@use "../../styles/variables";
+
 .module--trials-ui {
   .c-container {
     width: 100%;
@@ -33,5 +35,8 @@
         transform: translateY(0.15em);
       }
     }
+  }
+
+  @media all and (max-width: variables.$md) {
   }
 }

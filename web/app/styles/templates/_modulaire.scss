@@ -5,6 +5,10 @@
   }
 
   @media all and (max-width: variables.$md) {
+    .hero {
+      padding-left: var(--spacing-xs);
+      padding-right: var(--spacing-xs);
+    }
     h1 {
       margin-bottom: var(--spacing-4xl);
     }

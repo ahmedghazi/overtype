@@ -53,6 +53,7 @@
   height: 2.25rem;
   @media all and (max-width: variables.$md) {
     background-color: transparent;
+    height: auto;
   }
   .ui-cartouche {
     background-color: transparent;
@@ -669,6 +670,10 @@ a.ui-btn {
   font-size: var(--text-lg);
   cursor: pointer;
 
+  @media all and (max-width: variables.$md) {
+    padding: 0.18em;
+    font-size: var(--text-2xl);
+  }
   &:hover,
   &:active {
     background-color: var(--color-btn--hover);
