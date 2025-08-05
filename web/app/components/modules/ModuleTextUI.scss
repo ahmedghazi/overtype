@@ -26,5 +26,9 @@
     &:last-of-type {
       margin-bottom: 0;
     }
+    &:has(.accordion) {
+      padding-top: var(--spacing-3xl);
+      // background-color: red;
+    }
   }
 }
