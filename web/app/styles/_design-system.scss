@@ -421,6 +421,7 @@ a.ui-btn {
   background-position-x: 92%;
   background-position-y: 15px;
   border-radius: var(--radius-sm);
+
   &.rmsc {
     background-color: transparent;
     padding: 0;
@@ -830,10 +831,22 @@ section {
   .ui-bundle,
   .ui-single {
     padding: calc(var(--spacing-md) * 0.8) var(--spacing-md);
+    // padding: 0 var(--spacing-md);
+    // height: 45px;
+    // line-height: 50px;
     &,
     .inner {
       font-size: var(--text-md);
     }
+  }
+  .ui-select {
+    padding: 0 var(--spacing-md);
+    background-position-y: 15px;
+
+    // height: auto;
+    // line-height: unset;
+    // padding: 0 var(--spacing-md);
+    // font-size: var(--text-md);
   }
   .ui-bundle,
   .ui-single {
@@ -843,7 +856,7 @@ section {
     padding: var(--spacing-sm) 1em;
     gap: 65px;
     font-size: var(--text-md);
-
+    height: auto;
     .ui-checkbox {
       padding: 0;
     }
