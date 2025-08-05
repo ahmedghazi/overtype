@@ -38,5 +38,21 @@
   }
 
   @media all and (max-width: variables.$md) {
+    .c-container {
+      padding: 0;
+    }
+    .ui-text-or-email {
+      .header {
+        text-align: left;
+        padding-top: 0;
+        padding-left: 0;
+        label {
+          font-size: var(--text-md);
+        }
+      }
+    }
+    .optin {
+      font-size: var(--text-sm);
+    }
   }
 }
