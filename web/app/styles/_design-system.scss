@@ -51,6 +51,9 @@
   background-color: var(--color-btn);
   backdrop-filter: blur(30px);
   height: 2.25rem;
+  @media all and (max-width: variables.$md) {
+    background-color: transparent;
+  }
   .ui-cartouche {
     background-color: transparent;
     backdrop-filter: none;
