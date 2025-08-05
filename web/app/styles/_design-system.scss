@@ -857,9 +857,10 @@ section {
   .ui-single {
     // padding: calc(var(--spacing-sm) * 0.75) var(--spacing-xs);
     padding: calc(var(--spacing-sm) * 0.85) var(--spacing-xs);
+    padding: calc(var(--spacing-sm) * 0.85) 1em;
 
     .discount {
-      display: none;
+      // display: none;
     }
     .ui-checkbox {
       padding: 0;

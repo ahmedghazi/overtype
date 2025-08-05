@@ -18,7 +18,7 @@
       line-height: 1;
     }
   }
-  section:not(.Toastify) {
+  section {
     margin-bottom: var(--spacing-4xl);
     &:nth-child(2),
     &:nth-child(3) {
@@ -53,7 +53,7 @@
     h2 {
       font-size: var(--text-2xl);
     }
-    section:not(.Toastify) {
+    section {
       &:last-child {
         margin-bottom: 0;
       }
@@ -62,6 +62,12 @@
         padding-right: 0;
         .ui-btn--pill {
           white-space: nowrap;
+        }
+        h4 {
+          padding-left: calc(var(--spacing-md) * 0.8 + var(--spacing-3xs));
+        }
+        .ui-btn--tooltip {
+          flex-shrink: 0;
         }
       }
     }

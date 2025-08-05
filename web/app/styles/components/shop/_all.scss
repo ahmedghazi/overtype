@@ -32,4 +32,9 @@
     margin: 0;
     text-align: center;
   }
+  @media all and (max-width: variables.$md) {
+    .c-container {
+      padding: 0;
+    }
+  }
 }

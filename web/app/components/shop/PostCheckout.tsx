@@ -12,7 +12,7 @@ const CheckoutSuccess = () => {
   const items = products.value;
   return (
     <div className='success'>
-      <div className='header md:mb-2xl'>
+      <div className='header mb-2xl'>
         <Logo />
         <h1 className='md:text-2xl'>Thank you for your purchase!</h1>
         <p className='md:text-xl'>
@@ -40,7 +40,9 @@ const PostCheckout = (props: Props) => {
   const status = search.get("status");
 
   return (
-    <div className='post-checkout px-md'>
+    <div className='post-checkout px-xs md:px-md'>
+      <div className='h-2xl md:h-[142px]'></div>
+
       <div className='c-container'>
         {status === "success" && <CheckoutSuccess />}
         {status === "canceled" && <CheckoutError />}
