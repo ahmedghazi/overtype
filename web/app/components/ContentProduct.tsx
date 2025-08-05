@@ -122,7 +122,7 @@ const ContentProduct = ({ input }: Props) => {
             </div>
             <div className='items'>
               <div className='scroll-x px-xs md:px-md'>
-                <div className='flex gap-md'>
+                <div className='flex gap-xs md:gap-md'>
                   {inUse?.map((item, i) => (
                     <CardFontInUse key={i} input={item} />
                   ))}

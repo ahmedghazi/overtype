@@ -87,6 +87,9 @@
     @media all and (max-width: variables.$md) {
       aspect-ratio: 1 / 1;
       height: 100%;
+      a {
+        height: calc(var(--vw) * 100 - var(--spacing-md) - 4px);
+      }
       .header,
       .footer {
         padding: var(--spacing-md);
