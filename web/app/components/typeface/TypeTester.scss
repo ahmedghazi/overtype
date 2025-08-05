@@ -122,6 +122,9 @@
       position: initial;
       max-width: unset;
       gap: var(--spacing-lg);
+      .bg {
+        box-shadow: none;
+      }
       .handle {
         display: none;
       }
@@ -130,6 +133,12 @@
         display: none;
       }
       .body {
+        .ui-range {
+          display: none;
+          &:first-child {
+            display: block;
+          }
+        }
         .sizes {
           padding: 0;
         }
@@ -137,7 +146,11 @@
     }
     .canvas {
       padding-left: 0;
-      min-height: 420px;
+      // min-height: 420px;
+      height: 50vh;
+      height: calc(var(--vw) * 100 - var(--spacing-md));
+      padding: 0;
+      margin-bottom: var(--spacing-xs);
     }
   }
 }

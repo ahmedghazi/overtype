@@ -2,7 +2,7 @@
 
 .content--product {
   --space-top: calc(var(--spacing-md) + var(--header-height));
-  section:not(.Toastify) {
+  section {
     scroll-margin-top: calct(var(--header-height) + var(--spacing-4xl));
     margin-bottom: var(--spacing-6xl);
     &.hero-slider {
@@ -120,8 +120,9 @@
   }
 
   @media all and (max-width: variables.$md) {
-    section:not(.Toastify) {
-      margin-bottom: 0;
+    section {
+      margin-bottom: 112px;
+      padding-top: 0 !important;
       &.hero-slider {
         img {
           height: calc(var(--vh) * 30) !important;
@@ -146,6 +147,14 @@
       &.about,
       &.tester {
         margin-bottom: 112px;
+      }
+      &.about {
+        .text p {
+          margin-bottom: 0;
+        }
+        .accordion {
+          padding-bottom: 0;
+        }
       }
     }
 
