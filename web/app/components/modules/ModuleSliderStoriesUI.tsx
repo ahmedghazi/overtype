@@ -29,7 +29,7 @@ const ModuleSliderStoriesUI = ({ input }: Props) => {
           <Stories
             loop={true}
             width={"100%"}
-            height={"var(--main-h, 750px)"}
+            height={isMobile ? "230px" : "var(--main-h, 750px)"}
             stories={stories}
             // progressContainerClassName="progress-container"
             progressContainerStyles={{
