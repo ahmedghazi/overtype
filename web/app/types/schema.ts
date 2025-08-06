@@ -254,11 +254,11 @@ export interface Settings extends SanityDocument {
   toolTipInUseFor?: LocaleText;
 
   /**
-   * messagemCookie — `blockContent`
+   * messagemCookie — `localeBlockContent`
    *
    *
    */
-  messagemCookie?: BlockContent;
+  messagemCookie?: LocaleBlockContent;
 
   /**
    * legalsPage — `reference`
@@ -268,11 +268,11 @@ export interface Settings extends SanityDocument {
   legalsPage?: SanityReference<PageModulaire>;
 
   /**
-   * Message 404 — `blockContent`
+   * Message 404 — `localeBlockContent`
    *
    *
    */
-  message404?: BlockContent;
+  message404?: LocaleBlockContent;
 
   /**
    * customCss — `text`

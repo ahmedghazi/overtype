@@ -25,7 +25,10 @@ export const blockContent = `
 			...,
 			_type == "linkInternal" => {
 				...,
-				reference->,
+				reference->{
+					_type,
+					slug
+				}
 			},
 
 		},
@@ -56,7 +59,10 @@ export const blockContent = `
 			...,
 			_type == "linkInternal" => {
 				...,
-				reference->,
+				reference->{
+					_type,
+					slug
+				}
 			},
 		},
 		_type == 'icon' => {

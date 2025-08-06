@@ -4,6 +4,7 @@ import { hasCookie, setCookie, deleteCookie } from "cookies-next";
 import { BlockContent } from "@/app/types/schema";
 import { PortableText } from "next-sanity";
 import { _localizeField } from "@/app/sanity-api/utils";
+import portableTextComponents from "@/app/sanity-api/portableTextComponents";
 
 type Props = {
   msg: BlockContent;
@@ -32,12 +33,16 @@ const CookieConsent = ({ msg }: Props) => {
   if (showConsent) {
     return null;
   }
+  console.log(msg);
 
   return (
     <div className='cookies has-blur'>
       <div className='inner flex justify-between items-center gap-xl '>
         <div className=''>
-          <PortableText value={msg} />
+          <PortableText
+            value={_localizeField(msg)}
+            components={portableTextComponents}
+          />
         </div>
         <div className='flex gap-3xs'>
           <button

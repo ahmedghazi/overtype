@@ -33,7 +33,7 @@ const BtnTransform = ({ onClick }: Props) => {
     const arr = ["none", "uppercase", "lowercase"] as const;
     const index = arr.indexOf(textTransform);
     const nextIndex = (index + 1) % arr.length;
-    console.log(arr[nextIndex]);
+    // console.log(arr[nextIndex]);
     setTextTransform(arr[nextIndex]);
   };
 

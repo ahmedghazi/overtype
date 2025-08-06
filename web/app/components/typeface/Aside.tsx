@@ -110,12 +110,12 @@ const Aside = ({
 
   useEffect(() => {
     if (!target) return;
-    console.log(fontFeatures);
+    // console.log(fontFeatures);
 
     const fontFeatureSettings = fontFeatures.map((item) => {
       return `"${item.value}" on`;
     });
-    console.log(fontFeatureSettings);
+    // console.log(fontFeatureSettings);
 
     target.style.setProperty(
       "--font-feature-settings",

@@ -62,6 +62,12 @@ export const settingsQuery = groq`*[_type == "settings"][0]{
   shopPage->{
     _type,
     slug
+  },
+  messagemCookie{
+    ${blockContent}
+  },
+  message404{
+    ${blockContent}
   }
 }`;
 
