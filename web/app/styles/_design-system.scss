@@ -846,8 +846,8 @@ section {
   .ui-select,
   .ui-bundle,
   .ui-single {
-    padding: calc(var(--spacing-md) * 0.8) var(--spacing-md);
-    // padding: 0 var(--spacing-md);
+    // padding: calc(var(--spacing-md) * 0.8) var(--spacing-md);
+    padding: 0 var(--spacing-md);
     // height: 45px;
     // line-height: 50px;
     &,
@@ -888,6 +888,8 @@ section {
     // padding: calc(var(--spacing-sm) * 0.75) var(--spacing-xs);
     padding: calc(var(--spacing-sm) * 0.85) var(--spacing-xs);
     padding: calc(var(--spacing-sm) * 0.85) 1em;
+    padding: 0 1em;
+    background-color: red;
     min-width: 0;
     gap: 1em;
     .t-preview {
