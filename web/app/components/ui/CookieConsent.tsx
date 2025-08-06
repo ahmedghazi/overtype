@@ -33,7 +33,6 @@ const CookieConsent = ({ msg }: Props) => {
   if (showConsent) {
     return null;
   }
-  console.log(msg);
 
   return (
     <div className='cookies has-blur'>
