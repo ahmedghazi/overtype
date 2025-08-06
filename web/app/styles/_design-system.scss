@@ -630,6 +630,12 @@ a.ui-btn {
   padding: 0 var(--spacing-md);
   height: 3.313rem;
   line-height: 3.513rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.4em;
+  font-size: var(--text-lg);
   & > * {
     height: 100%;
     line-height: inherit;
@@ -637,12 +643,6 @@ a.ui-btn {
       height: 100%;
     }
   }
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.4em;
-  font-size: var(--text-lg);
   .t-preview,
   .footer {
     // line-height: 1;
