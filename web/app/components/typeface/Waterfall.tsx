@@ -20,7 +20,7 @@ const WaterfallItem = ({ input }: WaterfallItemProps) => {
           opacity: type ? 1 : 0,
         }}
         className={clsx(
-          "t-preview text-xl md:text-3xl",
+          "t-preview text-2xl md:text-3xl",
           isItalic && "is-italic"
         )}>
         {input.title}
