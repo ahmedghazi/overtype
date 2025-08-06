@@ -491,7 +491,6 @@ a.ui-btn {
     top: 24%;
   }
   select {
-    // background-color: red;
     padding: 0.4em 2.5em 0.4em 1.5rem;
   }
 }
@@ -502,11 +501,6 @@ a.ui-btn {
   padding: 0 var(--spacing-md);
   height: 3.313rem;
   line-height: 3.513rem;
-  & > * {
-    height: 100%;
-    line-height: inherit;
-  }
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -515,6 +509,10 @@ a.ui-btn {
   &:hover,
   &:active {
     background-color: var(--color-btn--hover);
+  }
+  & > * {
+    height: 100%;
+    line-height: inherit;
   }
 
   &.is-active {

@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import { hasCookie, setCookie, deleteCookie } from "cookies-next";
-import { BlockContent } from "@/app/types/schema";
+import { LocaleBlockContent } from "@/app/types/schema";
 import { PortableText } from "next-sanity";
 import { _localizeField } from "@/app/sanity-api/utils";
 import portableTextComponents from "@/app/sanity-api/portableTextComponents";
 
 type Props = {
-  msg: BlockContent;
+  msg: LocaleBlockContent;
 };
 
 const CookieConsent = ({ msg }: Props) => {
