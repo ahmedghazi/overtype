@@ -45,13 +45,15 @@ const Buy = ({ input }: Props) => {
       setLicenseType(license);
     }, 150);
   };
+  const messageDialogBuyLocalized = _localizeField(messageDialogBuy);
+  // console.log(messageDialogBuyLocalized);
   return (
     <div className='buy'>
       <div className='header'>
         <h2 className='text-2xl'>Purchase {input.title}</h2>
-        {messageDialogBuy && (
+        {messageDialogBuyLocalized && (
           <PortableText
-            value={messageDialogBuy}
+            value={messageDialogBuyLocalized}
             components={portableTextComponents}
           />
         )}

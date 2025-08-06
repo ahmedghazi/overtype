@@ -196,11 +196,11 @@ export interface Settings extends SanityDocument {
   pangrams?: Array<SanityKeyed<string>>;
 
   /**
-   * messageDialogBuy — `blockContent`
+   * messageDialogBuy — `localeBlockContent`
    *
    *
    */
-  messageDialogBuy?: BlockContent;
+  messageDialogBuy?: LocaleBlockContent;
 
   /**
    * toolTipLicenses — `localeText`

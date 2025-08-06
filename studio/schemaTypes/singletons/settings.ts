@@ -119,7 +119,7 @@ export default defineType({
     }),
     defineField({
       name: 'messageDialogBuy',
-      type: 'blockContent',
+      type: 'localeBlockContent',
       group: 'shop',
     }),
     defineField({

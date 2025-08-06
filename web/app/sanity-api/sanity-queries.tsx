@@ -63,6 +63,9 @@ export const settingsQuery = groq`*[_type == "settings"][0]{
     _type,
     slug
   },
+  messageDialogBuy{
+    ${blockContent}
+  },
   messagemCookie{
     ${blockContent}
   },
