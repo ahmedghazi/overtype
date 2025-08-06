@@ -1,4 +1,3 @@
-import { KeyValString } from "@/app/types/schema";
 import React, { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 
@@ -11,7 +10,7 @@ type Props = {
 const TesterFeatures = ({ options, label, onChange }: Props) => {
   const [selected, setSelected] = useState([]);
   useEffect(() => {
-    if (selected.length === 0) return;
+    // if (selected.length === 0) return;
     onChange(selected);
   }, [selected, onChange]);
 
