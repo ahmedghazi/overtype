@@ -499,7 +499,14 @@ a.ui-btn {
 .ui-radio {
   border-radius: var(--radius);
   background-color: var(--color-bg);
-  padding: var(--spacing-md);
+  padding: 0 var(--spacing-md);
+  height: 3.313rem;
+  line-height: 3.513rem;
+  & > * {
+    height: 100%;
+    line-height: inherit;
+  }
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -622,15 +629,25 @@ a.ui-btn {
   background-color: var(--color-btn);
   background-color: white;
   padding: var(--spacing-md);
+  padding: 0 var(--spacing-md);
+  height: 3.313rem;
+  line-height: 3.513rem;
+  & > * {
+    height: 100%;
+    line-height: inherit;
+    .price {
+      height: 100%;
+    }
+  }
+
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  // gap: calc(var(--spacing-3xl) * 1.4375);
-  // gap: 0;
+  align-items: center;
+  gap: 0.4em;
   font-size: var(--text-lg);
   .t-preview,
   .footer {
-    line-height: 1;
+    // line-height: 1;
   }
   &:hover,
   &:active {
