@@ -772,6 +772,8 @@ a.ui-btn {
     border: none;
     font-size: var(--text-md);
     padding: 15px var(--spacing-md);
+    padding-top: 17px;
+    padding-bottom: 15px;
     &::placeholder {
       color: var(--color-secondary);
     }

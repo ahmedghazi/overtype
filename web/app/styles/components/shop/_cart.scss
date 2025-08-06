@@ -99,7 +99,9 @@
           font-size: var(--text-lg);
         }
         .metas {
-          font-size: var(--text-xs);
+          @media all and (max-width: variables.$md) {
+            font-size: var(--text-xs);
+          }
         }
         .price {
           font-size: var(--text-md);
