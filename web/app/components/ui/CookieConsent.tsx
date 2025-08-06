@@ -36,7 +36,7 @@ const CookieConsent = ({ msg }: Props) => {
 
   return (
     <div className='cookies has-blur'>
-      <div className='inner flex justify-between items-center gap-xl '>
+      <div className='inner flex justify-between md:items-center gap-xl '>
         <div className=''>
           <PortableText
             value={_localizeField(msg)}
