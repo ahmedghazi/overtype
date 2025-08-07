@@ -791,12 +791,25 @@ a.ui-btn {
   @media all and (max-width: variables.$md) {
     --toastify-toast-top: var(--header-height);
     --toastify-toast-right: var(--spacing-xs);
+    --toastify-toast-bd-radius: var(--radius-sm);
+    --toastify-color-light: transparent;
+    .Toastify__toast-container--top-left,
+    .Toastify__toast-container--top-center,
+    .Toastify__toast-container--top-right {
+      top: var(--header-height);
+      z-index: 51;
+    }
     .Toastify__toast-container {
       padding: var(--spacing-xs);
     }
+    .Toastify__toast {
+      border-radius: var(--radius-sm);
+      background-color: var(--color-btn);
+      backdrop-filter: blur(15px);
+    }
   }
   .Toastify__toast-theme--light {
-    background-color: var(--color-btn);
+    // background-color: #474747;
     padding: 0;
   }
 }

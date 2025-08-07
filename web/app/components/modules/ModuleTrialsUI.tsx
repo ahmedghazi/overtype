@@ -20,7 +20,7 @@ type TrialToastProps = {
   data: { status: string };
 };
 const TrialToast = ({ data }: TrialToastProps) => (
-  <div className='card-trial-toast px-md'>{data.status}</div>
+  <div className='card card--trial-toast has-blur- px-md'>{data.status}</div>
 );
 
 type TrialItemProps = {
@@ -116,6 +116,13 @@ const ModuleTrialsUI = ({ input }: Props) => {
       data: { status: `Trials : ${status}` },
     });
   }, [status]);
+
+  // useEffect(() => {
+  //   toast(TrialToast, {
+  //     closeButton: false,
+  //     data: { status: `Trials : Test` },
+  //   });
+  // }, []);
 
   const canSubmit = email && optin && trials && trials?.length > 0;
 

@@ -19,7 +19,7 @@ const CardToast = ({ data }: Props) => {
 
   return (
     <div
-      className='card card--toast rounded has-blur flex gap-md items-center w-full p-2xs cursor-pointer'
+      className='card card--toast rounded has-blur- flex gap-md items-center w-full p-2xs cursor-pointer'
       onClick={_openCart}>
       <div className='media'>
         <ProductImage

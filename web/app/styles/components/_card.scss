@@ -237,8 +237,11 @@
       }
     }
   }
+  &-trial-toast,
   &--toast {
     border-radius: var(--radius);
+    // background-color: var(--color-btn);
+
     .product-image {
       height: 58px;
       font-size: var(--text-base);
