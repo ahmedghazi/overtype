@@ -305,6 +305,10 @@ a.ui-btn {
   --thumb-width: 16px;
   --color: var(--color-secondary);
   // --color: var(--color-accent);
+  @media all and (max-width: variables.$md) {
+    --thumb-width: 19px;
+    --thumb-height: 19px;
+  }
   --color-bg: white;
   font-size: var(--text-sm);
   margin-bottom: var(--spacing-xs);
