@@ -28,6 +28,12 @@ export default defineField({
     }),
     slug,
     defineField({
+      name: 'icon',
+      type: 'image',
+      group: 'editorial',
+      description: 'SVG file with vectorized typeface Aa',
+    }),
+    defineField({
       name: 'style',
       title: 'Style',
       type: 'string',

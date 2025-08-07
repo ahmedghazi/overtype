@@ -663,6 +663,18 @@ export interface Typeface extends SanityDocument {
   slug?: { _type: "slug"; current: string };
 
   /**
+   * icon — `image`
+   *
+   * SVG file with vectorized typeface Aa
+   */
+  icon?: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
+
+  /**
    * Style — `string`
    *
    * Tell the website what is the style of the typeface, used in the typefaces menu, in the typeface page introduction, in bundles
