@@ -482,7 +482,7 @@ function generateUserEmailHtml(name: string, order: any, currencyCode: string) {
       ${items}
 
       <div style="font-size: 1.5em">
-        <p>Invoice Number: ${order.invoiceNumber}<br/>
+        <p>Order Number: ${order.invoiceNumber}<br/>
        Total Amount: ${order.totalAmount}${currencyCode}</p>
       </div>
 
