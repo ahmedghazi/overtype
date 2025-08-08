@@ -26,7 +26,8 @@ const BuyBundle = ({ product, input, background, foreground }: Props) => {
 
   // const priceMultiplier = licenseType?.priceMultiplier || 1;
   let priceMultiplier = licenseType?.priceMultiplier || 1;
-  if (isLogo && logoPriceMultiplier) priceMultiplier += logoPriceMultiplier;
+  if (isLogo === "Yes" && logoPriceMultiplier)
+    priceMultiplier += logoPriceMultiplier;
 
   const price = input.price ? input.price * priceMultiplier : 0;
   const priceDiscount = input.discount ? input.discount : 0;

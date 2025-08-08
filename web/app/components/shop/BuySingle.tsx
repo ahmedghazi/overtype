@@ -58,7 +58,8 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
   }, [applyDiscount]);
 
   let priceMultiplier = licenseType?.priceMultiplier || 1;
-  if (isLogo && logoPriceMultiplier) priceMultiplier += logoPriceMultiplier;
+  if (isLogo === "Yes" && logoPriceMultiplier)
+    priceMultiplier += logoPriceMultiplier;
 
   const price = input.price ? input.price * priceMultiplier : 0;
   const totalDiscount = applyDiscount && input.discount ? input.discount : 0;
