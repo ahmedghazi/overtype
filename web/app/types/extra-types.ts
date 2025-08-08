@@ -50,5 +50,5 @@ export interface ProductData {
   description: string;
   license: string;
   licenseInfos: string;
-  isLogo: boolean;
+  isLogo: string | boolean | undefined;
 }

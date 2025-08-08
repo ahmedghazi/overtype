@@ -49,7 +49,7 @@ const BuyBundle = ({ product, input, background, foreground }: Props) => {
     foreground: foreground || "",
     license: _localizeField(licenseType?.label) || "",
     licenseInfos: _localizeField(licenseType?.infos) || "",
-    isLogo: isLogo || false,
+    isLogo: isLogo || "No",
   };
 
   const onChange = (checked: boolean) => {
