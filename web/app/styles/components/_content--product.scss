@@ -160,10 +160,10 @@
         margin-bottom: 112px;
       }
       &.in-use {
-        margin-bottom: 112px;
+        margin-bottom: 112px !important;
       }
       &.related {
-        margin-bottom: 0px;
+        margin-bottom: 0px !important;
       }
     }
 
