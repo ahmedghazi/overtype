@@ -11,7 +11,6 @@ type Props = {
 };
 
 const BtnCheckout = ({ canCheckout }: Props) => {
-  // const [paddle, setPaddle] = useState<Paddle>();
   const paddle = useContext(PaddleContext);
   const { products, licenseFor, licenseForData } = useShop();
   console.log(products);
