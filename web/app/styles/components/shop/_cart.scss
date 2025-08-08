@@ -46,6 +46,11 @@
   @media all and (max-width: variables.$md) {
     // background-color: red;
     padding: 110px var(--spacing-xs);
+    &.is-empty {
+      .inner {
+        height: auto;
+      }
+    }
     .header {
       padding-right: 0;
       padding-left: var(--spacing-md);
