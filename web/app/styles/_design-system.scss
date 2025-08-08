@@ -697,6 +697,10 @@ a.ui-btn {
   align-items: baseline;
   font-size: var(--text-lg);
   cursor: pointer;
+  padding: 0 var(--spacing-md);
+  height: 1.847em;
+  line-height: 1.947em;
+  font-size: 2.2rem;
 
   @media all and (max-width: variables.$md) {
     // @include mixins.debugFiletY(50%);
@@ -707,6 +711,9 @@ a.ui-btn {
     line-height: 1.562em;
     height: 1.6em;
     line-height: 1.7em;
+  }
+  .ui-checkbox {
+    font-size: inherit;
   }
   &:hover,
   &:active {
