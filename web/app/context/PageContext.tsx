@@ -34,6 +34,7 @@ export const PageContextProvider = (props: PageContextProps) => {
 
   useEffect(() => {
     _format();
+    document.body.style.overflow = "auto";
   }, [pathname]);
 
   const _format = () => {
