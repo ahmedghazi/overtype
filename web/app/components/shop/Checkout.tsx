@@ -60,7 +60,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
         },
         product: {
           // name: product.fullTitle,
-          name: `${product.fullTitle} license:${product.license}, isLogo:${product.isLogo}`,
+          name: `${product.fullTitle} license: ${product.license}, Use in logo/wordmark: ${product.isLogo}`,
 
           description: product.sku || "sku",
           taxCategory: "standard",
