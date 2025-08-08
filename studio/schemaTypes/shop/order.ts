@@ -61,10 +61,11 @@ export default defineType({
       of: [{type: 'linkExternal'}],
       hidden: true,
     }),
-    // defineField({
-    //   name: 'isLogo',
-    //   type: 'string',
-    // }),
+    defineField({
+      name: 'transactionId',
+      type: 'string',
+      hidden: true,
+    }),
     defineField({
       name: 'licenseFor',
       type: 'string',

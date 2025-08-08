@@ -93,9 +93,7 @@ const CartItem = ({ input, _delete }: Props) => {
           </div>
           <div className='cart-item-row'>
             <div className='metas'>
-              <div>
-                Use in logo/wordmark : {memoizedInput.isLogo ? "Yes" : "No"}
-              </div>
+              <div>Use in logo/wordmark : {memoizedInput.isLogo}</div>
               <div>
                 Size licenses : {memoizedInput.license}{" "}
                 <span className='text-secondary'>

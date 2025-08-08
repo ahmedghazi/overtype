@@ -803,6 +803,13 @@ export interface Order extends SanityDocument {
   attachments?: Array<SanityKeyed<LinkExternal>>;
 
   /**
+   * transactionId — `string`
+   *
+   *
+   */
+  transactionId?: string;
+
+  /**
    * licenseFor — `string`
    *
    *
@@ -1063,11 +1070,25 @@ export type OrderItem = {
   discount?: number;
 
   /**
+   * applyDiscount — `boolean`
+   *
+   *
+   */
+  applyDiscount?: boolean;
+
+  /**
    * Final Price — `number`
    *
    *
    */
   finalPrice?: number;
+
+  /**
+   * isLogo — `string`
+   *
+   *
+   */
+  isLogo?: string;
 
   /**
    * license — `string`
@@ -1084,11 +1105,25 @@ export type OrderItem = {
   licenseInfos?: string;
 
   /**
-   * isLogo — `boolean`
+   * relatedTypefaceSku — `string`
    *
    *
    */
-  isLogo?: boolean;
+  relatedTypefaceSku?: string;
+
+  /**
+   * background — `string`
+   *
+   *
+   */
+  background?: string;
+
+  /**
+   * foreground — `string`
+   *
+   *
+   */
+  foreground?: string;
 };
 
 export type LicenseType = {

@@ -21,11 +21,13 @@ export default defineField({
       title: 'productTypeRef',
       name: 'productTypeRef',
       type: 'string',
+      hidden: true,
     }),
     defineField({
       title: 'productId',
       name: 'productId',
       type: 'string',
+      hidden: true,
     }),
     defineField({
       title: 'productTitle',
@@ -58,9 +60,19 @@ export default defineField({
       type: 'number',
     }),
     defineField({
+      title: 'applyDiscount',
+      name: 'applyDiscount',
+      type: 'boolean',
+    }),
+    defineField({
       title: 'Final Price',
       name: 'finalPrice',
       type: 'number',
+    }),
+    defineField({
+      title: 'isLogo',
+      name: 'isLogo',
+      type: 'string',
     }),
     defineField({
       title: 'license',
@@ -73,9 +85,21 @@ export default defineField({
       type: 'string',
     }),
     defineField({
-      title: 'isLogo',
-      name: 'isLogo',
-      type: 'boolean',
+      title: 'relatedTypefaceSku',
+      name: 'relatedTypefaceSku',
+      type: 'string',
+    }),
+    defineField({
+      title: 'background',
+      name: 'background',
+      type: 'string',
+      hidden: true,
+    }),
+    defineField({
+      title: 'foreground',
+      name: 'foreground',
+      type: 'string',
+      hidden: true,
     }),
   ],
 })
