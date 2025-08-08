@@ -87,7 +87,7 @@ const Buy = ({ input }: Props) => {
                   <a
                     href='mailto:contact@overtypefoundry.com'
                     className='underline!'>
-                    More than 300 workers? contact us
+                    More than 300 employees? contact us
                   </a>
                 </div>
               </div>
