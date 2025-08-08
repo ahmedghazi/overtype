@@ -58,10 +58,13 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
   }, [applyDiscount]);
 
   let priceMultiplier = licenseType?.priceMultiplier || 1;
-  if (isLogo === "Yes" && logoPriceMultiplier)
-    priceMultiplier += logoPriceMultiplier;
-
-  const price = input.price ? input.price * priceMultiplier : 0;
+  // if (isLogo === "Yes" && logoPriceMultiplier)
+  //   priceMultiplier += 0.05 + logoPriceMultiplier;
+  // console.log({ logoPriceMultiplier });
+  let price = input.price ? input.price * priceMultiplier : 0;
+  if (isLogo === "Yes" && logoPriceMultiplier) {
+    price *= 1 + logoPriceMultiplier;
+  }
   const totalDiscount = applyDiscount && input.discount ? input.discount : 0;
   const finalPrice =
     applyDiscount && input.discount

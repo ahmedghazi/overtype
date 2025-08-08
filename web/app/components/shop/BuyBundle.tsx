@@ -25,10 +25,13 @@ const BuyBundle = ({ product, input, background, foreground }: Props) => {
   } = usePageContext();
 
   let priceMultiplier = licenseType?.priceMultiplier || 1;
-  if (isLogo === "Yes" && logoPriceMultiplier)
-    priceMultiplier += logoPriceMultiplier;
+  // if (isLogo === "Yes" && logoPriceMultiplier)
+  //   priceMultiplier += logoPriceMultiplier;
 
-  const price = input.price ? input.price * priceMultiplier : 0;
+  let price = input.price ? input.price * priceMultiplier : 0;
+  if (isLogo === "Yes" && logoPriceMultiplier) {
+    price *= 1 + logoPriceMultiplier;
+  }
   const priceDiscount = input.discount ? input.discount : 0;
   const finalPrice = input.discount
     ? _getPriceWithDiscount(price, priceDiscount)
