@@ -129,7 +129,7 @@ const Buy = ({ input }: Props) => {
                 {input.bundles && (
                   <div className='box-item'>
                     <div className='header'>
-                      <h4 className='text-md md:text-lg'>Packs</h4>
+                      <h4 className='text-md md:text-lg'>Bundles</h4>
                     </div>
                     <div className='content'>
                       <div className='flex flex-col gap-3xs'>
