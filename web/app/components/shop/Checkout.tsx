@@ -49,7 +49,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
     const items = products.map((product) => ({
       quantity: 1,
       price: {
-        name: `${product.fullTitle} ${product.license}`,
+        name: `${product.fullTitle} license:${product.license}, isLogo:${product.isLogo}`,
         description: product.sku,
         quantity: {
           minimum: 1,
@@ -60,7 +60,9 @@ const BtnCheckout = ({ canCheckout }: Props) => {
           currencyCode: "EUR",
         },
         product: {
-          name: product.fullTitle,
+          // name: product.fullTitle,
+          name: `${product.fullTitle} license:${product.license}, isLogo:${product.isLogo}`,
+
           description: product.sku || "sku",
           taxCategory: "standard",
         },
