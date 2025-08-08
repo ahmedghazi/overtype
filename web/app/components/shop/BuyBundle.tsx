@@ -24,7 +24,6 @@ const BuyBundle = ({ product, input, background, foreground }: Props) => {
     settings: { logoPriceMultiplier },
   } = usePageContext();
 
-  // const priceMultiplier = licenseType?.priceMultiplier || 1;
   let priceMultiplier = licenseType?.priceMultiplier || 1;
   if (isLogo === "Yes" && logoPriceMultiplier)
     priceMultiplier += logoPriceMultiplier;
