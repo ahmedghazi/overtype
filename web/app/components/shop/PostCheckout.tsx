@@ -8,20 +8,14 @@ import Logo from "../Logo";
 type Props = {};
 
 const CheckoutSuccess = () => {
-  const products = JSON.parse(localStorage.getItem("products") || "[]");
-  const items = products.value;
+  const raw = localStorage.getItem("products");
+  const products = raw ? JSON.parse(raw) : [];
+  const items = products?.value;
   return (
     <div className='success'>
       <div className='header mb-2xl'>
         {/* <Logo /> */}
         <h1 className='md:text-2xl'>Thank you for your purchase!</h1>
-        {/* <p className='md:text-xl'>
-          Your download link is on its way to your inbox.
-        </p>
-        <p>
-          Have fun with your new typeface, <br />
-          we can’t wait to see what you do with it.
-        </p> */}
 
         <p className='md:text-xl'>
           Your download link is on its way to your inbox.
