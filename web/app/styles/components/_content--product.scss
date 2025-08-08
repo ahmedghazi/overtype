@@ -125,8 +125,8 @@
       padding-top: 0 !important;
       &.hero-slider {
         img {
-          height: calc(var(--vh) * 50) !important;
           height: 100vw !important;
+          max-height: calc(var(--vh) * 50) !important;
         }
       }
       &.waterfall {
