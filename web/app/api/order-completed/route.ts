@@ -220,6 +220,7 @@ async function _storeOrder(
         const res = await client.create({
           _type: "orderItem",
           ...item,
+          isLogo: item.isLogo === "Yes" ? true : false,
         });
         return res;
       })

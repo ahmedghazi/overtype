@@ -61,10 +61,10 @@ export default defineType({
       of: [{type: 'linkExternal'}],
       hidden: true,
     }),
-    defineField({
-      name: 'isLogo',
-      type: 'string',
-    }),
+    // defineField({
+    //   name: 'isLogo',
+    //   type: 'string',
+    // }),
     defineField({
       name: 'licenseFor',
       type: 'string',
