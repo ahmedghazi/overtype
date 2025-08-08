@@ -768,7 +768,7 @@ export interface Order extends SanityDocument {
   invoiceNumber?: string;
 
   /**
-   * dateTime — `date`
+   * dateTime — `datetime`
    *
    *
    */

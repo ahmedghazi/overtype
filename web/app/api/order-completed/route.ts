@@ -55,6 +55,11 @@ interface PaddleWebhookData {
   }>;
 }
 
+const formatedTimestamp = () => {
+  const now = new Date();
+  return now.toISOString();
+};
+
 export async function POST(request: Request) {
   try {
     const { paddleData, products } = (await request.json()) as {
@@ -82,7 +87,10 @@ export async function POST(request: Request) {
 
     const order = await _storeOrder(userId, paddleData, products);
     const orderId = order._id;
-
+    // return NextResponse.json(
+    //   { success: true, orderId, date: order.creationDate },
+    //   { status: 200 }
+    // );
     if (!orderId) {
       return NextResponse.json(
         { success: false, error: "Order not found" },
@@ -231,7 +239,7 @@ async function _storeOrder(
       title: `Order #${transactionId}`,
       invoiceNumber: transactionId,
       // creationDate: new Date().toISOString(),
-      creationDate: new Date(),
+      creationDate: formatedTimestamp(),
       user: {
         _type: "reference",
         _ref: userId,

@@ -31,7 +31,7 @@ export default defineType({
     defineField({
       name: 'creationDate',
       title: 'dateTime',
-      type: 'date',
+      type: 'datetime',
     }),
     defineField({
       name: 'totalAmount',
