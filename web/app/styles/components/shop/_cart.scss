@@ -64,6 +64,9 @@
   .cart-item {
     padding: var(--spacing-md);
     background-color: var(--color-btn);
+    .metas {
+      flex: 2;
+    }
     // margin-bottom: calc(var(--spacing-2xs) * 1.25);
     @media all and (max-width: variables.$md) {
       // background-color: red;

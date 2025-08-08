@@ -62,6 +62,10 @@ export default defineType({
       hidden: true,
     }),
     defineField({
+      name: 'isLogo',
+      type: 'string',
+    }),
+    defineField({
       name: 'licenseFor',
       type: 'string',
     }),
