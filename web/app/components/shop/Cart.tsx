@@ -85,7 +85,7 @@ const Cart = (props: Props) => {
           {isEmpty && (
             <section className='cart-empty py-xl flex justify-center'>
               <div className='flex flex-col items-center gap-md'>
-                <div className='md:text-2xl '>Your cart is empty</div>
+                <div className='text-2xl '>Your cart is empty</div>
                 <Link
                   href={_linkResolver(settings.shopPage)}
                   className='ui-btn ui-btn__accent'>
