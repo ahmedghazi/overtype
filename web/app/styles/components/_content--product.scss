@@ -126,6 +126,7 @@
       &.hero-slider {
         img {
           height: calc(var(--vh) * 50) !important;
+          height: 100vw !important;
         }
       }
       &.waterfall {
