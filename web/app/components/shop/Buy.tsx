@@ -96,7 +96,7 @@ const Buy = ({ input }: Props) => {
               <div className='logo'>
                 <div className='header'>
                   <h4 className='text-md md:text-lg'>
-                    Would you use the font in a logo/wordmark?
+                    Will the font be used in a logo or wordmark?
                   </h4>
                   <BtnToolTip text={_localizeField(toolTipLogo)} />
                 </div>
