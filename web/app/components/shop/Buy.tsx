@@ -105,13 +105,13 @@ const Buy = ({ input }: Props) => {
                     <Radio
                       name='forLogo'
                       label='Yes'
-                      isChecked={isLogo === true}
+                      isChecked={isLogo === "Yes"}
                       onChange={() => setIsLogo("Yes")}
                     />
                     <Radio
                       name='forLogo'
                       label='No'
-                      isChecked={isLogo === false}
+                      isChecked={isLogo === "No"}
                       onChange={() => setIsLogo("No")}
                     />
                   </div>
@@ -150,9 +150,6 @@ const Buy = ({ input }: Props) => {
                   <div className='box-item mt-3xl'>
                     <div className='header'>
                       <h4 className='text-md md:text-lg'>Single Styles</h4>
-                      {/* <div className='text-sm ui-btn--pill ui-btn--pill__accent sm-only'>
-                        <span>-50% on the 2nd style</span>
-                      </div> */}
                     </div>
                     <div className='content'>
                       <div className='grid md:grid-cols-2 gap-3xs'>

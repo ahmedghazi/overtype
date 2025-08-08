@@ -50,8 +50,10 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
   }, [dialogProducts, input.relatedTypeface]);
 
   useEffect(() => {
+    setDialogProducts({ type: "REPLACE", payload: _productData });
+
     if (applyDiscount) {
-      setDialogProducts({ type: "REPLACE", payload: _productData });
+      // setDialogProducts({ type: "REPLACE", payload: _productData });
     }
   }, [applyDiscount]);
 
