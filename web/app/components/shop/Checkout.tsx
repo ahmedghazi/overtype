@@ -15,13 +15,13 @@ const BtnCheckout = ({ canCheckout }: Props) => {
   const { products, licenseFor, licenseForData } = useShop();
   console.log(products);
   // define customer details
-  // const customerInfo = {
-  //   email: "hello@ahmedghazi.com",
-  //   address: {
-  //     countryCode: "FR",
-  //     postalCode: "75018",
-  //   },
-  // };
+  const customerInfo = {
+    email: licenseForData.email || "",
+    // address: {
+    //   countryCode: "FR",
+    //   postalCode: "75018",
+    // },
+  };
 
   const storeProducts = (products: ProductData[], ttl: number) => {
     const now = new Date();
@@ -96,7 +96,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
     paddle?.Checkout.open({
       allowQuantity: false,
       transactionId: data.tsx,
-      // customer: customerInfo,
+      customer: customerInfo,
       settings: {
         displayMode: "overlay",
         theme: "dark",
