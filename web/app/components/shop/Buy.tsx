@@ -36,7 +36,6 @@ const Buy = ({ input }: Props) => {
     dialogProducts,
     setDialogProducts,
   } = useShop();
-  console.log({ isLogo });
 
   const _updateLicense = (license: LicenseType) => {
     //reset
