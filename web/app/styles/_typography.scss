@@ -112,10 +112,13 @@ p,
     // color: var(--color-secondary);
     text-decoration: underline;
     &:hover {
-      color: var(--color-secondary);
+      @media (hover: hover) and (pointer: fine) {
+        color: var(--color-secondary);
+      }
     }
   }
 }
+
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
