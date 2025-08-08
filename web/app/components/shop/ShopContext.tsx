@@ -101,7 +101,7 @@ type ContextProps = {
 
   licenseType: LicenseType | null;
   setLicenseType: Function;
-  isLogo: boolean | undefined;
+  isLogo: string | boolean | undefined;
   setIsLogo: Function;
   licenseFor: "me" | "client";
   setLicenseFor: Function;
@@ -133,7 +133,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
     email: "",
     inUseFor: "",
   });
-  const [isLogo, setIsLogo] = useState<boolean | undefined>(undefined);
+  const [isLogo, setIsLogo] = useState<string | boolean | undefined>(undefined);
   // const [cartObject, setCartObject] = useState(null);
   // const pathname = usePathname();
 

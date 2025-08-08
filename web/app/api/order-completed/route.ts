@@ -464,12 +464,8 @@ function generateUserEmailHtml(name: string, order: any, currencyCode: string) {
     if (el && el.fullTitle) {
       const _html = `<div style="background: #ededed; padding: 15px; border-radius: 5px; margin-bottom:10px">
         <h3 style="margin-top:0;color: #666;">${el.fullTitle}</h3>
-        <div style="color: #666;">Use in logo/wordmark: ${
-          el.isLogo === "true" ? "No" : "Yes"
-        }</div>
-        <div style="color: #666;">Size licenses: ${el.license} ${
-        el.licenseInfos
-      }</div>
+        <div style="color: #666;">Use in logo/wordmark: ${el.isLogo}</div>
+        <div style="color: #666;">Size licenses: ${el.license} ${el.licenseInfos}</div>
       </div>`;
       items += _html;
     }

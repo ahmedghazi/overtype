@@ -36,6 +36,7 @@ const Buy = ({ input }: Props) => {
     dialogProducts,
     setDialogProducts,
   } = useShop();
+  console.log({ isLogo });
 
   const _updateLicense = (license: LicenseType) => {
     //reset
@@ -105,13 +106,13 @@ const Buy = ({ input }: Props) => {
                       name='forLogo'
                       label='Yes'
                       isChecked={isLogo === true}
-                      onChange={() => setIsLogo(true)}
+                      onChange={() => setIsLogo("Yes")}
                     />
                     <Radio
                       name='forLogo'
                       label='No'
                       isChecked={isLogo === false}
-                      onChange={() => setIsLogo(false)}
+                      onChange={() => setIsLogo("No")}
                     />
                   </div>
                 </div>
@@ -120,7 +121,7 @@ const Buy = ({ input }: Props) => {
           </div>
         </section>
         {/* <pre>{JSON.stringify(isLogo, null, 2)}</pre> */}
-        {licenseType && (isLogo === false || isLogo === true) && (
+        {licenseType && isLogo !== undefined && (
           <>
             <section>
               <h3 className='md:text-sm'>2/ Select your styles</h3>
