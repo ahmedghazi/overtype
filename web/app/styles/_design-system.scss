@@ -801,6 +801,11 @@ a.ui-btn {
   --toastify-toast-bd-radius: var(--radius);
   --toastify-font-family: var(--font-primary);
   // padding-top: var(--header-height);
+  .Toastify__toast {
+    border-radius: var(--radius-sm);
+    background-color: var(--color-btn);
+    backdrop-filter: blur(15px);
+  }
   @media all and (max-width: variables.$md) {
     --toastify-toast-top: var(--header-height);
     --toastify-toast-right: var(--spacing-xs);
