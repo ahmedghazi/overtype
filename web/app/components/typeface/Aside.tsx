@@ -88,7 +88,23 @@ const Aside = ({
   }, [stylisticSets]);
 
   const testerFeaturesOptions = useMemo(() => {
-    return openTypeFeaturesOptions?.concat(stylisticSetsOptions || []);
+    const defaultValue = {
+      key: "default",
+      type: "default",
+      label: "Features",
+      value: "features",
+    };
+    const values = openTypeFeaturesOptions
+      ?.concat(stylisticSetsOptions || [])
+      .concat(defaultValue);
+    values?.unshift(defaultValue);
+    return values;
+    // const finalArray = values ? [defaultValue]?.concat(values) : values;
+    // return [defaultValue].concat(values); // [ 4, 3, 2, 1 ]
+
+    // return openTypeFeaturesOptions
+    //   ?.concat(stylisticSetsOptions || [])
+    //   .concat(defaultValue);
   }, [openTypeFeaturesOptions, stylisticSetsOptions]);
 
   const defaultStyle = useMemo(() => {

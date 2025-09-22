@@ -8,7 +8,7 @@ type Props = {
 };
 
 const TesterFeatures = ({ options, label, onChange }: Props) => {
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState([options[0]]);
   useEffect(() => {
     // if (selected.length === 0) return;
     onChange(selected);
@@ -16,12 +16,11 @@ const TesterFeatures = ({ options, label, onChange }: Props) => {
 
   return (
     <div>
-      {/* <pre>{JSON.stringify(options, null, 2)}</pre> */}
       <MultiSelect
         options={options}
         value={selected}
         onChange={setSelected}
-        labelledBy={label}
+        labelledBy={label || "label"}
         disableSearch={true}
         className='ui-select'
         // defaultIsOpen={true}
