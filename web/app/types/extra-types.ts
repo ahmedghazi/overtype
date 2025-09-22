@@ -51,4 +51,5 @@ export interface ProductData {
   license: string;
   licenseInfos: string;
   isLogo: string | boolean | undefined;
+  icon?: string;
 }

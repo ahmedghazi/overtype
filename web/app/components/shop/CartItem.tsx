@@ -10,6 +10,7 @@ type Props = {
 };
 
 const CartItem = ({ input, _delete }: Props) => {
+  console.log(input);
   const { products, setProducts } = useShop();
   const [hasRelatedTypefaceInProducts, setHasRelatedTypefaceInProducts] =
     useState<boolean>(false);
@@ -85,6 +86,7 @@ const CartItem = ({ input, _delete }: Props) => {
             title={memoizedInput.productTitle}
             background={memoizedInput.background}
             foreground={memoizedInput.foreground}
+            icon={memoizedInput.icon}
           />
         </div>
         <div className='col-infos'>

@@ -10,7 +10,7 @@ export default defineField({
   fields: [
     defineField({
       name: 'items',
-      title: 'Items',
+      title: 'Accrodion Items',
       type: 'array',
       of: [{type: 'keyVal'}],
     }),

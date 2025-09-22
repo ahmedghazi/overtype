@@ -51,6 +51,7 @@ const AddToCart = ({ items }: Props) => {
         title: item.productTitle,
         background: item.background,
         foreground: item.foreground,
+        icon: item.icon,
       },
       className: "rounded has-blur bg-btn",
     });
@@ -77,7 +78,7 @@ const AddToCart = ({ items }: Props) => {
         {dialogProducts.length > 0 && <span className='ml-2'>{total}€</span>}
       </button>
 
-      {/* <pre>{JSON.stringify(products, null, 2)}</pre> */}
+      <pre>{JSON.stringify(products, null, 2)}</pre>
     </div>
   );
 };

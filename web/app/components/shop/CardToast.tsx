@@ -7,6 +7,7 @@ type Props = ToastContentProps<{
   title: string;
   background?: string;
   foreground?: string;
+  icon?: string;
 }>;
 
 const CardToast = ({ data }: Props) => {
@@ -26,6 +27,7 @@ const CardToast = ({ data }: Props) => {
           title={data.title}
           background={data.background || "var(--color-bg)"}
           foreground={data.foreground || "var(--color-primary)"}
+          icon={data.icon}
         />
       </div>
       <div className='col-infos text-white'>

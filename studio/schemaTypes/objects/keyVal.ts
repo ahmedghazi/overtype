@@ -3,7 +3,7 @@ import {defineField} from 'sanity'
 
 export default defineField({
   name: 'keyVal',
-  title: 'Clef Valeur',
+  title: 'Clef Valeur avec text',
   type: 'object',
   fields: [
     defineField({

@@ -91,6 +91,7 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
     license: _localizeField(licenseType?.label) || "",
     licenseInfos: _localizeField(licenseType?.infos) || "",
     isLogo: isLogo || "No",
+    icon: input.typeface?.icon?.asset?.url || "",
   };
   // console.log(_productData);
 
