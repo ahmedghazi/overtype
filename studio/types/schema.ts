@@ -245,6 +245,13 @@ export interface Settings extends SanityDocument {
   toolTipInUseFor?: LocaleText;
 
   /**
+   * textOptin — `localeBlockContent`
+   *
+   *
+   */
+  textOptin?: LocaleBlockContent;
+
+  /**
    * messagemCookie — `localeBlockContent`
    *
    *

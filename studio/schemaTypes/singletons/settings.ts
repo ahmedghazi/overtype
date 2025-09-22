@@ -153,6 +153,11 @@ export default defineType({
       group: 'shop',
     }),
     defineField({
+      name: 'textOptin',
+      type: 'localeBlockContent',
+      group: 'shop',
+    }),
+    defineField({
       name: 'messagemCookie',
       type: 'localeBlockContent',
       group: 'misc',

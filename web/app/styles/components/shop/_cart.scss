@@ -48,6 +48,16 @@
   .form-field .header label {
     text-align: left;
   }
+  .optin {
+    display: flex;
+    align-items: start;
+    gap: var(--spacing-xs);
+    padding-top: var(--spacing-md);
+    input {
+      transform: translateY(0.15em);
+    }
+  }
+
   @media all and (max-width: variables.$md) {
     // background-color: red;
     padding: 110px var(--spacing-xs);
@@ -66,6 +76,9 @@
     .total {
       font-size: var(--text-base);
       font-size: var(--text-lg);
+    }
+    .optin {
+      font-size: var(--text-sm);
     }
   }
 }

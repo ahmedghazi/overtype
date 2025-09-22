@@ -16,6 +16,8 @@ import { _linkResolver, _localizeField } from "@/app/sanity-api/utils";
 import CartItem from "./CartItem";
 import Radio from "../ui/inputs/Radio";
 import BtnToolTip from "../ui/buttons/BtnToolTip";
+import { PortableText } from "next-sanity";
+import portableTextComponents from "@/app/sanity-api/portableTextComponents";
 
 type Props = {};
 
@@ -35,18 +37,22 @@ const Cart = (props: Props) => {
     toolTipCompanyName,
     toolTipEmail,
     toolTipInUseFor,
+    textOptin,
   } = settings;
   const isEmpty = products.length === 0;
   const [canCheckout, setCanCheckout] = useState<boolean>(false);
+  const [optin, setOptin] = useState<boolean>(false);
+  const [status, setStatus] = useState<string>("");
 
   useEffect(() => {
     // console.log(licenseForData);
     const allFieldsFilled =
       licenseForData.companyName != "" &&
       licenseForData.email != "" &&
-      licenseForData.inUseFor != "";
+      licenseForData.inUseFor != "" &&
+      optin === true;
     setCanCheckout(allFieldsFilled);
-  }, [licenseForData]);
+  }, [licenseForData, optin]);
   // console.log(products);
   // const [open, setOpen] = useState<boolean>(false);
   // const [licenseFor, setLicenseFor] = useState<"me" | "client">("me");
@@ -176,6 +182,24 @@ const Cart = (props: Props) => {
                       }}
                       tooltip={_localizeField(toolTipInUseFor)}
                     />
+                  </div>
+
+                  <div className='form-field optin'>
+                    <input
+                      type='checkbox'
+                      id='optin'
+                      required
+                      onChange={(e) => {
+                        setOptin(e.target.checked);
+                        setStatus("optin");
+                      }}
+                    />
+                    <label htmlFor='optin'>
+                      <PortableText
+                        value={_localizeField(textOptin)}
+                        components={portableTextComponents}
+                      />
+                    </label>
                   </div>
                 </div>
               </form>

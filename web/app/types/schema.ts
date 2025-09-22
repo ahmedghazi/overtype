@@ -254,6 +254,13 @@ export interface Settings extends SanityDocument {
   toolTipInUseFor?: LocaleText;
 
   /**
+   * textOptin — `localeBlockContent`
+   *
+   *
+   */
+  textOptin?: LocaleBlockContent;
+
+  /**
    * messagemCookie — `localeBlockContent`
    *
    *
@@ -1354,7 +1361,7 @@ export type KeyValString = {
   key?: string;
 
   /**
-   * Value — `string`
+   * Valeur — `string`
    *
    *
    */
@@ -1470,7 +1477,7 @@ export type FontInUse = {
 export type Accordion = {
   _type: "accordion";
   /**
-   * Items — `array`
+   * Accrodion Items — `array`
    *
    *
    */
