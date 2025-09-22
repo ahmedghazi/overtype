@@ -175,8 +175,10 @@
       left: var(--spacing-sm);
       top: var(--spacing-sm);
       .ui-cartouche {
-        background-color: var(--color-tag);
-        color: white;
+        // background-color: var(--color-tag);
+        // color: white;
+        background-color: var(--color-btn);
+        color: var(--color-primary);
       }
     }
     .header {
