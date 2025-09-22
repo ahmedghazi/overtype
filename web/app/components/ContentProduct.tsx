@@ -40,6 +40,7 @@ const ContentProduct = ({ input }: Props) => {
   const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
+    delay: 100,
   });
 
   const _scrollTo = (id: string) => {
