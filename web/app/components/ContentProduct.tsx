@@ -79,7 +79,7 @@ const ContentProduct = ({ input }: Props) => {
                   item.colSize === 2 && "col-span-2"
                 )}
                 key={i}>
-                <Figure asset={item.image?.image?.asset || null} />
+                <Figure asset={item.image?.image?.asset || null} width={2000} />
               </div>
             ))}
           </div>
