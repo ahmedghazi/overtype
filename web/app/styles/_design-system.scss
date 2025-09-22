@@ -822,8 +822,9 @@ a.ui-btn {
   // padding-top: var(--header-height);
   .Toastify__toast {
     border-radius: var(--radius-sm);
-    background-color: var(--color-btn);
-    backdrop-filter: blur(15px);
+    // background-color: var(--color-btn);
+    // backdrop-filter: blur(15px);
+    background-color: transparent;
   }
   @media all and (max-width: variables.$md) {
     --toastify-toast-top: var(--header-height);

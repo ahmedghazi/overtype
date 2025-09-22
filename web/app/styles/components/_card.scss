@@ -240,7 +240,8 @@
   &-trial-toast,
   &--toast {
     border-radius: var(--radius);
-    // background-color: var(--color-btn);
+    background-color: var(--color-btn);
+    backdrop-filter: blur(15px);
 
     .product-image {
       height: 58px;
