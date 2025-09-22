@@ -97,7 +97,7 @@ const Aside = ({
     const values = openTypeFeaturesOptions
       ?.concat(stylisticSetsOptions || [])
       .concat(defaultValue);
-    values?.unshift(defaultValue);
+    // values?.unshift(defaultValue);
     return values;
     // const finalArray = values ? [defaultValue]?.concat(values) : values;
     // return [defaultValue].concat(values); // [ 4, 3, 2, 1 ]

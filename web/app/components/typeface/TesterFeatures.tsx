@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 
 type Props = {
@@ -8,14 +8,24 @@ type Props = {
 };
 
 const TesterFeatures = ({ options, label, onChange }: Props) => {
-  const [selected, setSelected] = useState([options[0]]);
+  const [selected, setSelected] = useState([]);
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     // if (selected.length === 0) return;
     onChange(selected);
   }, [selected, onChange]);
 
+  useEffect(() => {
+    const defaulltheading = ref.current?.querySelector(
+      ".dropdown-heading-value"
+    );
+    if (defaulltheading) {
+      defaulltheading.textContent = label;
+    }
+  }, []);
+
   return (
-    <div>
+    <div ref={ref}>
       <MultiSelect
         options={options}
         value={selected}
