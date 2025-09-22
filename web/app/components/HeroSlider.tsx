@@ -26,6 +26,7 @@ const HeroSlider = ({ input }: Props) => {
                 <FigureComponent
                   asset={item.image?.asset || null}
                   rounded={false}
+                  width={2000}
                 />
               </div>
             ))}
