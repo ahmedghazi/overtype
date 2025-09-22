@@ -19,7 +19,7 @@ const ContentProject = ({ input }: Props) => {
       {/* <div className='h-3xl md:h-[112px]'></div> */}
       {hero && (
         <section className='hero'>
-          <Figure asset={hero.image?.asset || null} />
+          <Figure asset={hero.image?.asset || null} width={2000} />
         </section>
       )}
       <div className='c-container'>
