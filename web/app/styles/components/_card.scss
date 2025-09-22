@@ -53,6 +53,9 @@
       left: 0;
       top: 0;
       padding: var(--spacing-xl);
+      .ui-btn {
+        pointer-events: none;
+      }
     }
 
     .t-preview {
