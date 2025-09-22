@@ -258,6 +258,16 @@
     }
   }
 }
+
+.light .card {
+  &--project {
+    .header-top {
+      .ui-cartouche {
+        color: white;
+      }
+    }
+  }
+}
 .dark .card {
   &--toast .col-infos {
     color: white;
