@@ -117,7 +117,7 @@ const Cart = (props: Props) => {
               <div className='label'>Total (excl. VAT)</div>
               <div className='price'>{cartTotalPrice(products)}€ </div>
             </section>
-            <section className='licenseFor md:mb-4xl mb-2xl rounded'>
+            <section className='licenseFor md:mb-4xl- mb-2xl- rounded'>
               <form action='' onSubmit={(e) => e.preventDefault()}>
                 <div className='box'>
                   <div className='form-field ui-radio--group'>
@@ -183,26 +183,28 @@ const Cart = (props: Props) => {
                       tooltip={_localizeField(toolTipInUseFor)}
                     />
                   </div>
-
-                  <div className='form-field optin'>
-                    <input
-                      type='checkbox'
-                      id='optin'
-                      required
-                      onChange={(e) => {
-                        setOptin(e.target.checked);
-                        setStatus("optin");
-                      }}
-                    />
-                    <label htmlFor='optin'>
-                      <PortableText
-                        value={_localizeField(textOptin)}
-                        components={portableTextComponents}
-                      />
-                    </label>
-                  </div>
                 </div>
               </form>
+            </section>
+
+            <section className='optin md:mb-4xl mb-2xl mt-md'>
+              <div className='form-field optin'>
+                <input
+                  type='checkbox'
+                  id='optin'
+                  required
+                  onChange={(e) => {
+                    setOptin(e.target.checked);
+                    setStatus("optin");
+                  }}
+                />
+                <label htmlFor='optin'>
+                  <PortableText
+                    value={_localizeField(textOptin)}
+                    components={portableTextComponents}
+                  />
+                </label>
+              </div>
             </section>
 
             <section className='checkout'>
