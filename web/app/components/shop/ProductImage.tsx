@@ -15,7 +15,6 @@ const ProductImage = ({ title, background, foreground, icon }: Props) => {
       style={{ backgroundColor: background, color: foreground }}>
       {!icon && title}
       {icon && <img src={icon} alt='' width={43} height='auto' />}
-      {/* <span className='text-2xl'>Aa</span> */}
     </div>
   );
 };
