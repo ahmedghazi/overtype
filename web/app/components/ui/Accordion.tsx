@@ -51,10 +51,6 @@ const AccordionItem = ({ item }: { item: KeyVal | KeyValGroup }) => {
             <div className='text'>
               {item.items?.map((item, index) => (
                 <KeyValStringComponent input={item} key={index} />
-                // <div key={index}>
-                //   <h4>{item.key}</h4>
-                //   <div className='value'>{item.val}</div>
-                // </div>
               ))}
             </div>
           )}

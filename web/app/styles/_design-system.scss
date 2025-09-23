@@ -843,6 +843,7 @@ a.ui-btn {
     .Toastify__toast {
       border-radius: var(--radius-sm);
       background-color: var(--color-btn);
+      background-color: rgba(231, 231, 231, 1);
       backdrop-filter: blur(15px);
     }
   }
