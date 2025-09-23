@@ -135,10 +135,10 @@ export default defineType({
     defineArrayMember({
       type: 'accordion',
     }),
-    defineArrayMember({
-      type: 'keyValString',
-      name: 'keyValString',
-      // of: [{type: 'keyValString'}],
-    }),
+    // defineArrayMember({
+    //   type: 'keyValString',
+    //   name: 'keyValString',
+    //   // of: [{type: 'keyValString'}],
+    // }),
   ],
 })

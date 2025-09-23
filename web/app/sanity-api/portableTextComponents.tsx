@@ -29,39 +29,12 @@ const portableTextComponents: PortableTextComponents = {
     "text-lg": ({ children }) => (
       <p className='text-2xl md:text-3xl'>{children}</p>
     ),
-    // "h2 text-lg": ({ children }) => (
-    //   <p className='text-md md:text-lg'>{children}</p>
-    // ),
-    // "h2 text-2lg": ({ children }) => (
-    //   <p className='text-md md:text-2lg'>{children}</p>
-    // ),
-    // "h3 text-2lg": ({ children }) => (
-    //   <p className='text-md md:text-2lg'>{children}</p>
-    // ),
-    // "h3 text-lg": ({ children }) => (
-    //   <p className='text-md md:text-lg'>{children}</p>
-    // ),
-    // "text-lg": ({ children }) => (
-    //   <p className='text-md md:text-lg '>{children}</p>
-    // ),
-    // "text-2lg": ({ children }) => (
-    //   <p className='text-md md:text-2lg '>{children}</p>
-    // ),
-    // "text-xl": ({ children }) => (
-    //   <p className='text-md md:text-xl- headline'>{children}</p>
-    // ),
   },
   types: {
     image: ({ value }) => {
       return <Figure asset={value.asset} />;
     },
-    // icon: ({ value }) => {
-    //   return (
-    //     <div className='icon'>
-    //       <Figure asset={value.image.asset} />
-    //     </div>
-    //   );
-    // },
+
     accordion: ({ value }) => {
       return <Accordion input={value} />;
     },

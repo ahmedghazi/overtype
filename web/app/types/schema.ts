@@ -1220,7 +1220,6 @@ export type BlockContent = Array<
       hotspot?: SanityImageHotspot;
     }>
   | SanityKeyed<Accordion>
-  | SanityKeyed<KeyValString>
 >;
 
 export type LinkExternal = {
@@ -1368,6 +1367,23 @@ export type KeyValString = {
   val?: string;
 };
 
+export type KeyValGroup = {
+  _type: "keyValGroup";
+  /**
+   * Clef — `string`
+   *
+   *
+   */
+  key?: string;
+
+  /**
+   * items — `array`
+   *
+   *
+   */
+  items?: Array<SanityKeyed<KeyValString>>;
+};
+
 export type Video = {
   _type: "video";
   /**
@@ -1481,7 +1497,7 @@ export type Accordion = {
    *
    *
    */
-  items?: Array<SanityKeyed<KeyVal>>;
+  items?: Array<SanityKeyed<KeyVal> | SanityKeyed<KeyValGroup>>;
 
   /**
    * Links — `array`

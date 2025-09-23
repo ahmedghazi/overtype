@@ -2,14 +2,15 @@
 import React, { useRef, useState } from "react";
 import portableTextComponents from "@/app/sanity-api/portableTextComponents";
 import { _localizeField } from "@/app/sanity-api/utils";
-import { Accordion, KeyVal } from "@/app/types/schema";
+import { Accordion, KeyVal, KeyValGroup } from "@/app/types/schema";
 import clsx from "clsx";
 import { PortableText } from "next-sanity";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
+import KeyValStringComponent from "./KeyValString";
 
-const AccordionItem = ({ item }: { item: KeyVal }) => {
+const AccordionItem = ({ item }: { item: KeyVal | KeyValGroup }) => {
   const [active, setActive] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
   useGSAP(
@@ -26,7 +27,8 @@ const AccordionItem = ({ item }: { item: KeyVal }) => {
   return (
     <div className={clsx("accordion--item", active && "is-active")}>
       <div className='header' onClick={() => setActive(!active)}>
-        <h3>{item.key}</h3>
+        {item._type === "keyVal" && <h3>{item.key}</h3>}
+        {item._type === "keyValGroup" && <h3>{item.key}</h3>}
         <div>
           {active ? (
             <i className='icon icon-minus'></i>
@@ -37,12 +39,25 @@ const AccordionItem = ({ item }: { item: KeyVal }) => {
       </div>
       <div className='detail' ref={ref}>
         <div className='pb-lg'>
-          <div className='text'>
-            <PortableText
-              value={_localizeField(item.val)}
-              components={portableTextComponents}
-            />
-          </div>
+          {item._type === "keyVal" && (
+            <div className='text'>
+              <PortableText
+                value={_localizeField(item.val)}
+                components={portableTextComponents}
+              />
+            </div>
+          )}
+          {item._type === "keyValGroup" && (
+            <div className='text'>
+              {item.items?.map((item, index) => (
+                <KeyValStringComponent input={item} key={index} />
+                // <div key={index}>
+                //   <h4>{item.key}</h4>
+                //   <div className='value'>{item.val}</div>
+                // </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

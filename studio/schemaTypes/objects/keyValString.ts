@@ -3,7 +3,7 @@ import {defineField} from 'sanity'
 
 export default defineField({
   name: 'keyValString',
-  title: 'Clef Valeur Simple',
+  title: 'Clef Valeur (Simple)',
   type: 'object',
   fields: [
     defineField({
@@ -17,4 +17,10 @@ export default defineField({
       title: 'Valeur',
     }),
   ],
+  preview: {
+    select: {
+      title: 'key',
+      subtitle: 'val',
+    },
+  },
 })

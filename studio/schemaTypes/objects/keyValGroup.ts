@@ -3,23 +3,31 @@ import {defineField} from 'sanity'
 
 export default defineField({
   name: 'keyValGroup',
-  title: 'Key Val Group',
+  title: 'Clef Valeur (Group)',
   type: 'object',
   // icon: BsInfoSquare,
   fields: [
     defineField({
-      name: 'title',
-      type: 'localeString',
+      name: 'key',
+      type: 'string',
+      title: 'Clef',
     }),
     defineField({
       name: 'items',
       type: 'array',
-      of: [{type: 'keyVal'}],
+      of: [{type: 'keyValString'}],
     }),
   ],
   preview: {
     select: {
-      title: 'title.en',
+      title: 'key',
+    },
+    prepare(selection) {
+      const {title} = selection
+      return {
+        title,
+        subtitle: 'Clef Valeur (Group)',
+      }
     },
   },
 })

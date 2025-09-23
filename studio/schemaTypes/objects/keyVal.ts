@@ -3,7 +3,7 @@ import {defineField} from 'sanity'
 
 export default defineField({
   name: 'keyVal',
-  title: 'Clef Valeur avec text',
+  title: 'Clef Valeur (avec text)',
   type: 'object',
   fields: [
     defineField({
@@ -17,4 +17,16 @@ export default defineField({
       title: 'Valeur',
     }),
   ],
+  preview: {
+    select: {
+      title: 'key',
+    },
+    prepare(selection) {
+      const {title} = selection
+      return {
+        title,
+        subtitle: 'Clef Valeur (avec text)',
+      }
+    },
+  },
 })

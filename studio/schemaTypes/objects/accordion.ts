@@ -12,7 +12,7 @@ export default defineField({
       name: 'items',
       title: 'Accrodion Items',
       type: 'array',
-      of: [{type: 'keyVal'}],
+      of: [{type: 'keyVal'}, {type: 'keyValGroup'}],
     }),
     defineField({
       name: 'links',
@@ -31,9 +31,17 @@ export default defineField({
       ],
     }),
   ],
+
   preview: {
     select: {
-      title: 'items.0.key',
+      label: `items.0.key`,
+    },
+    prepare(selection) {
+      const {label} = selection
+      return {
+        title: label,
+        subtitle: 'Accordion',
+      }
     },
   },
 })

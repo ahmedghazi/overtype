@@ -10,6 +10,7 @@ import localeBlockContent from './locale/localeBlockContent'
 import localeText from './locale/localeText'
 
 import blockContent from './objects/blockContent'
+
 import linkExternal from './objects/linkExternal'
 import linkInternal from './objects/linkInternal'
 import linkFile from './objects/linkFile'
@@ -17,6 +18,7 @@ import linkGroup from './objects/linkGroup'
 import seo from './objects/seo'
 import keyVal from './objects/keyVal'
 import keyValString from './objects/keyValString'
+import keyValGroup from './objects/keyValGroup'
 import video from './objects/video'
 import figure from './objects/figure'
 import mosaicItem from './objects/mosaicItem'
@@ -75,6 +77,7 @@ export const schemaTypes = [
   seo,
   keyVal,
   keyValString,
+  keyValGroup,
   video,
   figure,
   mosaicItem,
