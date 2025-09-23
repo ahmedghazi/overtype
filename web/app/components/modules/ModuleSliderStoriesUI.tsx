@@ -31,7 +31,6 @@ const ModuleSliderStoriesUI = ({ input }: Props) => {
             width={"100%"}
             height={isMobile ? "230px" : "var(--main-h, 750px)"}
             stories={stories}
-            // progressContainerClassName="progress-container"
             progressContainerStyles={{
               bottom: isMobile ? "var(--spacing-md)" : "var(--spacing-md)",
               gap: isMobile
