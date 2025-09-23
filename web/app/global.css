@@ -14,7 +14,13 @@
   --color-btn--hover: rgba(183, 183, 183, 0.5);
   --color-tag: rgba(27, 27, 27, 0.3);
 
-  --font-primary: "LastGothic Regular", "Helvetica Neue", "HelveticaNeueRoman",
+  --font-primary: "Last Regular", "Helvetica Neue", "HelveticaNeueRoman",
+    "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular",
+    "Helvetica", "Arial", sans-serif;
+  --font-primary-i: "Last Regular Italic", "Helvetica Neue",
+    "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman",
+    "TeXGyreHerosRegular", "Helvetica", "Arial", sans-serif;
+  --font-primary-b: "Last Bold", "Helvetica Neue", "HelveticaNeueRoman",
     "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular",
     "Helvetica", "Arial", sans-serif;
 
