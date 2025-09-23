@@ -14,7 +14,7 @@ const ProductImage = ({ title, background, foreground, icon }: Props) => {
       className='product-image text-base'
       style={{ backgroundColor: background, color: foreground }}>
       {!icon && title}
-      {icon && <img src={icon} alt='' width={43} height='auto' />}
+      {icon && <img src={icon} alt='' />}
     </div>
   );
 };

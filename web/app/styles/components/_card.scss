@@ -252,6 +252,10 @@
     .product-image {
       height: 58px;
       font-size: var(--text-base);
+      img {
+        height: 28px;
+        width: auto;
+      }
     }
     .col-infos {
       color: black;
