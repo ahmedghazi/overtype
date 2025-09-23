@@ -17,7 +17,7 @@ const ModuleImagesUI = ({ input }: Props) => {
           <div
             className={clsx("item", item.size === "w-2/2" && "md:col-span-2")}
             key={i}>
-            <Figure asset={item.image?.asset || null} />
+            <Figure asset={item.image?.asset || null} width={2000} />
           </div>
         ))}
       </div>

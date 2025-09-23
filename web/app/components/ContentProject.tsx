@@ -41,13 +41,6 @@ const ContentProject = ({ input }: Props) => {
         <section className='related mt-[112px] md:mt-12xl'>
           <div className='header mb-lg'>
             <h2 className='md:text-2xl'>Next projects</h2>
-            {/* <div className='actions md:tex-lg text-secondary'>
-          <LinkWithIcon
-            label='View All'
-            link={_linkResolver(shopPage)}
-            icon='arrow-e'
-          />
-        </div> */}
           </div>
           <div className='items'>
             <div className='grid md:grid-cols-2 gap-md'>
