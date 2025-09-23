@@ -13,7 +13,7 @@ type Props = {
 const BtnCheckout = ({ canCheckout }: Props) => {
   const paddle = useContext(PaddleContext);
   const { products, licenseFor, licenseForData } = useShop();
-  console.log(products);
+  // console.log(products);
   // define customer details
   const customerInfo = {
     email: licenseForData.email || "",

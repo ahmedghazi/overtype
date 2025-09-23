@@ -41,6 +41,32 @@ interface ShopContextProps {
 //   count: number;
 // }
 
+function dialogProductsReducer(state: any, action: any) {
+  // console.log(state, action);
+  const { type, payload } = action;
+  // console.log(type, payload);
+  switch (type) {
+    case "SET":
+      return payload;
+    case "ADD":
+      return [...state, payload];
+    case "REMOVE":
+      return state.filter((item: any) => item.sku !== payload.sku);
+    case "REMOVE_BY_SKU":
+      console.log("REMOVE_BY_SKU", payload);
+      // console.log(state);
+      return state.filter((item: any) => item.sku !== payload);
+    case "REPLACE":
+      return state.map((item: any) => {
+        return item.sku === payload.sku ? payload : item;
+      });
+    case "REMOVE_ALL":
+      return [];
+    default:
+      throw new Error();
+  }
+}
+
 function productsReducer(state: any, action: any) {
   // console.log(state, action);
   const { type, payload } = action;
@@ -53,6 +79,8 @@ function productsReducer(state: any, action: any) {
     case "REMOVE":
       return state.filter((item: any) => item.sku !== payload.sku);
     case "REMOVE_BY_SKU":
+      console.log("REMOVE_BY_SKU", payload);
+      // console.log(state);
       return state.filter((item: any) => item.sku !== payload);
     case "REPLACE":
       return state.map((item: any) => {
@@ -120,7 +148,10 @@ const ShopContext = createContext<ContextProps>({} as ContextProps);
 export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [ready, setReady] = useState<boolean>(false);
   const [products, setProducts] = useReducer(productsReducer, []);
-  const [dialogProducts, setDialogProducts] = useReducer(productsReducer, []);
+  const [dialogProducts, setDialogProducts] = useReducer(
+    dialogProductsReducer,
+    []
+  );
   const [trials, setTrials] = useReducer(trialsReducer, []);
   const [licenseType, setLicenseType] = useState<LicenseType | null>(null);
   const [licenseFor, setLicenseFor] = useState<"me" | "client">("me");
@@ -136,8 +167,6 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [isLogo, setIsLogo] = useState<string | boolean | undefined>(undefined);
   // const [cartObject, setCartObject] = useState(null);
   // const pathname = usePathname();
-
-  console.log(dialogProducts);
 
   return (
     <ShopContext.Provider

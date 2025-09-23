@@ -10,7 +10,7 @@ type Props = {
 };
 
 const CartItem = ({ input, _delete }: Props) => {
-  console.log(input);
+  console.log("CartItem", input.sku);
   const { products, setProducts } = useShop();
   const [hasRelatedTypefaceInProducts, setHasRelatedTypefaceInProducts] =
     useState<boolean>(false);
@@ -28,17 +28,17 @@ const CartItem = ({ input, _delete }: Props) => {
   );
 
   // Memoize the product update function to avoid recreating it on every render
-  const updateProduct = useMemo(
-    () =>
-      (product: ProductData): ProductData => ({
-        ...product,
-        applyDiscount: hasRelatedTypefaceInProducts,
-        finalPrice: hasRelatedTypefaceInProducts
-          ? _getPriceWithDiscount(product.price, product.discount)
-          : product.price,
-      }),
-    [hasRelatedTypefaceInProducts]
-  );
+  // const updateProduct = useMemo(
+  //   () =>
+  //     (product: ProductData): ProductData => ({
+  //       ...product,
+  //       applyDiscount: hasRelatedTypefaceInProducts,
+  //       finalPrice: hasRelatedTypefaceInProducts
+  //         ? _getPriceWithDiscount(product.price, product.discount)
+  //         : product.price,
+  //     }),
+  //   [hasRelatedTypefaceInProducts]
+  // );
 
   // Memoize the products array to prevent unnecessary re-renders
   const memoizedProducts = useMemo(() => products, [products]);
@@ -79,42 +79,38 @@ const CartItem = ({ input, _delete }: Props) => {
   }, [hasRelatedTypefaceInProducts, memoizedInput, setProducts]);
 
   return (
-    <div className='cart-item gap-md- rounded'>
+    <div className='cart-item rounded'>
       <div className='inner'>
         <div className='media'>
           <ProductImage
-            title={memoizedInput.productTitle}
-            background={memoizedInput.background}
-            foreground={memoizedInput.foreground}
-            icon={memoizedInput.icon}
+            title={input.productTitle}
+            background={input.background}
+            foreground={input.foreground}
+            icon={input.icon}
           />
         </div>
         <div className='col-infos'>
           <div className='cart-item-row'>
-            <div className='title '>{memoizedInput.fullTitle}</div>
+            <div className='title '>{input.fullTitle}</div>
           </div>
           <div className='cart-item-row'>
             <div className='metas'>
-              <div>Use in logo/wordmark : {memoizedInput.isLogo}</div>
+              <div>Use in logo/wordmark : {input.isLogo}</div>
               <div>
-                Size licenses : {memoizedInput.license}{" "}
-                <span className='text-secondary'>
-                  {memoizedInput.licenseInfos}
-                </span>
+                Size licenses : {input.license}{" "}
+                <span className='text-secondary'>{input.licenseInfos}</span>
               </div>
             </div>
-            {hasRelatedTypefaceInProducts && memoizedInput.applyDiscount && (
+            {hasRelatedTypefaceInProducts && input.applyDiscount && (
               <div className='discount ui-btn--pill ui-btn--pill__accent'>
-                <span>-{memoizedInput.discount}%</span>
+                <span>-{input.discount}%</span>
               </div>
             )}
-            <div className='price'>{memoizedInput.finalPrice}€</div>
+            <div className='price'>{input.finalPrice}€</div>
           </div>
         </div>
         {_delete && (
-          <button
-            className='btn__delete'
-            onClick={() => _delete(memoizedInput.sku)}>
+          <button className='btn__delete' onClick={() => _delete(input.sku)}>
             <i className='icon-delete'></i>
           </button>
         )}

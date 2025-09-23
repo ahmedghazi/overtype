@@ -76,11 +76,12 @@ const Cart = (props: Props) => {
   }, []);
 
   const _delete = (sku: string) => {
+    console.log("_delete", sku);
     setProducts({ type: "REMOVE_BY_SKU", payload: sku });
   };
 
-  // console.log("products");
-  // console.log(products);
+  console.log("in cart : products");
+  console.log(products);
   return (
     <div className={clsx("cart", { "is-empty": isEmpty })}>
       <div className='inner'>
@@ -104,14 +105,14 @@ const Cart = (props: Props) => {
         {products && products.length > 0 && (
           <div className='cart-content'>
             <section className='products mb-lg flex flex-col gap-2xs'>
-              {products &&
-                products.map((item, i) => (
-                  <CartItem
-                    key={i}
-                    input={item}
-                    _delete={() => _delete(item.sku)}
-                  />
-                ))}
+              {products.map((item, i) => (
+                <CartItem
+                  key={i}
+                  input={item}
+                  _delete={() => _delete(item.sku)}
+                />
+              ))}
+              {/* <pre>{JSON.stringify(products, null, 2)}</pre> */}
             </section>
             <section className='total mb-4xl'>
               <div className='label'>Total (excl. VAT)</div>

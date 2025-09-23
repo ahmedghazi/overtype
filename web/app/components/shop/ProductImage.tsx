@@ -8,7 +8,6 @@ type Props = {
 };
 
 const ProductImage = ({ title, background, foreground, icon }: Props) => {
-  console.log(icon);
   return (
     <div
       className='product-image text-base'
