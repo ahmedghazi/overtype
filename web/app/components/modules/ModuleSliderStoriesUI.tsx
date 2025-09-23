@@ -36,7 +36,7 @@ const ModuleSliderStoriesUI = ({ input }: Props) => {
               bottom: isMobile ? "var(--spacing-md)" : "var(--spacing-md)",
               gap: isMobile
                 ? "calc(var(--spacing-2xs) * 1.25)"
-                : "var(--spacing-lg)",
+                : "var(--spacing-md)",
               borderRadius: "100%",
               padding: isMobile
                 ? "var(--spacing-md) var(--spacing-md) 0"
