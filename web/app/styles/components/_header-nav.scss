@@ -15,13 +15,13 @@ nav.header-nav {
   }
 
   @media all and (max-width: variables.$md) {
-    &__desktop {
-      display: none;
-    }
     display: flex;
     justify-content: end;
     padding-top: 8.5px;
 
+    &__desktop {
+      display: none;
+    }
     .wrapper-open {
       position: absolute;
       left: 50%;

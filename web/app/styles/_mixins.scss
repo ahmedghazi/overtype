@@ -648,11 +648,11 @@ $browser-context: 14;
 }
 
 @function toRem($value) {
-  $remValue: ($value / 16) + rem;
+  $remValue: calc($value / 100) + rem;
   @return $remValue;
 }
 
 @function percToEm($value) {
-  $emValue: ($value / 100) + em;
+  $emValue: calc($value / 100) + em;
   @return $emValue;
 }

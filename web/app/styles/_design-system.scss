@@ -304,14 +304,14 @@ a.ui-btn {
   --thumb-height: 16px;
   --thumb-width: 16px;
   --color: var(--color-secondary);
-  // --color: var(--color-accent);
+  --color-bg: white;
+  font-size: var(--text-sm);
+  margin-bottom: var(--spacing-xs);
+
   @media all and (max-width: variables.$md) {
     --thumb-width: 19px;
     --thumb-height: 19px;
   }
-  --color-bg: white;
-  font-size: var(--text-sm);
-  margin-bottom: var(--spacing-xs);
   .label {
     margin-bottom: var(--spacing-3xs);
     label {
@@ -648,6 +648,8 @@ a.ui-btn {
   align-items: center;
   gap: 0.4em;
   font-size: var(--text-lg);
+  cursor: pointer;
+
   & > * {
     height: 100%;
     line-height: inherit;
@@ -655,10 +657,7 @@ a.ui-btn {
       height: 100%;
     }
   }
-  .t-preview,
-  .footer {
-    // line-height: 1;
-  }
+
   &:hover,
   &:active {
     background-color: var(--color-btn--hover);
@@ -674,7 +673,6 @@ a.ui-btn {
       accent-color: white;
     }
   }
-  cursor: pointer;
   .footer {
     display: flex;
     justify-content: space-between;
