@@ -4,12 +4,9 @@ import useShop from "./ShopContext";
 import { subscribe, unsubscribe } from "pubsub-js";
 import clsx from "clsx";
 import { useSearchParams } from "next/navigation";
-import ProductImage from "./ProductImage";
 import TextOrEmailInput from "../ui/inputs/TextOrEmailInput";
-import RadioGroup from "../ui/inputs/RadioGroup";
 import BtnCheckout from "./Checkout";
 import { cartTotalPrice } from "./utils";
-import { ProductData } from "@/app/types/extra-types";
 import Link from "next/link";
 import { usePageContext } from "@/app/context/PageContext";
 import { _linkResolver, _localizeField } from "@/app/sanity-api/utils";
@@ -53,14 +50,7 @@ const Cart = (props: Props) => {
       optin === true;
     setCanCheckout(allFieldsFilled);
   }, [licenseForData, optin]);
-  // console.log(products);
-  // const [open, setOpen] = useState<boolean>(false);
-  // const [licenseFor, setLicenseFor] = useState<"me" | "client">("me");
-  // const [licenseForData, setLicenseForData] = useState<LicenseForData>({
-  //   companyName: "",
-  //   email: "",
-  //   inUseFor: "",
-  // });
+
   const searchParams = useSearchParams();
   const success = searchParams.get("success");
   const canceled = searchParams.get("canceled");
@@ -76,12 +66,9 @@ const Cart = (props: Props) => {
   }, []);
 
   const _delete = (sku: string) => {
-    console.log("_delete", sku);
     setProducts({ type: "REMOVE_BY_SKU", payload: sku });
   };
 
-  console.log("in cart : products");
-  console.log(products);
   return (
     <div className={clsx("cart", { "is-empty": isEmpty })}>
       <div className='inner'>

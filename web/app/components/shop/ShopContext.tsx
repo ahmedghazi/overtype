@@ -49,7 +49,11 @@ function dialogProductsReducer(state: any, action: any) {
     case "SET":
       return payload;
     case "ADD":
-      return [...state, payload];
+      const exist = state.filter((item: any) => item.sku === payload.sku);
+      if (exist.length === 0) {
+        return [...state, payload];
+      }
+      return state;
     case "REMOVE":
       return state.filter((item: any) => item.sku !== payload.sku);
     case "REMOVE_BY_SKU":
@@ -75,7 +79,11 @@ function productsReducer(state: any, action: any) {
     case "SET":
       return payload;
     case "ADD":
-      return [...state, payload];
+      const exist = state.filter((item: any) => item.sku === payload.sku);
+      if (exist.length === 0) {
+        return [...state, payload];
+      }
+      return state;
     case "REMOVE":
       return state.filter((item: any) => item.sku !== payload.sku);
     case "REMOVE_BY_SKU":
@@ -165,8 +173,24 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
     inUseFor: "",
   });
   const [isLogo, setIsLogo] = useState<string | boolean | undefined>(undefined);
-  // const [cartObject, setCartObject] = useState(null);
-  // const pathname = usePathname();
+
+  useEffect(() => {
+    const cart = localStorage.getItem("overtype-cart");
+    if (cart) {
+      const cartArr = JSON.parse(cart);
+      cartArr.forEach((item: ProductData) => {
+        setProducts({ type: "ADD", payload: item });
+      });
+    }
+
+    setReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (ready) {
+      localStorage.setItem("overtype-cart", JSON.stringify(products));
+    }
+  }, [products, ready]);
 
   return (
     <ShopContext.Provider
