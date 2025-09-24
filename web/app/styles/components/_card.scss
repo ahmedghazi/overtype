@@ -246,7 +246,9 @@
   &-trial-toast,
   &--toast {
     border-radius: var(--radius);
-    background-color: var(--color-btn);
+    // background-color: var(--color-btn);
+    background-color: rgba(243, 243, 243, 1);
+
     backdrop-filter: blur(15px);
 
     .product-image {
@@ -274,6 +276,7 @@
 }
 .dark .card {
   &--toast {
+    background-color: rgba(38, 38, 38, 1);
     .col-infos {
       color: white;
     }

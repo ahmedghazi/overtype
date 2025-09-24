@@ -825,7 +825,10 @@ a.ui-btn {
     // background-color: var(--color-btn);
     // backdrop-filter: blur(15px);
     background-color: transparent;
+    // background-color: rgba(38, 38, 38, 1);
+    backdrop-filter: blur(15px);
   }
+
   @media all and (max-width: variables.$md) {
     --toastify-toast-top: var(--header-height);
     --toastify-toast-right: var(--spacing-xs);
@@ -843,8 +846,9 @@ a.ui-btn {
     .Toastify__toast {
       border-radius: var(--radius-sm);
       // background-color: var(--color-btn);
-      background-color: rgba(231, 231, 231, 1);
-      backdrop-filter: blur(15px);
+      // background-color: rgba(231, 231, 231, 1);
+      // background-color: rgba(38, 38, 38, 1);
+      // backdrop-filter: blur(15px);
     }
   }
   .Toastify__toast-theme--light {
@@ -852,8 +856,9 @@ a.ui-btn {
     padding: 0;
   }
 }
-
-.module,
+.dark .Toastify .Toastify__toast {
+  // background-color: rgba(243, 243, 243, 1);
+}
 section {
   .header {
     .actions {
