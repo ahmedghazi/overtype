@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import ProductImage from "./ProductImage";
 import useShop from "./ShopContext";
 import { _getPriceWithDiscount } from "./utils";
+import { log } from "console";
 
 type Props = {
   input: ProductData;
@@ -18,11 +19,11 @@ const CartItem = ({ input, _delete }: Props) => {
   const memoizedInput = useMemo(
     () => input,
     [
-      // input.sku,
+      input.sku,
       input.relatedTypefaceSku,
       input.applyDiscount,
-      // input.price,
-      // input.discount,
+      input.price,
+      input.discount,
     ]
   );
   // console.log("CartItem", input.sku, memoizedInput.sku);
@@ -78,6 +79,7 @@ const CartItem = ({ input, _delete }: Props) => {
     setProducts({ type: "REPLACE", payload: updatedProduct });
   }, [hasRelatedTypefaceInProducts, memoizedInput, setProducts]);
 
+  console.log("CartItem", input);
   return (
     <div className='cart-item rounded'>
       <div className='inner'>

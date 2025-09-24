@@ -65,7 +65,8 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
   if (isLogo === "Yes" && logoPriceMultiplier) {
     price *= 1 + logoPriceMultiplier;
   }
-  const totalDiscount = applyDiscount && input.discount ? input.discount : 0;
+  // const totalDiscount = applyDiscount && input.discount ? input.discount : 0;
+  const totalDiscount = input.discount || 0;
   const finalPrice =
     applyDiscount && input.discount
       ? _getPriceWithDiscount(price, totalDiscount)
