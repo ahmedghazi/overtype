@@ -52,7 +52,6 @@ export default async function RootLayout({
                       hideProgressBar={true}
                       newestOnTop={false}
                       closeOnClick={false}
-                      // rtl={false}
                       // pauseOnFocusLoss
                       // draggable
                       pauseOnHover
