@@ -47,7 +47,7 @@ export default async function RootLayout({
                       <CookieConsent msg={settings.messagemCookie} />
                     )}
                     <ToastContainer
-                      autoClose={false}
+                      autoClose={3000}
                       position='top-right'
                       hideProgressBar={true}
                       newestOnTop={false}
