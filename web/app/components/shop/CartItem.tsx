@@ -20,7 +20,7 @@ const CartItem = ({ input, _delete }: Props) => {
     () => input,
     [
       // input.sku,
-      // input.relatedTypefaceSku,
+      input.relatedTypefaceSku,
       input.applyDiscount,
       // input.price,
       // input.discount,
@@ -58,7 +58,7 @@ const CartItem = ({ input, _delete }: Props) => {
       (el) => el.sku === memoizedInput.relatedTypefaceSku
     );
     setHasRelatedTypefaceInProducts(hasRelated);
-  }, [memoizedProducts, memoizedInput.relatedTypefaceSku]);
+  }, [memoizedProducts, memoizedInput.relatedTypefaceSku, products]);
 
   // Update product state only when hasRelatedTypefaceInProducts changes
   useEffect(() => {
@@ -101,7 +101,7 @@ const CartItem = ({ input, _delete }: Props) => {
                 <span className='text-secondary'>{input.licenseInfos}</span>
               </div>
             </div>
-            {hasRelatedTypefaceInProducts && input.applyDiscount && (
+            {hasRelatedTypefaceInProducts && memoizedInput.applyDiscount && (
               <div className='discount ui-btn--pill ui-btn--pill__accent'>
                 <span>-{input.discount}%</span>
               </div>
@@ -115,6 +115,11 @@ const CartItem = ({ input, _delete }: Props) => {
           </button>
         )}
       </div>
+      {/* <pre>
+        hasRelatedTypefaceInProducts:{" "}
+        {JSON.stringify(hasRelatedTypefaceInProducts, null, 2)}
+      </pre>
+      <pre>applyDiscount: {JSON.stringify(input.applyDiscount, null, 2)}</pre> */}
     </div>
   );
 };
