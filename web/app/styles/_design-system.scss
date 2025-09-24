@@ -812,6 +812,7 @@ a.ui-btn {
 
 .Toastify {
   --toastify-toast-top: var(--header-height);
+  --toastify-toast-right: var(--spacing-md);
   --toastify-toast-bd-radius: var(--radius);
   --toastify-font-family: var(--font-primary);
   --toastify-color-light: transparent;
