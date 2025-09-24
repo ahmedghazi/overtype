@@ -178,7 +178,9 @@
         // background-color: var(--color-tag);
         // color: white;
         background-color: var(--color-btn);
-        background-color: rgba(71, 71, 71, 0.4);
+        // background-color: rgba(71, 71, 71, 0.4);
+        // background-color: rgba(27, 27, 27, 0.3);
+        background-color: var(--color-tag);
         // color: var(--color-primary);
       }
     }
@@ -275,6 +277,13 @@
   }
 }
 .dark .card {
+  &--project {
+    .header-top {
+      .ui-cartouche {
+        background-color: var(--color-tag);
+      }
+    }
+  }
   &--toast {
     background-color: rgba(38, 38, 38, 1);
     .col-infos {
