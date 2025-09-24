@@ -811,20 +811,14 @@ a.ui-btn {
 }
 
 .Toastify {
-  // position: fixed;
-  // right: 0;
-  // top: var(--header-height);
   --toastify-toast-top: var(--header-height);
   --toastify-toast-bd-radius: var(--radius);
   --toastify-font-family: var(--font-primary);
-  // padding-top: var(--header-height);
+  --toastify-color-light: transparent;
   .Toastify__toast {
-    border-radius: var(--radius-sm);
-    // background-color: var(--color-btn);
-    // backdrop-filter: blur(15px);
-    background-color: transparent;
-    // background-color: rgba(38, 38, 38, 1);
-    backdrop-filter: blur(15px);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0) !important;
+    box-shadow: unset !important;
   }
 
   @media all and (max-width: variables.$md) {
@@ -843,14 +837,9 @@ a.ui-btn {
     }
     .Toastify__toast {
       border-radius: var(--radius-sm);
-      // background-color: var(--color-btn);
-      // background-color: rgba(231, 231, 231, 1);
-      // background-color: rgba(38, 38, 38, 1);
-      // backdrop-filter: blur(15px);
     }
   }
   .Toastify__toast-theme--light {
-    // background-color: #474747;
     padding: 0;
   }
 }
