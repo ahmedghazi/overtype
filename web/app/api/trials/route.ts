@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { environment } from "@/env.mjs";
 import { client } from "@/app/sanity-api/sanity-client";
-import { Product, ProductSingle } from "@/app/types/schema";
+import { Product, ProductSingle, User } from "@/app/types/schema";
+import { v4 as uuidv4 } from "uuid";
 
 export async function POST(req: NextRequest) {
   if (req.method !== "POST") {
@@ -20,12 +21,20 @@ export async function POST(req: NextRequest) {
    * collect product ids from items.metada
    */
   const _productIds = _collectProductsId(trials);
-
+  const storeUserTrials = await _storeUserTrials(email, _productIds);
+  console.log(storeUserTrials);
+  if (!storeUserTrials) {
+    return NextResponse.json(
+      { success: false, error: "Order not found" },
+      { status: 500 }
+    );
+  }
   /**
    * from these ids get content (bundles, singles)
    */
   const _productsData = await _collectProductsData(_productIds);
   // console.log(_productsData);
+
   const _attachments = _collectZips(_productsData);
   console.log(_attachments);
 
@@ -64,15 +73,6 @@ const _collectProductsData = async (_ids: string[]) => {
         url
       }
     }
-    // singles[]{
-    //   _key,
-    //   title,
-    //   zipTrials{
-    //     asset->{
-    //       url
-    //     }
-    //   }
-    // }
   }`;
   // console.log(query);
   const res = await client.fetch(query, { _ids: _ids });
@@ -113,6 +113,44 @@ const _collectZips = (items: Product[]) => {
     // });
   });
   return zips;
+};
+
+const _storeUserTrials = async (
+  email: string,
+  trials: string[]
+): Promise<User> => {
+  try {
+    const query = `*[_type == "user" && email == "${email}"]`;
+    const res = await client.fetch(query);
+    if (res.length > 0) {
+      const user = res[0];
+      // user.trials = [...user.trials, ...trials];
+      await client
+        .patch(user._id)
+        .set({
+          trials: trials.map((item) => ({
+            _type: "reference",
+            _ref: item,
+            _key: uuidv4(),
+          })),
+        })
+        .commit();
+    } else {
+      await client.create({
+        _type: "user",
+        email: email,
+        trials: trials.map((item) => ({
+          _type: "reference",
+          _ref: item,
+          _key: uuidv4(),
+        })),
+      });
+    }
+    return res;
+  } catch (error) {
+    console.error("Error storing trials:", error);
+    throw new Error("Failed to store trials data");
+  }
 };
 
 // const _generateAttachments = (items: any) => {

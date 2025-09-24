@@ -866,6 +866,13 @@ export interface User extends SanityDocument {
    *
    */
   orders?: Array<SanityKeyedReference<Order>>;
+
+  /**
+   * trials — `array`
+   *
+   *
+   */
+  trials?: Array<SanityKeyedReference<Product>>;
 }
 
 export type ProductBundle = {

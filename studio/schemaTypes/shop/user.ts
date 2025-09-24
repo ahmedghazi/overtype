@@ -20,6 +20,11 @@ export default {
       type: 'array',
       of: [{type: 'reference', to: [{type: 'order'}]}],
     }),
+    defineField({
+      name: 'trials',
+      type: 'array',
+      of: [{type: 'reference', to : [{type: 'product'}]}],
+    }),
   ],
   preview: {
     select: {
