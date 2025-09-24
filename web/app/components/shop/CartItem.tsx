@@ -10,7 +10,6 @@ type Props = {
 };
 
 const CartItem = ({ input, _delete }: Props) => {
-  console.log("CartItem", input.sku);
   const { products, setProducts } = useShop();
   const [hasRelatedTypefaceInProducts, setHasRelatedTypefaceInProducts] =
     useState<boolean>(false);
@@ -26,6 +25,7 @@ const CartItem = ({ input, _delete }: Props) => {
       // input.discount,
     ]
   );
+  console.log("CartItem", input.sku, memoizedInput.sku);
 
   // Memoize the product update function to avoid recreating it on every render
   // const updateProduct = useMemo(
