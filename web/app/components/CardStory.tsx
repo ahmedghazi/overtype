@@ -9,7 +9,7 @@ const CardStory = ({ input }: Props) => {
   return (
     <div className='card card--story'>
       <div className='image'>
-        <FigureComponent asset={input?.image?.asset} />
+        <FigureComponent asset={input?.image?.asset} width={2000} />
       </div>
       <div className='header'>
         <h3>{input?.image?.alt}</h3>
