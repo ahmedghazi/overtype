@@ -126,11 +126,11 @@ const Buy = ({ input }: Props) => {
               <h3 className='md:text-sm'>2/ Select your styles</h3>
               <div className='box rounded bg-btn'>
                 {input.bundles && (
-                  <div className='box-item'>
+                  <div className='box-item mb-3xl'>
                     <div className='header'>
                       <h4 className='text-md md:text-lg'>Bundles</h4>
                     </div>
-                    {/* <div className='content'>
+                    <div className='content'>
                       <div className='flex flex-col gap-3xs'>
                         {input.bundles?.map((item, i) => (
                           <BuyBundle
@@ -142,11 +142,11 @@ const Buy = ({ input }: Props) => {
                           />
                         ))}
                       </div>
-                    </div> */}
+                    </div>
                   </div>
                 )}
                 {input.singles && (
-                  <div className='box-item mt-3xl'>
+                  <div className='box-item'>
                     <div className='header'>
                       <h4 className='text-md md:text-lg'>Single Styles</h4>
                     </div>
