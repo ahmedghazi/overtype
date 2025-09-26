@@ -20,7 +20,9 @@ type TrialToastProps = {
   data: { status: string };
 };
 const TrialToast = ({ data }: TrialToastProps) => (
-  <div className='card card--trial-toast px-md'>{data.status}</div>
+  <div className='card card--trial-toast rounded flex gap-md items-center w-full p-2xs cursor-pointer'>
+    {data.status}
+  </div>
 );
 
 type TrialItemProps = {
@@ -90,7 +92,7 @@ const ModuleTrialsUI = ({ input }: Props) => {
   const _handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
-    console.log(email, optin, trials);
+    // console.log(email, optin, trials);
     if (!email || !optin || !trials) return;
     const response = await fetch("/api/trials", {
       method: "POST",
@@ -104,7 +106,7 @@ const ModuleTrialsUI = ({ input }: Props) => {
       }),
     });
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     setStatus("success");
   };
 

@@ -249,7 +249,6 @@
     background-color: rgba(243, 243, 243, 1);
 
     backdrop-filter: blur(15px);
-
     .product-image {
       height: 58px;
       font-size: var(--text-base);
@@ -261,6 +260,11 @@
     .col-infos {
       color: black;
     }
+  }
+  &--trial-toast {
+    min-height: 58px;
+    width: 100%;
+    line-height: 58px;
   }
 }
 
