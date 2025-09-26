@@ -55,7 +55,7 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
     if (applyDiscount) {
       // setDialogProducts({ type: "REPLACE", payload: _productData });
     }
-  }, [applyDiscount]);
+  }, [applyDiscount, isLogo]);
 
   let priceMultiplier = licenseType?.priceMultiplier || 1;
   // if (isLogo === "Yes" && logoPriceMultiplier)
@@ -81,12 +81,12 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
     description: input.description || "",
     sku: input.sku?.current || "",
     price: price,
+    finalPrice: finalPrice,
     discount: totalDiscount,
     applyDiscount: applyDiscount,
     relatedTypefaceSku: input.relatedTypeface
       ? `single-${input.relatedTypeface?.slug?.current}`
       : "",
-    finalPrice: finalPrice,
     background: background || "",
     foreground: foreground || "",
     license: _localizeField(licenseType?.label) || "",

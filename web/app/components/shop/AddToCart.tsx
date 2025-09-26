@@ -58,7 +58,7 @@ const AddToCart = ({ items }: Props) => {
   };
 
   const total = useMemo(() => {
-    const priceMultiplier = licenseType?.priceMultiplier || 1;
+    // const priceMultiplier = licenseType?.priceMultiplier || 1;
     let finalPrice = 0;
 
     items.forEach((el) => {

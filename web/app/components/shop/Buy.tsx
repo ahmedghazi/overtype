@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LicenseType, Product } from "@/app/types/schema";
 import Radio from "../ui/inputs/Radio";
 import BtnToolTip from "../ui/buttons/BtnToolTip";
@@ -13,6 +13,7 @@ import { TypeFaceContextProvider } from "../typeface/TypeFaceContext";
 import BtnPill from "../ui/buttons/BtnPill";
 import { PortableText } from "next-sanity";
 import portableTextComponents from "@/app/sanity-api/portableTextComponents";
+import { ProductData } from "@/app/types/extra-types";
 
 type Props = {
   input: Product;
@@ -45,6 +46,22 @@ const Buy = ({ input }: Props) => {
       setLicenseType(license);
     }, 150);
   };
+
+  // useEffect(() => {
+  //   //if isLogo changes, update dialogProducts
+  //   dialogProducts.forEach((item: ProductData) => {
+  //     const newItem = { ...item };
+  //     newItem.isLogo = isLogo;
+  //     if (isLogo === "Yes" && logoPriceMultiplier) {
+  //       newItem.price *= 1 + logoPriceMultiplier;
+  //     } else {
+  //       newItem.price /= 1 + logoPriceMultiplier;
+  //     }
+  //     console.log(newItem);
+  //     setDialogProducts({ type: "REPLACE", payload: newItem });
+  //   });
+  // }, [isLogo]);
+
   const messageDialogBuyLocalized = _localizeField(messageDialogBuy);
   // console.log(messageDialogBuyLocalized);
   return (
