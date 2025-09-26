@@ -11,6 +11,13 @@ const CheckoutSuccess = () => {
   const raw = localStorage.getItem("products");
   const products = raw ? JSON.parse(raw) : [];
   const items = products?.value;
+
+  useEffect(() => {
+    setTimeout(() => {
+      localStorage.setItem("products", "");
+    }, 3000);
+  }, []);
+
   return (
     <div className='success'>
       <div className='header mb-2xl'>
@@ -40,12 +47,6 @@ const CheckoutError = () => {
 const PostCheckout = (props: Props) => {
   const search = useSearchParams();
   const status = search.get("status");
-
-  useEffect(() => {
-    if (status === "success") {
-      localStorage.setItem("products", "");
-    }
-  }, [status]);
 
   return (
     <div className='post-checkout px-xs md:px-md'>
