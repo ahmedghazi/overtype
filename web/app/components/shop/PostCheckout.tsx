@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import CartItem from "./CartItem";
 import { ProductData } from "@/app/types/extra-types";
 import Logo from "../Logo";
@@ -37,9 +37,16 @@ const CheckoutSuccess = () => {
 const CheckoutError = () => {
   return <div className='error'>Error</div>;
 };
+
 const PostCheckout = (props: Props) => {
   const search = useSearchParams();
   const status = search.get("status");
+
+  useEffect(() => {
+    if (status === "success") {
+      localStorage.setItem("products", "");
+    }
+  }, [status]);
 
   return (
     <div className='post-checkout px-xs md:px-md'>
