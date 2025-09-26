@@ -20,21 +20,26 @@ type Props = {
 const BuyBundle = ({ product, input, background, foreground }: Props) => {
   const { dialogProducts, setDialogProducts, licenseType, isLogo } = useShop();
   const [checked, setChecked] = useState(false);
+  const [applyDiscount, setApplyDiscount] = useState<boolean>(false);
+
   const {
     settings: { logoPriceMultiplier },
   } = usePageContext();
 
+  useEffect(() => {
+    if (!input.discount) return;
+    setApplyDiscount(isLogo === "Yes");
+  }, [isLogo]);
+
   let priceMultiplier = licenseType?.priceMultiplier || 1;
-  // if (isLogo === "Yes" && logoPriceMultiplier)
-  //   priceMultiplier += logoPriceMultiplier;
 
   let price = input.price ? input.price * priceMultiplier : 0;
   if (isLogo === "Yes" && logoPriceMultiplier) {
     price *= 1 + logoPriceMultiplier;
   }
-  const priceDiscount = input.discount ? input.discount : 0;
+  const totalDiscount = input.discount ? input.discount : 0;
   const finalPrice = input.discount
-    ? _getPriceWithDiscount(price, priceDiscount)
+    ? _getPriceWithDiscount(price, totalDiscount)
     : price;
 
   const _productData: ProductData = {
@@ -46,8 +51,9 @@ const BuyBundle = ({ product, input, background, foreground }: Props) => {
     description: input.description || "",
     sku: input.sku?.current || "",
     price: price,
-    discount: priceDiscount,
+    discount: totalDiscount,
     finalPrice: finalPrice,
+    applyDiscount: applyDiscount,
     background: background || "",
     foreground: foreground || "",
     license: _localizeField(licenseType?.label) || "",
@@ -66,6 +72,10 @@ const BuyBundle = ({ product, input, background, foreground }: Props) => {
       setDialogProducts({ type: "REMOVE", payload: _productData });
     }
   }, [checked, input, setDialogProducts]);
+
+  useEffect(() => {
+    setDialogProducts({ type: "REPLACE", payload: _productData });
+  }, [isLogo]);
 
   const isIn = dialogProducts.some((el) => el.sku === input.sku?.current);
   return (

@@ -49,18 +49,8 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
     }
   }, [dialogProducts, input.relatedTypeface]);
 
-  useEffect(() => {
-    setDialogProducts({ type: "REPLACE", payload: _productData });
-
-    if (applyDiscount) {
-      // setDialogProducts({ type: "REPLACE", payload: _productData });
-    }
-  }, [applyDiscount, isLogo]);
-
   let priceMultiplier = licenseType?.priceMultiplier || 1;
-  // if (isLogo === "Yes" && logoPriceMultiplier)
-  //   priceMultiplier += 0.05 + logoPriceMultiplier;
-  // console.log({ logoPriceMultiplier });
+
   let price = input.price ? input.price * priceMultiplier : 0;
   if (isLogo === "Yes" && logoPriceMultiplier) {
     price *= 1 + logoPriceMultiplier;
@@ -112,6 +102,10 @@ const BuySingle = ({ input, product, background, foreground }: Props) => {
       setDialogProducts({ type: "REMOVE", payload: _productData });
     }
   }, [checked, input, setDialogProducts]);
+
+  useEffect(() => {
+    setDialogProducts({ type: "REPLACE", payload: _productData });
+  }, [applyDiscount, isLogo]);
 
   const isIn =
     dialogProducts.some((el) => el.sku === input.sku?.current) ||
