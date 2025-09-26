@@ -119,12 +119,12 @@ const ModuleTrialsUI = ({ input }: Props) => {
     });
   }, [status]);
 
-  useEffect(() => {
-    toast(TrialToast, {
-      closeButton: false,
-      data: { status: `Trials : Test` },
-    });
-  }, []);
+  // useEffect(() => {
+  //   toast(TrialToast, {
+  //     closeButton: false,
+  //     data: { status: `Trials : Test` },
+  //   });
+  // }, []);
 
   const canSubmit = email && optin && trials && trials?.length > 0;
 
