@@ -20,7 +20,7 @@ type TrialToastProps = {
   data: { status: string };
 };
 const TrialToast = ({ data }: TrialToastProps) => (
-  <div className='card card--trial-toast has-blur- px-md'>{data.status}</div>
+  <div className='card card--trial-toast px-md'>{data.status}</div>
 );
 
 type TrialItemProps = {
