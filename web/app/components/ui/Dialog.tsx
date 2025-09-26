@@ -21,7 +21,7 @@ export const Dialog: React.FC<DialogProps> = ({
 }) => {
   const pathname = usePathname();
   const DURATION = 0.6;
-  const [open, setOpen] = useState<boolean>(isOpen);
+  // const [open, setOpen] = useState<boolean>(isOpen);
   const [isClosing, setIsClosing] = useState<boolean>(false);
 
   useEffect(() => {
@@ -34,6 +34,8 @@ export const Dialog: React.FC<DialogProps> = ({
   }, [isClosing, onClose]);
 
   useEffect(() => {
+    document.addEventListener("keydown", _onKeyDown, false);
+
     const token = subscribe("DIALOG.CLOSE", () => {
       onClose();
     });
@@ -41,6 +43,12 @@ export const Dialog: React.FC<DialogProps> = ({
       unsubscribe(token);
     };
   }, []);
+
+  const _onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setIsClosing(true);
+    }
+  };
 
   useEffect(() => {
     onClose();
