@@ -265,7 +265,9 @@
     min-height: 58px;
     width: 100%;
     line-height: 58px;
-    background-color: rgba(38, 38, 38, 1);
+    // background-color: rgba(38, 38, 38, 1);
+    // background-color: rgba(243, 243, 243, 1);
+    color: var(--color-primary);
   }
 }
 
@@ -286,10 +288,15 @@
       }
     }
   }
-  &--toast {
+  &--toast,
+  &--trial-toast {
     background-color: rgba(38, 38, 38, 1);
     .col-infos {
       color: white;
     }
   }
+  // &--trial-toast {
+  //   background-color: rgba(38, 38, 38, 1);
+  //   color: var(--color-primary);
+  // }
 }
