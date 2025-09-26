@@ -14,7 +14,6 @@ const CheckoutSuccess = () => {
   return (
     <div className='success'>
       <div className='header mb-2xl'>
-        {/* <Logo /> */}
         <h1 className='md:text-2xl'>Thank you for your purchase!</h1>
 
         <p className='md:text-xl'>
