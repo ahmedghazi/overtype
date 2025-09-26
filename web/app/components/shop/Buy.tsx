@@ -130,7 +130,7 @@ const Buy = ({ input }: Props) => {
                     <div className='header'>
                       <h4 className='text-md md:text-lg'>Bundles</h4>
                     </div>
-                    <div className='content'>
+                    {/* <div className='content'>
                       <div className='flex flex-col gap-3xs'>
                         {input.bundles?.map((item, i) => (
                           <BuyBundle
@@ -142,7 +142,7 @@ const Buy = ({ input }: Props) => {
                           />
                         ))}
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 )}
                 {input.singles && (
