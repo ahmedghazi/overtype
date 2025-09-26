@@ -33,7 +33,7 @@ const HeroSlider = ({ input }: Props) => {
           </Slider>
         )}
         {input.length === 1 && (
-          <FigureComponent asset={input[0].image?.asset || null} />
+          <FigureComponent asset={input[0].image?.asset || null} width={2000} />
         )}
       </div>
     </section>

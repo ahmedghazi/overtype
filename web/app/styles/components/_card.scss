@@ -175,13 +175,8 @@
       left: var(--spacing-sm);
       top: var(--spacing-sm);
       .ui-cartouche {
-        // background-color: var(--color-tag);
-        // color: white;
-        background-color: var(--color-btn);
-        // background-color: rgba(71, 71, 71, 0.4);
-        // background-color: rgba(27, 27, 27, 0.3);
+        // background-color: var(--color-btn);
         background-color: var(--color-tag);
-        // color: var(--color-primary);
       }
     }
     .header {
@@ -205,6 +200,7 @@
       .ui-btn {
         background-color: var(--color-tag);
         color: white;
+        backdrop-filter: blur(80px);
       }
     }
   }

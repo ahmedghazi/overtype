@@ -145,6 +145,11 @@
     // line-height: 1.45rem;
     line-height: 1.625rem;
   }
+  &--tag {
+    background-color: var(--color-tag);
+    color: white;
+    backdrop-filter: blur(80px);
+  }
 }
 a.ui-btn {
   display: inline-block;
