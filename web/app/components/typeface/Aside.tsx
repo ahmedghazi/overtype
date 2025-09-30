@@ -88,12 +88,12 @@ const Aside = ({
   }, [stylisticSets]);
 
   const testerFeaturesOptions = useMemo(() => {
-    const defaultValue = {
-      key: "default",
-      type: "default",
-      label: "Features",
-      value: "features",
-    };
+    // const defaultValue = {
+    //   key: "default",
+    //   type: "default",
+    //   label: "Features",
+    //   value: "features",
+    // };
     const values = openTypeFeaturesOptions?.concat(stylisticSetsOptions || []);
     // .concat(defaultValue);
     // values?.unshift(defaultValue);

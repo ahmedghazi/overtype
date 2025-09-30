@@ -13,9 +13,7 @@ const CheckoutSuccess = () => {
   const items = products?.value;
 
   useEffect(() => {
-    setTimeout(() => {
-      localStorage.setItem("overtype-cart", "");
-    }, 3000);
+    localStorage.setItem("overtype-cart", "");
   }, []);
 
   return (
