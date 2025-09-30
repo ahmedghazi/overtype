@@ -94,9 +94,8 @@ const Aside = ({
       label: "Features",
       value: "features",
     };
-    const values = openTypeFeaturesOptions
-      ?.concat(stylisticSetsOptions || [])
-      .concat(defaultValue);
+    const values = openTypeFeaturesOptions?.concat(stylisticSetsOptions || []);
+    // .concat(defaultValue);
     // values?.unshift(defaultValue);
     return values;
     // const finalArray = values ? [defaultValue]?.concat(values) : values;
