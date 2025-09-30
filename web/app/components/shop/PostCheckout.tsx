@@ -4,17 +4,21 @@ import React, { useEffect } from "react";
 import CartItem from "./CartItem";
 import { ProductData } from "@/app/types/extra-types";
 import Logo from "../Logo";
+import useShop from "./ShopContext";
 
 type Props = {};
 
 const CheckoutSuccess = () => {
+  const { products, setProducts } = useShop();
+
   const raw = localStorage.getItem("products");
-  const products = raw ? JSON.parse(raw) : [];
-  const items = products?.value;
+  const sotredProducts = raw ? JSON.parse(raw) : [];
+  const items = sotredProducts?.value;
 
   useEffect(() => {
-    localStorage.setItem("overtype-cart", "");
-  }, []);
+    setProducts([]);
+    // localStorage.setItem("overtype-cart", "");
+  }, [setProducts]);
 
   return (
     <div className='success'>
