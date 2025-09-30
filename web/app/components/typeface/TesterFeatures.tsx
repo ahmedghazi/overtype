@@ -32,6 +32,7 @@ const TesterFeatures = ({ options, label, onChange }: Props) => {
         onChange={setSelected}
         labelledBy={label || "label"}
         disableSearch={true}
+        hasSelectAll={false}
         className='ui-select'
         // defaultIsOpen={true}
         ArrowRenderer={() => (
