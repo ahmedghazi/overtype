@@ -28,6 +28,7 @@ const Buy = ({ input }: Props) => {
     toolTipLogo,
     messageDialogBuy,
     logoPriceMultiplier,
+    companySizeText,
   } = settings;
   const {
     licenseType,
@@ -99,13 +100,15 @@ const Buy = ({ input }: Props) => {
                     />
                   ))}
                 </div>
-                <div className='text-sm pt-sm px-md'>
-                  <a
-                    href='mailto:contact@overtypefoundry.com'
-                    className='underline!'>
-                    More than 300 employees? Contact us
-                  </a>
-                </div>
+                {companySizeText && (
+                  <div className='text-sm pt-sm px-md'>
+                    <a
+                      href='mailto:contact@overtypefoundry.com'
+                      className='underline!'>
+                      {_localizeField(companySizeText)}
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
             {logoPriceMultiplier && (

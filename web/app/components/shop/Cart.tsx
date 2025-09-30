@@ -30,7 +30,7 @@ const Cart = (props: Props) => {
   } = useShop();
   const { settings } = usePageContext();
   const {
-    toolTipLocenseFor,
+    toolTipLicenseFor,
     toolTipCompanyName,
     toolTipEmail,
     toolTipInUseFor,
@@ -111,7 +111,7 @@ const Cart = (props: Props) => {
                   <div className='form-field ui-radio--group'>
                     <div className='header'>
                       <h4 className='text-lg'>Who is the license owner?</h4>
-                      <BtnToolTip text={_localizeField(toolTipLocenseFor)} />
+                      <BtnToolTip text={_localizeField(toolTipLicenseFor)} />
                     </div>
                     <div className='grid grid-cols-2 gap-2xs'>
                       <Radio

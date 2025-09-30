@@ -128,12 +128,17 @@ export default defineType({
       group: 'shop',
     }),
     defineField({
+      name: 'companySizeText',
+      type: 'localeText',
+      group: 'shop',
+    }),
+    defineField({
       name: 'toolTipLogo',
       type: 'localeText',
       group: 'shop',
     }),
     defineField({
-      name: 'toolTipLocenseFor',
+      name: 'toolTipLicenseFor',
       type: 'localeText',
       group: 'shop',
     }),

@@ -210,6 +210,13 @@ export interface Settings extends SanityDocument {
   toolTipLicenses?: LocaleText;
 
   /**
+   * companySizeText — `localeText`
+   *
+   *
+   */
+  companySizeText?: LocaleText;
+
+  /**
    * toolTipLogo — `localeText`
    *
    *
@@ -217,11 +224,11 @@ export interface Settings extends SanityDocument {
   toolTipLogo?: LocaleText;
 
   /**
-   * toolTipLocenseFor — `localeText`
+   * toolTipLicenseFor — `localeText`
    *
    *
    */
-  toolTipLocenseFor?: LocaleText;
+  toolTipLicenseFor?: LocaleText;
 
   /**
    * toolTipCompanyName — `localeText`
