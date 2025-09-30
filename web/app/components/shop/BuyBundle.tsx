@@ -28,8 +28,9 @@ const BuyBundle = ({ product, input, background, foreground }: Props) => {
 
   useEffect(() => {
     if (!input.discount) return;
-    setApplyDiscount(isLogo === "Yes");
-  }, [isLogo]);
+    // setApplyDiscount(isLogo === "Yes");
+    setApplyDiscount(input.discount !== 0);
+  }, []);
 
   let priceMultiplier = licenseType?.priceMultiplier || 1;
 

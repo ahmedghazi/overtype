@@ -186,10 +186,10 @@ const Buy = ({ input }: Props) => {
                 )}
               </div>
             </section>
-            {/* <pre>{JSON.stringify(dialogProducts, null, 2)}</pre> */}
             <section className='flex  justify-center px-2xl !py-2xl'>
               <AddToCart items={dialogProducts} />
             </section>
+            {/* <pre>{JSON.stringify(dialogProducts, null, 2)}</pre> */}
           </>
         )}
       </div>
