@@ -154,6 +154,7 @@ const ShopContext = createContext<ContextProps>({} as ContextProps);
 // type EmptyObj = Record<PropertyKey, never | any>;
 
 export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
+  const pathname = usePathname();
   const [ready, setReady] = useState<boolean>(false);
   const [products, setProducts] = useReducer(productsReducer, []);
   const [dialogProducts, setDialogProducts] = useReducer(
@@ -175,6 +176,8 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [isLogo, setIsLogo] = useState<string | boolean | undefined>(undefined);
 
   useEffect(() => {
+    if (pathname.indexOf("/checkout-success") !== -1) return;
+
     const cart = localStorage.getItem("overtype-cart");
     if (cart) {
       const cartArr = JSON.parse(cart);

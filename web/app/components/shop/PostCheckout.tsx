@@ -9,16 +9,16 @@ import useShop from "./ShopContext";
 type Props = {};
 
 const CheckoutSuccess = () => {
-  const { products, setProducts } = useShop();
+  // const { products, setProducts } = useShop();
 
   const raw = localStorage.getItem("products");
   const storedProducts = raw ? JSON.parse(raw) : [];
   const items = storedProducts?.value;
 
-  useEffect(() => {
-    // localStorage.setItem("overtype-cart", "");
-    setProducts({ type: "REMOVE_ALL" });
-  }, [setProducts]);
+  // useEffect(() => {
+  // localStorage.setItem("overtype-cart", "");
+  // setProducts({ type: "REMOVE_ALL" });
+  // }, [setProducts]);
 
   return (
     <div className='success'>
