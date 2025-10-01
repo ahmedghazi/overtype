@@ -13,7 +13,7 @@ import {
   ProductSingle,
   SanityKeyed,
 } from "@/app/types/schema";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { ProductData } from "@/app/types/extra-types";
 import { _getPriceWithDiscount } from "./utils";
 
@@ -154,7 +154,9 @@ const ShopContext = createContext<ContextProps>({} as ContextProps);
 // type EmptyObj = Record<PropertyKey, never | any>;
 
 export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
-  const pathname = usePathname();
+  // const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const status = searchParams.get("status");
   const [ready, setReady] = useState<boolean>(false);
   const [products, setProducts] = useReducer(productsReducer, []);
   const [dialogProducts, setDialogProducts] = useReducer(
@@ -176,8 +178,8 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [isLogo, setIsLogo] = useState<string | boolean | undefined>(undefined);
 
   useEffect(() => {
-    console.log(pathname, pathname.includes("/post-checkout?status=success"));
-    if (pathname.indexOf("/post-checkout?status=success") !== -1) return;
+    console.log(status);
+    if (status === "success") return;
     //preprod-overtype-foundry.vercel.app/post-checkout?status=success
 
     const cart = localStorage.getItem("overtype-cart");
