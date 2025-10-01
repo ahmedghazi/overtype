@@ -17,7 +17,7 @@ const CheckoutSuccess = () => {
 
   useEffect(() => {
     // localStorage.setItem("overtype-cart", "");
-    setProducts([]);
+    setProducts({ type: "REMOVE_ALL" });
   }, [setProducts]);
 
   return (
