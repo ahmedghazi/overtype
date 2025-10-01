@@ -179,8 +179,8 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
 
   useEffect(() => {
     console.log(status);
-    if (status === "success") return;
     //preprod-overtype-foundry.vercel.app/post-checkout?status=success
+    if (status === "success") return;
 
     const cart = localStorage.getItem("overtype-cart");
     if (cart) {
