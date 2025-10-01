@@ -191,7 +191,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
     }
 
     setReady(true);
-  }, [pathname]);
+  }, []);
 
   useEffect(() => {
     if (ready) {
