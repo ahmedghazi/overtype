@@ -176,6 +176,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [isLogo, setIsLogo] = useState<string | boolean | undefined>(undefined);
 
   useEffect(() => {
+    console.log(pathname, pathname.includes("/post-checkout?status=success"));
     if (pathname.indexOf("/post-checkout?status=success") !== -1) return;
     //preprod-overtype-foundry.vercel.app/post-checkout?status=success
 
@@ -188,7 +189,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
     }
 
     setReady(true);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (ready) {
