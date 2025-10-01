@@ -12,12 +12,12 @@ const CheckoutSuccess = () => {
   const { products, setProducts } = useShop();
 
   const raw = localStorage.getItem("products");
-  const sotredProducts = raw ? JSON.parse(raw) : [];
-  const items = sotredProducts?.value;
+  const storedProducts = raw ? JSON.parse(raw) : [];
+  const items = storedProducts?.value;
 
   useEffect(() => {
-    setProducts([]);
     // localStorage.setItem("overtype-cart", "");
+    setProducts([]);
   }, [setProducts]);
 
   return (
