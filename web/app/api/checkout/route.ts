@@ -16,7 +16,10 @@ import { Environment, Paddle } from "@paddle/paddle-node-sdk";
   */
 
 const paddle = new Paddle(process.env.PADDLE_SECRET_KEY!, {
-  environment: Environment.sandbox,
+  environment:
+    process.env.PADDLE_ENVIRONMENT === "production"
+      ? Environment.production
+      : Environment.sandbox,
 });
 
 export async function POST(req: NextRequest) {
