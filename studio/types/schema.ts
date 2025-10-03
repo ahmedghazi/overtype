@@ -584,7 +584,7 @@ export interface Product extends SanityDocument {
   images?: Array<SanityKeyed<MosaicItem>>;
 
   /**
-   * Afficher le purchase — `boolean`
+   * Afficher le bouton purchase — `boolean`
    *
    *
    */

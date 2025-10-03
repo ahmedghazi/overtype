@@ -149,7 +149,7 @@ export default defineType({
 
     defineField({
       name: 'displayPurchase',
-      title: 'Afficher le purchase',
+      title: 'Afficher le bouton purchase',
       type: 'boolean',
       group: 'shop',
     }),
