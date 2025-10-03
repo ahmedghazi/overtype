@@ -17,7 +17,7 @@ import { Environment, Paddle } from "@paddle/paddle-node-sdk";
 
 const paddle = new Paddle(process.env.PADDLE_SECRET_KEY!, {
   environment:
-    process.env.PADDLE_ENVIRONMENT === "production"
+    process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT === "production"
       ? Environment.production
       : Environment.sandbox,
 });
