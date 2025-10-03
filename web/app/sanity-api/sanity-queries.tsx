@@ -155,6 +155,17 @@ export async function getPageModulaire(slug: string): Promise<PageModulaire> {
   // return cachedClient(pageModulaireQuery, { slug: slug });
 }
 
+export async function getAllPagesModulaire(): Promise<PageModulaire[]> {
+  return sanityFetch({
+    query: groq`*[_type == "pageModulaire" && homePage != true && !(_id in path('drafts.**'))]{
+      _type,
+      slug,
+      _updatedAt
+    }`,
+    tags: ["allPagesModulare"],
+  });
+}
+
 /*****************************************************************************************************
  * PRODUCT
  */
@@ -220,6 +231,16 @@ export async function getProduct(slug: string): Promise<Product> {
   });
 }
 
+export async function getAllProducts(): Promise<Product[]> {
+  return sanityFetch({
+    query: groq`*[_type == "product" && !(_id in path('drafts.**'))]{
+      _type,
+      slug,
+      _updatedAt
+    }`,
+    tags: ["allProducts"],
+  });
+}
 /*****************************************************************************************************
  * PROJECT
  */
@@ -249,5 +270,16 @@ export async function getProject(slug: string): Promise<Project> {
     query: PROJECT_QUERY,
     tags: ["project"],
     qParams: { slug: slug },
+  });
+}
+
+export async function getAllProjects(): Promise<Project[]> {
+  return sanityFetch({
+    query: groq`*[_type == "project" && !(_id in path('drafts.**'))]{
+      _type,
+      slug,
+      _updatedAt
+    }`,
+    tags: ["allProjects"],
   });
 }
