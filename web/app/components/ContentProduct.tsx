@@ -110,7 +110,6 @@ const ContentProduct = ({ input }: Props) => {
         </nav>
       </div>
 
-      {/* <pre>{JSON.stringify(inUse, null, 2)}</pre> */}
       <div className='content--product__footer' ref={ref}>
         {inUse && (
           <section className='in-use px-md-'>
