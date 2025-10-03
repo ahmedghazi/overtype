@@ -14,7 +14,6 @@ interface Props {
 const ModuleSliderStoriesUI = ({ input }: Props) => {
   const { title, items } = input;
   const { isMobile } = useDeviceDetect();
-  // console.log(items);
   const stories = items?.map((item, i) => {
     const arr = {
       content: (props: any) => <CardStory input={item} />,
