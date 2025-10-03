@@ -6,7 +6,7 @@ type Props = {
 };
 
 const CardStory = ({ input }: Props) => {
-  console.log(input?.image);
+  // console.log(input?.image);
   return (
     <div className='card card--story'>
       <div className='image'>
