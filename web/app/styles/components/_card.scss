@@ -87,12 +87,22 @@
       }
     }
 
-    @media all and (max-width: variables.$md) {
+    @media all and (max-width: variables.$sm) {
       aspect-ratio: 1 / 1;
       height: 100%;
       a {
         height: calc(var(--vw) * 100 - var(--spacing-md) - 4px);
       }
+      .t-preview h3.has-font-size {
+        font-size: calc(var(--font-size) * 2);
+      }
+    }
+    @media all and (max-width: variables.$md) {
+      // aspect-ratio: 1 / 1;
+      // height: 100%;
+      // a {
+      //   height: calc(var(--vw) * 100 - var(--spacing-md) - 4px);
+      // }
       .header,
       .footer {
         padding: var(--spacing-md);
@@ -101,7 +111,7 @@
         font-size: var(--text-sm);
       }
       .t-preview h3.has-font-size {
-        font-size: calc(var(--font-size) * 2);
+        // font-size: calc(var(--font-size) * 2);
       }
     }
   }
