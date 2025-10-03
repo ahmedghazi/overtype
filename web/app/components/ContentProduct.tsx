@@ -51,7 +51,6 @@ const ContentProduct = ({ input }: Props) => {
 
   return (
     <div className='content--product '>
-      {/* {inView && <div className='fixed'>in view</div>} */}
       <div className='inner'>
         <HeroSlider input={hero || []} />
         <Waterfall title={title || ""} items={singles || []} />
