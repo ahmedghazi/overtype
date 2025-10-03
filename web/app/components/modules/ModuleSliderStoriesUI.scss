@@ -5,6 +5,7 @@
   z-index: 0;
   @media all and (max-width: variables.$md) {
     --main-h: calc(var(--vh) * 100 - 100px);
+    --main-h: auto;
   }
   @media all and (max-width: variables.$sm) {
     & > div > div {
