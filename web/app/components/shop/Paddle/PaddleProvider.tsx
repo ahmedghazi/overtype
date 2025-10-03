@@ -1,8 +1,6 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
-// import Script from "next/script";
-// import { initializePaddle } from "@paddle/paddle-js";
 import { initializePaddle, Paddle, PaddleEventData } from "@paddle/paddle-js";
 
 type PaddleContext = any;
