@@ -47,8 +47,6 @@ const BtnCheckout = ({ canCheckout }: Props) => {
     }
 
     //store products (with custom data) locale storage
-
-    // localStorage.setItem("products", JSON.stringify(products));
     storeProducts(products, 300);
     // then on order completed, get thoses produicts and post to sanity
     const items = products.map((product) => ({
