@@ -177,12 +177,13 @@ const projectsUI = `
 		}
 	}
 `;
-const storiesUI = `
-  _type == 'storiesUI' => {
+const sliderStoriesUI = `
+  _type == 'sliderStoriesUI' => {
 		title,
 		items[] {
 			image{
-      	${figure}
+				asset->
+
     	},
 			caption,
 			credit
@@ -254,7 +255,7 @@ export const modules = `
 	...,
 	${productsUI},
 	${fontsInUseUI},
-	${storiesUI},
+	${sliderStoriesUI},
 	${projectsUI},
 	${textUI},
 	${imagesUI},
