@@ -40,6 +40,12 @@ const BtnCheckout = ({ canCheckout }: Props) => {
 
     console.log("BtnCheckout clicked");
 
+    // Prevent checkout when cart is empty
+    if (!products || products.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+
     //store products (with custom data) locale storage
 
     // localStorage.setItem("products", JSON.stringify(products));
@@ -67,7 +73,8 @@ const BtnCheckout = ({ canCheckout }: Props) => {
           description: product.sku || "sku",
           taxCategory: "standard",
         },
-        custom_data: {
+        // use camelCase per Paddle SDK expectations
+        customData: {
           type: product.productType,
           isLogo: product.isLogo,
           license: product.license,
@@ -87,7 +94,8 @@ const BtnCheckout = ({ canCheckout }: Props) => {
       },
       body: JSON.stringify({
         items: items,
-        custom_data: {
+        // use camelCase per Paddle SDK expectations
+        customData: {
           licenseFor: licenseFor,
           licenseForData: licenseForData,
         },

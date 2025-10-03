@@ -79,7 +79,7 @@ const CartItem = ({ input, _delete }: Props) => {
     setProducts({ type: "REPLACE", payload: updatedProduct });
   }, [hasRelatedTypefaceInProducts, memoizedInput, setProducts]);
 
-  console.log("CartItem", input);
+  // console.log("CartItem", input);
   return (
     <div className='cart-item rounded'>
       <div className='inner'>

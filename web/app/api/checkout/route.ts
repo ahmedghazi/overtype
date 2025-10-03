@@ -30,7 +30,18 @@ export async function POST(req: NextRequest) {
   }
   // console.log(req.body);
   const body = await req.json(); // res now contains body
-  const { items, custom_data } = body;
+  const { items, customData } = body as { items?: any[]; customData?: any };
+
+  // Basic validation before calling Paddle API
+  if (!Array.isArray(items) || items.length === 0) {
+    return new NextResponse(
+      JSON.stringify({
+        error: "Validation error",
+        details: "The items field is required and must be a non-empty array.",
+      }),
+      { status: 400, headers: { "Content-Type": "application/json" } }
+    );
+  }
   // console.log(items);
 
   //export type TaxCategory = 'digital-goods' | 'ebooks' | 'implementation-services' | 'professional-services' | 'saas' | 'software-programming-services' | 'standard' | 'training-services' | 'website-hosting';
@@ -39,12 +50,19 @@ export async function POST(req: NextRequest) {
     const tsx = await paddle.transactions.create({
       currencyCode: "EUR",
       items: items,
-      customData: custom_data,
+      customData: customData,
     });
     // console.log(tsx);
     return NextResponse.json({ tsx: tsx.id });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ items, error });
+    return new NextResponse(
+      JSON.stringify({
+        error: "Paddle transaction create failed",
+        details: (error as any)?.message || error,
+        items,
+      }),
+      { status: 400, headers: { "Content-Type": "application/json" } }
+    );
   }
 }

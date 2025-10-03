@@ -16,8 +16,15 @@ const PaddleProvider = ({ children }: { children: React.ReactNode }) => {
   // const [cart, setCart] = useState<Product[]>([]);
 
   const _initializePaddle = () => {
+    const envVar = process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT;
+    type PaddleOptions = NonNullable<Parameters<typeof initializePaddle>[0]>;
+    type PaddleEnv = PaddleOptions["environment"];
+    const environment: PaddleEnv =
+      envVar === "production" ? "production" : "sandbox";
+
     initializePaddle({
-      environment: "sandbox",
+      // environment: "sandbox",
+      environment,
       token: process.env.NEXT_PUBLIC_PADDLE_PUBLIC_KEY!,
       eventCallback: _handleEvents,
     }).then((paddleInstance: Paddle | undefined) => {
