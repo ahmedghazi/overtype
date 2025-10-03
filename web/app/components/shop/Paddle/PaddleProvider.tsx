@@ -25,7 +25,7 @@ const PaddleProvider = ({ children }: { children: React.ReactNode }) => {
       // environment: "sandbox",
       // environment,
       environment:
-        process.env.PADDLE_ENVIRONMENT === "production"
+        process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT === "production"
           ? Environment.production
           : Environment.sandbox,
       token: process.env.NEXT_PUBLIC_PADDLE_PUBLIC_KEY!,
