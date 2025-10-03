@@ -34,6 +34,7 @@ const ContentProduct = ({ input }: Props) => {
     initialPangram,
     stylisticSets,
     openTypeFeatures,
+    displayPurchase,
   } = input;
   // console.log(input.bundles);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -96,13 +97,15 @@ const ContentProduct = ({ input }: Props) => {
             <li className='hidden-sm'>
               <Btn label='Tester' onClick={() => _scrollTo("tester")} />
             </li>
-            <li>
-              <Btn
-                label='Purchase'
-                variant='accent'
-                onClick={() => setIsOpen(true)}
-              />
-            </li>
+            {displayPurchase && (
+              <li>
+                <Btn
+                  label='Purchase'
+                  variant='accent'
+                  onClick={() => setIsOpen(true)}
+                />
+              </li>
+            )}
           </ul>
         </nav>
       </div>

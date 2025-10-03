@@ -148,6 +148,12 @@ export default defineType({
     }),
 
     defineField({
+      name: 'displayPurchase',
+      title: 'Afficher le purchase',
+      type: 'boolean',
+      group: 'shop',
+    }),
+    defineField({
       name: 'blurb',
       title: 'Blurb',
       type: 'string',

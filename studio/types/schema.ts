@@ -584,6 +584,13 @@ export interface Product extends SanityDocument {
   images?: Array<SanityKeyed<MosaicItem>>;
 
   /**
+   * Afficher le purchase — `boolean`
+   *
+   *
+   */
+  displayPurchase?: boolean;
+
+  /**
    * Blurb — `string`
    *
    * short description for the cart
