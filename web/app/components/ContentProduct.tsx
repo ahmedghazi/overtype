@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Product } from "../types/schema";
 import Waterfall from "./typeface/Waterfall";
 import TypeTester from "./typeface/TypeTester";
@@ -43,6 +43,17 @@ const ContentProduct = ({ input }: Props) => {
     threshold: 0,
     delay: 100,
   });
+
+  useEffect(() => {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowUp") {
+        console.log("ArrowUp");
+        setIsOpen(true);
+      } else {
+        setIsOpen(false);
+      }
+    });
+  }, []);
 
   const _scrollTo = (id: string) => {
     const element = document.getElementById(id);
