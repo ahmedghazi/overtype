@@ -18,6 +18,9 @@ import {
   seo,
 } from "./fragments";
 // import { revalidatePath } from "next/cache";
+/*
+à étudier
+*/
 
 /*****************************************************************************************************
  * SETTINGS
