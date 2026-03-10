@@ -12,18 +12,20 @@
   --color-accent--alt: rgba(82, 255, 134, 1);
   --color-btn: rgba(231, 231, 231, 0.5);
   --color-btn--hover: rgba(183, 183, 183, 0.5);
-  /* --color-tag: rgba(27, 27, 27, 0.3); */
   --color-tag: rgba(71, 71, 71, 0.3);
 
-  --font-primary: "Last Regular", "Helvetica Neue", "HelveticaNeueRoman",
+  --font-primary:
+    "Last Regular", "Helvetica Neue", "HelveticaNeueRoman",
     "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular",
     "Helvetica", "Arial", sans-serif;
-  --font-primary-i: "Last Regular Italic", "Helvetica Neue",
-    "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman",
-    "TeXGyreHerosRegular", "Helvetica", "Arial", sans-serif;
-  --font-primary-b: "Last Bold", "Helvetica Neue", "HelveticaNeueRoman",
+  --font-primary-i:
+    "Last Regular Italic", "Helvetica Neue", "HelveticaNeueRoman",
     "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular",
     "Helvetica", "Arial", sans-serif;
+  --font-primary-b:
+    "Last Bold", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman",
+    "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Arial",
+    sans-serif;
 
   /* Spacing */
   --spacing-0: 0;
@@ -119,7 +121,8 @@
   --color-btn--hover: var(--color-btn--hover);
   --color-tag: var(--color-tag);
   /* Typography */
-  --font-primary: "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman",
+  --font-primary:
+    "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman",
     "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Arial",
     sans-serif;
 
