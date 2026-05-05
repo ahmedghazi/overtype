@@ -267,7 +267,6 @@ async function _storeOrder(
       _type: "order",
       title: `Order #${transactionId}`,
       invoiceNumber: transactionId,
-      // creationDate: new Date().toISOString(),
       creationDate: formatedTimestamp(),
       user: {
         _type: "reference",
