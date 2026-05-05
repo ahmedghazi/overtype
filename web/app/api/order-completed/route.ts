@@ -78,7 +78,10 @@ export async function POST(request: Request) {
     const _productOrderDataZips =
       await collectProductsOrderZips(_productOrderData);
     if (!_productOrderDataZips) {
-      await notifyAdminError("Product order data not found", { transactionId, customerEmail: customer.email });
+      await notifyAdminError("Product order data not found", {
+        transactionId,
+        customerEmail: customer.email,
+      });
       return NextResponse.json(
         { success: false, error: "Product order data not found" },
         { status: 500 },
@@ -87,7 +90,10 @@ export async function POST(request: Request) {
 
     const _attachments = generateAttachments(_productOrderDataZips);
     if (!_attachments) {
-      await notifyAdminError("Attachments not found", { transactionId, customerEmail: customer.email });
+      await notifyAdminError("Attachments not found", {
+        transactionId,
+        customerEmail: customer.email,
+      });
       return NextResponse.json(
         { success: false, error: "Attachments not found" },
         { status: 500 },
@@ -132,7 +138,10 @@ export async function POST(request: Request) {
     const userId = user._id;
 
     if (!userId) {
-      await notifyAdminError("User not found after store", { transactionId, customerEmail: customer.email });
+      await notifyAdminError("User not found after store", {
+        transactionId,
+        customerEmail: customer.email,
+      });
       return NextResponse.json(
         { success: false, error: "User not found" },
         { status: 500 },
@@ -143,7 +152,11 @@ export async function POST(request: Request) {
     const orderId = order._id;
 
     if (!orderId) {
-      await notifyAdminError("Order not found after store", { transactionId, customerEmail: customer.email, userId });
+      await notifyAdminError("Order not found after store", {
+        transactionId,
+        customerEmail: customer.email,
+        userId,
+      });
       return NextResponse.json(
         { success: false, error: "Order not found" },
         { status: 500 },
@@ -169,7 +182,10 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Error processing order:", error);
     try {
-      const body = await request.clone().json().catch(() => ({}));
+      const body = await request
+        .clone()
+        .json()
+        .catch(() => ({}));
       await notifyAdminError("Unhandled exception in order-completed", {
         error: error instanceof Error ? error.message : String(error),
         stack: error instanceof Error ? error.stack : undefined,
@@ -245,7 +261,8 @@ async function _storeOrder(
         return res;
       }),
     );
-
+    console.log("license_for:", custom_data.license_for);
+    console.log("license_for_data:", custom_data.license_for_data);
     const order: any = await client.create({
       _type: "order",
       title: `Order #${transactionId}`,
@@ -276,7 +293,6 @@ async function _storeOrder(
     throw new Error("Failed to store order data");
   }
 }
-
 
 async function sendEmail(
   to: string,
