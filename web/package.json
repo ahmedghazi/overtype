@@ -20,6 +20,7 @@
     "@paddle/paddle-js": "^1.4.1",
     "@paddle/paddle-node-sdk": "^2.7.1",
     "@portabletext/react": "^3.2.1",
+    "@sanity/client": "^7.22.0",
     "@sanity/image-url": "^1.1.0",
     "@types/archiver": "^7.0.0",
     "archiver": "^7.0.1",
