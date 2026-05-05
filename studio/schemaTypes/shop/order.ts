@@ -21,10 +21,17 @@ export default defineType({
 
     defineField({
       name: 'invoiceNumber',
-      title: 'Invoice Number',
+      title: 'Invoice Number/Transaction ID',
       description: 'Invoice number for the order (Transaction ID)',
       type: 'string',
     }),
+    defineField({
+      name: 'checkoutID',
+      title: 'Checkout ID',
+      // description: 'Invoice number for the order (Transaction ID)',
+      type: 'string',
+    }),
+
     defineField({
       name: 'status',
       title: 'status',

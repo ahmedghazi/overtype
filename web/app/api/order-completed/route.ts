@@ -18,6 +18,7 @@ interface PaddleWebhookData {
   status: string;
   currency_code: string;
   custom_data: {
+    order_id?: string;
     license_for: string;
     license_for_data: {
       email: string;
@@ -244,13 +245,41 @@ async function _storeOrder(
   products: ProductData[],
 ): Promise<Order> {
   try {
-    const { id: transactionId, status, items, custom_data } = paddleData;
+    const {
+      id: checkoutId,
+      transaction_id,
+      status,
+      items,
+      custom_data,
+    } = paddleData;
 
     const totalAmount = products.reduce((sum: number, item) => {
       return sum + item.finalPrice;
     }, 0);
 
-    // Create order items documents in Sanity
+    const existingOrderId = custom_data?.order_id;
+
+    if (existingOrderId) {
+      // Draft order was created pre-checkout — patch it with confirmed Paddle data
+      const order: any = await client
+        .patch(existingOrderId)
+        .set({
+          title: `Order #${transaction_id}`,
+          invoiceNumber: transaction_id,
+          checkoutID: checkoutId,
+          status,
+          totalAmount,
+          json: JSON.stringify(items),
+          user: { _type: "reference", _ref: userId },
+          licenseFor: custom_data?.license_for,
+          licenseForData: JSON.stringify(custom_data?.license_for_data, null, 2),
+        })
+        .commit();
+
+      return order;
+    }
+
+    // Fallback: no draft order found, create from scratch
     const orderItems = await Promise.all(
       products.map(async (item) => {
         const res = await client.create({
@@ -261,17 +290,14 @@ async function _storeOrder(
         return res;
       }),
     );
-    console.log("license_for:", custom_data.license_for);
-    console.log("license_for_data:", custom_data.license_for_data);
+
     const order: any = await client.create({
       _type: "order",
-      title: `Order #${transactionId}`,
-      invoiceNumber: transactionId,
+      title: `Order #${transaction_id}`,
+      invoiceNumber: transaction_id,
+      checkoutID: checkoutId,
       creationDate: formatedTimestamp(),
-      user: {
-        _type: "reference",
-        _ref: userId,
-      },
+      user: { _type: "reference", _ref: userId },
       items: orderItems.map((item) => ({
         _type: "reference",
         _ref: item._id,
@@ -280,16 +306,13 @@ async function _storeOrder(
       json: JSON.stringify(items),
       totalAmount,
       status,
-      transactionId,
       licenseFor: custom_data?.license_for,
       licenseForData: JSON.stringify(custom_data?.license_for_data, null, 2),
     });
 
-    // const orderId = await client.create(orderData);
     return order;
   } catch (error) {
     console.error("Error storing order:", error);
-    //later send error email to admin
     throw new Error("Failed to store order data");
   }
 }

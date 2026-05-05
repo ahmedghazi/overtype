@@ -23,7 +23,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
     // },
   };
 
-  const storeProducts = (products: ProductData[], ttl: number) => {
+  const storeProducts = async (products: ProductData[], ttl: number) => {
     const now = new Date();
 
     // `item` is an object which contains the original value
@@ -33,6 +33,19 @@ const BtnCheckout = ({ canCheckout }: Props) => {
       expiry: now.getTime() + ttl,
     };
     localStorage.setItem("products", JSON.stringify(item));
+
+    try {
+      const res = await fetch("/api/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ products, licenseFor, licenseForData }),
+      });
+      const data = await res.json();
+      console.log("Draft Order created:", data);
+      return data.orderId as string | undefined;
+    } catch (err) {
+      console.error("Failed to create order record:", err);
+    }
   };
 
   const handleCheckout = async () => {
@@ -47,7 +60,8 @@ const BtnCheckout = ({ canCheckout }: Props) => {
     }
 
     //store products (with custom data) locale storage
-    storeProducts(products, 300);
+    const orderId = await storeProducts(products, 300);
+    console.log("Order ID:", orderId);
     // then on order completed, get thoses produicts and post to sanity
     const items = products.map((product) => ({
       quantity: 1,
@@ -82,7 +96,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
         },
       },
     }));
-    console.log(items);
+    // console.log(items);
     // return;
 
     const response = await fetch("/api/checkout", {
@@ -94,8 +108,9 @@ const BtnCheckout = ({ canCheckout }: Props) => {
         items: items,
         // use camelCase per Paddle SDK expectations
         customData: {
-          licenseFor: licenseFor,
-          licenseForData: licenseForData,
+          order_id: orderId,
+          license_for: licenseFor,
+          license_for_data: licenseForData,
         },
       }),
     });
@@ -108,7 +123,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
       settings: {
         displayMode: "overlay",
         theme: "dark",
-        successUrl: `${website.url}/post-checkout?status=success&transactionId=${data.tsx}`,
+        successUrl: `${website.url}/post-checkout?status=success&orderID=${orderId ?? ""}`,
         variant: "multi-page",
       },
     });
