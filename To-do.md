@@ -12,3 +12,6 @@
   send zip file (unique url proected by token)
   once downloaded, update the order status, add download date
   order.downloadDate
+
+- test
+- post checkout data from txId

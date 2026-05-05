@@ -289,6 +289,7 @@ async function _storeOrder(
     return order;
   } catch (error) {
     console.error("Error storing order:", error);
+    //later send error email to admin
     throw new Error("Failed to store order data");
   }
 }
