@@ -12,6 +12,7 @@ type Props = {
 
 const BtnCheckout = ({ canCheckout }: Props) => {
   const paddle = useContext(PaddleContext);
+  const [isLoading, setIsLoading] = React.useState(false);
   const { products, licenseFor, licenseForData } = useShop();
   // console.log(products);
   // define customer details
@@ -25,7 +26,6 @@ const BtnCheckout = ({ canCheckout }: Props) => {
 
   const storeProducts = async (products: ProductData[], ttl: number) => {
     const now = new Date();
-
     // `item` is an object which contains the original value
     // as well as the time when it's supposed to expire
     const item = {
@@ -35,6 +35,8 @@ const BtnCheckout = ({ canCheckout }: Props) => {
     localStorage.setItem("products", JSON.stringify(item));
 
     try {
+      setIsLoading(true);
+
       const res = await fetch("/api/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -115,6 +117,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
       }),
     });
     const data = await response.json();
+    setIsLoading(false);
     console.log("Response from server:", data.tsx);
     paddle?.Checkout.open({
       allowQuantity: false,

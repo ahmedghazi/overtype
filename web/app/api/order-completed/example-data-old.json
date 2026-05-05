@@ -1,23 +1,23 @@
 {
-  "success": true,
   "paddleData": {
-    "id": "che_01jzqqr2d818syq9dmx30kr1ex",
-    "transaction_id": "txn_01jzqqr0dz0jkbzgks0crtrd4n",
+    "id": "che_01kqw7r4ytvvz7xdb91a0ye512",
+    "transaction_id": "txn_01kqw7r3rwfaq4ps6fzc3vw47w",
     "status": "completed",
     "custom_data": {
-      "license_for": "client",
+      "order_id": "1bL8CJPu6RbgngSTvojs6x",
+      "license_for": "me",
       "license_for_data": {
-        "email": "a@a.fr",
-        "in_use_for": "zefze",
-        "company_name": "aaa"
+        "email": "test@t.fr",
+        "inUseFor": "www",
+        "companyName": "aeai"
       }
     },
     "currency_code": "EUR",
     "customer": {
-      "id": "ctm_01jzb548q1cj0450tnqtp11hcf",
-      "email": "hello@ahmedghazi.com",
+      "id": "ctm_01kqw6b4ghjadh9yabrya7va2s",
+      "email": "test@t.fr",
       "address": {
-        "id": "add_01jzqqr21hmzchtgra4atv98zz",
+        "id": "add_01kqw7r8t411n5m57fr09n8bqa",
         "country_code": "FR",
         "postal_code": "75018",
         "city": "",
@@ -28,73 +28,73 @@
     },
     "items": [
       {
-        "price_id": "pri_01jzqqr0gc8vnhzcnwtpseccmm",
-        "price_name": "Last Duo SM",
+        "price_id": "pri_01kqw7r3v3v1ngns7vnef2z19a",
+        "price_name": "Demorny Essentials Pack license: XS, Use in logo/wordmark: Yes",
         "product": {
-          "id": "pro_01jzqqr0e2evvz2e6wy9wjh8ep",
-          "name": "Last Duo",
-          "description": "bundle-last-duo",
+          "id": "pro_01kqw7r3s1aychszaxqh6c3zt0",
+          "name": "Demorny Essentials Pack",
+          "description": "bundle-demorny-essentials-pack",
           "image_url": null
         },
         "billing_cycle": null,
         "trial_period": null,
         "quantity": 1,
         "totals": {
-          "subtotal": 150,
-          "tax": 30,
-          "total": 180,
+          "subtotal": 126,
+          "tax": 25.2,
+          "total": 151.2,
           "discount": 0,
-          "balance": 180,
+          "balance": 151.2,
           "credit": 0
         }
       },
       {
-        "price_id": "pri_01jzqqr0gm7t4sj1m0d6ykx2x7",
-        "price_name": "Last Regular SM",
+        "price_id": "pri_01kqw7r3vmcyr71nst8m1tq1r6",
+        "price_name": "Demorny SemiBold license: XS, Use in logo/wordmark: Yes",
         "product": {
-          "id": "pro_01jzqqr0e2evvz2e6wybgjn0b0",
-          "name": "Last Regular",
-          "description": "single-last-regular",
+          "id": "pro_01kqw7r3s1aychszaxqkfzepew",
+          "name": "Demorny SemiBold",
+          "description": "single-demorny-semibold",
           "image_url": null
         },
         "billing_cycle": null,
         "trial_period": null,
         "quantity": 1,
         "totals": {
-          "subtotal": 100,
-          "tax": 20,
-          "total": 120,
+          "subtotal": 90,
+          "tax": 18,
+          "total": 108,
           "discount": 0,
-          "balance": 120,
+          "balance": 108,
           "credit": 0
         }
       },
       {
-        "price_id": "pri_01jzqqr0gsahrkj2npxjpn69fn",
-        "price_name": "Last Regular Italic SM",
+        "price_id": "pri_01kqw7r3w0n2hk5wnvdthkbe34",
+        "price_name": "Demorny Regular license: XS, Use in logo/wordmark: Yes",
         "product": {
-          "id": "pro_01jzqqr0e2evvz2e6wyebrxm37",
-          "name": "Last Regular Italic",
-          "description": "single-last-regular-italic",
+          "id": "pro_01kqw7r3s1aychszaxqkzq4ytb",
+          "name": "Demorny Regular",
+          "description": "single-demorny-regular",
           "image_url": null
         },
         "billing_cycle": null,
         "trial_period": null,
         "quantity": 1,
         "totals": {
-          "subtotal": 75,
-          "tax": 15,
-          "total": 90,
+          "subtotal": 90,
+          "tax": 18,
+          "total": 108,
           "discount": 0,
-          "balance": 90,
+          "balance": 108,
           "credit": 0
         }
       }
     ],
     "totals": {
-      "subtotal": 325,
-      "tax": 65,
-      "total": 390,
+      "subtotal": 306,
+      "tax": 61.2,
+      "total": 367.2,
       "discount": 0,
       "credit": 0,
       "balance": 0
@@ -114,59 +114,7 @@
       "display_mode": "wide-overlay",
       "theme": "dark",
       "variant": "multi-page"
-    }
-  },
-  "products": [
-    {
-      "productType": "ProductBundle",
-      "productTypeRef": "6ee2a8d9bf51",
-      "productId": "5a0679c0-aa58-499a-a968-493f9bdd51a3",
-      "productTitle": "Last",
-      "fullTitle": "Last Duo",
-      "description": "",
-      "sku": "bundle-last-duo",
-      "price": 240,
-      "discount": 25,
-      "finalPrice": 180,
-      "background": "#24a3e3",
-      "foreground": "#ffffff",
-      "license": "SM",
-      "licenseInfos": "(6-20 employés)",
-      "isLogo": false
     },
-    {
-      "productType": "ProductSingle",
-      "productTypeRef": "374414a56412",
-      "productId": "5a0679c0-aa58-499a-a968-493f9bdd51a3",
-      "productTitle": "Last",
-      "fullTitle": "Last Regular",
-      "description": "",
-      "sku": "single-last-regular",
-      "price": 120,
-      "discount": 0,
-      "finalPrice": 120,
-      "background": "#24a3e3",
-      "foreground": "#ffffff",
-      "license": "SM",
-      "licenseInfos": "(6-20 employés)",
-      "isLogo": false
-    },
-    {
-      "productType": "ProductSingle",
-      "productTypeRef": "9904228b4d0b",
-      "productId": "5a0679c0-aa58-499a-a968-493f9bdd51a3",
-      "productTitle": "Last",
-      "fullTitle": "Last Regular Italic",
-      "description": "",
-      "sku": "single-last-regular-italic",
-      "price": 120,
-      "discount": 25,
-      "finalPrice": 90,
-      "background": "#24a3e3",
-      "foreground": "#ffffff",
-      "license": "SM",
-      "licenseInfos": "(6-20 employés)",
-      "isLogo": false
-    }
-  ]
+    "upsell": null
+  }
 }
