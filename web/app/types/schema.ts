@@ -1727,6 +1727,16 @@ export type FaqUI = {
   items?: Array<SanityKeyed<KeyVal>>;
 };
 
+export type LinkExpire = {
+  _id: string;
+  _type: "linkExpire";
+  token?: string;
+  zips?: Array<SanityKeyed<LinkExternal>>;
+  maxDownloads?: number;
+  downloads?: number;
+  orderId?: string;
+};
+
 export type Documents =
   | Home
   | Infos

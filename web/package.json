@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": "20.19.5"
+  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
@@ -18,11 +21,13 @@
     "@paddle/paddle-node-sdk": "^2.7.1",
     "@portabletext/react": "^3.2.1",
     "@sanity/image-url": "^1.1.0",
+    "@types/archiver": "^7.0.0",
+    "archiver": "^7.0.1",
     "clsx": "^2.1.1",
     "cookies-next": "^6.0.0",
     "framer-motion": "^12.11.0",
     "gsap": "^3.13.0",
-    "next": "15.3.6",
+    "next": "15.3.8",
     "next-sanity": "^9.11.0",
     "next-themes": "^0.4.6",
     "nodemailer": "^7.0.5",

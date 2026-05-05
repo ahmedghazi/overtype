@@ -29,6 +29,7 @@ const CookieConsent = ({ msg }: Props) => {
     setShowConsent(true);
     deleteCookie("localConsent");
   };
+  const cookieText = _localizeField(msg);
 
   if (showConsent) {
     return null;
@@ -39,7 +40,7 @@ const CookieConsent = ({ msg }: Props) => {
       <div className='inner flex justify-between md:items-center gap-xl '>
         <div className=''>
           <PortableText
-            value={_localizeField(msg)}
+            value={cookieText}
             components={portableTextComponents}
           />
         </div>

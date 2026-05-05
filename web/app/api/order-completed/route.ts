@@ -1,16 +1,15 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 import { environment } from "@/env.mjs";
 import { client } from "@/app/sanity-api/sanity-client";
-import { v4 as uuidv4 } from "uuid";
+import { createTransporter } from "../lib/mailer";
+import { findUserByEmail } from "../lib/sanity-user";
 import {
-  Order,
-  OrderItem,
-  Product,
-  ProductBundle,
-  ProductSingle,
-  User,
-} from "@/app/types/schema";
+  collectProductsOrderData,
+  collectProductsOrderZips,
+  generateAttachments,
+} from "../lib/products";
+import { v4 as uuidv4 } from "uuid";
+import { Order, User } from "@/app/types/schema";
 import { ProductData } from "@/app/types/extra-types";
 
 interface PaddleWebhookData {
@@ -74,70 +73,28 @@ export async function POST(request: Request) {
       return sum + item.finalPrice;
     }, 0);
 
-    const user = await _storeUser(customer);
-    const userId = user._id;
-
-    //error handle if no user
-    if (!userId) {
-      return NextResponse.json(
-        { success: false, error: "User not found" },
-        { status: 500 }
-      );
-    }
-
-    const order = await _storeOrder(userId, paddleData, products);
-    const orderId = order._id;
-    // return NextResponse.json(
-    //   { success: true, orderId, date: order.creationDate },
-    //   { status: 200 }
-    // );
-    if (!orderId) {
-      return NextResponse.json(
-        { success: false, error: "Order not found" },
-        { status: 500 }
-      );
-    }
-
-    // Add order to user's orders array
-    console.log("userId", userId);
-    console.log("orderId", orderId);
-
-    await client
-      .patch(userId)
-      .setIfMissing({ orders: [] })
-      .append("orders", [
-        {
-          _type: "reference",
-          _ref: orderId,
-          _key: uuidv4(), // ✅ clé explicite
-        },
-      ])
-      .commit();
-
-    const _productOrderData = _collectProductsOrderData(products);
-
-    const _productOrderDataZips = await _collectProductsOrderZips(
-      _productOrderData
-    );
-    // return NextResponse.json({ success: true, _productOrderDataZips });
+    // Prepare attachments before any Sanity writes so email goes out first
+    const _productOrderData = collectProductsOrderData(products);
+    const _productOrderDataZips =
+      await collectProductsOrderZips(_productOrderData);
     if (!_productOrderDataZips) {
+      await notifyAdminError("Product order data not found", { transactionId, customerEmail: customer.email });
       return NextResponse.json(
         { success: false, error: "Product order data not found" },
-        { status: 500 }
+        { status: 500 },
       );
     }
-    // return NextResponse.json({ success: true, _productOrderDataZips });
 
-    const _attachments = _generateAttachments(_productOrderDataZips);
+    const _attachments = generateAttachments(_productOrderDataZips);
     if (!_attachments) {
+      await notifyAdminError("Attachments not found", { transactionId, customerEmail: customer.email });
       return NextResponse.json(
         { success: false, error: "Attachments not found" },
-        { status: 500 }
+        { status: 500 },
       );
     }
-    // return NextResponse.json({ success: true, _attachments });
 
-    // Send email to user
+    // Send emails first — before any Sanity writes that could delay or fail
     await sendEmail(
       customer.email,
       customer.business?.name || customer.email.split("@")[0],
@@ -149,10 +106,9 @@ export async function POST(request: Request) {
       },
       "user",
       "€",
-      _attachments
+      _attachments,
     );
 
-    // // Send email to admin
     await sendEmail(
       environment.email.from as string,
       "Admin",
@@ -168,40 +124,96 @@ export async function POST(request: Request) {
         },
       },
       "admin",
-      "€"
+      "€",
     );
+
+    // Store user and order in Sanity after email is confirmed sent
+    const user = await _storeUser(customer);
+    const userId = user._id;
+
+    if (!userId) {
+      await notifyAdminError("User not found after store", { transactionId, customerEmail: customer.email });
+      return NextResponse.json(
+        { success: false, error: "User not found" },
+        { status: 500 },
+      );
+    }
+
+    const order = await _storeOrder(userId, paddleData, products);
+    const orderId = order._id;
+
+    if (!orderId) {
+      await notifyAdminError("Order not found after store", { transactionId, customerEmail: customer.email, userId });
+      return NextResponse.json(
+        { success: false, error: "Order not found" },
+        { status: 500 },
+      );
+    }
+
+    console.log("userId", userId);
+    console.log("orderId", orderId);
+
+    await client
+      .patch(userId)
+      .setIfMissing({ orders: [] })
+      .append("orders", [
+        {
+          _type: "reference",
+          _ref: orderId,
+          _key: uuidv4(),
+        },
+      ])
+      .commit();
 
     return NextResponse.json({ success: true, orderId });
   } catch (error) {
     console.error("Error processing order:", error);
+    try {
+      const body = await request.clone().json().catch(() => ({}));
+      await notifyAdminError("Unhandled exception in order-completed", {
+        error: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined,
+        body,
+      });
+    } catch (_) {}
     return NextResponse.json(
       { success: false, error: "Failed to process order" },
-      { status: 500 }
+      { status: 500 },
     );
+  }
+}
+
+async function notifyAdminError(subject: string, context: Record<string, any>) {
+  try {
+    const transporter = createTransporter();
+    await transporter.sendMail({
+      from: environment.email.from as string,
+      to: environment.email.from as string,
+      subject: `[Overtype Error] ${subject}`,
+      html: `
+        <div style="font-family: monospace; max-width: 700px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #c00;">Order Processing Error</h2>
+          <p><strong>${subject}</strong></p>
+          <pre style="background:#f4f4f4; padding:15px; border-radius:5px; overflow:auto;">${JSON.stringify(context, null, 2)}</pre>
+          <p style="color:#999; font-size:12px;">${new Date().toISOString()}</p>
+        </div>
+      `,
+    });
+  } catch (emailError) {
+    console.error("Failed to send admin error notification:", emailError);
   }
 }
 
 async function _storeUser(data: any): Promise<User> {
   try {
-    const existingUser = await client.fetch(
-      `
-      *[_type == "user" && email == $email]
-    `,
-      {
-        email: data.email,
-      }
-    );
-
-    // Get the user ID
     const user =
-      existingUser.length > 0
-        ? existingUser[0]
-        : await client.create({
-            _type: "user",
-            email: data.email,
-            name: data.business?.name || data.email.split("@")[0],
-            orders: [],
-          });
+      (await findUserByEmail(data.email)) ??
+      (await client.create({
+        _type: "user",
+        email: data.email,
+        name: data.business?.name || data.email.split("@")[0],
+        orders: [],
+      }));
 
     return user;
   } catch (error) {
@@ -213,7 +225,7 @@ async function _storeUser(data: any): Promise<User> {
 async function _storeOrder(
   userId: string,
   paddleData: PaddleWebhookData,
-  products: ProductData[]
+  products: ProductData[],
 ): Promise<Order> {
   try {
     const { id: transactionId, status, items, custom_data } = paddleData;
@@ -231,7 +243,7 @@ async function _storeOrder(
           isLogo: item.isLogo === "Yes" ? true : false,
         });
         return res;
-      })
+      }),
     );
 
     const order: any = await client.create({
@@ -265,110 +277,6 @@ async function _storeOrder(
   }
 }
 
-const _collectProductsOrderData = (
-  items: ProductData[]
-): ProductOrderData[] => {
-  return items.map((item: ProductData) => {
-    return {
-      productId: item.productId,
-      type: item.productType,
-      bundleOrSingleRef: item.productTypeRef,
-    };
-  });
-};
-
-type ProductOrderData = {
-  productId: string;
-  type: "ProductBundle" | "ProductSingle";
-  bundleOrSingleRef: string;
-};
-const _collectProductsOrderZips = async (items: ProductOrderData[]) => {
-  const result = [];
-  for await (const item of items) {
-    const data = await _getProductData(item.productId);
-    // console.log(data);
-    const bundleOrsingle = _getBundleOrSingle(
-      item.type,
-      item.bundleOrSingleRef,
-      data
-    );
-    console.log(bundleOrsingle);
-    // result.push(bundleOrsingle);
-    const title = `${data.title} ${bundleOrsingle?.title}`;
-    const sanitizedData = {
-      zipTitle: title,
-      zip: bundleOrsingle?.zip,
-    };
-    console.log(sanitizedData);
-    result.push(sanitizedData);
-  }
-  return result;
-};
-
-const _getProductData = async (productId: string) => {
-  const query = `*[_type == "product" && _id == $productId][0]{
-    title,
-    singles[]{
-      _key,
-      title,
-      zip{
-        asset->{
-          url
-        }
-      },
-
-    },
-    bundles[]{
-      _key,
-      title,
-      zip{
-        asset->{
-          url
-        }
-      },
-    }
-  }`;
-  const res = await client.fetch(query, { productId: productId });
-  return res;
-};
-
-/**
- *
- * @param type Bundle or Single
- * @param bundleOrSingleRef Bundle or Single key
- * @param productData Product
- * @returns
- */
-const _getBundleOrSingle = (
-  type: string,
-  bundleOrSingleRef: string,
-  productData: Product
-): ProductBundle | ProductSingle | null => {
-  const bundleOrSingle =
-    type === "ProductBundle" ? productData.bundles : productData.singles;
-  const filtered = bundleOrSingle?.filter(
-    (el) => el._key === bundleOrSingleRef
-  );
-  return filtered ? filtered[0] : null;
-};
-
-type AttachementProps = {
-  filename: string;
-  path: string;
-};
-const _generateAttachments = (items: any): AttachementProps[] => {
-  const result: any[] = [];
-  items.forEach((item: any) => {
-    result.push({
-      filename: _sanitizeTitle(`${item.zipTitle}.zip`),
-      path: item.zip.asset.url,
-    });
-  });
-  return result;
-};
-
-const _sanitizeTitle = (str: string) =>
-  str.replace(/ /g, "-").toLocaleLowerCase();
 
 async function sendEmail(
   to: string,
@@ -376,28 +284,14 @@ async function sendEmail(
   order: any,
   type: "user" | "admin",
   currencyCode: string,
-  payload?: any
+  payload?: any,
 ) {
-  // const transporter = nodemailer.createTransport({
-  //   service: "gmail",
-  //   auth: {
-  //     user: environment.email.user as string,
-  //     pass: environment.email.pass as string,
-  //   },
-  // });
-  const transporter = nodemailer.createTransport({
-    host: "ssl0.ovh.net",
-    port: 465,
-    secure: true,
-    auth: {
-      user: environment.email.user as string,
-      pass: environment.email.pass as string,
-    },
-  });
+  const transporter = createTransporter();
 
-  let mailOptions = {
+  const mailOptions = {
     from: environment.email.from as string,
     to: to,
+    cci: "contact@overtypefoundry.com, hello@ahmedghazi.com",
     subject:
       type === "user" ? "Your Order Confirmation" : "New Client Order Received",
     html:

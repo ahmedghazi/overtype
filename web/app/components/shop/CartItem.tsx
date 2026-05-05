@@ -8,9 +8,10 @@ import { log } from "console";
 type Props = {
   input: ProductData;
   _delete?: Function;
+  isPostCheckout?: boolean;
 };
 
-const CartItem = ({ input, _delete }: Props) => {
+const CartItem = ({ input, _delete, isPostCheckout = false }: Props) => {
   const { products, setProducts } = useShop();
   const [hasRelatedTypefaceInProducts, setHasRelatedTypefaceInProducts] =
     useState<boolean>(false);
@@ -24,7 +25,7 @@ const CartItem = ({ input, _delete }: Props) => {
       input.applyDiscount,
       input.price,
       input.discount,
-    ]
+    ],
   );
   // console.log("CartItem", input.sku, memoizedInput.sku);
 
@@ -56,7 +57,7 @@ const CartItem = ({ input, _delete }: Props) => {
     }
 
     const hasRelated = memoizedProducts.some(
-      (el) => el.sku === memoizedInput.relatedTypefaceSku
+      (el) => el.sku === memoizedInput.relatedTypefaceSku,
     );
     setHasRelatedTypefaceInProducts(hasRelated);
   }, [memoizedProducts, memoizedInput.relatedTypefaceSku, products]);
@@ -79,7 +80,6 @@ const CartItem = ({ input, _delete }: Props) => {
     setProducts({ type: "REPLACE", payload: updatedProduct });
   }, [hasRelatedTypefaceInProducts, memoizedInput, setProducts]);
 
-  // console.log("CartItem", input);
   return (
     <div className='cart-item rounded'>
       <div className='inner'>
@@ -117,6 +117,7 @@ const CartItem = ({ input, _delete }: Props) => {
           </button>
         )}
       </div>
+
       {/* <pre>
         hasRelatedTypefaceInProducts:{" "}
         {JSON.stringify(hasRelatedTypefaceInProducts, null, 2)}

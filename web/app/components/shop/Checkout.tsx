@@ -108,7 +108,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
       settings: {
         displayMode: "overlay",
         theme: "dark",
-        successUrl: `${website.url}/post-checkout?status=success`,
+        successUrl: `${website.url}/post-checkout?status=success&transactionId=${data.tsx}`,
         variant: "multi-page",
       },
     });

@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 import { environment } from "@/env.mjs";
 import { client } from "@/app/sanity-api/sanity-client";
+import { createTransporter } from "../lib/mailer";
+import { findUserByEmail } from "../lib/sanity-user";
 import { Product, ProductSingle, User } from "@/app/types/schema";
 import { v4 as uuidv4 } from "uuid";
 
@@ -26,7 +27,7 @@ export async function POST(req: NextRequest) {
   if (!storeUserTrials) {
     return NextResponse.json(
       { success: false, error: "Order not found" },
-      { status: 500 }
+      { status: 500 },
     );
   }
   /**
@@ -42,7 +43,7 @@ export async function POST(req: NextRequest) {
     email,
     email.split("@")[0],
 
-    _attachments
+    _attachments,
   );
 
   try {
@@ -96,35 +97,18 @@ const _collectZips = (items: Product[]) => {
       };
     }
     zips.push(zip);
-    // product.singles?.forEach((single) => {
-    //   let zip = {};
-    //   if (single.zipTrials) {
-    //     zip = {
-    //       filename: `${product.title}-${single.title}.zip`,
-    //       path: single.zipTrials.asset.url,
-    //     };
-    //   } else {
-    //     zip = {
-    //       filename: "no zip found",
-    //       path: "",
-    //     };
-    //   }
-    //   zips.push(zip);
-    // });
   });
   return zips;
 };
 
 const _storeUserTrials = async (
   email: string,
-  trials: string[]
+  trials: string[],
 ): Promise<User> => {
   try {
-    const query = `*[_type == "user" && email == "${email}"]`;
-    const res = await client.fetch(query);
-    if (res.length > 0) {
-      const user = res[0];
-      // user.trials = [...user.trials, ...trials];
+    const existingUser = await findUserByEmail(email);
+    if (existingUser) {
+      const user = existingUser;
       await client
         .patch(user._id)
         .set({
@@ -146,7 +130,7 @@ const _storeUserTrials = async (
         })),
       });
     }
-    return res;
+    return existingUser as User;
   } catch (error) {
     console.error("Error storing trials:", error);
     throw new Error("Failed to store trials data");
@@ -173,7 +157,7 @@ async function sendEmail(
   to: string,
   name: string,
 
-  payload?: any
+  payload?: any,
 ) {
   // const transporter = nodemailer.createTransport({
   //   service: "gmail",
@@ -182,16 +166,16 @@ async function sendEmail(
   //     pass: environment.email.pass as string,
   //   },
   // });
-  const transporter = nodemailer.createTransport({
-    host: "ssl0.ovh.net",
-    port: 465,
-    secure: true,
-    auth: {
-      user: environment.email.user as string,
-      pass: environment.email.pass as string,
-    },
-  });
-
+  // const transporter = nodemailer.createTransport({
+  //   host: "ssl0.ovh.net",
+  //   port: 465,
+  //   secure: true,
+  //   auth: {
+  //     user: environment.email.user as string,
+  //     pass: environment.email.pass as string,
+  //   },
+  // });
+  const transporter = createTransporter();
   let mailOptions = {
     from: environment.email.from as string,
     to: to,

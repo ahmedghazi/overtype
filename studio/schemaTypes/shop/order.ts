@@ -18,16 +18,24 @@ export default defineType({
       title: 'Title',
       type: 'string',
     }),
+
+    defineField({
+      name: 'invoiceNumber',
+      title: 'Invoice Number',
+      description: 'Invoice number for the order (Transaction ID)',
+      type: 'string',
+    }),
     defineField({
       name: 'status',
       title: 'status',
       type: 'string',
     }),
     defineField({
-      name: 'invoiceNumber',
-      title: 'Invoice Number',
-      type: 'string',
+      name: 'downloadDate',
+      title: 'Download Date',
+      type: 'datetime',
     }),
+
     defineField({
       name: 'creationDate',
       title: 'dateTime',
