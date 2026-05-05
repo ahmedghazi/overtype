@@ -17,22 +17,19 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
     }
     console.log(body);
-    const { transactionId } = body;
-    if (!transactionId) {
-      return NextResponse.json(
-        { error: "Missing transactionId" },
-        { status: 400 },
-      );
+    const { orderID } = body;
+    if (!orderID) {
+      return NextResponse.json({ error: "Missing orderID" }, { status: 400 });
     }
 
     const order = await client.fetch(
-      `*[_type == "order" && invoiceNumber == $transactionId][0]{
+      `*[_type == "order" && _id == $orderID][0]{
         items[]->{
           ...,
           downloadLink
         }
       }`,
-      { transactionId },
+      { orderID },
     );
     console.log(order);
 
