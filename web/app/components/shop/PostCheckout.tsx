@@ -8,53 +8,50 @@ type CheckoutSuccessProps = {
   orderID: string | null;
 };
 
-const MAX_POLL_ATTEMPTS = 3;
-const POLL_INTERVAL_MS = 2000;
-
 const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
   const [order, setOrder] = useState<any>(null);
   const [polling, setPolling] = useState(true);
   const [pollFailed, setPollFailed] = useState(false);
-  const attemptRef = React.useRef(0);
-  const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const fetchOrder = React.useCallback(() => {
-    if (!orderID) return;
-    fetch(`/api/order?orderId=${orderID}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setOrder(data.order);
-          if (data.order?.status === "completed") {
-            setPolling(false);
-            return;
-          }
-        }
-        attemptRef.current += 1;
-        if (attemptRef.current >= MAX_POLL_ATTEMPTS) {
-          setPolling(false);
-          setPollFailed(true);
-        } else {
-          timerRef.current = setTimeout(fetchOrder, POLL_INTERVAL_MS);
-        }
-      })
-      .catch(() => {
-        attemptRef.current += 1;
-        if (attemptRef.current >= MAX_POLL_ATTEMPTS) {
-          setPolling(false);
-          setPollFailed(true);
-        } else {
-          timerRef.current = setTimeout(fetchOrder, POLL_INTERVAL_MS);
-        }
-      });
-  }, [orderID]);
 
   useEffect(() => {
-    fetchOrder();
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
+    if (!orderID) return;
+
+    const source = new EventSource(`/api/order-status?orderId=${orderID}`);
+
+    source.onmessage = (e: MessageEvent) => {
+      const data = JSON.parse(e.data);
+
+      if (data.error) {
+        setPolling(false);
+        setPollFailed(true);
+        source.close();
+        return;
+      }
+
+      if (data.status === "completed") {
+        // Fetch full order (items, links, etc.) then stop
+        fetch(`/api/order?orderId=${orderID}`)
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.success) setOrder(res.order);
+          });
+        setPolling(false);
+        source.close();
+        return;
+      }
+
+      // Partial update — keep spinner, store whatever we have
+      setOrder((prev: any) => ({ ...prev, status: data.status }));
     };
-  }, [fetchOrder]);
+
+    source.onerror = () => {
+      setPolling(false);
+      setPollFailed(true);
+      source.close();
+    };
+
+    return () => source.close();
+  }, [orderID]);
 
   const _handleDownload = async () => {
     const response = await fetch("/api/download", {
@@ -138,7 +135,7 @@ const PostCheckout = (props: Props) => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 3000);
   }, []);
 
   return (
