@@ -1,6 +1,25 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType, useFormValue} from 'sanity'
 import {FaReceipt} from 'react-icons/fa'
 import React from 'react'
+
+const OrderIdInput = () => {
+  const id = useFormValue(['_id']) as string
+  return React.createElement(
+    'div',
+    {
+      style: {
+        padding: '8px 12px',
+        background: '#f1f3f5',
+        borderRadius: 4,
+        fontFamily: 'monospace',
+        fontSize: 13,
+        color: '#555',
+        userSelect: 'all',
+      },
+    },
+    id,
+  )
+}
 
 const StatusIcon = ({status}: {status: string}) =>
   React.createElement(
@@ -36,6 +55,13 @@ export default defineType({
     },
   },
   fields: [
+    defineField({
+      name: 'orderId',
+      title: 'Order ID',
+      type: 'string',
+      readOnly: true,
+      components: {input: OrderIdInput},
+    }),
     defineField({
       name: 'title',
       title: 'Title',
