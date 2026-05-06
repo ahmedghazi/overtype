@@ -140,7 +140,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
           isLoading && "disabled",
         )}
         onClick={handleCheckout}>
-        Checkout
+        {isLoading ? "Loading..." : "Checkout"}
       </button>
     </div>
   );
