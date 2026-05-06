@@ -134,7 +134,11 @@ const BtnCheckout = ({ canCheckout }: Props) => {
   return (
     <div className='flex justify-center'>
       <button
-        className={clsx("ui-btn ui-btn__accent", !canCheckout && "disabled")}
+        className={clsx(
+          "ui-btn ui-btn__accent",
+          !canCheckout && "disabled",
+          isLoading && "disabled",
+        )}
         onClick={handleCheckout}>
         Checkout
       </button>

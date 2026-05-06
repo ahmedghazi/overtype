@@ -66,6 +66,7 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: 'Transaction ID from paddle',
     }),
 
     defineField({
@@ -77,8 +78,10 @@ export default defineType({
     defineField({
       name: 'checkoutID',
       title: 'Checkout ID',
+      description: '',
       // description: 'Invoice number for the order (Transaction ID)',
       type: 'string',
+      hidden: true,
     }),
 
     defineField({
