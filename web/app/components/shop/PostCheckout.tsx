@@ -133,13 +133,23 @@ const PostCheckout = (props: Props) => {
   const search = useSearchParams();
   const status = search.get("status");
   const orderID = search.get("orderID");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
+  }, []);
 
   return (
     <div className='post-checkout px-xs md:px-md'>
       <div className='h-2xl md:h-[142px]'></div>
 
       <div className='c-container'>
-        {status === "success" && <CheckoutSuccess orderID={orderID} />}
+        {isLoading && <div>Loading...</div>}
+        {status === "success" && !isLoading && (
+          <CheckoutSuccess orderID={orderID} />
+        )}
         {status === "canceled" && <CheckoutError />}
       </div>
     </div>
