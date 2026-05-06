@@ -16,7 +16,10 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
     fetch(`/api/order?orderId=${orderID}`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.success) setOrder(data.order);
+        if (data.success) {
+          setOrder(data.order);
+          location.reload();
+        }
       });
   }, [orderID]);
 
