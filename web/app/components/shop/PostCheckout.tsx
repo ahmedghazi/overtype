@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import { ProductData } from "@/app/types/extra-types";
+import SvgDotsJumping from "../ui/SvgDotsJumping";
 
 type CheckoutSuccessProps = {
   orderID: string | null;
@@ -79,7 +80,12 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
           <p>Order ID: {orderID}</p>
           {order && <p className=''>Status: {order.status}</p>}
           {polling ? (
-            <p className='md:text-xl'>Your order is being processed…</p>
+            <p className='md:text-xl'>
+              <span className='inline-block '>
+                <SvgDotsJumping />
+              </span>
+              Wait, your order is being processed…
+            </p>
           ) : pollFailed ? (
             <p className='md:text-xl'>
               We couldn't confirm your order automatically. Please contact us at{" "}
@@ -130,23 +136,21 @@ const PostCheckout = (props: Props) => {
   const search = useSearchParams();
   const status = search.get("status");
   const orderID = search.get("orderID");
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 3000);
+  // }, []);
 
   return (
     <div className='post-checkout px-xs md:px-md'>
       <div className='h-2xl md:h-[142px]'></div>
 
       <div className='c-container'>
-        {isLoading && <div>Loading...</div>}
-        {status === "success" && !isLoading && (
-          <CheckoutSuccess orderID={orderID} />
-        )}
+        {/* {isLoading && <div>Loading...</div>} */}
+        {status === "success" && <CheckoutSuccess orderID={orderID} />}
         {status === "canceled" && <CheckoutError />}
       </div>
     </div>
