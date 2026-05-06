@@ -53,6 +53,8 @@ export async function POST(req: Request) {
 
     const stream = await buildZipStream(zips);
 
+    await client.patch(orderID).set({ downloadDate: new Date().toISOString() }).commit();
+
     return new Response(stream as any, {
       headers: {
         "Content-Type": "application/zip",

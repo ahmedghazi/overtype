@@ -11,17 +11,16 @@ type CheckoutSuccessProps = {
 const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
   const [order, setOrder] = useState<any>(null);
 
-  useEffect(() => {
+  const fetchOrder = () => {
     if (!orderID) return;
     fetch(`/api/order?orderId=${orderID}`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.success) {
-          setOrder(data.order);
-          location.reload();
-        }
+        if (data.success) setOrder(data.order);
       });
-  }, [orderID]);
+  };
+
+  useEffect(fetchOrder, [orderID]);
 
   const _handleDownload = async () => {
     const response = await fetch("/api/download", {
@@ -51,6 +50,9 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
             Your order is being processed. Your download link is on its way to
             your inbox.
           </p>
+          <button className='ui-btn' onClick={fetchOrder}>
+            Refresh
+          </button>
         </div>
       </div>
     );
