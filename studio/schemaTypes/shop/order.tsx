@@ -1,17 +1,40 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {FaReceipt} from 'react-icons/fa'
+import React from 'react'
+
+const StatusIcon = ({status}: {status: string}) =>
+  React.createElement(
+    'svg',
+    {
+      xmlns: 'http://www.w3.org/2000/svg',
+      viewBox: '0 0 24 24',
+      width: 16,
+      height: 16,
+      fill: status === 'completed' ? '#22c55e' : '#f97316',
+    },
+    React.createElement('circle', {cx: 12, cy: 12, r: 10}),
+  )
 
 export default defineType({
   name: 'order',
   title: 'Order',
   type: 'document',
-  // icon: HiOutlineShoppingBag,
   icon: FaReceipt,
 
-  // initialValue: {
-  //   noticeInternal:
-  //     'ex licence web, desktop, Base price defined here, company size will increment base price, bundle or single style will give the final price',
-  // },
+  preview: {
+    select: {
+      title: 'title',
+      status: 'status',
+      user: 'user.email',
+    },
+    prepare({title, status, user}) {
+      return {
+        title,
+        subtitle: `${status} - ${user}`,
+        media: React.createElement(StatusIcon, {status}),
+      }
+    },
+  },
   fields: [
     defineField({
       name: 'title',
