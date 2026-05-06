@@ -4,6 +4,21 @@ export const dynamic = "force-dynamic";
 
 const TIMEOUT_MS = 30_000;
 
+const FULL_ORDER_QUERY = `*[_type == "order" && _id == $orderId][0]{
+  _id,
+  title,
+  creationDate,
+  status,
+  totalAmount,
+  invoiceNumber,
+  licenseFor,
+  licenseForData,
+  user->{ _id, name, email },
+  items[]->{ ..., downloadLink }
+}`;
+
+const freshClient = client.withConfig({ useCdn: false });
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const orderId = searchParams.get("orderId");
@@ -20,7 +35,9 @@ export async function GET(request: Request) {
     async start(controller) {
       const send = (data: object) => {
         try {
-          controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
+          controller.enqueue(
+            encoder.encode(`data: ${JSON.stringify(data)}\n\n`),
+          );
         } catch {
           // controller already closed
         }
@@ -36,36 +53,42 @@ export async function GET(request: Request) {
         }
       };
 
-      // Send current state immediately so the client doesn't wait for a mutation
-      const initial = await client.fetch<{ status: string } | null>(
+      const sendCompleted = async () => {
+        const order = await freshClient.fetch(FULL_ORDER_QUERY, { orderId });
+        send({ status: "completed", order });
+        close();
+      };
+
+      // Use CDN-bypass for initial fetch so we always see the latest state
+      const initial = await freshClient.fetch<{ status: string } | null>(
         `*[_type == "order" && _id == $orderId][0]{ status }`,
-        { orderId }
+        { orderId },
       );
 
       if (initial) {
-        send({ status: initial.status });
         if (initial.status === "completed") {
-          close();
+          await sendCompleted();
           return;
         }
+        send({ status: initial.status });
       }
 
-      // Hard timeout — tell client to show the contact-admin message
       timeoutId = setTimeout(() => {
         send({ error: "timeout" });
         close();
       }, TIMEOUT_MS);
 
-      // Real-time listener — fires on every mutation to the order doc
-      subscription = client
-        .withConfig({ useCdn: false })
-        .listen(`*[_type == "order" && _id == $orderId]`, { orderId })
+      subscription = freshClient
+        .listen(`*[_type == "order" && _id == $orderId]`, { orderId }, { visibility: "query" })
         .subscribe({
           next(update: any) {
             const doc = update.result;
             if (!doc) return;
-            send({ status: doc.status });
-            if (doc.status === "completed") close();
+            if (doc.status === "completed") {
+              sendCompleted();
+            } else {
+              send({ status: doc.status });
+            }
           },
           error() {
             send({ error: "listener_error" });
@@ -74,7 +97,6 @@ export async function GET(request: Request) {
         });
     },
     cancel() {
-      // Client disconnected
       clearTimeout(timeoutId);
       subscription?.unsubscribe();
     },

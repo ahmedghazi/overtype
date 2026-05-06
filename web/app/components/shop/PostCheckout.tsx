@@ -21,8 +21,10 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
 
     source.onmessage = (e: MessageEvent) => {
       const data = JSON.parse(e.data);
+      console.log("source.onmessage called", data);
 
       if (data.error) {
+        console.log("source.onmessage called", data.error);
         setPolling(false);
         setPollFailed(true);
         source.close();
@@ -30,22 +32,18 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
       }
 
       if (data.status === "completed") {
-        // Fetch full order (items, links, etc.) then stop
-        fetch(`/api/order?orderId=${orderID}`)
-          .then((res) => res.json())
-          .then((res) => {
-            if (res.success) setOrder(res.order);
-          });
+        setOrder(data.order);
         setPolling(false);
         source.close();
         return;
       }
 
       // Partial update — keep spinner, store whatever we have
-      setOrder((prev: any) => ({ ...prev, status: data.status }));
+      // setOrder((prev: any) => ({ ...prev, status: data.status }));
     };
 
     source.onerror = () => {
+      console.log("source.onerror called");
       setPolling(false);
       setPollFailed(true);
       source.close();
@@ -71,26 +69,34 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
     a.click();
     URL.revokeObjectURL(url);
   };
-
+  console.log(order);
   if (!order || order.status !== "completed") {
     return (
       <div className='success'>
         <div className='header mb-2xl'>
           <h1 className='md:text-2xl'>Thank you for your purchase!</h1>
-          <p>Order ID: {orderID}</p>
-          {order && <p className=''>Status: {order.status}</p>}
+          <p className='m-0!'>Order ID: {orderID}</p>
+          {order && <p>Status: {order.status}</p>}
+
           {polling ? (
             <p className='md:text-xl'>
               <span className='inline-block '>
                 <SvgDotsJumping />
               </span>
-              Wait, your order is being processed…
+              Wait, your order is being processed
             </p>
           ) : pollFailed ? (
             <p className='md:text-xl'>
-              We couldn't confirm your order automatically. Please contact us at{" "}
-              <a href='mailto:hello@overtype.studio'>hello@overtype.studio</a>{" "}
-              with your Order ID and we'll sort it out right away.
+              We couldn't confirm your order automatically.
+              <br />
+              Try refreshing this page in a few minutes.
+              <br />
+              <br />
+              Please contact us at{" "}
+              <a href='mailto:contact@overtypefoundy.com'>
+                contact@overtypefoundy.com
+              </a>{" "}
+              with your Order ID "{orderID}" and we'll sort it out right away.
             </p>
           ) : (
             <p className='md:text-xl'>
