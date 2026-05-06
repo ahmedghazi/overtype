@@ -8,19 +8,53 @@ type CheckoutSuccessProps = {
   orderID: string | null;
 };
 
+const MAX_POLL_ATTEMPTS = 3;
+const POLL_INTERVAL_MS = 2000;
+
 const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
   const [order, setOrder] = useState<any>(null);
+  const [polling, setPolling] = useState(true);
+  const [pollFailed, setPollFailed] = useState(false);
+  const attemptRef = React.useRef(0);
+  const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const fetchOrder = () => {
+  const fetchOrder = React.useCallback(() => {
     if (!orderID) return;
     fetch(`/api/order?orderId=${orderID}`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.success) setOrder(data.order);
+        if (data.success) {
+          setOrder(data.order);
+          if (data.order?.status === "completed") {
+            setPolling(false);
+            return;
+          }
+        }
+        attemptRef.current += 1;
+        if (attemptRef.current >= MAX_POLL_ATTEMPTS) {
+          setPolling(false);
+          setPollFailed(true);
+        } else {
+          timerRef.current = setTimeout(fetchOrder, POLL_INTERVAL_MS);
+        }
+      })
+      .catch(() => {
+        attemptRef.current += 1;
+        if (attemptRef.current >= MAX_POLL_ATTEMPTS) {
+          setPolling(false);
+          setPollFailed(true);
+        } else {
+          timerRef.current = setTimeout(fetchOrder, POLL_INTERVAL_MS);
+        }
       });
-  };
+  }, [orderID]);
 
-  useEffect(fetchOrder, [orderID]);
+  useEffect(() => {
+    fetchOrder();
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [fetchOrder]);
 
   const _handleDownload = async () => {
     const response = await fetch("/api/download", {
@@ -46,13 +80,21 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
         <div className='header mb-2xl'>
           <h1 className='md:text-2xl'>Thank you for your purchase!</h1>
           <p>Order ID: {orderID}</p>
-          <p className='md:text-xl'>
-            Your order is being processed. Your download link is on its way to
-            your inbox.
-          </p>
-          <button className='ui-btn' onClick={fetchOrder}>
-            Refresh
-          </button>
+          {order && <p className=''>Status: {order.status}</p>}
+          {polling ? (
+            <p className='md:text-xl'>Your order is being processed…</p>
+          ) : pollFailed ? (
+            <p className='md:text-xl'>
+              We couldn't confirm your order automatically. Please contact us at{" "}
+              <a href='mailto:hello@overtype.studio'>hello@overtype.studio</a>{" "}
+              with your Order ID and we'll sort it out right away.
+            </p>
+          ) : (
+            <p className='md:text-xl'>
+              Your order is being processed. Your download link is on its way to
+              your inbox.
+            </p>
+          )}
         </div>
       </div>
     );
@@ -63,6 +105,7 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
       <div className='header mb-2xl'>
         <h1 className='md:text-2xl'>Thank you for your purchase!</h1>
         <p>Order ID: {orderID}</p>
+        <p>Order status: {order.status}</p>
         <p className='md:text-xl'>Your files are ready to download.</p>
         <button className='ui-btn ui-btn__accent' onClick={_handleDownload}>
           Download
