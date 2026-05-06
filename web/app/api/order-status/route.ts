@@ -13,7 +13,6 @@ export async function GET(request: Request) {
   }
 
   const encoder = new TextEncoder();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let subscription: any;
   let timeoutId: ReturnType<typeof setTimeout>;
 
