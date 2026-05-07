@@ -37,9 +37,6 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
         source.close();
         return;
       }
-
-      // Partial update — keep spinner, store whatever we have
-      // setOrder((prev: any) => ({ ...prev, status: data.status }));
     };
 
     source.onerror = () => {
@@ -75,33 +72,44 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
       <div className='success'>
         <div className='header mb-2xl'>
           <h1 className='md:text-2xl'>Thank you for your purchase!</h1>
-          <p className='m-0!'>Order ID: {orderID}</p>
+          {/* <p className='m-0!'>Order ID: {orderID}</p> */}
           {order && <p>Status: {order.status}</p>}
 
           {polling ? (
-            <p className='md:text-xl'>
-              <span className='inline-block '>
-                <SvgDotsJumping />
-              </span>
-              Wait, your order is being processed
-            </p>
+            <>
+              <p>
+                <span className='inline-block '>
+                  <SvgDotsJumping />
+                </span>
+              </p>
+              <p className='md:text-xl'>
+                Please wait, your order is being processed...
+                <br />
+                Your files will be available for download shortly.
+              </p>
+            </>
           ) : pollFailed ? (
+            <>
+              <p className='md:text-xl'>
+                Unfortunately, we were unable to automatically confirm your
+                order.
+              </p>
+              <p className='md:text-xl'>
+                Please contact us at
+                <a href='mailto:contact@overtypefoundy.com'>
+                  contact@overtypefoundy.com
+                </a>{" "}
+                with your Order ID "{orderID}" and we’ll resolve the issue as
+                quickly as possible.
+              </p>
+            </>
+          ) : (
             <p className='md:text-xl'>
-              We couldn't confirm your order automatically.
-              <br />
-              Try refreshing this page in a few minutes.
-              <br />
-              <br />
               Please contact us at{" "}
               <a href='mailto:contact@overtypefoundy.com'>
                 contact@overtypefoundy.com
               </a>{" "}
               with your Order ID "{orderID}" and we'll sort it out right away.
-            </p>
-          ) : (
-            <p className='md:text-xl'>
-              Your order is being processed. Your download link is on its way to
-              your inbox.
             </p>
           )}
         </div>
@@ -113,16 +121,30 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
     <div className='success'>
       <div className='header mb-2xl'>
         <h1 className='md:text-2xl'>Thank you for your purchase!</h1>
-        <p>Order ID: {orderID}</p>
-        <p>Order status: {order.status}</p>
-        <p className='md:text-xl'>Your files are ready to download.</p>
+
+        <p className='md:text-xl'>
+          Your files are ready to download. <br />A confirmation email is on its
+          way to your inbox.
+        </p>
+
+        <p>
+          Have fun with your new typefaces,
+          <br />
+          we can’t wait to see what you do with it.
+        </p>
+
+        {/* <ul>
+          <li>Order ID: {orderID}</li>
+          <li>Order status: {order.status}</li>
+        </ul> */}
+
         <button className='ui-btn ui-btn__accent' onClick={_handleDownload}>
           Download
         </button>
-        <p>
+        {/* <p>
           Enjoy your new typeface! <br />
           We can't wait to see what you create with it.
-        </p>
+        </p> */}
       </div>
       <div className='products flex flex-col gap-2xs'>
         {order.items?.map((item: ProductData, i: number) => (
