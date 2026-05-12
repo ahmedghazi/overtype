@@ -101,6 +101,14 @@ export async function POST(request: Request) {
       );
     }
 
+    //here we need the orderID by querying the database with invoiceNumber (txn...)
+    const _order = await client.fetch(
+      `*[_type == "order" && invoiceNumber == $transactionId][0]{
+      _id,
+    }`,
+      { transactionId },
+    );
+
     // Send emails first — before any Sanity writes that could delay or fail
     await sendEmail(
       customer.email,
@@ -110,6 +118,7 @@ export async function POST(request: Request) {
         items: products,
         totalAmount,
         currencyCode: "€",
+        _id: _order._id,
       },
       "user",
       "€",
@@ -272,7 +281,11 @@ async function _storeOrder(
           json: JSON.stringify(items),
           user: { _type: "reference", _ref: userId },
           licenseFor: custom_data?.license_for,
-          licenseForData: JSON.stringify(custom_data?.license_for_data, null, 2),
+          licenseForData: JSON.stringify(
+            custom_data?.license_for_data,
+            null,
+            2,
+          ),
         })
         .commit();
 
@@ -423,6 +436,9 @@ function generateUserEmailHtml(name: string, order: any, currencyCode: string) {
       <h2 style="color: #333;font-weight: 400; margin-top: 20px;">Order Details</h2>
       ${items}
 
+      <div style="font-size: 1.5em">
+      <p>Download your fonts <a href="https://overtypefoundry.com/post-checkout?status=success&orderID=${order._id}">here</a>:</p>
+      </div>
       <div style="font-size: 1.5em">
         <p>Order Number: ${order.invoiceNumber}<br/>
        Total Amount: ${order.totalAmount}${currencyCode}</p>
