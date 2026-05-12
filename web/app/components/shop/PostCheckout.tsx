@@ -73,7 +73,7 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
         <div className='header mb-2xl'>
           <h1 className='md:text-2xl'>Thank you for your purchase!</h1>
           {/* <p className='m-0!'>Order ID: {orderID}</p> */}
-          {order && <p>Status: {order.status}</p>}
+          {/* {order && <p>Status: {order.status}</p>} */}
 
           {polling ? (
             <>
@@ -91,8 +91,8 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
           ) : pollFailed ? (
             <>
               <p className='md:text-xl'>
-                Unfortunately, we were unable to automatically confirm your
-                order.
+                Unfortunately, we were unable to deliver your files
+                automatically…
               </p>
               <p className='md:text-xl'>
                 Please contact us at
@@ -139,7 +139,7 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
         </ul> */}
 
         <button className='ui-btn ui-btn__accent' onClick={_handleDownload}>
-          Download
+          Download your files
         </button>
         {/* <p>
           Enjoy your new typeface! <br />
