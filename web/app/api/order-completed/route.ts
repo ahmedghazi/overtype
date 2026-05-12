@@ -68,7 +68,7 @@ export async function POST(request: Request) {
     };
     // return NextResponse.json({ success: true, paddleData, products });
 
-    const { customer, items, id: transactionId } = paddleData;
+    const { customer, items, id: transactionId, custom_data } = paddleData;
 
     const totalAmount = products.reduce((sum: number, item) => {
       return sum + item.finalPrice;
@@ -102,12 +102,12 @@ export async function POST(request: Request) {
     }
 
     //here we need the orderID by querying the database with invoiceNumber (txn...)
-    const _order = await client.fetch(
-      `*[_type == "order" && invoiceNumber == $transactionId][0]{
-      _id,
-    }`,
-      { transactionId },
-    );
+    // const _order = await client.fetch(
+    //   `*[_type == "order" && invoiceNumber == $transactionId][0]{
+    //   _id,
+    // }`,
+    //   { transactionId },
+    // );
 
     // Send emails first — before any Sanity writes that could delay or fail
     await sendEmail(
@@ -118,7 +118,7 @@ export async function POST(request: Request) {
         items: products,
         totalAmount,
         currencyCode: "€",
-        _id: _order._id,
+        _id: custom_data.order_id,
       },
       "user",
       "€",
