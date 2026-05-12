@@ -437,7 +437,7 @@ function generateUserEmailHtml(name: string, order: any, currencyCode: string) {
       ${items}
 
       <div style="font-size: 1.5em">
-      <p>Download your fonts <a href="https://overtypefoundry.com/post-checkout?status=success&orderID=${order._id}">here</a>:</p>
+        <p>You can access your order anytime via this <a href="https://overtypefoundry.com/post-checkout?status=success&orderID=${order._id}">link</a>.</p>
       </div>
       <div style="font-size: 1.5em">
         <p>Order Number: ${order.invoiceNumber}<br/>
