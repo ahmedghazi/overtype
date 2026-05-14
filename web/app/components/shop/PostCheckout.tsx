@@ -95,7 +95,7 @@ const CheckoutSuccess = ({ orderID }: CheckoutSuccessProps) => {
                 automatically…
               </p>
               <p className='md:text-xl'>
-                Please contact us at
+                Please contact us at{" "}
                 <a href='mailto:contact@overtypefoundy.com'>
                   contact@overtypefoundy.com
                 </a>{" "}

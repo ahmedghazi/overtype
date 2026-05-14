@@ -440,7 +440,7 @@ function generateUserEmailHtml(name: string, order: any, currencyCode: string) {
         <p>You can access your order anytime via this <a href="https://overtypefoundry.com/post-checkout?status=success&orderID=${order._id}">link</a>.</p>
       </div>
       <div style="font-size: 1.5em">
-        <p>Order Number: ${order.invoiceNumber}<br/>
+        <p>Order Number: ${order._id}<br/>
        Total Amount: ${order.totalAmount}${currencyCode}</p>
       </div>
 
