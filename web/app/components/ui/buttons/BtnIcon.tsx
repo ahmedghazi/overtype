@@ -17,9 +17,10 @@ type Props = {
     | "close";
   size?: "sm" | "md" | "lg";
   onClick?: (active: boolean) => void;
+  title?: string;
 };
 
-const BtnIcon = ({ icon, size = "md", onClick }: Props) => {
+const BtnIcon = ({ icon, size = "md", onClick, title = "" }: Props) => {
   const [active, setActive] = useState(false);
 
   const _onClick = () => {
@@ -34,9 +35,10 @@ const BtnIcon = ({ icon, size = "md", onClick }: Props) => {
         `ui-btn--icon__${icon}`,
         size === "sm" && "ui-btn--icon__sm rounded",
         size === "md" && "ui-btn--icon__md",
-        size === "lg" && "ui-btn--icon__lg"
+        size === "lg" && "ui-btn--icon__lg",
       )}
-      onClick={() => _onClick()}>
+      onClick={() => _onClick()}
+      aria-label={title}>
       <span className='icon'>
         {icon === "dotGreen" && <i className='icon-dot-green'></i>}
         {icon === "textCenter" && <i className='icon-text-center'></i>}

@@ -17,7 +17,7 @@ const CardFontInUse = ({ input }: Props) => {
       <div className='image rounded'>
         {image && <Figure asset={image?.image?.asset} />}
         {/* <div className='overlay'>
-          <BtnIcon icon='see' onClick={() => {}} />
+          <BtnIcon icon='see' title="see" onClick={() => {}} />
         </div> */}
       </div>
       <div className='header'>

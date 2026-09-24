@@ -42,7 +42,7 @@ const CardProduct = ({ input, layout }: Props) => {
         {
           "opacity-0": !ready,
         },
-        layout === "square" && "is-square"
+        layout === "square" && "is-square",
       )}
       style={style}>
       <Link href={_linkResolver(input)}>
@@ -54,7 +54,7 @@ const CardProduct = ({ input, layout }: Props) => {
           <h3
             className={clsx(
               "text-3xl md:text-10xl",
-              input.initialFontSize && "has-font-size"
+              input.initialFontSize && "has-font-size",
             )}
             style={h3Style}>
             {input.title}
@@ -86,7 +86,7 @@ const CardProduct = ({ input, layout }: Props) => {
           </div>
         </div>
         <div className='group'>
-          <BtnIcon icon='see' />
+          <BtnIcon icon='see' title='see product' />
         </div>
       </div>
     </article>

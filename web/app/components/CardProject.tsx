@@ -19,7 +19,7 @@ const CardProject = ({ input }: Props) => {
         <div className='image rounded'>
           {imageCover && <Figure asset={imageCover?.asset} />}
           <div className='overlay'>
-            <BtnIcon icon='see' onClick={() => {}} />
+            <BtnIcon icon='see' title='see project' onClick={() => {}} />
           </div>
         </div>
         {input.tag && (

@@ -115,7 +115,11 @@ export const Dialog: React.FC<DialogProps> = ({
         className={`dialog-inner relative ${className}`}
         onClick={(e) => e.stopPropagation()}>
         <div className='absolute top-4 right-4 '>
-          <BtnIcon icon='close' onClick={() => setIsClosing(true)} />
+          <BtnIcon
+            icon='close'
+            title='close'
+            onClick={() => setIsClosing(true)}
+          />
         </div>
         {/* <button
           onClick={() => setIsClosing(true)}

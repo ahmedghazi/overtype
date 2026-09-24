@@ -53,20 +53,20 @@ const HeaderNavDesktop = ({ settings }: Props) => {
       <div
         className={clsx(
           "sm-only wrapper-close",
-          isMobile && !open && "hidden!"
+          isMobile && !open && "hidden!",
         )}>
-        <BtnIcon icon='close' onClick={() => setOpen(false)} />
+        <BtnIcon icon='close' title='close' onClick={() => setOpen(false)} />
       </div>
       <ul
         className={clsx(
           "menu flex justify-between gap-3xs ",
-          isMobile && !open && "hidden"
+          isMobile && !open && "hidden",
         )}>
         {settings.navPrimary?.map((item, i) => (
           <li
             key={i}
             className={clsx(
-              item._type === "linkInternal" && item.subMenu && "has-submenu"
+              item._type === "linkInternal" && item.subMenu && "has-submenu",
             )}>
             <NavItem item={item} />
             {item._type === "linkInternal" && item.subMenu && (
