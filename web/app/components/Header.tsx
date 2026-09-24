@@ -18,7 +18,7 @@ const Header = (props: Props) => {
     <header>
       <div className='flex gap-xl'>
         <div className='site-name'>
-          <Link href='/'>
+          <Link href='/' title='logo overtype => go back to home page'>
             <Logo />
           </Link>
         </div>
