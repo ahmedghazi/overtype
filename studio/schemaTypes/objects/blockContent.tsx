@@ -1,6 +1,6 @@
 import {defineType, defineArrayMember, defineField} from 'sanity'
 // import { FiExternalLink, LinkIcon } from 'react-icons/fi'
-import {LinkIcon} from '@sanity/icons'
+import {LinkIcon} from '@sanity/icons/Link'
 import {FiAlignCenter, FiAlignLeft, FiAlignRight, FiExternalLink} from 'react-icons/fi'
 import linkIntternalTypes from '../misc/linkIntternalTypes'
 import LinkExternalComponent from '../../src/components/LinkExternalComponent'

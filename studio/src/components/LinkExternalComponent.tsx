@@ -1,5 +1,5 @@
 import React from 'react'
-import {LinkIcon} from '@sanity/icons'
+import {LinkIcon} from '@sanity/icons/Link'
 import {Box, Text, Tooltip} from '@sanity/ui'
 import styled from 'styled-components'
 

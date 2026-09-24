@@ -1,5 +1,5 @@
 import React from 'react'
-import {LaunchIcon} from '@sanity/icons'
+import {LaunchIcon} from '@sanity/icons/Launch'
 
 type Props = {}
 const ExternalLinkRenderer = (props: any) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Card, Text} from '@sanity/ui'
-import {DashboardIcon} from '@sanity/icons'
+import {DashboardIcon} from '@sanity/icons/Dashboard'
 
 type Props = {
   title: string

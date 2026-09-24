@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import modulesList from '../objects/modules/modulesList'
-import {InfoOutlineIcon} from '@sanity/icons'
+import {InfoOutlineIcon} from '@sanity/icons/InfoOutline'
 import {baseLanguage} from '../locale/supportedLanguages'
 
 export default defineType({

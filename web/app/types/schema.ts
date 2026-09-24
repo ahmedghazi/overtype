@@ -593,7 +593,7 @@ export interface Product extends SanityDocument {
   images?: Array<SanityKeyed<MosaicItem>>;
 
   /**
-   * Afficher le purchase — `boolean`
+   * Afficher le bouton purchase — `boolean`
    *
    *
    */
@@ -768,11 +768,32 @@ export interface Order extends SanityDocument {
   _type: "order";
 
   /**
-   * Title — `string`
+   * Order ID — `string`
    *
    *
    */
+  orderId?: string;
+
+  /**
+   * Title — `string`
+   *
+   * Transaction ID from paddle
+   */
   title?: string;
+
+  /**
+   * Invoice Number/Transaction ID — `string`
+   *
+   * Invoice number for the order (Transaction ID)
+   */
+  invoiceNumber?: string;
+
+  /**
+   * Checkout ID — `string`
+   *
+   *
+   */
+  checkoutID?: string;
 
   /**
    * status — `string`
@@ -782,11 +803,11 @@ export interface Order extends SanityDocument {
   status?: string;
 
   /**
-   * Invoice Number — `string`
+   * Download Date — `datetime`
    *
    *
    */
-  invoiceNumber?: string;
+  downloadDate?: string;
 
   /**
    * dateTime — `datetime`
@@ -850,6 +871,50 @@ export interface Order extends SanityDocument {
    *
    */
   json?: string;
+}
+
+/**
+ * Link Expire
+ *
+ *
+ */
+export interface LinkExpire extends SanityDocument {
+  _type: "linkExpire";
+
+  /**
+   * Token — `string`
+   *
+   *
+   */
+  token?: string;
+
+  /**
+   * Zips — `array`
+   *
+   *
+   */
+  zips?: Array<SanityKeyed<LinkExternal>>;
+
+  /**
+   * Max Downloads — `number`
+   *
+   *
+   */
+  maxDownloads?: number;
+
+  /**
+   * Downloads — `number`
+   *
+   *
+   */
+  downloads?: number;
+
+  /**
+   * Order ID — `string`
+   *
+   *
+   */
+  orderId?: string;
 }
 
 /**
@@ -1624,6 +1689,13 @@ export type SliderStoriesUI = {
   title?: string;
 
   /**
+   * lightMode — `boolean`
+   *
+   * Affiche le slider sans footer, ni timeline
+   */
+  lightMode?: boolean;
+
+  /**
    * items — `array`
    *
    *
@@ -1727,16 +1799,6 @@ export type FaqUI = {
   items?: Array<SanityKeyed<KeyVal>>;
 };
 
-export type LinkExpire = {
-  _id: string;
-  _type: "linkExpire";
-  token?: string;
-  zips?: Array<SanityKeyed<LinkExternal>>;
-  maxDownloads?: number;
-  downloads?: number;
-  orderId?: string;
-};
-
 export type Documents =
   | Home
   | Infos
@@ -1747,6 +1809,7 @@ export type Documents =
   | Product
   | Typeface
   | Order
+  | LinkExpire
   | User;
 
 /**
