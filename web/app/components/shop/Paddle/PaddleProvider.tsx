@@ -49,7 +49,54 @@ const PaddleProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    _initializePaddle();
+    // Defer loading the Paddle SDK until the user actually interacts with
+    // the page (or the browser goes idle), so it doesn't compete with
+    // critical resources on initial page load. It's only needed once the
+    // cart/checkout UI is opened, which never happens before a first
+    // interaction.
+    let initialized = false;
+    const interactionEvents = [
+      "pointerdown",
+      "keydown",
+      "touchstart",
+      "scroll",
+    ] as const;
+
+    let idleId: unknown;
+
+    const cancelIdle = () => {
+      if (typeof window.cancelIdleCallback === "function") {
+        window.cancelIdleCallback(idleId as number);
+      } else {
+        clearTimeout(idleId as ReturnType<typeof setTimeout>);
+      }
+    };
+
+    const init = () => {
+      if (initialized) return;
+      initialized = true;
+      interactionEvents.forEach((evt) =>
+        window.removeEventListener(evt, init),
+      );
+      cancelIdle();
+      _initializePaddle();
+    };
+
+    interactionEvents.forEach((evt) =>
+      window.addEventListener(evt, init, { once: true, passive: true }),
+    );
+
+    idleId =
+      typeof window.requestIdleCallback === "function"
+        ? window.requestIdleCallback(init, { timeout: 5000 })
+        : setTimeout(init, 3000);
+
+    return () => {
+      interactionEvents.forEach((evt) =>
+        window.removeEventListener(evt, init),
+      );
+      cancelIdle();
+    };
   }, []);
 
   const _processOrderCompleted = async (data: PaddleEventData) => {

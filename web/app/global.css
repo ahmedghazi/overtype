@@ -4,6 +4,16 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --header-h: 54.12px;
+} /* mobile */
+@media (min-width: 768px) {
+  /* match your md breakpoint */
+  :root {
+    --header-h: 111px;
+  }
+}
+
+:root {
   --color-bg: rgba(253, 253, 253, 1);
   --color-primary: rgba(16, 16, 16, 1);
   --color-secondary: rgba(157, 157, 157, 1);
@@ -69,7 +79,7 @@
   --leading-loose: 2;
 
   /* Header Height */
-  --header-height: 54.12px;
+  /* --header-h: 54.12px; */
 
   /* Border */
   --border-width: 0.5px;
@@ -94,7 +104,7 @@
   --screen-md: 1024px;
   --screen-lg: 1441px;
 
-  --main-h: calc(var(--vh) * 100 - var(--header-height));
+  --main-h: calc(var(--vh) * 100 - var(--header-h));
 }
 .dark {
   --color-bg: rgba(16, 16, 16, 1);
@@ -127,7 +137,7 @@
     sans-serif;
 
   /* Spacing */
-  --spacing-header-height: var(--header-height);
+  --spacing-header-h: var(--header-h);
   --spacing-0: var(--spacing-0);
   --spacing-3xs: var(--spacing-3xs); /* 4px */
   --spacing-2xs: var(--spacing-2xs); /* 8px */
@@ -168,7 +178,7 @@
   --leading-loose: var(--leading-loose);
 
   /* Header Height */
-  --header-height: var(--header-height);
+  --header-h: var(--header-h);
 
   /* Custom Cubic Bezier */
   --cubic: var(--cubic);

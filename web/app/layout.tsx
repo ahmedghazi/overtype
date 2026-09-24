@@ -9,11 +9,13 @@ import { LocaleContextProvider } from "./context/LocaleContext";
 import { PaddleProvider } from "./components/shop/Paddle/PaddleProvider";
 import { ThemeProvider } from "./context/ThemeProvider";
 import { draftMode } from "next/headers";
-import { VisualEditing } from "next-sanity";
+// import { VisualEditing } from "next-sanity";
 import { ShopWrapper } from "./components/shop/ShopContext";
 import { ToastContainer } from "react-toastify";
 import CookieConsent from "./components/ui/CookieConsent";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import VisualEditingClient from "./components/VisualEditingClient";
+import ResourceHints from "./components/ResourceHints";
 
 export const metadata = {
   metadataBase: new URL(website.url),
@@ -32,6 +34,7 @@ export default async function RootLayout({
   const { isEnabled } = await draftMode();
   return (
     <html lang='en'>
+      <ResourceHints />
       <body className='is-loading' data-theme='theme-overtype'>
         <div id='page'>
           <LocaleContextProvider>
@@ -62,11 +65,7 @@ export default async function RootLayout({
                         <div className='item'></div>
                       </div>
                     </div>
-                    {isEnabled && (
-                      <VisualEditing
-                        zIndex={1000} // Optional
-                      />
-                    )}
+                    {isEnabled && <VisualEditingClient />}
                   </PaddleProvider>
                 </ShopWrapper>
               </ThemeProvider>

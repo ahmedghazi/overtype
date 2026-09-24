@@ -1,4 +1,5 @@
-import archiver from "archiver";
+// import archiver from "archiver";
+import { ZipArchive } from "archiver";
 import { PassThrough, Readable } from "stream";
 
 type ZipEntry = {
@@ -7,7 +8,8 @@ type ZipEntry = {
 };
 
 export async function buildZipStream(zips: ZipEntry[]): Promise<PassThrough> {
-  const archive = archiver("zip", { zlib: { level: 9 } });
+  const archive = new ZipArchive({ zlib: { level: 9 } });
+  // const archive = archiver("zip", { zlib: { level: 9 } });
   const passThrough = new PassThrough();
 
   archive.pipe(passThrough);

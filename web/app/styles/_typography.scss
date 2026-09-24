@@ -5,7 +5,8 @@
   font-family: "Last Regular";
   font-style: normal;
   font-weight: 400;
-  src: url("./fonts/Last-Regular.woff2") format("woff2");
+  src: url("/fonts/Last-Regular.woff2") format("woff2");
+  font-display: swap;
   // unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
@@ -14,6 +15,8 @@
   font-style: normal;
   font-weight: 400;
   src: url("./fonts/Last-RegularItalic.woff2") format("woff2");
+  font-display: swap;
+
   // unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
@@ -22,6 +25,8 @@
   font-style: normal;
   font-weight: 400;
   src: url("./fonts/Last-Bold.woff2") format("woff2");
+  font-display: swap;
+
   // unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
@@ -143,7 +148,10 @@ p,
 }
 
 .tabnum {
-  font-feature-settings: "tnum" on, "lnum" on, "case" on;
+  font-feature-settings:
+    "tnum" on,
+    "lnum" on,
+    "case" on;
 }
 
 // em {
