@@ -14,7 +14,6 @@ const BtnCheckout = ({ canCheckout }: Props) => {
   const paddle = useContext(PaddleContext);
   const [isLoading, setIsLoading] = React.useState(false);
   const { products, licenseFor, licenseForData } = useShop();
-  // console.log(licenseForData);
   // define customer details
   let customerInfo: {
     email: string;
