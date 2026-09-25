@@ -11,7 +11,7 @@ import Radio from "../ui/inputs/Radio";
 import Checkbox from "../ui/inputs/Checkbox";
 import clsx from "clsx";
 import useShop from "../shop/ShopContext";
-import TextOrEmailInput from "../ui/inputs/TextOrEmailInput";
+import TextOrEmailOrNumberInput from "../ui/inputs/TextOrEmailOrNumberInput";
 import Btn from "../ui/buttons/Btn";
 import portableTextComponents from "@/app/sanity-api/portableTextComponents";
 import { toast } from "react-toastify";
@@ -150,7 +150,7 @@ const ModuleTrialsUI = ({ input }: Props) => {
         <div className='footer box'>
           <form onSubmit={_handleSubmit}>
             <div className='form-row mb-md'>
-              <TextOrEmailInput
+              <TextOrEmailOrNumberInput
                 label='Enter your email adress to request trials'
                 name='email'
                 type='email'

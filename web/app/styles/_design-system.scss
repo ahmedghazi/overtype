@@ -546,6 +546,9 @@ a.ui-btn {
       // margin-right: 0.625rem;
     }
   }
+  label {
+    cursor: inherit;
+  }
 }
 .dark .ui-radio:hover,
 .dark .ui-radio:active {
@@ -786,9 +789,26 @@ a.ui-btn {
 
 .form-field {
   margin-bottom: var(--spacing-sm);
+  &--group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-2xs);
+  }
+  &--select {
+    .header {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--spacing-md);
+      margin: 0 !important;
+      label {
+        font-size: var(--text-lg);
+        display: block;
+      }
+    }
+  }
 }
 
-.ui-text-or-email {
+.ui-text-or-email-or-number {
   .header {
     display: flex;
     justify-content: space-between;
@@ -810,6 +830,17 @@ a.ui-btn {
     padding-bottom: 15px;
     &::placeholder {
       color: var(--color-secondary);
+      text-transform: unset;
+    }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    &[type="number"] {
+      -moz-appearance: textfield;
     }
   }
 }
@@ -968,7 +999,7 @@ section {
     }
   }
   .ui-radio--group .header,
-  .ui-text-or-email label {
+  .ui-text-or-email-or-number label {
     padding-left: 0;
     padding-right: 0;
   }

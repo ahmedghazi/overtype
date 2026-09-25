@@ -121,6 +121,7 @@
 
 @theme inline {
   /* Colors */
+  --color-red: red;
   --color-bg: var(--color-bg);
   --color-primary: var(--color-primary);
   --color-secondary: var(--color-secondary);

@@ -4,7 +4,6 @@ import useShop from "./ShopContext";
 import { subscribe, unsubscribe } from "pubsub-js";
 import clsx from "clsx";
 import { useSearchParams } from "next/navigation";
-import TextOrEmailInput from "../ui/inputs/TextOrEmailInput";
 import BtnCheckout from "./Checkout";
 import { cartTotalPrice } from "./utils";
 import Link from "next/link";
@@ -15,6 +14,9 @@ import Radio from "../ui/inputs/Radio";
 import BtnToolTip from "../ui/buttons/BtnToolTip";
 import { PortableText } from "next-sanity";
 import portableTextComponents from "@/app/sanity-api/portableTextComponents";
+import TextOrEmailOrNumberInput from "../ui/inputs/TextOrEmailOrNumberInput";
+import Select from "../ui/inputs/Select";
+import countries from "../ui/inputs/countries.json";
 
 type Props = {};
 
@@ -44,9 +46,15 @@ const Cart = (props: Props) => {
   useEffect(() => {
     // console.log(licenseForData);
     const allFieldsFilled =
-      licenseForData.companyName != "" &&
       licenseForData.email != "" &&
-      licenseForData.inUseFor != "" &&
+      licenseForData.first_name != "" &&
+      licenseForData.last_name != "" &&
+      licenseForData.companyName != "" &&
+      licenseForData.street != "" &&
+      licenseForData.city != "" &&
+      licenseForData.zipCode != "" &&
+      licenseForData.country != "" &&
+      // licenseForData.inUseFor != "" &&
       optin === true;
     setCanCheckout(allFieldsFilled);
   }, [licenseForData, optin]);
@@ -68,6 +76,11 @@ const Cart = (props: Props) => {
   const _delete = (sku: string) => {
     setProducts({ type: "REMOVE_BY_SKU", payload: sku });
   };
+
+  const region = new Intl.Locale(navigator.language)
+    .maximize()
+    .region?.toLowerCase(); // "fr"
+  const defaultCountry = countries.find((c) => c.key === region)?.value || "";
 
   return (
     <div className={clsx("cart", { "is-empty": isEmpty })}>
@@ -105,10 +118,10 @@ const Cart = (props: Props) => {
               <div className='label'>Total (excl. VAT)</div>
               <div className='price'>{cartTotalPrice(products)}€ </div>
             </section>
-            <section className='licenseFor md:mb-4xl- mb-2xl- rounded'>
+            <section className='licenseFor md:mb-4xl- mb-2xl- rounded '>
               <form action='' onSubmit={(e) => e.preventDefault()}>
                 <div className='box'>
-                  <div className='form-field ui-radio--group'>
+                  {/* <div className='form-field ui-radio--group hidden-'>
                     <div className='header'>
                       <h4 className='text-lg'>Who is the license owner?</h4>
                       <BtnToolTip text={_localizeField(toolTipLicenseFor)} />
@@ -128,37 +141,149 @@ const Cart = (props: Props) => {
                         onChange={(value) => setLicenseFor(value)}
                       />
                     </div>
-                  </div>
+                  </div> */}
+
                   <div className='form-field'>
-                    <TextOrEmailInput
-                      label='Company name'
-                      name='companyName'
-                      type='text'
-                      onChange={(e) => {
-                        setLicenseForData({
-                          ...licenseForData,
-                          companyName: e.target.value,
-                        });
-                      }}
-                      tooltip={_localizeField(toolTipCompanyName)}
-                    />
-                  </div>
-                  <div className='form-field'>
-                    <TextOrEmailInput
+                    <TextOrEmailOrNumberInput
                       label='Email'
                       name='email'
+                      placeholder='myadress@mail.fr'
                       type='email'
+                      required
                       onChange={(e) => {
                         setLicenseForData({
                           ...licenseForData,
                           email: e.target.value,
                         });
                       }}
-                      tooltip={_localizeField(toolTipEmail)}
+                      // tooltip={_localizeField(toolTipEmail)}
+                    />
+                  </div>
+                  <div className='form-field form-field--group'>
+                    <TextOrEmailOrNumberInput
+                      label='First name'
+                      name='first_name'
+                      placeholder='John'
+                      type='text'
+                      required
+                      onChange={(e) => {
+                        setLicenseForData({
+                          ...licenseForData,
+                          first_name: e.target.value,
+                        });
+                      }}
+                      // tooltip={_localizeField(toolTipEmail)}
+                    />
+                    <TextOrEmailOrNumberInput
+                      label='Last name'
+                      name='last_name'
+                      placeholder='Doe'
+                      type='text'
+                      required
+                      onChange={(e) => {
+                        setLicenseForData({
+                          ...licenseForData,
+                          last_name: e.target.value,
+                        });
+                      }}
+                      // tooltip={_localizeField(toolTipEmail)}
                     />
                   </div>
                   <div className='form-field'>
-                    <TextOrEmailInput
+                    <TextOrEmailOrNumberInput
+                      label='Organisation/Company'
+                      name='companyName'
+                      placeholder='Nike'
+                      type='text'
+                      required
+                      onChange={(e) => {
+                        setLicenseForData({
+                          ...licenseForData,
+                          companyName: e.target.value,
+                        });
+                      }}
+                      // tooltip={_localizeField(toolTipCompanyName)}
+                    />
+                  </div>
+                  <div className='form-field'>
+                    <TextOrEmailOrNumberInput
+                      label='Street'
+                      name='street'
+                      placeholder='4 Rue des Nains de Jardin'
+                      type='text'
+                      required
+                      onChange={(e) => {
+                        setLicenseForData({
+                          ...licenseForData,
+                          street: e.target.value,
+                        });
+                      }}
+                      // tooltip={_localizeField(toolTipCompanyName)}
+                    />
+                  </div>
+                  <div className='form-field form-field--group'>
+                    <TextOrEmailOrNumberInput
+                      label='City'
+                      name='city'
+                      placeholder='New york'
+                      type='text'
+                      required
+                      onChange={(e) => {
+                        setLicenseForData({
+                          ...licenseForData,
+                          city: e.target.value,
+                        });
+                      }}
+                      // tooltip={_localizeField(toolTipCompanyName)}
+                    />
+                    <TextOrEmailOrNumberInput
+                      label='Zip Code'
+                      name='zipCode'
+                      placeholder='123456'
+                      type='number'
+                      required
+                      onChange={(e) => {
+                        setLicenseForData({
+                          ...licenseForData,
+                          zipCode: e.target.value,
+                        });
+                      }}
+                      // tooltip={_localizeField(toolTipCompanyName)}
+                    />
+                  </div>
+                  <div className='form-field form-field--select '>
+                    <div className='header'>
+                      <label htmlFor='country'>Country*</label>
+                    </div>
+                    <Select
+                      name='country'
+                      options={countries}
+                      defaultValue={defaultCountry}
+                      required
+                      onChange={(e: any) => {
+                        setLicenseForData({
+                          ...licenseForData,
+                          country: e.target.value,
+                        });
+                      }}
+                    />
+                    {/* <TextOrEmailOrNumberInput
+                      label='Country'
+                      name='country'
+                      placeholder='USA'
+                      type='text'
+                      onChange={(e) => {
+                        setLicenseForData({
+                          ...licenseForData,
+                          country: e.target.value,
+                        });
+                      }}
+                      // tooltip={_localizeField(toolTipCompanyName)}
+                    /> */}
+                  </div>
+
+                  {/* <div className='form-field'>
+                    <TextOrEmailOrNumberInput
                       label='Where the font will be used?'
                       name='inUseFor'
                       type='text'
@@ -170,7 +295,7 @@ const Cart = (props: Props) => {
                       }}
                       tooltip={_localizeField(toolTipInUseFor)}
                     />
-                  </div>
+                  </div> */}
                 </div>
               </form>
             </section>
@@ -198,6 +323,8 @@ const Cart = (props: Props) => {
             <section className='checkout'>
               <BtnCheckout canCheckout={canCheckout} />
             </section>
+
+            <pre>{JSON.stringify(licenseForData, null, 2)}</pre>
           </div>
         )}
       </div>

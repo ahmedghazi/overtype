@@ -45,7 +45,7 @@ const Radio = ({
             defaultChecked={isChecked ? true : false}
             onChange={_handleChange}
           />
-          {label}
+          {label === "client" ? "my client" : label}
         </label>
       </div>
       {subLabel && <span className='sub-label text-sm'>{subLabel}</span>}

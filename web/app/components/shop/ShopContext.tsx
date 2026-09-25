@@ -142,9 +142,14 @@ type ContextProps = {
   licenseFor: "me" | "client";
   setLicenseFor: Function;
   licenseForData: {
-    companyName?: string;
     email?: string;
-    inUseFor?: string;
+    first_name?: string;
+    last_name?: string;
+    companyName?: string;
+    street?: string;
+    city?: string;
+    zipCode?: string;
+    country?: string;
   };
   setLicenseForData: Function;
 };
@@ -161,7 +166,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [products, setProducts] = useReducer(productsReducer, []);
   const [dialogProducts, setDialogProducts] = useReducer(
     dialogProductsReducer,
-    []
+    [],
   );
   const [trials, setTrials] = useReducer(trialsReducer, []);
   const [licenseType, setLicenseType] = useState<LicenseType | null>(null);
