@@ -45,7 +45,6 @@ const Buy = ({ input }: Props) => {
     setDialogProducts,
     licenseFor,
     setLicenseFor,
-    setLicenseForValue,
     licenseForData,
     setLicenseForData,
   } = useShop();
