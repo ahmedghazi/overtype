@@ -45,6 +45,7 @@ const Buy = ({ input }: Props) => {
     setDialogProducts,
     licenseFor,
     setLicenseFor,
+    setLicenseForValue,
     licenseForData,
     setLicenseForData,
   } = useShop();
@@ -130,6 +131,7 @@ const Buy = ({ input }: Props) => {
                       ...licenseForData,
                       companyName: e.target.value,
                     });
+                    // setLicenseForValue(e.target.value);
                   }}
                   tooltip={_localizeField(toolTipCompanyName)}
                 />

@@ -20,7 +20,7 @@ const Radio = ({
   const ref = useRef<HTMLInputElement>(null);
 
   const _handleChange = (e: BaseSyntheticEvent) => {
-    console.log(e.target.id, e.target.checked, e.target.value);
+    // console.log(e.target.id, e.target.checked, e.target.value);
     // onChange?.(e.target.value);
     onChange?.(e.target.id);
     // setChecked(e.target.checked);

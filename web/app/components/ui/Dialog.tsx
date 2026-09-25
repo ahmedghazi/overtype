@@ -23,7 +23,7 @@ export const Dialog: React.FC<DialogProps> = ({
   const DURATION = 0.6;
   // const [open, setOpen] = useState<boolean>(isOpen);
   const [isClosing, setIsClosing] = useState<boolean>(false);
-
+  // console.log({ isClosing, isOpen });
   useEffect(() => {
     if (isClosing) {
       setTimeout(() => {

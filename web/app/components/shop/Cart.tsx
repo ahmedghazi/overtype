@@ -52,7 +52,7 @@ const Cart = (props: Props) => {
       licenseForData.companyName != "" &&
       licenseForData.street != "" &&
       licenseForData.city != "" &&
-      licenseForData.zipCode != "" &&
+      licenseForData.postalCode != "" &&
       licenseForData.country != "" &&
       // licenseForData.inUseFor != "" &&
       optin === true;
@@ -192,14 +192,14 @@ const Cart = (props: Props) => {
                   <div className='form-field'>
                     <TextOrEmailOrNumberInput
                       label='Organisation/Company'
-                      name='companyName'
+                      name='userCompanyName'
                       placeholder='Nike'
                       type='text'
                       required
                       onChange={(e) => {
                         setLicenseForData({
                           ...licenseForData,
-                          companyName: e.target.value,
+                          userCompanyName: e.target.value,
                         });
                       }}
                       // tooltip={_localizeField(toolTipCompanyName)}
@@ -238,14 +238,14 @@ const Cart = (props: Props) => {
                     />
                     <TextOrEmailOrNumberInput
                       label='Zip Code'
-                      name='zipCode'
+                      name='postalCode'
                       placeholder='123456'
                       type='number'
                       required
                       onChange={(e) => {
                         setLicenseForData({
                           ...licenseForData,
-                          zipCode: e.target.value,
+                          postalCode: e.target.value,
                         });
                       }}
                       // tooltip={_localizeField(toolTipCompanyName)}
@@ -260,10 +260,10 @@ const Cart = (props: Props) => {
                       options={countries}
                       defaultValue={defaultCountry}
                       required
-                      onChange={(e: any) => {
+                      onChange={(value: string) => {
                         setLicenseForData({
                           ...licenseForData,
-                          country: e.target.value,
+                          country: value,
                         });
                       }}
                     />

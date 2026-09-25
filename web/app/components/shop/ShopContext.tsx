@@ -124,6 +124,16 @@ function trialsReducer(state: any, action: any) {
   }
 }
 
+type LicenseForDataProps = {
+  email?: string;
+  first_name?: string;
+  last_name?: string;
+  companyName?: string;
+  street?: string;
+  city?: string;
+  postalCode?: string;
+  country?: string;
+};
 type ContextProps = {
   // cartObject: any;
   trials: SanityKeyed<Product>[] | null;
@@ -137,20 +147,13 @@ type ContextProps = {
 
   licenseType: LicenseType | null;
   setLicenseType: Function;
+
   isLogo: string | boolean | undefined;
   setIsLogo: Function;
+
   licenseFor: "me" | "client";
   setLicenseFor: Function;
-  licenseForData: {
-    email?: string;
-    first_name?: string;
-    last_name?: string;
-    companyName?: string;
-    street?: string;
-    city?: string;
-    zipCode?: string;
-    country?: string;
-  };
+  licenseForData: LicenseForDataProps;
   setLicenseForData: Function;
 };
 
@@ -171,19 +174,18 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [trials, setTrials] = useReducer(trialsReducer, []);
   const [licenseType, setLicenseType] = useState<LicenseType | null>(null);
   const [licenseFor, setLicenseFor] = useState<"me" | "client">("me");
-  const [licenseForData, setLicenseForData] = useState<{
-    companyName?: string;
-    email?: string;
-    inUseFor?: string;
-  }>({
-    companyName: "",
-    email: "",
-    inUseFor: "",
+  const [licenseForData, setLicenseForData] = useState<LicenseForDataProps>({
+    // companyName: "",
+    // email: "",
+    // inUseFor: "",
   });
+  // console.log({ licenseType });
+  // console.log({ licenseFor });
+  // console.log({ licenseForData });
   const [isLogo, setIsLogo] = useState<string | boolean | undefined>(undefined);
 
   useEffect(() => {
-    console.log(status);
+    console.log({ status });
     //preprod-overtype-foundry.vercel.app/post-checkout?status=success
     if (status === "success") return;
 
@@ -220,6 +222,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
         setIsLogo,
         licenseFor,
         setLicenseFor,
+
         licenseForData,
         setLicenseForData,
       }}>

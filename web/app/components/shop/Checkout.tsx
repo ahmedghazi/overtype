@@ -14,15 +14,24 @@ const BtnCheckout = ({ canCheckout }: Props) => {
   const paddle = useContext(PaddleContext);
   const [isLoading, setIsLoading] = React.useState(false);
   const { products, licenseFor, licenseForData } = useShop();
-  // console.log(products);
+  // console.log(licenseForData);
   // define customer details
-  const customerInfo = {
+  let customerInfo = {
     email: licenseForData.email || "",
-    // address: {
-    //   countryCode: "FR",
-    //   postalCode: "75018",
-    // },
+    address: {
+      countryCode: licenseForData.country || "",
+      postalCode: licenseForData.postalCode || "",
+      city: licenseForData.city || "",
+      firstLine: licenseForData.street || "",
+    },
+    business: {},
   };
+  if (licenseFor === "client") {
+    customerInfo.business = {
+      name: licenseForData.companyName || "",
+    };
+  }
+  console.log(customerInfo);
 
   const storeProducts = async (products: ProductData[], ttl: number) => {
     const now = new Date();
