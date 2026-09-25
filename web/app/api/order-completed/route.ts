@@ -21,9 +21,17 @@ interface PaddleWebhookData {
     order_id?: string;
     license_for: string;
     license_for_data: {
-      email: string;
+      // email: string;
       in_use_for: string;
       company_name: string;
+      email?: string;
+      first_name?: string;
+      last_name?: string;
+      companyName?: string;
+      street?: string;
+      city?: string;
+      postalCode?: string;
+      country?: string;
     };
   };
   customer: {
@@ -69,7 +77,7 @@ export async function POST(request: Request) {
     // return NextResponse.json({ success: true, paddleData, products });
 
     const { customer, items, id: transactionId, custom_data } = paddleData;
-
+    const customerInfo = custom_data.license_for_data;
     const totalAmount = products.reduce((sum: number, item) => {
       return sum + item.finalPrice;
     }, 0);
@@ -112,7 +120,10 @@ export async function POST(request: Request) {
     // Send emails first — before any Sanity writes that could delay or fail
     await sendEmail(
       customer.email,
-      customer.business?.name || customer.email.split("@")[0],
+      // customer.business?.name || customer.email.split("@")[0],
+      custom_data.license_for_data.first_name +
+        " " +
+        custom_data.license_for_data.last_name,
       {
         invoiceNumber: transactionId,
         items: products,
@@ -144,7 +155,7 @@ export async function POST(request: Request) {
     );
 
     // Store user and order in Sanity after email is confirmed sent
-    const user = await _storeUser(customer);
+    const user = await _storeUser(customerInfo);
     const userId = user._id;
 
     if (!userId) {
@@ -237,7 +248,8 @@ async function _storeUser(data: any): Promise<User> {
       (await client.create({
         _type: "user",
         email: data.email,
-        name: data.business?.name || data.email.split("@")[0],
+        name:
+          data.first_name + " " + data.last_name || data.email.split("@")[0],
         orders: [],
       }));
 

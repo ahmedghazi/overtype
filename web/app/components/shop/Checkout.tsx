@@ -16,7 +16,16 @@ const BtnCheckout = ({ canCheckout }: Props) => {
   const { products, licenseFor, licenseForData } = useShop();
   // console.log(licenseForData);
   // define customer details
-  let customerInfo = {
+  let customerInfo: {
+    email: string;
+    address: {
+      countryCode: string;
+      postalCode: string;
+      city: string;
+      firstLine: string;
+    };
+    business?: { name: string };
+  } = {
     email: licenseForData.email || "",
     address: {
       countryCode: licenseForData.country || "",
@@ -24,14 +33,13 @@ const BtnCheckout = ({ canCheckout }: Props) => {
       city: licenseForData.city || "",
       firstLine: licenseForData.street || "",
     },
-    business: {},
   };
-  if (licenseFor === "client") {
+  if (licenseFor === "client" && licenseForData.companyName) {
     customerInfo.business = {
-      name: licenseForData.companyName || "",
+      name: licenseForData.companyName,
     };
   }
-  console.log(customerInfo);
+  // console.log(customerInfo);
 
   const storeProducts = async (products: ProductData[], ttl: number) => {
     const now = new Date();
@@ -60,6 +68,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
   };
 
   const handleCheckout = async () => {
+    if (!canCheckout) return;
     if (!paddle) return alert("Paddle not initialized");
 
     console.log("BtnCheckout clicked");
@@ -148,6 +157,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
           !canCheckout && "disabled",
           isLoading && "disabled",
         )}
+        disabled={!canCheckout || isLoading}
         onClick={handleCheckout}>
         {isLoading ? "Loading..." : "Checkout"}
       </button>

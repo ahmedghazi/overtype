@@ -46,15 +46,15 @@ const Cart = (props: Props) => {
   useEffect(() => {
     // console.log(licenseForData);
     const allFieldsFilled =
-      licenseForData.email != "" &&
-      licenseForData.first_name != "" &&
-      licenseForData.last_name != "" &&
-      licenseForData.companyName != "" &&
-      licenseForData.street != "" &&
-      licenseForData.city != "" &&
-      licenseForData.postalCode != "" &&
-      licenseForData.country != "" &&
-      // licenseForData.inUseFor != "" &&
+      !!licenseForData.email &&
+      !!licenseForData.first_name &&
+      !!licenseForData.last_name &&
+      !!licenseForData.companyName &&
+      !!licenseForData.street &&
+      !!licenseForData.city &&
+      !!licenseForData.postalCode &&
+      !!licenseForData.country &&
+      // !!licenseForData.inUseFor &&
       optin === true;
     setCanCheckout(allFieldsFilled);
   }, [licenseForData, optin]);
@@ -192,14 +192,14 @@ const Cart = (props: Props) => {
                   <div className='form-field'>
                     <TextOrEmailOrNumberInput
                       label='Organisation/Company'
-                      name='userCompanyName'
+                      name='companyName'
                       placeholder='Nike'
                       type='text'
                       required
                       onChange={(e) => {
                         setLicenseForData({
                           ...licenseForData,
-                          userCompanyName: e.target.value,
+                          companyName: e.target.value,
                         });
                       }}
                       // tooltip={_localizeField(toolTipCompanyName)}
@@ -240,7 +240,7 @@ const Cart = (props: Props) => {
                       label='Zip Code'
                       name='postalCode'
                       placeholder='123456'
-                      type='number'
+                      type='text'
                       required
                       onChange={(e) => {
                         setLicenseForData({
