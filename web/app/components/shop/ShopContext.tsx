@@ -129,6 +129,7 @@ type LicenseForDataProps = {
   first_name?: string;
   last_name?: string;
   companyName?: string;
+  userCompanyName?: string;
   street?: string;
   city?: string;
   postalCode?: string;

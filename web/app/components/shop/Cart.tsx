@@ -44,12 +44,12 @@ const Cart = (props: Props) => {
   const [status, setStatus] = useState<string>("");
 
   useEffect(() => {
-    // console.log(licenseForData);
+    console.log(licenseForData);
     const allFieldsFilled =
       !!licenseForData.email &&
       !!licenseForData.first_name &&
       !!licenseForData.last_name &&
-      !!licenseForData.companyName &&
+      !!licenseForData.userCompanyName &&
       !!licenseForData.street &&
       !!licenseForData.city &&
       !!licenseForData.postalCode &&
@@ -192,14 +192,14 @@ const Cart = (props: Props) => {
                   <div className='form-field'>
                     <TextOrEmailOrNumberInput
                       label='Organisation/Company'
-                      name='companyName'
+                      name='userCompanyName'
                       placeholder='Nike'
                       type='text'
                       required
                       onChange={(e) => {
                         setLicenseForData({
                           ...licenseForData,
-                          companyName: e.target.value,
+                          userCompanyName: e.target.value,
                         });
                       }}
                       // tooltip={_localizeField(toolTipCompanyName)}
