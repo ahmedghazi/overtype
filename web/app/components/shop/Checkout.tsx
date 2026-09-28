@@ -135,6 +135,15 @@ const BtnCheckout = ({ canCheckout }: Props) => {
     });
     const data = await response.json();
     setIsLoading(false);
+
+    if (!response.ok || !data.tsx) {
+      console.error("Failed to create Paddle transaction:", data);
+      alert(
+        data.details || data.error || "Failed to start checkout. Please try again."
+      );
+      return;
+    }
+
     console.log("Response from server:", data.tsx);
     paddle?.Checkout.open({
       allowQuantity: false,
