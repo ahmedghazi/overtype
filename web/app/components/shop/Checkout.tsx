@@ -38,7 +38,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
       name: licenseForData.companyName,
     };
   }
-  // console.log(customerInfo);
+  console.log(customerInfo);
 
   const storeProducts = async (products: ProductData[], ttl: number) => {
     const now = new Date();
@@ -115,7 +115,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
         },
       },
     }));
-    // console.log(items);
+    console.log(items);
     // return;
 
     const response = await fetch("/api/checkout", {
