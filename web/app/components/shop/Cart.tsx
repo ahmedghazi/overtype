@@ -43,6 +43,12 @@ const Cart = (props: Props) => {
   const [optin, setOptin] = useState<boolean>(false);
   const [status, setStatus] = useState<string>("");
 
+  // useEffect(() => {
+  //   console.log("licenseFor", licenseFor);
+  //   if (!licenseFor) {
+  //     alert("need license for");
+  //   }
+  // }, [licenseFor]);
   useEffect(() => {
     console.log(licenseForData);
     const allFieldsFilled =

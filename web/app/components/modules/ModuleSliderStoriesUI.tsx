@@ -12,17 +12,18 @@ interface Props {
 }
 
 const ModuleSliderStoriesUI = ({ input }: Props) => {
-  const { title, items } = input;
+  const { title, items, lightMode } = input;
   const { isMobile } = useDeviceDetect();
   const stories = items?.map((item, i) => {
     const arr = {
-      content: (props: any) => <CardStory input={item} />,
+      content: (props: any) => <CardStory input={item} lightMode />,
     };
     return arr;
   });
   return (
     <section
       className={clsx("module module--slider-stories-ui px-xs md:px-md")}>
+      {lightMode && "lightMode"}
       {stories && (
         <div className='rounded'>
           <Stories
@@ -31,6 +32,9 @@ const ModuleSliderStoriesUI = ({ input }: Props) => {
             // height={isMobile ? "230px" : "var(--main-h, 750px)"}
             height={"var(--main-h, 750px)"}
             stories={stories}
+            // progressStyles={{
+            //   visibilty: lightMode ? "hidden" : "unset",
+            // }}
             progressContainerStyles={{
               bottom: isMobile ? "var(--spacing-md)" : "var(--spacing-md)",
               gap: isMobile
@@ -41,6 +45,7 @@ const ModuleSliderStoriesUI = ({ input }: Props) => {
                 ? "var(--spacing-md) var(--spacing-md) 0"
                 : "7px 5px 5px",
               width: isMobile ? "100%" : "98%",
+              display: lightMode ? "none" : "flex",
             }}
             storyStyles={{
               width: "100%",
