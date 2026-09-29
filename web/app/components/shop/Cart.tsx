@@ -55,7 +55,6 @@ const Cart = (props: Props) => {
       !!licenseForData.email &&
       !!licenseForData.first_name &&
       !!licenseForData.last_name &&
-      !!licenseForData.userCompanyName &&
       !!licenseForData.street &&
       !!licenseForData.city &&
       !!licenseForData.postalCode &&
@@ -124,9 +123,10 @@ const Cart = (props: Props) => {
               <div className='label'>Total (excl. VAT)</div>
               <div className='price'>{cartTotalPrice(products)}€ </div>
             </section>
-            <section className='licenseFor md:mb-4xl- mb-2xl- rounded '>
+            <section className='licenseFor md:mb-4xl- mb-2xl-  '>
+              <h3 className='text-sm'>Billing information</h3>
               <form action='' onSubmit={(e) => e.preventDefault()}>
-                <div className='box'>
+                <div className='box rounded'>
                   {/* <div className='form-field ui-radio--group hidden-'>
                     <div className='header'>
                       <h4 className='text-lg'>Who is the license owner?</h4>
@@ -199,9 +199,8 @@ const Cart = (props: Props) => {
                     <TextOrEmailOrNumberInput
                       label='Organisation/Company'
                       name='userCompanyName'
-                      placeholder='Nike'
+                      placeholder='Acme Corp.'
                       type='text'
-                      required
                       onChange={(e) => {
                         setLicenseForData({
                           ...licenseForData,
@@ -215,7 +214,7 @@ const Cart = (props: Props) => {
                     <TextOrEmailOrNumberInput
                       label='Street'
                       name='street'
-                      placeholder='4 Rue des Nains de Jardin'
+                      placeholder='123 Main Street'
                       type='text'
                       required
                       onChange={(e) => {
@@ -245,7 +244,7 @@ const Cart = (props: Props) => {
                     <TextOrEmailOrNumberInput
                       label='Zip Code'
                       name='postalCode'
-                      placeholder='123456'
+                      placeholder='10001'
                       type='text'
                       required
                       onChange={(e) => {

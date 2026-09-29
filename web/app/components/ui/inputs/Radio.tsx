@@ -3,6 +3,7 @@ import React, { BaseSyntheticEvent, useEffect, useRef, useState } from "react";
 
 type Props = {
   name: string;
+  id: string;
   label: string;
   isChecked?: boolean;
   subLabel?: string;
@@ -11,6 +12,7 @@ type Props = {
 
 const Radio = ({
   name,
+  id,
   label,
   isChecked = false,
   subLabel,
@@ -20,7 +22,7 @@ const Radio = ({
   const ref = useRef<HTMLInputElement>(null);
 
   const _handleChange = (e: BaseSyntheticEvent) => {
-    // console.log(e.target.id, e.target.checked, e.target.value);
+    console.log(e.target.id, e.target.name, e.target.checked, e.target.value);
     // onChange?.(e.target.value);
     onChange?.(e.target.id);
     // setChecked(e.target.checked);
@@ -36,16 +38,16 @@ const Radio = ({
       className={clsx("ui-radio", checked && "is-active")}
       onClick={() => ref.current?.click()}>
       <div className='inner'>
-        <label htmlFor={label}>
+        <label htmlFor={id}>
           <input
             type='radio'
             name={name}
-            id={label}
+            id={id}
             ref={ref}
             defaultChecked={isChecked ? true : false}
             onChange={_handleChange}
           />
-          {label === "client" ? "my client" : label}
+          {label}
         </label>
       </div>
       {subLabel && <span className='sub-label text-sm'>{subLabel}</span>}

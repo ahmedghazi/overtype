@@ -91,24 +91,26 @@ const Buy = ({ input }: Props) => {
 
         <section className='licenseFor box rounded bg-btn mb-3xl!'>
           <form action='' onSubmit={(e) => e.preventDefault()}>
-            <div className='box'>
+            <div className='box-'>
               <div className='form-field ui-radio--group'>
                 <div className='header'>
-                  <h4 className='text-lg'>
+                  <h4 className='text-md md:text-lg'>
                     The typeface is being used in a project for
                   </h4>
                   <BtnToolTip text={_localizeField(toolTipLicenseFor)} />
                 </div>
-                <div className='grid grid-cols-2 gap-2xs'>
+                <div className='grid md:grid-cols-2 gap-2xs'>
                   <Radio
-                    name='lincenseFor'
-                    label='me'
+                    name='licenseFor'
+                    id='me'
+                    label='Yourself'
                     isChecked={licenseFor === "me"}
                     onChange={(value) => setLicenseFor(value)}
                   />
                   <Radio
-                    name='lincenseFor'
-                    label='client'
+                    name='licenseFor'
+                    id='client'
+                    label='Your client'
                     // isChecked={isLogo}
                     isChecked={licenseFor === "client"}
                     onChange={(value) => setLicenseFor(value)}
@@ -123,8 +125,8 @@ const Buy = ({ input }: Props) => {
                       : "Your client’s company name"
                   }
                   name='companyName'
+                  placeholder={"Acme Corp"}
                   type='text'
-                  required
                   onChange={(e) => {
                     setLicenseForData({
                       ...licenseForData,
@@ -140,7 +142,11 @@ const Buy = ({ input }: Props) => {
         </section>
         <section className='licenseType box rounded bg-btn mb-3xl!'>
           <div className='header'>
-            <h4 className='text-md md:text-lg'>What’s your company size?</h4>
+            <h4 className='text-md md:text-lg'>
+              {licenseFor === "me"
+                ? "What’s your company size?"
+                : "What’s your client's company size?"}
+            </h4>
             <BtnToolTip text={_localizeField(toolTipLicenses)} />
           </div>
           <div className='content'>
@@ -150,6 +156,7 @@ const Buy = ({ input }: Props) => {
                   key={i}
                   name='licenseSize'
                   isChecked={licenseType === item}
+                  id={_localizeField(item.label)}
                   label={_localizeField(item.label)}
                   subLabel={_localizeField(item.infos)}
                   onChange={() => _updateLicense(item)}
@@ -181,12 +188,14 @@ const Buy = ({ input }: Props) => {
                 <div className='grid md:grid-cols-2 gap-3xs'>
                   <Radio
                     name='forLogo'
+                    id='yes'
                     label='Yes'
                     isChecked={isLogo === "Yes"}
                     onChange={() => setIsLogo("Yes")}
                   />
                   <Radio
                     name='forLogo'
+                    id='no'
                     label='No'
                     isChecked={isLogo === "No"}
                     onChange={() => setIsLogo("No")}
@@ -203,7 +212,7 @@ const Buy = ({ input }: Props) => {
 
             {input.bundles && (
               <section className=' box rounded bg-btn mb-3xl!'>
-                <div className='box-item mb-3xl'>
+                <div className='box-item'>
                   <div className='header'>
                     <h4 className='text-md md:text-lg'>Bundles</h4>
                   </div>
