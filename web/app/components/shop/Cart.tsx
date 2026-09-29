@@ -49,8 +49,26 @@ const Cart = (props: Props) => {
   //     alert("need license for");
   //   }
   // }, [licenseFor]);
+  const requiredFields = [
+    "email",
+    "first_name",
+    "last_name",
+    "street",
+    "city",
+    "postalCode",
+    "country",
+  ];
   useEffect(() => {
-    console.log(licenseForData);
+    console.table(licenseForData);
+    console.log(optin);
+    if (!optin) return;
+    // let _allFieldsFilled = true;
+    // requiredFields.forEach((field) => {
+    //   if (!licenseForData[field]) {
+    //     console.log(field, licenseForData[field]);
+    //     _allFieldsFilled = false;
+    //   }
+    // });
     const allFieldsFilled =
       !!licenseForData.email &&
       !!licenseForData.first_name &&
@@ -59,10 +77,11 @@ const Cart = (props: Props) => {
       !!licenseForData.city &&
       !!licenseForData.postalCode &&
       !!licenseForData.country &&
-      // !!licenseForData.inUseFor &&
       optin === true;
+    console.log("allFieldsFilled", allFieldsFilled);
     setCanCheckout(allFieldsFilled);
   }, [licenseForData, optin]);
+  console.log("canCheckout", canCheckout);
 
   const searchParams = useSearchParams();
   const success = searchParams.get("success");
@@ -86,6 +105,15 @@ const Cart = (props: Props) => {
     .maximize()
     .region?.toLowerCase(); // "fr"
   const defaultCountry = countries.find((c) => c.key === region)?.value || "";
+
+  useEffect(() => {
+    if (defaultCountry && !licenseForData.country) {
+      setLicenseForData({
+        ...licenseForData,
+        country: defaultCountry,
+      });
+    }
+  }, [defaultCountry]);
 
   return (
     <div className={clsx("cart", { "is-empty": isEmpty })}>
