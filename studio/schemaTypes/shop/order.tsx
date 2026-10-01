@@ -145,6 +145,7 @@ export default defineType({
       name: 'json',
       title: 'json',
       type: 'text',
+      description: 'JSON reponse data from Paddle for the order',
     }),
   ],
 })
