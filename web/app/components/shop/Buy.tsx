@@ -126,6 +126,7 @@ const Buy = ({ input }: Props) => {
                   }
                   name='companyName'
                   placeholder={"Acme Corp"}
+                  required
                   type='text'
                   onChange={(e) => {
                     setLicenseForData({
@@ -206,7 +207,7 @@ const Buy = ({ input }: Props) => {
           </section>
         )}
         {/* <pre>{JSON.stringify(isLogo, null, 2)}</pre> */}
-        {licenseType && isLogo !== undefined && (
+        {licenseType && isLogo !== undefined && licenseForData.companyName && (
           <>
             <h3 className='md:text-sm'>2/ Select your styles</h3>
 

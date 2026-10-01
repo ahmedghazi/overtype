@@ -11,6 +11,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { Order, User } from "@/app/types/schema";
 import { ProductData } from "@/app/types/extra-types";
+import { LicenseForDataProps } from "@/app/components/shop/ShopContext";
 
 interface PaddleWebhookData {
   id: string;
@@ -20,19 +21,7 @@ interface PaddleWebhookData {
   custom_data: {
     order_id?: string;
     license_for: string;
-    license_for_data: {
-      // email: string;
-      in_use_for: string;
-      company_name: string;
-      email?: string;
-      first_name?: string;
-      last_name?: string;
-      companyName?: string;
-      street?: string;
-      city?: string;
-      postalCode?: string;
-      country?: string;
-    };
+    license_for_data: LicenseForDataProps;
   };
   customer: {
     id: string;
@@ -68,6 +57,9 @@ const formatedTimestamp = () => {
   return now.toISOString();
 };
 
+const getFullName = (data?: LicenseForDataProps) =>
+  [data?.first_name, data?.last_name].filter(Boolean).join(" ").trim();
+
 export async function POST(request: Request) {
   try {
     const { paddleData, products } = (await request.json()) as {
@@ -78,6 +70,9 @@ export async function POST(request: Request) {
 
     const { customer, items, id: transactionId, custom_data } = paddleData;
     const customerInfo = custom_data.license_for_data;
+    const customerName =
+      getFullName(customerInfo) || customer.email.split("@")[0];
+    const companyName = customerInfo?.companyName || "";
     const totalAmount = products.reduce((sum: number, item) => {
       return sum + item.finalPrice;
     }, 0);
@@ -120,16 +115,14 @@ export async function POST(request: Request) {
     // Send emails first — before any Sanity writes that could delay or fail
     await sendEmail(
       customer.email,
-      // customer.business?.name || customer.email.split("@")[0],
-      custom_data.license_for_data.first_name +
-        " " +
-        custom_data.license_for_data.last_name,
+      customerName,
       {
         invoiceNumber: transactionId,
         items: products,
         totalAmount,
         currencyCode: "€",
         _id: custom_data.order_id,
+        companyName,
       },
       "user",
       "€",
@@ -144,9 +137,10 @@ export async function POST(request: Request) {
         items,
         totalAmount,
         currencyCode: "€",
+        companyName,
         customer: {
           email: customer.email,
-          name: customer.business?.name || customer.email.split("@")[0],
+          name: customerName,
           address: customer.address,
         },
       },
@@ -241,15 +235,15 @@ async function notifyAdminError(subject: string, context: Record<string, any>) {
   }
 }
 
-async function _storeUser(data: any): Promise<User> {
+async function _storeUser(data: LicenseForDataProps): Promise<User> {
   try {
+    const email = data.email as string;
     const user =
-      (await findUserByEmail(data.email)) ??
+      (await findUserByEmail(email)) ??
       (await client.create({
         _type: "user",
-        email: data.email,
-        name:
-          data.first_name + " " + data.last_name || data.email.split("@")[0],
+        email,
+        name: getFullName(data) || email.split("@")[0],
         orders: [],
       }));
 
@@ -293,6 +287,7 @@ async function _storeOrder(
           json: JSON.stringify(items),
           user: { _type: "reference", _ref: userId },
           licenseFor: custom_data?.license_for,
+          companyName: custom_data?.license_for_data?.companyName,
           licenseForData: JSON.stringify(
             custom_data?.license_for_data,
             null,
@@ -332,6 +327,7 @@ async function _storeOrder(
       totalAmount,
       status,
       licenseFor: custom_data?.license_for,
+      companyName: custom_data?.license_for_data?.companyName,
       licenseForData: JSON.stringify(custom_data?.license_for_data, null, 2),
     });
 
@@ -410,6 +406,8 @@ function generateAdminEmailHtml(order: any, currencyCode: string) {
       <h2 style="color: #333; margin-top: 20px;">Order Details</h2>
       <div style="background: #f9f9f9; padding: 15px; border-radius: 5px;">
         <p><strong>Invoice Number:</strong> ${order.invoiceNumber}</p>
+        <p><strong>Customer:</strong> ${order.customer?.name} (${order.customer?.email})</p>
+        ${order.companyName ? `<p><strong>License Owner:</strong> ${order.companyName}</p>` : ""}
         <p><strong>Total Amount:</strong> ${order.totalAmount} ${currencyCode}</p>
       </div>
 
@@ -452,7 +450,8 @@ function generateUserEmailHtml(name: string, order: any, currencyCode: string) {
         <p>You can access your order anytime via this <a href="https://overtypefoundry.com/post-checkout?status=success&orderID=${order._id}">link</a>.</p>
       </div>
       <div style="font-size: 1.5em">
-        <p>Order Number: ${order._id}<br/>
+        <p>License Owner: ${order.companyName || name}<br/>
+        Order Number: ${order._id}<br/>
        Total Amount: ${order.totalAmount}${currencyCode}</p>
       </div>
 

@@ -138,6 +138,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      title: 'licenseOwner',
+      name: 'companyName',
+      type: 'string',
+    }),
+    defineField({
       name: 'licenseForData',
       type: 'text',
     }),

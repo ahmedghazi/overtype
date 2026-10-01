@@ -124,7 +124,7 @@ function trialsReducer(state: any, action: any) {
   }
 }
 
-type LicenseForDataProps = {
+export type LicenseForDataProps = {
   email?: string;
   first_name?: string;
   last_name?: string;

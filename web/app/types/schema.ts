@@ -859,6 +859,13 @@ export interface Order extends SanityDocument {
   licenseFor?: string;
 
   /**
+   * licenseOwner — `string`
+   *
+   *
+   */
+  companyName?: string;
+
+  /**
    * licenseForData — `text`
    *
    *
@@ -868,7 +875,7 @@ export interface Order extends SanityDocument {
   /**
    * json — `text`
    *
-   *
+   * JSON reponse data from Paddle for the order
    */
   json?: string;
 }

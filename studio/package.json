@@ -11,7 +11,7 @@
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
     "d": "yarn run deploy-graphql && yarn run deploy && yarn run codegen  && code ../web/app/types/schema.ts && code types/schema.ts",
-    "codegen": "npx sanity-codegen"
+    "codegen": "sanity-codegen"
   },
   "keywords": [
     "sanity"
@@ -19,12 +19,12 @@
   "dependencies": {
     "@reach/auto-id": "^0.18.0",
     "@sanity/color-input": "^6.1.4",
-    "@sanity/vision": "6.16.0",
+    "@sanity/vision": "6.17.0",
     "react": "^19.3",
     "react-dom": "^19.3",
     "react-icons": "^5.7.0",
     "react-player": "^3.4.0",
-    "sanity": "6.16.0",
+    "sanity": "6.17.0",
     "sanity-codegen": "^0.9.8",
     "sanity-plugin-iframe-pane": "^5.0.36",
     "sanity-plugin-media": "^6.3.0",
