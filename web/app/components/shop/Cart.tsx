@@ -357,7 +357,7 @@ const Cart = (props: Props) => {
               <BtnCheckout canCheckout={canCheckout} />
             </section>
 
-            <pre>{JSON.stringify(licenseForData, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(licenseForData, null, 2)}</pre> */}
           </div>
         )}
       </div>
