@@ -32,12 +32,15 @@ const BtnCheckout = ({ canCheckout }: Props) => {
       city: licenseForData.city || "",
       firstLine: licenseForData.street || "",
     },
+    business: {
+      name: licenseForData.userCompanyName || "",
+    },
   };
-  if (licenseFor === "client" && licenseForData.companyName) {
-    customerInfo.business = {
-      name: licenseForData.companyName,
-    };
-  }
+  // if (licenseFor === "client" && licenseForData.companyName) {
+  //   customerInfo.business = {
+  //     name: licenseForData.companyName,
+  //   };
+  // }
   console.log(customerInfo);
 
   const storeProducts = async (products: ProductData[], ttl: number) => {
@@ -139,7 +142,9 @@ const BtnCheckout = ({ canCheckout }: Props) => {
     if (!response.ok || !data.tsx) {
       console.error("Failed to create Paddle transaction:", data);
       alert(
-        data.details || data.error || "Failed to start checkout. Please try again."
+        data.details ||
+          data.error ||
+          "Failed to start checkout. Please try again.",
       );
       return;
     }
