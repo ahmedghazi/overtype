@@ -23,7 +23,6 @@ const ModuleSliderStoriesUI = ({ input }: Props) => {
   return (
     <section
       className={clsx("module module--slider-stories-ui px-xs md:px-md")}>
-      {lightMode && "lightMode"}
       {stories && (
         <div className='rounded'>
           <Stories
