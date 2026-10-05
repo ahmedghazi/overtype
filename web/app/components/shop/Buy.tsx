@@ -128,6 +128,7 @@ const Buy = ({ input }: Props) => {
                   placeholder={"Acme Corp"}
                   required
                   type='text'
+                  value={licenseForData.companyName}
                   onChange={(e) => {
                     setLicenseForData({
                       ...licenseForData,

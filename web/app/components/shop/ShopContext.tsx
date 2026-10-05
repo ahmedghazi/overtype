@@ -198,6 +198,15 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
       });
     }
 
+    const _licenseFor = localStorage.getItem("overtype-licenseFor");
+    if (_licenseFor) {
+      setLicenseFor(JSON.parse(_licenseFor));
+    }
+    const _licenseForData = localStorage.getItem("overtype-licenseForData");
+    if (_licenseForData) {
+      setLicenseForData(JSON.parse(_licenseForData));
+    }
+
     setReady(true);
   }, []);
 
@@ -206,6 +215,16 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
       localStorage.setItem("overtype-cart", JSON.stringify(products));
     }
   }, [products, ready]);
+
+  useEffect(() => {
+    if (ready) {
+      localStorage.setItem("overtype-licenseFor", JSON.stringify(licenseFor));
+      localStorage.setItem(
+        "overtype-licenseForData",
+        JSON.stringify(licenseForData),
+      );
+    }
+  }, [licenseFor, licenseForData, ready]);
 
   return (
     <ShopContext.Provider

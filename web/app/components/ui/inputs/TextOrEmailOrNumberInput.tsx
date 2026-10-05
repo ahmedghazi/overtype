@@ -9,6 +9,7 @@ type Props = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   tooltip?: string;
   required?: boolean;
+  value?: string;
 };
 
 const TextOrEmailOrNumberInput = ({
@@ -19,6 +20,7 @@ const TextOrEmailOrNumberInput = ({
   tooltip,
   onChange,
   required = false,
+  value,
 }: Props) => {
   return (
     <div className='ui-text-or-email-or-number'>
@@ -36,6 +38,7 @@ const TextOrEmailOrNumberInput = ({
         onChange={onChange}
         placeholder={placeholder || label}
         required={required}
+        value={value || ""}
       />
     </div>
   );
