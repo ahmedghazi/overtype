@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import BtnToolTip from "../buttons/BtnToolTip";
 
 type Props = {
@@ -22,6 +22,12 @@ const TextOrEmailOrNumberInput = ({
   required = false,
   value,
 }: Props) => {
+  const ref = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (ref.current && value) {
+      ref.current.value = value;
+    }
+  }, [value]);
   return (
     <div className='ui-text-or-email-or-number'>
       <div className='header'>
@@ -38,7 +44,8 @@ const TextOrEmailOrNumberInput = ({
         onChange={onChange}
         placeholder={placeholder || label}
         required={required}
-        value={value || ""}
+        // value={value || ""}
+        ref={ref}
       />
     </div>
   );

@@ -300,19 +300,6 @@ const Cart = (props: Props) => {
                         });
                       }}
                     />
-                    {/* <TextOrEmailOrNumberInput
-                      label='Country'
-                      name='country'
-                      placeholder='USA'
-                      type='text'
-                      onChange={(e) => {
-                        setLicenseForData({
-                          ...licenseForData,
-                          country: e.target.value,
-                        });
-                      }}
-                      // tooltip={_localizeField(toolTipCompanyName)}
-                    /> */}
                   </div>
 
                   {/* <div className='form-field'>
