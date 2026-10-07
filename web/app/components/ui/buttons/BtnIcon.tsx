@@ -38,7 +38,7 @@ const BtnIcon = ({ icon, size = "md", onClick, title = "" }: Props) => {
         size === "lg" && "ui-btn--icon__lg",
       )}
       onClick={() => _onClick()}
-      aria-label={title}>
+      aria-label={title || icon}>
       <span className='icon'>
         {icon === "dotGreen" && <i className='icon-dot-green'></i>}
         {icon === "textCenter" && <i className='icon-text-center'></i>}
