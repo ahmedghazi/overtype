@@ -7,6 +7,9 @@ type WaterfallItemProps = {
   input: ProductSingle;
 };
 const WaterfallItem = ({ input }: WaterfallItemProps) => {
+  ``;
+  console.log("--WaterfallItem");
+  console.log(input);
   const { type, dispatchType } = useTypeFace();
   useEffect(() => {
     dispatchType(input.typeface);
@@ -21,7 +24,7 @@ const WaterfallItem = ({ input }: WaterfallItemProps) => {
         }}
         className={clsx(
           "t-preview text-2xl md:text-3xl",
-          isItalic && "is-italic"
+          isItalic && "is-italic",
         )}>
         {input.title}
       </div>

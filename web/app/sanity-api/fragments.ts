@@ -111,7 +111,8 @@ export const productCard = `
 			slug,
 			title,
 			typefaceFile{
-				base64
+				// base64
+				asset
 			}
 		},
 	}
@@ -227,7 +228,8 @@ const trialsUI = `
 					slug,
 					title,
 					typefaceFile{
-						base64
+						// base64
+						asset
 					}
 				},
 			}

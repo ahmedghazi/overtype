@@ -197,7 +197,8 @@ export const PRODUCT_QUERY = groq`*[_type == "product" && slug.current == $slug]
       title,
       slug,
       typefaceFile{
-        base64
+        // base64
+        asset
       },
       icon{
         asset->{
