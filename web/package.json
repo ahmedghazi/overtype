@@ -8,13 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
-<<<<<<< HEAD
-  "engines": {},
-=======
   "engines": {
     "node": "24.19.0"
   },
->>>>>>> v2
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
