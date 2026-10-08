@@ -5,6 +5,7 @@ import React, {
   ReactNode,
   useState,
   useEffect,
+  useCallback,
 } from "react";
 import { Typeface } from "@/app/types/schema";
 
@@ -25,47 +26,88 @@ type ContextProps = {
 
 const TypeFaceContext = createContext<ContextProps>({} as ContextProps);
 
+// Encode asset ref for the proxy URL (same logic as server)
+function encodeAssetId(assetRef: string): string {
+  return btoa(assetRef)
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}
+
+// Get font URL via proxy
+function getFontUrl(typefaceFile: Typeface["typefaceFile"]): string | null {
+  if (!typefaceFile) return null;
+
+  const assetRef = typefaceFile.asset?._ref;
+  if (!assetRef) return null;
+
+  const encodedId = encodeAssetId(assetRef);
+  return `/api/font?id=${encodedId}`;
+}
+
 export const TypeFaceContextProvider = ({
   children,
 }: // typeface,
 TypeFaceContextProps) => {
   const [types, dispatchTypes] = useState<Typeface[] | null>([]);
   const [type, dispatchType] = useState<Typeface | null>(null);
-  // console.log({ typeface });
-  // console.log(type);
+  const [loadedFonts, setLoadedFonts] = useState<Set<string>>(new Set());
+
+  // useEffect(() => {
+  //   if (type) _loadFont(type);
+  //   if (types) {
+  //     types.forEach((el) => {
+  //       _loadFont(el);
+  //     });
+  //   }
+  // }, [type]);
+
+  // const _loadFont = async (item: Typeface) => {
+  //   if (!item || !item.slug) return;
+  //   const font = new FontFace(
+  //     item.slug?.current || "",
+  //     `url(${item.typefaceFile?.base64})`,
+  //     {
+  //       // style: "normal",
+  //       // weight: "400",
+  //       // stretch: "condensed",
+  //     },
+  //   );
+  //   await font.load();
+  //   document.fonts.add(font);
+  // };
+
+  const loadFont = useCallback(
+    async (item: Typeface) => {
+      if (!item || !item.slug) return;
+
+      const slug = item.slug.current || "";
+      if (loadedFonts.has(slug)) return;
+      // console.log("Loading font:", slug);
+      const fontUrl = getFontUrl(item.typefaceFile);
+      console.log("fontUrl:", fontUrl);
+
+      if (!fontUrl) return;
+
+      const font = new FontFace(slug, `url(${fontUrl})`);
+      console.log({ font });
+      await font.load();
+      document.fonts.add(font);
+      setLoadedFonts((prev) => new Set(prev).add(slug));
+    },
+    [loadedFonts],
+  );
+
   useEffect(() => {
-    if (type) _loadFont(type);
+    console.log("type:", type);
+    // console.log("types:", types);
+    if (type) loadFont(type);
     if (types) {
       types.forEach((el) => {
-        // console.log({ el });
-        _loadFont(el);
+        loadFont(el);
       });
     }
-  }, [type]);
-
-  const _loadFont = async (item: Typeface) => {
-    //if (!ref.current) return;
-    // return;
-
-    // console.log(item);
-    if (!item || !item.slug) return;
-    const font = new FontFace(
-      item.slug?.current || "",
-      `url(${item.typefaceFile?.base64})`,
-      {
-        // style: "normal",
-        // weight: "400",
-        // stretch: "condensed",
-      }
-    );
-    // wait for font to be loaded
-    await font.load();
-    // add font to document
-    document.fonts.add(font);
-    // console.log(font);
-    // ref.current.classList.add("is-ready");
-    // setReady(true);
-  };
+  }, [type, types, loadFont]);
 
   return (
     <TypeFaceContext.Provider

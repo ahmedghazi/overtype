@@ -25,7 +25,7 @@ const BtnCart = (props: Props) => {
   return (
     <>
       <div className={clsx("btn-cart", hasProducts && "has-products")}>
-        <BtnIcon icon='cart' onClick={() => setOpen(true)} />
+        <BtnIcon title='cart' icon='cart' onClick={() => setOpen(true)} />
       </div>
       <Dialog isOpen={open} onClose={() => setOpen(false)}>
         <Cart />

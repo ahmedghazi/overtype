@@ -138,6 +138,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      title: 'licenseOwner',
+      name: 'companyName',
+      type: 'string',
+    }),
+    defineField({
       name: 'licenseForData',
       type: 'text',
     }),
@@ -145,6 +150,7 @@ export default defineType({
       name: 'json',
       title: 'json',
       type: 'text',
+      description: 'JSON reponse data from Paddle for the order',
     }),
   ],
 })

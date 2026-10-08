@@ -1,5 +1,5 @@
 {
-  "name": "lopez-sieurin",
+  "name": "overtype",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "dm": "func() { git add . && git commit -m \"$1\" && git push; }; func",
     "dm:p": "func() { git add . && git commit -m \"$1\" && git push origin preprod; }; func"
   },
-  "repository": "git@github.com:ahmedghazi/lopez-sieurin.git",
+  "repository": "git@github.com:ahmedghazi/overtype.git",
   "author": "ahmedghazi <atmet.ghazi@gmail.com>",
   "dependencies": {}
 }

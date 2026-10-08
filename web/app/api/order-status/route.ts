@@ -12,6 +12,7 @@ const FULL_ORDER_QUERY = `*[_type == "order" && _id == $orderId][0]{
   totalAmount,
   invoiceNumber,
   licenseFor,
+  companyName,
   licenseForData,
   user->{ _id, name, email },
   items[]->{ ..., downloadLink }

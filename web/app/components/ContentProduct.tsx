@@ -47,10 +47,10 @@ const ContentProduct = ({ input }: Props) => {
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowUp") {
-        console.log("ArrowUp");
+        // console.log("ArrowUp");
         setIsOpen(true);
       } else {
-        setIsOpen(false);
+        // setIsOpen(false);
       }
     });
   }, []);
@@ -88,7 +88,7 @@ const ContentProduct = ({ input }: Props) => {
               <div
                 className={clsx(
                   "grid-item col-span-1",
-                  item.colSize === 2 && "col-span-2"
+                  item.colSize === 2 && "col-span-2",
                 )}
                 key={i}>
                 <Figure asset={item.image?.image?.asset || null} width={2000} />
@@ -153,7 +153,11 @@ const ContentProduct = ({ input }: Props) => {
         )}
       </div>
 
-      <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Dialog
+        isOpen={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+        }}>
         <Buy input={input} />
       </Dialog>
       {/* <pre>{JSON.stringify(input, null, 2)}</pre> */}

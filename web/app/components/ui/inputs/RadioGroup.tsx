@@ -38,6 +38,7 @@ const RadioGroup = ({ name, label, values, onChange, tooltip }: Props) => {
         {values.map((value, i) => (
           <Radio
             key={i}
+            id={value.value}
             name={_slugify(name)}
             label={value.label}
             onChange={() => _handleChange(value.value)}

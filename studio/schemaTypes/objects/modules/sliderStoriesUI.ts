@@ -6,11 +6,19 @@ export default defineField({
   title: 'Slider Stories UI',
   type: 'object',
   icon: TbCarouselHorizontal,
+  initialValue: {
+    lightMode: true,
+  },
   fields: [
     defineField({
       name: 'title',
       type: 'string',
       description: 'Module title (displayed only in the admin)',
+    }),
+    defineField({
+      name: 'lightMode',
+      type: 'boolean',
+      description: 'Affiche le slider sans footer, ni timeline',
     }),
     defineField({
       name: 'items',

@@ -1,8 +1,6 @@
-import { Readable } from "stream";
-import archiver from "archiver";
-import { PassThrough } from "stream";
 import { client } from "@/app/sanity-api/sanity-client";
 import { LinkExpire } from "@/app/types/schema";
+import { buildZipStream } from "../lib/zip-archive";
 
 export const runtime = "nodejs";
 
@@ -36,25 +34,13 @@ export async function GET(req: Request) {
     return Response.json({ error: "No files found" }, { status: 404 });
   }
 
-  const archive = archiver("zip", { zlib: { level: 9 } });
-  const passThrough = new PassThrough();
-
-  archive.pipe(passThrough);
-
-  for (const zip of data.zips) {
-    if (!zip.link) continue;
-    const res = await fetch(zip.link);
-    if (!res.ok || !res.body) continue;
-    archive.append(Readable.fromWeb(res.body as any), {
-      name: zip.label ?? "file.zip",
-    });
-  }
-
-  archive.finalize();
+  const stream = await buildZipStream(
+    data.zips.filter((zip): zip is typeof zip & { link: string } => !!zip.link),
+  );
 
   await client.patch(data._id).inc({ downloads: 1 }).commit();
 
-  return new Response(passThrough as any, {
+  return new Response(stream as any, {
     headers: {
       "Content-Type": "application/zip",
       "Content-Disposition": 'attachment; filename="overtype-fonts.zip"',

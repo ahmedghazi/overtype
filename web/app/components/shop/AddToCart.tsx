@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { ProductData } from "@/app/types/extra-types";
 import { publish } from "pubsub-js";
+import clsx from "clsx";
 
 type Props = {
   items: ProductData[];
@@ -19,7 +20,7 @@ const AddToCart = ({ items }: Props) => {
     products.forEach((product) => {
       if (
         dialogProducts.some(
-          (dialogProduct) => dialogProduct.sku === product.sku
+          (dialogProduct) => dialogProduct.sku === product.sku,
         )
       ) {
         setProducts({ type: "REMOVE", payload: product });
@@ -74,7 +75,12 @@ const AddToCart = ({ items }: Props) => {
 
   return (
     <div className='add-to-cart'>
-      <button className='ui-btn ui-btn__accent' onClick={handleAddToCart}>
+      <button
+        className={clsx(
+          "ui-btn ui-btn__accent",
+          dialogProducts.length === 0 && "disabled",
+        )}
+        onClick={handleAddToCart}>
         Add to cart
         {dialogProducts.length > 0 && <span className='ml-2'>{total}€</span>}
       </button>

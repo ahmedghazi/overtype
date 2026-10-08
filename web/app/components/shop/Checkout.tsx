@@ -14,15 +14,34 @@ const BtnCheckout = ({ canCheckout }: Props) => {
   const paddle = useContext(PaddleContext);
   const [isLoading, setIsLoading] = React.useState(false);
   const { products, licenseFor, licenseForData } = useShop();
-  // console.log(products);
   // define customer details
-  const customerInfo = {
+  let customerInfo: {
+    email: string;
+    address: {
+      countryCode: string;
+      postalCode: string;
+      city: string;
+      firstLine: string;
+    };
+    business?: { name: string };
+  } = {
     email: licenseForData.email || "",
-    // address: {
-    //   countryCode: "FR",
-    //   postalCode: "75018",
-    // },
+    address: {
+      countryCode: licenseForData.country || "",
+      postalCode: licenseForData.postalCode || "",
+      city: licenseForData.city || "",
+      firstLine: licenseForData.street || "",
+    },
+    business: {
+      name: licenseForData.userCompanyName || "",
+    },
   };
+  // if (licenseFor === "client" && licenseForData.companyName) {
+  //   customerInfo.business = {
+  //     name: licenseForData.companyName,
+  //   };
+  // }
+  console.log(customerInfo);
 
   const storeProducts = async (products: ProductData[], ttl: number) => {
     const now = new Date();
@@ -51,6 +70,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
   };
 
   const handleCheckout = async () => {
+    if (!canCheckout) return;
     if (!paddle) return alert("Paddle not initialized");
 
     console.log("BtnCheckout clicked");
@@ -98,7 +118,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
         },
       },
     }));
-    // console.log(items);
+    console.log(items);
     // return;
 
     const response = await fetch("/api/checkout", {
@@ -118,6 +138,17 @@ const BtnCheckout = ({ canCheckout }: Props) => {
     });
     const data = await response.json();
     setIsLoading(false);
+
+    if (!response.ok || !data.tsx) {
+      console.error("Failed to create Paddle transaction:", data);
+      alert(
+        data.details ||
+          data.error ||
+          "Failed to start checkout. Please try again.",
+      );
+      return;
+    }
+
     console.log("Response from server:", data.tsx);
     paddle?.Checkout.open({
       allowQuantity: false,
@@ -139,6 +170,7 @@ const BtnCheckout = ({ canCheckout }: Props) => {
           !canCheckout && "disabled",
           isLoading && "disabled",
         )}
+        disabled={!canCheckout || isLoading}
         onClick={handleCheckout}>
         {isLoading ? "Loading..." : "Checkout"}
       </button>

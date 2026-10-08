@@ -31,7 +31,8 @@
     .gradient {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
+      background:
+        linear-gradient(
           180deg,
           rgba(0, 0, 0, 0.05) 52.6%,
           rgba(0, 0, 0, 0.25) 100%
@@ -217,7 +218,7 @@
 
   &--story {
     width: 100%;
-    &::before {
+    &:not(.light-mode)::before {
       content: "";
       position: absolute;
       inset: 0;

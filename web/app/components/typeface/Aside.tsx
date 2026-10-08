@@ -229,6 +229,7 @@ const Aside = ({
         <div className='footer'>
           <BtnIcon
             icon={collapse ? "see" : "mask"}
+            title={collapse ? "Show controls" : "Hide controls"}
             onClick={() => setCollapse(!collapse)}
           />
         </div>

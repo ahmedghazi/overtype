@@ -19,6 +19,7 @@ export function ThemeToggle() {
 
   return (
     <BtnIcon
+      title='theme toggle dark mode'
       icon='dark-mode'
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     />

@@ -3,15 +3,12 @@ import { client } from "@/app/sanity-api/sanity-client";
 import { findUserByEmail } from "../lib/sanity-user";
 import { v4 as uuidv4 } from "uuid";
 import { ProductData } from "@/app/types/extra-types";
+import { LicenseForDataProps } from "@/app/components/shop/ShopContext";
 
 interface CreateOrderPayload {
   products: ProductData[];
   licenseFor: string;
-  licenseForData: {
-    email: string;
-    in_use_for?: string;
-    company_name?: string;
-  };
+  licenseForData: LicenseForDataProps;
 }
 
 export async function POST(request: Request) {
@@ -32,7 +29,12 @@ export async function POST(request: Request) {
       (await client.create({
         _type: "user",
         email,
-        name: licenseForData.company_name || email.split("@")[0],
+        name:
+          [licenseForData.first_name, licenseForData.last_name]
+            .filter(Boolean)
+            .join(" ") ||
+          licenseForData.companyName ||
+          email.split("@")[0],
         orders: [],
       }));
 
@@ -61,6 +63,7 @@ export async function POST(request: Request) {
         _key: uuidv4(),
       })),
       licenseFor,
+      companyName: licenseForData.companyName,
       licenseForData: JSON.stringify(licenseForData, null, 2),
     });
 

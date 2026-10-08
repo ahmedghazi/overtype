@@ -45,8 +45,23 @@
     justify-content: space-between;
     font-size: var(--text-lg);
   }
+  h3 {
+    margin-bottom: var(--spacing-xl);
+  }
   .form-field .header label {
     text-align: left;
+  }
+  select {
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+    padding: 15px var(--spacing-md);
+    padding-top: 17px;
+    padding-bottom: 15px;
+    border-radius: var(--radius-sm);
+    font-size: var(--text-md);
+    height: unset;
+    line-height: unset;
+    background-position: 97% 24px;
   }
   .optin {
     display: flex;
@@ -68,7 +83,8 @@
     }
     .header {
       padding-right: 0;
-      padding-left: var(--spacing-md);
+      // padding-left: var(--spacing-md);
+      padding-left: 0;
     }
     h2 {
       font-size: var(--text-2xl);

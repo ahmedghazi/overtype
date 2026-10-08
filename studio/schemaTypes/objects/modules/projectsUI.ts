@@ -1,5 +1,5 @@
 import {defineField} from 'sanity'
-import {ThListIcon} from '@sanity/icons'
+import {ThListIcon} from '@sanity/icons/ThList'
 
 export default defineField({
   name: 'projectsUI',

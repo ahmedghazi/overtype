@@ -1,9 +1,9 @@
 @use "../variables";
 
 .content--product {
-  --space-top: calc(var(--spacing-md) + var(--header-height));
+  --space-top: calc(var(--spacing-md) + var(--header-h));
   section {
-    scroll-margin-top: calct(var(--header-height) + var(--spacing-4xl));
+    scroll-margin-top: calct(var(--header-h) + var(--spacing-4xl));
     margin-bottom: var(--spacing-6xl);
     &.hero-slider {
       // margin-bottom: var(--spacing-md);

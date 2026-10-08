@@ -124,6 +124,17 @@ function trialsReducer(state: any, action: any) {
   }
 }
 
+export type LicenseForDataProps = {
+  email?: string;
+  first_name?: string;
+  last_name?: string;
+  companyName?: string;
+  userCompanyName?: string;
+  street?: string;
+  city?: string;
+  postalCode?: string;
+  country?: string;
+};
 type ContextProps = {
   // cartObject: any;
   trials: SanityKeyed<Product>[] | null;
@@ -137,15 +148,13 @@ type ContextProps = {
 
   licenseType: LicenseType | null;
   setLicenseType: Function;
+
   isLogo: string | boolean | undefined;
   setIsLogo: Function;
+
   licenseFor: "me" | "client";
   setLicenseFor: Function;
-  licenseForData: {
-    companyName?: string;
-    email?: string;
-    inUseFor?: string;
-  };
+  licenseForData: LicenseForDataProps;
   setLicenseForData: Function;
 };
 
@@ -161,24 +170,23 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
   const [products, setProducts] = useReducer(productsReducer, []);
   const [dialogProducts, setDialogProducts] = useReducer(
     dialogProductsReducer,
-    []
+    [],
   );
   const [trials, setTrials] = useReducer(trialsReducer, []);
   const [licenseType, setLicenseType] = useState<LicenseType | null>(null);
   const [licenseFor, setLicenseFor] = useState<"me" | "client">("me");
-  const [licenseForData, setLicenseForData] = useState<{
-    companyName?: string;
-    email?: string;
-    inUseFor?: string;
-  }>({
-    companyName: "",
-    email: "",
-    inUseFor: "",
+  const [licenseForData, setLicenseForData] = useState<LicenseForDataProps>({
+    // companyName: "",
+    // email: "",
+    // inUseFor: "",
   });
+  // console.log({ licenseType });
+  // console.log({ licenseFor });
+  // console.log({ licenseForData });
   const [isLogo, setIsLogo] = useState<string | boolean | undefined>(undefined);
 
   useEffect(() => {
-    console.log(status);
+    console.log({ status });
     //preprod-overtype-foundry.vercel.app/post-checkout?status=success
     if (status === "success") return;
 
@@ -190,6 +198,15 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
       });
     }
 
+    const _licenseFor = localStorage.getItem("overtype-licenseFor");
+    if (_licenseFor) {
+      setLicenseFor(JSON.parse(_licenseFor));
+    }
+    const _licenseForData = localStorage.getItem("overtype-licenseForData");
+    if (_licenseForData) {
+      setLicenseForData(JSON.parse(_licenseForData));
+    }
+
     setReady(true);
   }, []);
 
@@ -198,6 +215,16 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
       localStorage.setItem("overtype-cart", JSON.stringify(products));
     }
   }, [products, ready]);
+
+  useEffect(() => {
+    if (ready) {
+      localStorage.setItem("overtype-licenseFor", JSON.stringify(licenseFor));
+      localStorage.setItem(
+        "overtype-licenseForData",
+        JSON.stringify(licenseForData),
+      );
+    }
+  }, [licenseFor, licenseForData, ready]);
 
   return (
     <ShopContext.Provider
@@ -215,6 +242,7 @@ export const ShopWrapper = ({ children, licenses }: ShopContextProps) => {
         setIsLogo,
         licenseFor,
         setLicenseFor,
+
         licenseForData,
         setLicenseForData,
       }}>

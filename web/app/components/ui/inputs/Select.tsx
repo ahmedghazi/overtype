@@ -9,6 +9,7 @@ type Props = {
   onChange: Function;
   disabled?: boolean;
   multiple?: boolean;
+  required?: boolean;
 };
 
 const Select = ({
@@ -19,6 +20,7 @@ const Select = ({
   onChange,
   disabled = false,
   multiple = false,
+  required = false,
 }: Props) => {
   const [active, setActive] = useState<boolean>(false);
   const ref = useRef<HTMLElement>(null);
@@ -46,20 +48,14 @@ const Select = ({
       onBlur={(e) => setActive(false)}
       disabled={disabled}
       multiple={multiple}
+      required={required}
       onChange={(e) => {
-        // console.log(e.target.value);
         if (e.target.value) {
-          // onChange(JSON.parse(e.target.value));
           onChange(e.target.value);
           setActive(false);
         }
       }}
-      defaultValue={
-        // label === "" && options[0] && options[0]._type === "keyValString"
-        //   ? JSON.stringify(options[0])
-        //   : ""
-        label || defaultValue || ""
-      }>
+      defaultValue={label || defaultValue || ""}>
       {label && (
         <option defaultValue='' value=''>
           {label}
@@ -67,19 +63,10 @@ const Select = ({
       )}
       {options &&
         options.map((item, i) => (
-          <option
-            key={i}
-            // value={JSON.stringify(item)}
-            // value={JSON.stringify(item.value)}
-            value={item.value}
-            // value={item._key}
-            // defaultValue={item.selected}
-            // defaultValue={JSON.stringify(item)}
-          >
+          <option key={i} value={item.value}>
             {item.label}
           </option>
         ))}
-      {/* <i className='icon icon-drop-down'></i> */}
       {!options && <div>Please provide some options</div>}
     </select>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 
 type Props = {
@@ -10,6 +10,7 @@ type Props = {
 const TesterFeatures = ({ options, label, onChange }: Props) => {
   const [selected, setSelected] = useState([]);
   const ref = useRef<HTMLDivElement>(null);
+  const labelId = useId();
   useEffect(() => {
     // if (selected.length === 0) return;
     onChange(selected);
@@ -22,15 +23,22 @@ const TesterFeatures = ({ options, label, onChange }: Props) => {
     if (defaulltheading) {
       defaulltheading.textContent = label;
     }
+    // the lib puts aria-readonly on a role-less div, which is invalid ARIA
+    ref.current
+      ?.querySelector(".dropdown-container")
+      ?.removeAttribute("aria-readonly");
   }, []);
 
   return (
     <div ref={ref}>
+      <span id={labelId} className='sr-only'>
+        {label}
+      </span>
       <MultiSelect
         options={options}
         value={selected}
         onChange={setSelected}
-        labelledBy={label || "label"}
+        labelledBy={labelId}
         disableSearch={true}
         hasSelectAll={false}
         className='ui-select'

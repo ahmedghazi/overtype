@@ -18,7 +18,7 @@
     gap: var(--spacing-3xs);
   }
   .footer {
-    .ui-text-or-email {
+    .ui-text-or-email-or-number {
       label {
         padding-left: 0;
       }
@@ -41,7 +41,7 @@
     .c-container {
       padding: 0;
     }
-    .ui-text-or-email {
+    .ui-text-or-email-or-number {
       .header {
         text-align: left;
         padding-top: 0;

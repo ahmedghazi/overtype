@@ -487,7 +487,7 @@ a.ui-btn {
 }
 .dark .ui-select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' x='0px' y='0px' viewBox='0 0 12 7' xml:space='preserve'%3E%3Cpolygon fill='white' points='6,6.7 0.6,1.3 1.4,0.6 6,5.2 10.6,0.6 11.4,1.3 '/%3E%3C/svg%3E");
-  background-color: transparent;
+  // background-color: transparent;
   &.rmsc {
     --rmsc-main: #4285f4 !important;
     --rmsc-hover: rgba(111, 111, 111, 1) !important;
@@ -545,6 +545,9 @@ a.ui-btn {
     input {
       // margin-right: 0.625rem;
     }
+  }
+  label {
+    cursor: inherit;
   }
 }
 .dark .ui-radio:hover,
@@ -786,9 +789,31 @@ a.ui-btn {
 
 .form-field {
   margin-bottom: var(--spacing-sm);
+  &:last-child {
+    margin: 0;
+  }
+  &--group {
+    display: grid;
+    gap: var(--spacing-2xs);
+    @media all and (min-width: variables.$md) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  &--select {
+    .header {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--spacing-md);
+      margin: 0 !important;
+      label {
+        font-size: var(--text-lg);
+        display: block;
+      }
+    }
+  }
 }
 
-.ui-text-or-email {
+.ui-text-or-email-or-number {
   .header {
     display: flex;
     justify-content: space-between;
@@ -796,8 +821,12 @@ a.ui-btn {
     margin: 0 !important;
   }
   label {
-    font-size: var(--text-lg);
     display: block;
+    font-size: var(--text-md);
+
+    @media all and (min-width: variables.$md) {
+      font-size: var(--text-lg);
+    }
   }
   input {
     background-color: var(--color-bg);
@@ -810,12 +839,23 @@ a.ui-btn {
     padding-bottom: 15px;
     &::placeholder {
       color: var(--color-secondary);
+      text-transform: unset;
+    }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    &[type="number"] {
+      -moz-appearance: textfield;
     }
   }
 }
 
 .Toastify {
-  --toastify-toast-top: var(--header-height);
+  --toastify-toast-top: var(--header-h);
   --toastify-toast-right: var(--spacing-md);
   --toastify-toast-bd-radius: var(--radius);
   --toastify-font-family: var(--font-primary);
@@ -827,14 +867,14 @@ a.ui-btn {
   }
 
   @media all and (max-width: variables.$md) {
-    --toastify-toast-top: var(--header-height);
+    --toastify-toast-top: var(--header-h);
     --toastify-toast-right: var(--spacing-xs);
     --toastify-toast-bd-radius: var(--radius-sm);
     --toastify-color-light: transparent;
     .Toastify__toast-container--top-left,
     .Toastify__toast-container--top-center,
     .Toastify__toast-container--top-right {
-      top: var(--header-height);
+      top: var(--header-h);
       z-index: 51;
     }
     .Toastify__toast-container {
@@ -968,7 +1008,7 @@ section {
     }
   }
   .ui-radio--group .header,
-  .ui-text-or-email label {
+  .ui-text-or-email-or-number label {
     padding-left: 0;
     padding-right: 0;
   }

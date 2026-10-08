@@ -65,6 +65,7 @@
         }
         h4 {
           padding-left: calc(var(--spacing-md) * 0.8 + var(--spacing-3xs));
+          padding-left: 0;
         }
         .ui-btn--tooltip {
           flex-shrink: 0;
